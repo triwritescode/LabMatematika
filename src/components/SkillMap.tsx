@@ -19,6 +19,7 @@ interface SkillMapProps {
   examPassed: boolean;
   accent: string;
   onPractice: () => void;
+  onPracticeSub: (id: SubSkillId) => void;
   onExam: () => void;
 }
 
@@ -29,17 +30,29 @@ export function SkillMap({
   examPassed,
   accent,
   onPractice,
+  onPracticeSub,
   onExam,
 }: SkillMapProps) {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">
-        {strings.penguasaan} sub-keahlian
-      </h2>
+      <div>
+        <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+          {strings.penguasaan} sub-keahlian
+        </h2>
+        <p className="mt-1 text-xs font-medium text-slate-400">
+          Ketuk kartu keahlian untuk berlatih lagi — termasuk yang sudah 100% 🔁.
+        </p>
+      </div>
 
       <div className="flex flex-col gap-1">
         {rows.map((r) => (
-          <MasteryMeter key={r.id} label={r.label} mastery={r.mastery} target={r.id === target} />
+          <MasteryMeter
+            key={r.id}
+            label={r.label}
+            mastery={r.mastery}
+            target={r.id === target}
+            onDrill={() => onPracticeSub(r.id)}
+          />
         ))}
       </div>
 

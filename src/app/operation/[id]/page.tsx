@@ -22,7 +22,14 @@ export default function OperationPage() {
   const progress = useProgressStore((s) => s.progress);
   const setDailyMission = useProgressStore((s) => s.setDailyMission);
 
-  useEffect(() => hydrate(), [hydrate]);
+  // Gate render on client mount: store reads LocalStorage on hydrate, so SSR/first
+  // paint must not render store-derived UI (would mismatch hydration).
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    hydrate();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- single client-mount guard
+    setMounted(true);
+  }, [hydrate]);
 
   const operation = (OPERATIONS.includes(id as Operation) ? id : "add") as Operation;
   const meta = OPERATION_META[operation];
@@ -57,6 +64,13 @@ export default function OperationPage() {
       router.push(`/practice/${operation}/${level}?sub=${encodeURIComponent(target)}`);
     }
   }
+
+  // Tap any sub-skill to drill it directly — explicit choice, so replayable even at 100%.
+  function practiceSub(sub: typeof target) {
+    router.push(`/practice/${operation}/${level}?sub=${encodeURIComponent(sub)}`);
+  }
+
+  if (!mounted) return <main className="min-h-dvh" aria-busy />;
 
   return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col gap-5 p-5">
@@ -104,6 +118,7 @@ export default function OperationPage() {
         examPassed={state.examPassed}
         accent={meta.color}
         onPractice={startPractice}
+        onPracticeSub={practiceSub}
         onExam={() => router.push(`/exam/${operation}/${level}`)}
       />
     </main>

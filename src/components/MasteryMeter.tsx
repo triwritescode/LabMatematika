@@ -8,15 +8,24 @@ interface MasteryMeterProps {
   mastery: number; // 0–100
   /** Highlight as the current practice target. */
   target?: boolean;
+  /** Drill this sub-skill directly — works at any mastery, even 100% (repeatable). */
+  onDrill?: () => void;
 }
 
-export function MasteryMeter({ label, mastery, target }: MasteryMeterProps) {
+export function MasteryMeter({ label, mastery, target, onDrill }: MasteryMeterProps) {
   const band = MASTERY_BANDS[masteryBand(mastery)];
-  return (
-    <div className={`rounded-2xl p-3 ${target ? "bg-white shadow-sm ring-2" : ""}`} style={target ? { ["--tw-ring-color" as string]: band.color } : undefined}>
+
+  const body = (
+    <>
       <div className="mb-1 flex items-center justify-between text-sm font-semibold text-slate-700">
-        <span>
-          {label} {target ? <span className="text-xs font-bold">← target</span> : null}
+        <span className="flex items-center gap-1">
+          {label}
+          {mastery >= 100 ? (
+            <span className="text-xs font-bold text-green-600" title="Sudah 100% — boleh diulang">
+              🔁
+            </span>
+          ) : null}
+          {target ? <span className="text-xs font-bold">← target</span> : null}
         </span>
         <span className="tabular-nums" style={{ color: band.color }}>
           {Math.round(mastery)}%
@@ -31,6 +40,30 @@ export function MasteryMeter({ label, mastery, target }: MasteryMeterProps) {
           transition={{ type: "spring", stiffness: 120, damping: 20 }}
         />
       </div>
+    </>
+  );
+
+  // Whole card is the repeatable drill button — tappable at any mastery, even 100%.
+  if (onDrill) {
+    return (
+      <button
+        type="button"
+        onClick={onDrill}
+        aria-label={`Latih ${label}`}
+        className={`w-full rounded-2xl p-3 text-left transition active:scale-95 ${target ? "bg-white shadow-sm ring-2" : "hover:bg-white/60"}`}
+        style={target ? { ["--tw-ring-color" as string]: band.color } : undefined}
+      >
+        {body}
+      </button>
+    );
+  }
+
+  return (
+    <div
+      className={`rounded-2xl p-3 ${target ? "bg-white shadow-sm ring-2" : ""}`}
+      style={target ? { ["--tw-ring-color" as string]: band.color } : undefined}
+    >
+      {body}
     </div>
   );
 }

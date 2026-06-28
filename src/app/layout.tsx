@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     title: "LabMatematika",
   },
   icons: {
-    icon: "/icons/icon-192.png",
-    apple: "/icons/icon-192.png",
+    icon: "/icons/lab-matematika.png",
+    apple: "/icons/lab-matematika.png",
   },
 };
 
