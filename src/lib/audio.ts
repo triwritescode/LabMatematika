@@ -2,13 +2,13 @@
 // Preload clips, unlock the context on first interaction, then play on demand.
 "use client";
 
-export type SoundName = "correct" | "wrong" | "levelup" | "coin";
+export type SoundName = "correct" | "wrong" | "levelup" | "examPass";
 
 const SOURCES: Record<SoundName, string> = {
   correct: "/sounds/correct.mp3",
   wrong: "/sounds/wrong.mp3",
   levelup: "/sounds/levelup.mp3",
-  coin: "/sounds/coin.mp3",
+  examPass: "/sounds/exam-pass.mp3",
 };
 
 let unlocked = false;

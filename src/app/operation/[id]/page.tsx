@@ -1,55 +1,111 @@
-// Adventure map — pick level + mode for one operation world (§10.2).
+// Skill Map (§10.1) — sub-skill mastery for a chosen level + exam gate.
+// Any unlocked level (including already-passed ones) can be revisited and replayed.
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import type { Level, Mode, Operation } from "@/types";
-import { LEVELS, OPERATION_META, OPERATIONS } from "@/lib/constants";
+import Link from "next/link";
+import type { Level, Operation } from "@/types";
+import { LEVELS, OPERATIONS, OPERATION_META } from "@/lib/constants";
+import { levelSubSkills, subSkillLabel } from "@/lib/subskills";
+import { levelReady, weakestSubSkill } from "@/lib/mastery";
+import { activeLevel } from "@/lib/progression";
+import { strings } from "@/lib/strings";
 import { useProgressStore } from "@/stores/useProgressStore";
-import { AdventureMap } from "@/components/AdventureMap";
-import { ModeSelector } from "@/components/ModeSelector";
-import type { LevelStatus } from "@/components/LevelStop";
+import { Mascot } from "@/components/Mascot";
+import { RankBadge } from "@/components/RankBadge";
+import { SkillMap, type SkillRow } from "@/components/SkillMap";
 
 export default function OperationPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const hydrate = useProgressStore((s) => s.hydrate);
   const progress = useProgressStore((s) => s.progress);
-  const [mode, setMode] = useState<Mode>("latihan");
+  const setDailyMission = useProgressStore((s) => s.setDailyMission);
 
   useEffect(() => hydrate(), [hydrate]);
 
   const operation = (OPERATIONS.includes(id as Operation) ? id : "add") as Operation;
   const meta = OPERATION_META[operation];
-  const opProgress = progress[operation];
+  const op = progress[operation];
 
-  const { statusByLevel, starsByLevel } = useMemo(() => {
-    const status: Record<number, LevelStatus> = {};
-    const stars: Record<number, number> = {};
-    for (const lvl of LEVELS) {
-      const lp = opProgress.levels[String(lvl)];
-      stars[lvl] = lp.bestStars;
-      status[lvl] = !lp.unlocked ? "locked" : lp.bestScore > 0 ? "done" : "current";
+  // Selected level: defaults to the active level, but the kid can pick any unlocked one.
+  const [picked, setPicked] = useState<Level | null>(null);
+  const level = picked ?? activeLevel(op);
+  const state = op.levels[String(level)];
+  const subs = levelSubSkills(operation, level);
+  const target = weakestSubSkill(state, subs);
+  const examReady = levelReady(state, subs);
+  const hasPracticed = subs.some((s) => (state.subSkills[s]?.attempts ?? 0) > 0);
+
+  // Set today's mission from this lab's current target.
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    setDailyMission(operation, target, today);
+  }, [operation, target, setDailyMission]);
+
+  const rows: SkillRow[] = subs.map((sid) => ({
+    id: sid,
+    label: subSkillLabel(sid),
+    mastery: state.subSkills[sid]?.mastery ?? 0,
+  }));
+
+  function startPractice() {
+    // First time on this level → diagnostic to locate the edge (§3.1); otherwise practice.
+    if (!hasPracticed) {
+      router.push(`/diagnostic/${operation}/${level}`);
+    } else {
+      router.push(`/practice/${operation}/${level}?sub=${encodeURIComponent(target)}`);
     }
-    return { statusByLevel: status, starsByLevel: stars };
-  }, [opProgress]);
-
-  function start(level: Level) {
-    router.push(`/quiz/${operation}/${level}?mode=${mode}`);
   }
 
   return (
-    <main
-      className="mx-auto flex max-w-md flex-col gap-6 p-6"
-      style={{ color: meta.color }}
-    >
-      <h1 className="text-2xl font-bold">Dunia {meta.label}</h1>
-      <AdventureMap
-        operation={operation}
-        statusByLevel={statusByLevel}
-        starsByLevel={starsByLevel}
-        onSelectLevel={start}
+    <main className="mx-auto flex min-h-dvh max-w-md flex-col gap-5 p-5">
+      <header className="flex items-center justify-between">
+        <Link href="/" className="text-sm font-medium text-slate-500">
+          ← {meta.labLabel}
+        </Link>
+        <RankBadge rank={op.rank} accent={meta.color} />
+      </header>
+
+      <Mascot pose="idle" message={strings.targetHariIni(subSkillLabel(target))} />
+
+      {/* Level path — pick any unlocked level (passed levels stay open for replay). */}
+      <div className="flex items-center gap-2">
+        {LEVELS.map((lvl) => {
+          const s = op.levels[String(lvl)];
+          const selected = lvl === level;
+          const label = s.examPassed ? "✅" : !s.unlocked ? "🔒" : `L${lvl}`;
+          return (
+            <button
+              key={lvl}
+              type="button"
+              disabled={!s.unlocked}
+              onClick={() => setPicked(lvl)}
+              aria-current={selected}
+              className="flex h-11 flex-1 items-center justify-center rounded-xl text-sm font-bold transition active:scale-95 disabled:opacity-40"
+              style={
+                selected
+                  ? { backgroundColor: meta.color, color: "white" }
+                  : { backgroundColor: "#f1f5f9", color: "#475569" }
+              }
+            >
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
+      <p className="text-sm font-semibold text-slate-400">Level {level}</p>
+
+      <SkillMap
+        rows={rows}
+        target={target}
+        examReady={examReady}
+        examPassed={state.examPassed}
+        accent={meta.color}
+        onPractice={startPractice}
+        onExam={() => router.push(`/exam/${operation}/${level}`)}
       />
-      <ModeSelector value={mode} onChange={setMode} />
     </main>
   );
 }

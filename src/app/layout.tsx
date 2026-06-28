@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   applicationName: "LabMatematika",
-  title: "LabMatematika — Belajar berhitung jadi seru!",
+  title: "LabMatematika — Latih, uji, kuasai.",
   description:
-    "Aplikasi latihan berhitung offline untuk anak SD. Tambah, kurang, kali, bagi.",
+    "Latihan berhitung berbasis deliberate practice untuk anak SD. Diagnostik, latihan terarah, ujian kenaikan level.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

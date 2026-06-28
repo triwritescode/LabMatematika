@@ -1,4 +1,4 @@
-// End-of-session mistake review (§6, §10): each wrong answer with "Lihat caranya".
+// End-of-session mistake review (§6) — each miss with "Lihat caranya".
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -69,7 +69,7 @@ export default function ReviewPage() {
       )}
 
       <Link
-        href="/quiz/result"
+        href="/result"
         className="mt-auto rounded-2xl bg-slate-100 py-3 text-center font-bold text-slate-700 active:scale-95"
       >
         ← Kembali ke hasil

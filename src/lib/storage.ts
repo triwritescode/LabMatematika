@@ -1,25 +1,34 @@
 // LocalStorage persistence with SSR-safe guards + schema defaults (§13).
 // No account, no cloud — one device = one child.
-import type { AppProgress, Operation, OperationProgress } from "@/types";
-import { LEVELS, OPERATIONS, STORAGE_KEY } from "@/lib/constants";
+import type {
+  AppProgress,
+  LevelState,
+  Operation,
+  OperationProgress,
+  SubSkillMastery,
+} from "@/types";
+import { LEVELS, OPERATIONS, RANK_LADDER, STORAGE_KEY } from "@/lib/constants";
+import { levelSubSkills } from "@/lib/subskills";
 
-function emptyOperationProgress(): OperationProgress {
+function emptyMastery(subSkill: string): SubSkillMastery {
+  return { subSkill, mastery: 0, attempts: 0, lastPracticedAt: null };
+}
+
+function emptyLevelState(operation: Operation, level: (typeof LEVELS)[number]): LevelState {
+  const subSkills: Record<string, SubSkillMastery> = {};
+  for (const id of levelSubSkills(operation, level)) subSkills[id] = emptyMastery(id);
+  return { unlocked: level === 1, examPassed: false, subSkills };
+}
+
+function emptyOperationProgress(operation: Operation): OperationProgress {
   const levels: OperationProgress["levels"] = {};
-  for (const lvl of LEVELS) {
-    levels[String(lvl)] = {
-      unlocked: lvl === 1, // only Level 1 starts unlocked
-      bestScore: 0,
-      bestStars: 0,
-      attempts: 0,
-      lastPlayedAt: null,
-    };
-  }
-  return { levels, subSkills: {} };
+  for (const lvl of LEVELS) levels[String(lvl)] = emptyLevelState(operation, lvl);
+  return { rank: RANK_LADDER[0], levels };
 }
 
 export function defaultProgress(): AppProgress {
   const byOp = Object.fromEntries(
-    OPERATIONS.map((op) => [op, emptyOperationProgress()]),
+    OPERATIONS.map((op) => [op, emptyOperationProgress(op)]),
   ) as Record<Operation, OperationProgress>;
 
   return {
@@ -29,14 +38,7 @@ export function defaultProgress(): AppProgress {
     multiply: byOp.multiply,
     divide: byOp.divide,
     streak: { count: 0, lastActiveDate: null },
-    dailyMission: { date: "", done: false },
-    rewards: {
-      coins: 0,
-      ownedItems: [],
-      stickers: [],
-      badges: [],
-      equippedItems: {},
-    },
+    dailyMission: { date: "", operation: null, targetSubSkill: null, done: false },
   };
 }
 
@@ -47,10 +49,8 @@ export function loadProgress(): AppProgress {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultProgress();
-    // Shallow-merge over defaults so new fields survive schema growth.
     return { ...defaultProgress(), ...(JSON.parse(raw) as Partial<AppProgress>) };
   } catch {
-    // Corrupt/unavailable storage must never crash the app — start fresh.
     return defaultProgress();
   }
 }

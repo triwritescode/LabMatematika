@@ -1,14 +1,8 @@
-// Adaptive difficulty within a level — productive struggle zone (§5).
-// Never jumps levels; only biases operand ranges inside the chosen level.
+// Edge-of-ability difficulty (§2, §5). Keeps each problem just beyond comfort:
+// nudge harder on a correct run, easier after stumbles. Never jumps levels.
 import type { DifficultyBias, Performance } from "@/types";
 
-/**
- * Derive a difficulty bias from recent results:
- *   3 correct in a row → "harder"
- *   2 wrong in a row    → "easier"
- *   otherwise           → "neutral"
- */
-export function adaptDifficulty(perf: Performance): DifficultyBias {
+export function adaptToEdge(perf: Performance): DifficultyBias {
   const r = perf.recent;
   const last3 = r.slice(-3);
   if (last3.length === 3 && last3.every((c) => c)) return "harder";
@@ -20,5 +14,9 @@ export function adaptDifficulty(perf: Performance): DifficultyBias {
 }
 
 export function emptyPerformance(): Performance {
-  return { recent: [], subSkillMisses: {} };
+  return { recent: [] };
+}
+
+export function pushResult(perf: Performance, correct: boolean): Performance {
+  return { recent: [...perf.recent.slice(-9), correct] };
 }

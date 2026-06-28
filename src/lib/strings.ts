@@ -1,61 +1,64 @@
-// All kid-facing UI copy in Bahasa Indonesia. Centralized — see specs §16.
-// Functions interpolate runtime values; plain strings are static labels.
-
+// All kid-facing UI copy in Bahasa Indonesia. Centralized — see specs §17.
 export const strings = {
   appName: "LabMatematika",
-  tagline: "Belajar berhitung jadi seru!",
+  tagline: "Latih, uji, kuasai.",
 
   // Navigation / sections
   beranda: "Beranda",
-  pilihOperasi: "Pilih operasi",
-  pilihLevel: "Pilih level",
+  petaKeahlian: "Peta Keahlian",
+  penguasaan: "Penguasaan",
   progres: "Progres",
-  toko: "Toko",
-  albumStiker: "Album Stiker",
-  lencana: "Lencana",
   misiHarian: "Misi harian",
 
-  // Modes (§4)
-  modeLatihan: "Latihan",
-  modeTantangan: "Tantangan",
-  modeCampur: "Latihan Campur",
+  // Modes (§3)
+  diagnostik: "Diagnostik",
+  latihanTerarah: "Latihan Terarah",
+  ujian: "Ujian Kenaikan Level",
 
-  // Quiz (§10.3, §10.4)
+  // Mastery bands (§5)
+  belumDikuasai: "Belum dikuasai",
+  sedangDilatih: "Sedang dilatih",
+  dikuasai: "Dikuasai",
+
+  // Quiz
   soalDari: (n: number, total = 10) => `Soal ${n} dari ${total}`,
   benar: "Benar!",
   belumTepat: "Belum tepat",
   yangBenar: (x: number) => `Yang benar ${x}`,
   lihatCaranya: "Lihat caranya",
   hapus: "Hapus",
+  cekJawaban: "Cek Jawaban",
 
-  // Result (§10.5)
-  hebat: "Hebat!",
-  ayoCobaLagi: "Ayo coba lagi!",
-  benarDari: (n: number, total = 10) => `${n} dari ${total} benar`,
-  levelTerbuka: (n: number) => `Level ${n} terbuka!`,
-  koinPlus: (n: number) => `+${n} koin`,
-  lencanaBaru: (name: string) => `Lencana baru: "${name}"`,
-  ulangi: "Ulangi",
-  lanjut: "Lanjut",
+  // Exam (§3.3, §10.3, §10.4)
+  tanpaBantuan: "Tanpa bantuan. Semangat!",
+  lulus: "LULUS!",
+  hampir: "Hampir!",
+  naikLevel: (n: number) => `Kamu naik ke Level ${n}!`,
+  rankBaru: (r: string) => `Rank baru: ${r}`,
+  sertifikat: (op: string, lvl: number) => `Sertifikat ${op} Level ${lvl}`,
+  perluDikuatkan: (skill: string) => `Perlu dikuatkan: ${skill}`,
+  ujianTerkunci: "Ujian (butuh semua ≥70%)",
+
+  // Targets / missions
+  targetHariIni: (skill: string) => `Targetmu hari ini: ${skill}`,
+  latih: (skill: string) => `Latih '${skill}'`,
+  cobaUjianLagi: "Coba ujian lagi nanti",
 
   // Stats
   runtutanHari: (n: number) => `Runtutan ${n} hari`,
-  koin: "Koin",
-  perluLatihan: (skill: string) => `Perlu latihan: ${skill}`,
 
-  // Mascot lines (§16) — picked at random where multiple given
+  // Buttons
+  ulangi: "Ulangi",
+  lanjut: "Lanjut",
+  mulaiLatihan: "Latihan Terarah",
+
+  // Mascot (§17)
   mascot: {
-    greet: (nama: string) => `Halo, ${nama}! 👋`,
-    siapLatihan: "Siap latihan hari ini?",
-    cheer: ["Hebat!", "Keren banget!", "Wah, kamu hebat hari ini!"],
-    encourage: ["Gak apa-apa, coba lagi ya!", "Hampir benar, semangat!"],
-    lanjut: "Yuk lanjut latihan!",
-  },
-
-  // Sub-skill labels for "Perlu latihan"
-  subSkill: {
-    carrying: "menyimpan",
-    borrowing: "meminjam",
+    greet: (nama: string) => `Halo, ${nama}! Siap latihan?`,
+    masteryUp: "Keren, penguasaanmu naik!",
+    encourage: ["Hampir benar — fokus ke satuannya ya.", "Gak apa-apa, coba lagi ya!"],
+    cheer: ["Hebat!", "Keren banget!"],
+    examPass: "Kamu LULUS! Bangga banget! 🎉",
   },
 } as const;
 

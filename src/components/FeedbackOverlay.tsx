@@ -1,30 +1,24 @@
-// Inline correct/wrong feedback after an answer (§10.4). Phase 3 adds star-burst + sound.
+// Inline correct/wrong feedback after an answer (§10.4).
 import { strings } from "@/lib/strings";
 
 interface FeedbackOverlayProps {
   correct: boolean;
   /** Correct answer, shown when wrong. */
   answer: number;
-  coins?: number;
   /** Practice mode only — reveals "Lihat caranya". */
   onShowExplanation?: () => void;
 }
 
-export function FeedbackOverlay({
-  correct,
-  answer,
-  coins = 0,
-  onShowExplanation,
-}: FeedbackOverlayProps) {
+export function FeedbackOverlay({ correct, answer, onShowExplanation }: FeedbackOverlayProps) {
   if (correct) {
     return (
-      <div className="rounded-2xl bg-green-500 px-4 py-3 text-white">
-        ✅ {strings.benar} +{coins} 🪙
+      <div className="rounded-2xl bg-green-500 px-4 py-3 text-lg font-semibold text-white">
+        ✅ {strings.benar}
       </div>
     );
   }
   return (
-    <div className="rounded-2xl bg-red-500 px-4 py-3 text-white">
+    <div className="rounded-2xl bg-red-500 px-4 py-3 text-lg font-semibold text-white">
       ❌ {strings.belumTepat}. {strings.yangBenar(answer)}
       {onShowExplanation ? (
         <button type="button" onClick={onShowExplanation} className="ml-2 underline">

@@ -1,34 +1,32 @@
-// Question generation per operation/level with adaptive bias (§3, §5, §11).
-// Pure + deterministic given an injectable RNG (testable, no global Math.random in tests).
-import type {
-  DifficultyBias,
-  Level,
-  Operation,
-  Performance,
-  Question,
-} from "@/types";
-import { adaptDifficulty } from "@/lib/adaptive";
-import { detectSubSkill } from "@/lib/subskills";
+// Sub-skill-constrained question generation (§11). Generation is forced to PRODUCE
+// the target sub-skill (e.g. exactly one carry), not just a random level problem.
+// Pure + RNG-injectable for deterministic tests.
+import type { DifficultyBias, Level, Operation, Performance, Question, SubSkillId } from "@/types";
+import { adaptToEdge } from "@/lib/adaptive";
+import { countCarries, countBorrows, hasBorrowAcrossZero, factNumber } from "@/lib/subskills";
 
 export type Rng = () => number; // [0, 1)
-
 const defaultRng: Rng = Math.random;
 
-/** Inclusive integer in [min, max]. */
 function randInt(rng: Rng, min: number, max: number): number {
   return min + Math.floor(rng() * (max - min + 1));
 }
 
-/** Pick a value within [min,max], skewed by bias toward one end of the range. */
+/** Skew a pick toward the harder/easier end of a range (edge of ability, §5). */
 function biasedInt(rng: Rng, min: number, max: number, bias: DifficultyBias): number {
   if (bias === "neutral" || min >= max) return randInt(rng, min, max);
   const mid = Math.floor((min + max) / 2);
   return bias === "harder" ? randInt(rng, mid, max) : randInt(rng, min, mid);
 }
 
-/** Digit-count → inclusive numeric range, e.g. 2 → [10, 99]. */
+/** Digit count for a multi-digit problem at a level (L5 = mixed 2–4). */
+function digitsForLevel(rng: Rng, level: Level): number {
+  if (level >= 5) return randInt(rng, 2, 4);
+  return Math.max(2, level);
+}
+
 function digitRange(digits: number): [number, number] {
-  return [digits === 1 ? 1 : 10 ** (digits - 1), 10 ** digits - 1];
+  return [10 ** (digits - 1), 10 ** digits - 1];
 }
 
 export function compute(operation: Operation, a: number, b: number): number {
@@ -44,69 +42,121 @@ export function compute(operation: Operation, a: number, b: number): number {
   }
 }
 
-function genAdd(rng: Rng, level: Level, bias: DifficultyBias): [number, number] {
-  if (level === 1) {
-    // two 1-digit, result <= 18 (any single-digit pair satisfies this)
+/** Rejection-sample an [a,b] pair until `ok` holds; falls back to last candidate. */
+function sample(
+  rng: Rng,
+  gen: () => [number, number],
+  ok: (a: number, b: number) => boolean,
+  tries = 200,
+): [number, number] {
+  let last: [number, number] = gen();
+  for (let i = 0; i < tries; i++) {
+    last = gen();
+    if (ok(last[0], last[1])) return last;
+  }
+  return last;
+}
+
+/** Pair the target number with a random 1–9 partner, in random order. */
+function factPair(rng: Rng, n: number): [number, number] {
+  const partner = randInt(rng, 1, 9);
+  return rng() < 0.5 ? [n, partner] : [partner, n];
+}
+
+function genAdd(rng: Rng, level: Level, sub: SubSkillId, bias: DifficultyBias): [number, number] {
+  const n = factNumber(sub);
+  if (n !== null) return factPair(rng, n); // add.fact-N: N meets each 1–9
+  if (sub === "add.facts") {
     return [biasedInt(rng, 1, 9, bias), randInt(rng, 1, 9)];
   }
-  const digits = Math.min(level, 4);
-  const [lo, hi] = digitRange(digits);
-  return [biasedInt(rng, lo, hi, bias), randInt(rng, 1, hi)];
+  const d = digitsForLevel(rng, level);
+  const [lo, hi] = digitRange(d);
+  const gen = (): [number, number] => [biasedInt(rng, lo, hi, bias), randInt(rng, 1, hi)];
+  if (sub === "add.no-carry") return sample(rng, gen, (a, b) => countCarries(a, b) === 0);
+  if (sub === "add.carry-single") return sample(rng, gen, (a, b) => countCarries(a, b) === 1);
+  return sample(rng, gen, (a, b) => countCarries(a, b) >= 2); // add.carry-multi
 }
 
-function genSubtract(rng: Rng, level: Level, bias: DifficultyBias): [number, number] {
-  const digits = level === 1 ? 1 : Math.min(level, 4);
-  const [lo, hi] = digitRange(digits);
-  const a = biasedInt(rng, lo, hi, bias);
-  const b = randInt(rng, 1, a); // first >= second, no negatives (§3)
-  return [a, b];
-}
-
-function genMultiply(rng: Rng, level: Level, bias: DifficultyBias): [number, number] {
-  // L1: 1×1, L2: 2×1, L3: 2×2, L4: 3×2, L5: mixed/large
-  const shape: Record<Level, [number, number]> = {
-    1: [1, 1],
-    2: [2, 1],
-    3: [2, 2],
-    4: [3, 2],
-    5: [3, 3],
+function genSubtract(rng: Rng, level: Level, sub: SubSkillId, bias: DifficultyBias): [number, number] {
+  if (sub === "sub.facts") {
+    const a = biasedInt(rng, 1, 9, bias);
+    return [a, randInt(rng, 0, a)];
+  }
+  if (sub === "sub.borrow-zero") {
+    // Construct a round minuend (zeros below the top digit) → borrow across zero.
+    const d = Math.max(3, digitsForLevel(rng, level));
+    const top = randInt(rng, 1, 9);
+    const a = top * 10 ** (d - 1); // e.g. 200, 3000
+    const b = randInt(rng, 11, 10 ** (d - 1) - 1); // smaller, multi-digit
+    return [a, b];
+  }
+  const d = digitsForLevel(rng, level);
+  const [lo, hi] = digitRange(d);
+  const gen = (): [number, number] => {
+    const a = biasedInt(rng, lo, hi, bias);
+    return [a, randInt(rng, 1, a)];
   };
-  const [da, db] = shape[level];
-  const [aLo, aHi] = digitRange(da);
-  const [bLo, bHi] = digitRange(db);
-  return [biasedInt(rng, aLo, aHi, bias), randInt(rng, bLo, bHi)];
+  if (sub === "sub.no-borrow") return sample(rng, gen, (a, b) => countBorrows(a, b) === 0);
+  return sample(rng, gen, (a, b) => countBorrows(a, b) === 1 && !hasBorrowAcrossZero(a, b)); // borrow-single
 }
 
-function genDivide(rng: Rng, level: Level, bias: DifficultyBias): [number, number] {
-  // Build from quotient × divisor so the result is always whole (§3).
-  const shape: Record<Level, { q: [number, number]; d: [number, number] }> = {
-    1: { q: [1, 9], d: [1, 9] },
-    2: { q: [10, 99], d: [2, 9] },
-    3: { q: [10, 99], d: [10, 99] },
-    4: { q: [100, 999], d: [10, 99] },
-    5: { q: [100, 999], d: [10, 99] },
-  };
-  const { q, d } = shape[level];
+function genMultiply(rng: Rng, level: Level, sub: SubSkillId, bias: DifficultyBias): [number, number] {
+  const n = factNumber(sub);
+  if (n !== null) return factPair(rng, n); // mul.table-N: N × each 1–9
+  switch (sub) {
+    case "mul.facts":
+      return [biasedInt(rng, 2, 9, bias), randInt(rng, 2, 9)];
+    case "mul.2x1":
+      return [biasedInt(rng, 10, 99, bias), randInt(rng, 2, 9)];
+    case "mul.2x2":
+      return [biasedInt(rng, 10, 99, bias), randInt(rng, 11, 99)];
+    default: // mul.multi
+      return [biasedInt(rng, 100, 999, bias), randInt(rng, 11, 99)];
+  }
+}
+
+function genDivide(rng: Rng, level: Level, sub: SubSkillId, bias: DifficultyBias): [number, number] {
+  // Build from quotient × divisor so the result is always whole (§4).
+  let q: [number, number];
+  let dv: [number, number];
+  switch (sub) {
+    case "div.facts":
+      q = [1, 9];
+      dv = [2, 9];
+      break;
+    case "div.2x1":
+      q = [10, 99];
+      dv = [2, 9];
+      break;
+    case "div.long":
+      q = [10, 99];
+      dv = [11, 99];
+      break;
+    default: // div.large
+      q = [100, 999];
+      dv = [11, 99];
+  }
   const quotient = biasedInt(rng, q[0], q[1], bias);
-  const divisor = randInt(rng, d[0], d[1]);
+  const divisor = randInt(rng, dv[0], dv[1]);
   return [quotient * divisor, divisor];
 }
 
-function generateOperands(
+export function generateForSubSkill(
   rng: Rng,
   operation: Operation,
   level: Level,
+  subSkill: SubSkillId,
   bias: DifficultyBias,
 ): [number, number] {
   switch (operation) {
     case "add":
-      return genAdd(rng, level, bias);
+      return genAdd(rng, level, subSkill, bias);
     case "subtract":
-      return genSubtract(rng, level, bias);
+      return genSubtract(rng, level, subSkill, bias);
     case "multiply":
-      return genMultiply(rng, level, bias);
+      return genMultiply(rng, level, subSkill, bias);
     case "divide":
-      return genDivide(rng, level, bias);
+      return genDivide(rng, level, subSkill, bias);
   }
 }
 
@@ -118,34 +168,36 @@ export interface GenerateOptions {
 export function generateQuestion(
   operation: Operation,
   level: Level,
+  subSkill: SubSkillId,
   opts: GenerateOptions = {},
 ): Question {
   const rng = opts.rng ?? defaultRng;
-  const bias = opts.performance ? adaptDifficulty(opts.performance) : "neutral";
-  const [a, b] = generateOperands(rng, operation, level, bias);
+  const bias = opts.performance ? adaptToEdge(opts.performance) : "neutral";
+  const [a, b] = generateForSubSkill(rng, operation, level, subSkill, bias);
   return {
-    id: `${operation}-${level}-${a}-${b}-${Math.floor(rng() * 1e6)}`,
+    id: `${subSkill}-${a}-${b}-${Math.floor(rng() * 1e6)}`,
     a,
     b,
     operation,
     level,
+    subSkill,
     answer: compute(operation, a, b),
-    subSkill: detectSubSkill(operation, a, b),
   };
 }
 
-/** A session's worth of questions, de-duplicated by (a,b) pair (§11). */
+/** N questions drilling ONE sub-skill, de-duplicated (§3.2, §11). */
 export function generateSession(
   operation: Operation,
   level: Level,
+  subSkill: SubSkillId,
   count: number,
   opts: GenerateOptions = {},
 ): Question[] {
   const out: Question[] = [];
   const seen = new Set<string>();
   let guard = 0;
-  while (out.length < count && guard++ < count * 20) {
-    const q = generateQuestion(operation, level, opts);
+  while (out.length < count && guard++ < count * 30) {
+    const q = generateQuestion(operation, level, subSkill, opts);
     const key = `${q.a}×${q.b}`;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -154,7 +206,6 @@ export function generateSession(
   return out;
 }
 
-/** Fisher–Yates shuffle (pure, RNG-injectable). */
 function shuffle<T>(arr: T[], rng: Rng): T[] {
   const out = [...arr];
   for (let i = out.length - 1; i > 0; i--) {
@@ -165,27 +216,44 @@ function shuffle<T>(arr: T[], rng: Rng): T[] {
 }
 
 /**
- * Mixed Review (§4.3): pull questions across all unlocked levels of one
- * operation, de-duplicated, shuffled. No level gating.
+ * A mixed set across several sub-skills (Diagnostic §3.1, Exam §3.3).
+ * `weights[i]` is how many questions to draw for `subSkills[i]`; remaining slots
+ * are filled round-robin. Shuffled so sub-skills interleave.
  */
-export function generateMixedSession(
+export function generateMixed(
   operation: Operation,
-  unlockedLevels: Level[],
+  level: Level,
+  subSkills: SubSkillId[],
   count: number,
   opts: GenerateOptions = {},
+  weights?: number[],
 ): Question[] {
   const rng = opts.rng ?? defaultRng;
-  const levels = unlockedLevels.length ? unlockedLevels : [1 as Level];
+  const plan: SubSkillId[] = [];
+  if (weights) {
+    subSkills.forEach((s, i) => {
+      for (let k = 0; k < (weights[i] ?? 0); k++) plan.push(s);
+    });
+  }
+  let i = 0;
+  while (plan.length < count) {
+    plan.push(subSkills[i % subSkills.length]);
+    i++;
+  }
+  plan.length = count;
+
   const seen = new Set<string>();
   const out: Question[] = [];
-  let guard = 0;
-  while (out.length < count && guard++ < count * 30) {
-    const level = levels[Math.floor(rng() * levels.length)];
-    const q = generateQuestion(operation, level, opts);
-    const key = `${q.operation}:${q.a}×${q.b}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(q);
+  for (const sub of plan) {
+    let guard = 0;
+    while (guard++ < 30) {
+      const q = generateQuestion(operation, level, sub, opts);
+      const key = `${q.a}×${q.b}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(q);
+      break;
+    }
   }
   return shuffle(out, rng);
 }
