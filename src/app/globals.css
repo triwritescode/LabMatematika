@@ -1,2 +1,19 @@
 @import "tailwindcss";
 
+/* Operation "world" colors (§15) exposed as design tokens. */
+@theme {
+  --color-op-add: #3b82f6;
+  --color-op-subtract: #ef4444;
+  --color-op-multiply: #22c55e;
+  --color-op-divide: #eab308;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation; /* avoid double-tap zoom on numpad */
+}
+
+body {
+  /* Portrait-first; never rush a child (§15). */
+  overscroll-behavior-y: contain;
+}
