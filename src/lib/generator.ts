@@ -153,3 +153,39 @@ export function generateSession(
   }
   return out;
 }
+
+/** Fisher–Yates shuffle (pure, RNG-injectable). */
+function shuffle<T>(arr: T[], rng: Rng): T[] {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/**
+ * Mixed Review (§4.3): pull questions across all unlocked levels of one
+ * operation, de-duplicated, shuffled. No level gating.
+ */
+export function generateMixedSession(
+  operation: Operation,
+  unlockedLevels: Level[],
+  count: number,
+  opts: GenerateOptions = {},
+): Question[] {
+  const rng = opts.rng ?? defaultRng;
+  const levels = unlockedLevels.length ? unlockedLevels : [1 as Level];
+  const seen = new Set<string>();
+  const out: Question[] = [];
+  let guard = 0;
+  while (out.length < count && guard++ < count * 30) {
+    const level = levels[Math.floor(rng() * levels.length)];
+    const q = generateQuestion(operation, level, opts);
+    const key = `${q.operation}:${q.a}×${q.b}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(q);
+  }
+  return shuffle(out, rng);
+}

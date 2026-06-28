@@ -11,12 +11,19 @@ interface QuestionDisplayProps {
 export function QuestionDisplay({ question, input }: QuestionDisplayProps) {
   const { symbol } = OPERATION_META[question.operation];
   return (
-    <div className="flex flex-col items-center gap-4">
-      <p className="text-4xl font-bold tabular-nums">
-        {question.a} {symbol} {question.b} =
+    <div className="flex flex-col items-center gap-5">
+      <p className="text-5xl font-extrabold tabular-nums text-slate-800">
+        {question.a} <span className="opacity-70">{symbol}</span> {question.b}
       </p>
-      <div className="min-h-16 min-w-32 rounded-2xl border-2 border-dashed px-6 py-3 text-center text-4xl tabular-nums">
-        {input || "?"}
+      <div
+        className="flex min-h-20 min-w-40 items-center justify-center rounded-2xl border-4 border-current bg-white px-6 text-5xl font-extrabold tabular-nums"
+        aria-live="polite"
+      >
+        {input ? (
+          <span className="text-slate-800">{input}</span>
+        ) : (
+          <span className="opacity-40">?</span>
+        )}
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export function Numpad({ onDigit, onDelete, disabled }: NumpadProps) {
           disabled={disabled}
           onClick={() => onDigit(k)}
           // ≥ 56×56px targets per §15
-          className="min-h-14 min-w-14 rounded-2xl bg-white text-2xl font-bold shadow active:scale-95 disabled:opacity-40"
+          className="flex h-16 items-center justify-center rounded-2xl bg-white text-3xl font-bold text-slate-800 shadow-sm transition active:scale-90 active:bg-slate-100 disabled:opacity-40"
         >
           {k}
         </button>
@@ -28,7 +28,7 @@ export function Numpad({ onDigit, onDelete, disabled }: NumpadProps) {
         type="button"
         disabled={disabled}
         onClick={onDelete}
-        className="col-span-2 min-h-14 rounded-2xl bg-white text-xl font-semibold shadow active:scale-95 disabled:opacity-40"
+        className="col-span-2 flex h-16 items-center justify-center gap-2 rounded-2xl bg-white text-2xl font-semibold text-slate-600 shadow-sm transition active:scale-95 active:bg-slate-100 disabled:opacity-40"
       >
         ⌫ Hapus
       </button>
