@@ -7,6 +7,28 @@ const nextConfig: NextConfig = {
   // on a stray webpack config. Empty turbopack config silences it. SW is disabled
   // in dev anyway; prod build runs `--webpack` so Serwist generates the SW.
   turbopack: {},
+
+  // Defensive security headers. App is fully offline/same-origin (no third-party
+  // resources, no inline-script execution we control), so these are safe to apply
+  // globally. CSP uses frame-ancestors only — blocks clickjacking without risking
+  // breakage of Next's bootstrap or Serwist's same-origin assets.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 // PWA: generate service worker from src/app/sw.ts (§8). Disabled in dev for fast HMR.

@@ -22,8 +22,8 @@ export const viewport: Viewport = {
   themeColor: "#3B82F6",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // Pinch-zoom left enabled for accessibility (WCAG 1.4.4). Portrait is enforced
+  // via the manifest's `orientation`, not by blocking the user from zooming.
 };
 
 export default function RootLayout({

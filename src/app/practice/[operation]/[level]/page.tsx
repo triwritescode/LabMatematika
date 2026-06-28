@@ -29,19 +29,14 @@ export default function PracticePage() {
   const bumpStreak = useProgressStore((s) => s.bumpStreak);
   const setResult = useSessionStore((s) => s.setResult);
 
-  // Resolve target sub-skill once: ?sub= param, else weakest of the level.
-  const [target] = useState<SubSkillId>(
-    () =>
+  // Read persisted state once, then derive target + starting mastery from it.
+  const [{ target, masteryBefore }] = useState(() => {
+    const levelState = loadProgress()[operation].levels[String(level)];
+    const sub =
       (search.get("sub") as SubSkillId) ||
-      weakestSubSkill(
-        loadProgress()[operation].levels[String(level)],
-        levelSubSkills(operation, level),
-      ),
-  );
-
-  const [masteryBefore] = useState(
-    () => loadProgress()[operation].levels[String(level)].subSkills[target]?.mastery ?? 0,
-  );
+      weakestSubSkill(levelState, levelSubSkills(operation, level));
+    return { target: sub, masteryBefore: levelState.subSkills[sub]?.mastery ?? 0 };
+  });
 
   const [mounted, setMounted] = useState(false);
   const [questions] = useState(() =>
