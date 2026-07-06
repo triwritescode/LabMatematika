@@ -1,0 +1,65 @@
+// ALL Bahasa Indonesia UI copy lives here (specs §16).
+
+import { Operation } from '@/curriculum/types';
+
+export const LAB_NAMES: Record<Operation, string> = {
+  add: 'Penjumlahan',
+  sub: 'Pengurangan',
+  mul: 'Perkalian',
+  div: 'Pembagian',
+};
+
+export const LAB_SHORT: Record<Operation, string> = {
+  add: 'Tambah',
+  sub: 'Kurang',
+  mul: 'Kali',
+  div: 'Bagi',
+};
+
+export const strings = {
+  appName: 'LabMatematika',
+  tagline: 'Latih, uji, kuasai.',
+  greeting: (name: string) => (name ? `Halo, ${name}!` : 'Halo, Ilmuwan Cilik!'),
+  greetingSub: 'Siap latihan hari ini?',
+  labList: 'Daftar Laboratorium',
+  beranda: 'Beranda',
+  kemajuan: 'Kemajuan',
+  petaKeahlian: 'Peta Keahlian',
+  penguasaan: 'Penguasaan',
+  tingkat: (n: number) => `Tingkat ${n}`,
+  bandBelum: 'Belum dikuasai',
+  bandSedang: 'Sedang dilatih',
+  bandDikuasai: 'Dikuasai',
+  latihan: 'Latihan Terarah',
+  ujian: 'Ujian Kenaikan Tingkat',
+  ujianLocked: (n: number) => `Kuasai semua level Tingkat ${n} dulu (≥ 70%)`,
+  ujianReady: 'Kamu siap! Buktikan penguasaanmu.',
+  ujianRules: 'Tanpa bantuan. Semangat!',
+  soalOf: (n: number, total: number) => `Soal ${n} dari ${total}`,
+  benar: 'Benar!',
+  belumTepat: 'Belum tepat',
+  jawabanBenar: (ans: number) => `Jawaban yang benar: ${ans}`,
+  lihatCaranya: 'Lihat caranya',
+  lanjut: 'Lanjut',
+  ulangi: 'Ulangi',
+  selesai: 'Selesai',
+  kembali: 'Kembali',
+  lulus: 'LULUS! 🎉',
+  hampir: 'Hampir!',
+  naikTingkat: (n: number) => `Kamu naik ke Tingkat ${n}!`,
+  rankBaru: (rank: string) => `Rank baru: ${rank}`,
+  perluDikuatkan: (label: string) => `Perlu dikuatkan: ${label}`,
+  latihanLagi: 'Latihan lagi',
+  streak: (n: number) => `${n} hari`,
+  sessionDone: 'Latihan selesai!',
+  sessionScore: (correct: number, total: number) => `${correct} dari ${total} benar`,
+  masteryUp: (from: number, to: number) => `Penguasaan: ${from}% → ${to}%`,
+  locked: 'Terkunci',
+  lockedHint: 'Kuasai level sebelumnya dulu',
+  namePrompt: 'Siapa namamu?',
+  namePlaceholder: 'Tulis namamu di sini',
+  nameSave: 'Mulai!',
+  mascotCorrect: ['Keren!', 'Hebat!', 'Mantap!', 'Pintar!', 'Lanjutkan!'],
+  mascotWrong: ['Tidak apa-apa, coba lagi!', 'Hampir! Lihat caranya ya.', 'Salah itu belajar!'],
+  examScore: (correct: number, total: number) => `Skor: ${correct}/${total}`,
+};
