@@ -62,4 +62,30 @@ export const strings = {
   mascotCorrect: ['Keren!', 'Hebat!', 'Mantap!', 'Pintar!', 'Lanjutkan!'],
   mascotWrong: ['Tidak apa-apa, coba lagi!', 'Hampir! Lihat caranya ya.', 'Salah itu belajar!'],
   examScore: (correct: number, total: number) => `Skor: ${correct}/${total}`,
+
+  // Auth / login
+  authWelcomeTitle: 'Selamat datang di\nLabMatematika',
+  authWelcomeSub: 'Masuk untuk menyimpan kemajuanmu di semua perangkat.',
+  authGoogleButton: 'Masuk dengan Google',
+  authSigningIn: 'Menghubungkan…',
+  authError: 'Gagal masuk. Coba lagi.',
+
+  // Onboarding
+  onboardingProgress: (step: number, total: number) => `Langkah ${step} dari ${total}`,
+  onboardingFirstNameTitle: 'Siapa nama depanmu?',
+  onboardingFirstNameSub: 'Kami akan menyapamu dengan nama ini.',
+  onboardingFirstNamePlaceholder: 'Nama depan',
+  onboardingLastNameTitle: 'Nama belakangmu?',
+  onboardingLastNameSub: 'Boleh nama keluarga atau nama panggilan.',
+  onboardingLastNamePlaceholder: 'Nama belakang',
+  onboardingAgeTitle: 'Berapa umurmu?',
+  onboardingAgeSub: 'Supaya kami bisa menyesuaikan latihanmu.',
+  onboardingAgePlaceholder: 'Umur',
+  onboardingAgeUnit: 'tahun',
+  onboardingBack: 'Kembali',
+  onboardingNext: 'Lanjut',
+  onboardingFinish: 'Mulai Belajar!',
+  onboardingSaving: 'Menyimpan…',
+  onboardingErrorName: 'Isi dulu ya.',
+  onboardingErrorAge: 'Umur harus antara 4 dan 15.',
 };

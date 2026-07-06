@@ -1,7 +1,6 @@
 import { useRouter } from 'expo-router';
 import { Flame } from 'lucide-react-native';
-import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MasteryMeter } from '@/components/mastery-meter';
@@ -12,7 +11,6 @@ import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { levelsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
 import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
-import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
 import { LABS, useProgress } from '@/state/progress';
 
@@ -44,8 +42,6 @@ export default function Beranda() {
             )}
           </View>
 
-          {!childName && <NameCard />}
-
           <ThemedText type="smallBold" themeColor="textSecondary" style={styles.sectionTitle}>
             {strings.labList.toUpperCase()}
           </ThemedText>
@@ -57,36 +53,6 @@ export default function Beranda() {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </ThemedView>
-  );
-}
-
-function NameCard() {
-  const setChildName = useProgress((s) => s.setChildName);
-  const [name, setName] = useState('');
-  const theme = useTheme();
-
-  return (
-    <ThemedView type="backgroundElement" style={styles.nameCard}>
-      <ThemedText type="smallBold">{strings.namePrompt}</ThemedText>
-      <TextInput
-        value={name}
-        onChangeText={setName}
-        placeholder={strings.namePlaceholder}
-        placeholderTextColor={theme.textSecondary}
-        style={[styles.nameInput, { color: theme.text, backgroundColor: theme.background }]}
-        maxLength={20}
-      />
-      <Pressable
-        onPress={() => name.trim() && setChildName(name)}
-        style={({ pressed }) => [
-          styles.nameButton,
-          { backgroundColor: LabColors.add.main, opacity: pressed || !name.trim() ? 0.6 : 1 },
-        ]}>
-        <ThemedText type="smallBold" style={{ color: '#fff' }}>
-          {strings.nameSave}
-        </ThemedText>
-      </Pressable>
     </ThemedView>
   );
 }
@@ -164,23 +130,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
     borderRadius: 999,
-  },
-  nameCard: {
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-    gap: Spacing.two,
-  },
-  nameInput: {
-    borderRadius: Spacing.two,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two,
-    fontSize: 16,
-  },
-  nameButton: {
-    alignSelf: 'flex-start',
-    borderRadius: 999,
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.two,
   },
   sectionTitle: {
     marginTop: Spacing.two,

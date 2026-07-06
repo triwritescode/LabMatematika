@@ -8,7 +8,8 @@
     "scheme": "labmatematika",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.labmatematika.app"
     },
     "android": {
       "package": "com.labmatematika.app",
@@ -26,6 +27,7 @@
     },
     "plugins": [
       "expo-router",
+      "@react-native-google-signin/google-signin",
       [
         "expo-splash-screen",
         {
