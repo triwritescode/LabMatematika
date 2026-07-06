@@ -1,12 +1,12 @@
 import { useRouter } from 'expo-router';
-import { Flame } from 'lucide-react-native';
+import { Flame, Gem } from 'lucide-react-native';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MasteryMeter } from '@/components/mastery-meter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { LabColors, StreakColor } from '@/constants/labs';
+import { DiamondColor, LabColors, StreakColor } from '@/constants/labs';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { levelsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
@@ -17,6 +17,7 @@ import { LABS, useProgress } from '@/state/progress';
 export default function Beranda() {
   const childName = useProgress((s) => s.childName);
   const streak = useProgress((s) => s.streak.count);
+  const diamonds = useProgress((s) => s.diamonds);
 
   return (
     <ThemedView style={styles.container}>
@@ -32,14 +33,20 @@ export default function Beranda() {
               </ThemedText>
               <ThemedText themeColor="textSecondary">{strings.greetingSub}</ThemedText>
             </View>
-            {streak > 0 && (
-              <View style={styles.streakChip}>
-                <Flame color={StreakColor} fill={StreakColor} size={20} />
+            <View style={styles.statRow}>
+              <View style={[styles.statChip, { backgroundColor: `${StreakColor}22` }]}>
+                <Flame color={StreakColor} fill={StreakColor} size={18} />
                 <ThemedText type="smallBold" style={{ color: StreakColor }}>
-                  {strings.streak(streak)}
+                  {streak}
                 </ThemedText>
               </View>
-            )}
+              <View style={[styles.statChip, { backgroundColor: `${DiamondColor}22` }]}>
+                <Gem color={DiamondColor} fill={DiamondColor} size={18} />
+                <ThemedText type="smallBold" style={{ color: DiamondColor }}>
+                  {diamonds.toLocaleString('id-ID')}
+                </ThemedText>
+              </View>
+            </View>
           </View>
 
           <ThemedText type="smallBold" themeColor="textSecondary" style={styles.sectionTitle}>
@@ -122,11 +129,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     lineHeight: 32,
   },
-  streakChip: {
+  statRow: {
+    flexDirection: 'row',
+    gap: Spacing.two,
+  },
+  statChip: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.one,
-    backgroundColor: '#F9731622',
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
     borderRadius: 999,

@@ -28,6 +28,7 @@ type ProgressState = {
   childName: string;
   labs: Record<Operation, LabProgress>;
   streak: { count: number; lastActiveDate: string };
+  diamonds: number;
   setChildName: (name: string) => void;
   recordAnswer: (lab: Operation, levelId: string, correct: boolean, diff: number, streak: number) => void;
   passTingkat: (lab: Operation, tingkat: number) => void;
@@ -45,6 +46,7 @@ export const useProgress = create<ProgressState>()(
         div: emptyLab('div'),
       },
       streak: { count: 0, lastActiveDate: '' },
+      diamonds: 0,
 
       setChildName: (name) => set({ childName: name.trim() }),
 

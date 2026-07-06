@@ -14,7 +14,7 @@ import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
 import { LABS, useProgress } from '@/state/progress';
 
-export default function Kemajuan() {
+export default function Laboratorium() {
   const streak = useProgress((s) => s.streak.count);
 
   return (
@@ -24,7 +24,7 @@ export default function Kemajuan() {
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}>
           <ThemedText type="subtitle" style={styles.title}>
-            {strings.kemajuan}
+            {strings.laboratorium}
           </ThemedText>
 
           {streak > 0 && (

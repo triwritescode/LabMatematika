@@ -12,3 +12,4 @@ export const LabColors: Record<
 };
 
 export const StreakColor = '#F97316';
+export const DiamondColor = '#0EA5E9';
