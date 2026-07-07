@@ -52,8 +52,9 @@ export default function LatihanTerarah() {
   const [phase, setPhase] = useState<Phase>('question');
   const [showSteps, setShowSteps] = useState(false);
   const [mascotLine, setMascotLine] = useState('');
-
-  const totalPlanned = SESSION_SIZE + requeue.length + (isRetry ? 1 : 0);
+  // Monotonic: only grows when a question is actually requeued, so the
+  // displayed total never shrinks mid-session (e.g. 12 -> 11).
+  const [totalPlanned, setTotalPlanned] = useState(SESSION_SIZE);
 
   function submit() {
     if (!input) return;
@@ -71,7 +72,10 @@ export default function LatihanTerarah() {
       setStreak(0);
       setMascotLine(pickLine(strings.mascotWrong));
       // Missed items re-queue in-session (once).
-      if (!isRetry) setRequeue((q) => [...q, question]);
+      if (!isRetry) {
+        setRequeue((q) => [...q, question]);
+        setTotalPlanned((t) => t + 1);
+      }
       setPhase('wrong');
     }
     setDiff((d) => nextDiff(d, correct, correct ? streak + 1 : 0));
@@ -123,6 +127,7 @@ export default function LatihanTerarah() {
     setStreak(0);
     setRequeue([]);
     setIsRetry(false);
+    setTotalPlanned(SESSION_SIZE);
     setInput('');
     setShowSteps(false);
     setPhase('question');
