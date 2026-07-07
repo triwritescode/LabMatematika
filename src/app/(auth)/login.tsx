@@ -1,14 +1,16 @@
+import Constants from 'expo-constants';
+import { Image } from 'expo-image';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { GoogleSigninButton } from '@/components/google-signin-button';
 import { ThemedText } from '@/components/themed-text';
-import { LabColors } from '@/constants/labs';
-import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { strings } from '@/i18n/strings.id';
-import { OPERATION_SYMBOL } from '@/curriculum/types';
 import { useAuth } from '@/state/auth';
+
+const appVersion = Constants.expoConfig?.version ?? '1.0.5';
 
 export default function Login() {
   const error = useAuth((s) => s.error);
@@ -17,35 +19,36 @@ export default function Login() {
     <View style={styles.root}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.content}>
-          <Animated.View entering={FadeInDown.duration(600)} style={styles.hero}>
-            <View style={styles.symbolRow}>
-              {(['add', 'sub', 'mul', 'div'] as const).map((lab, i) => (
-                <Animated.View
-                  key={lab}
-                  entering={FadeInDown.delay(150 + i * 90).duration(500)}
-                  style={[styles.symbolBadge, { backgroundColor: LabColors[lab].main }]}>
-                  <ThemedText style={styles.symbolText}>{OPERATION_SYMBOL[lab]}</ThemedText>
-                </Animated.View>
-              ))}
-            </View>
-            <ThemedText type="subtitle" style={styles.title}>
-              {strings.authWelcomeTitle}
-            </ThemedText>
-            <ThemedText themeColor="textSecondary" style={styles.sub}>
-              {strings.authWelcomeSub}
-            </ThemedText>
-          </Animated.View>
+          <View style={styles.main}>
+            <Animated.View entering={FadeInDown.duration(600)} style={styles.hero}>
+              <Image
+                source={require('@/assets/images/lab-matematika-logo-login.png')}
+                style={styles.logo}
+                contentFit="contain"
+                accessibilityIgnoresInvertColors
+              />
+            </Animated.View>
 
-          <Animated.View entering={FadeInUp.delay(450).duration(600)} style={styles.actions}>
-            <GoogleSigninButton />
-            {error ? (
-              <Animated.View entering={FadeIn}>
-                <ThemedText type="small" style={styles.error}>
-                  {error}
-                </ThemedText>
-              </Animated.View>
-            ) : null}
-          </Animated.View>
+            <Animated.View entering={FadeInUp.delay(450).duration(600)} style={styles.actions}>
+              <GoogleSigninButton />
+              {error ? (
+                <Animated.View entering={FadeIn}>
+                  <ThemedText type="small" style={styles.error}>
+                    {error}
+                  </ThemedText>
+                </Animated.View>
+              ) : null}
+            </Animated.View>
+          </View>
+
+          <View style={styles.footer}>
+            <ThemedText type="smallBold" style={styles.footerText}>
+              {strings.authVersion(appVersion)}
+            </ThemedText>
+            <ThemedText type="small" style={styles.footerText}>
+              {strings.authMadeWithLove}
+            </ThemedText>
+          </View>
         </View>
       </SafeAreaView>
     </View>
@@ -55,7 +58,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#208AEF',
+    backgroundColor: AccentColor,
   },
   safeArea: {
     flex: 1,
@@ -67,43 +70,39 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: Spacing.four,
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  main: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: Spacing.six,
   },
   hero: {
-    flex: 1,
-    justifyContent: 'center',
-    gap: Spacing.three,
-  },
-  symbolRow: {
-    flexDirection: 'row',
-    gap: Spacing.two,
-    marginBottom: Spacing.two,
-  },
-  symbolBadge: {
-    width: 52,
-    height: 52,
-    borderRadius: 16,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  symbolText: {
-    color: '#fff',
-    fontSize: 30,
-    lineHeight: 34,
-    fontWeight: 800,
-  },
-  title: {
-    color: '#ffffff',
-  },
-  sub: {
-    color: '#E6F1FF',
-    fontSize: 16,
+  logo: {
+    width: '100%',
+    aspectRatio: 344 / 244,
   },
   actions: {
+    width: '100%',
     gap: Spacing.three,
-    paddingBottom: Spacing.four,
   },
   error: {
     color: '#FFE1E1',
     textAlign: 'center',
+  },
+  footer: {
+    alignItems: 'center',
+    gap: Spacing.half,
+    paddingTop: Spacing.four,
+    paddingBottom: Spacing.two,
+  },
+  footerText: {
+    color: '#FFFFFF',
+    opacity: 0.85,
   },
 });

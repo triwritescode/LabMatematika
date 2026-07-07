@@ -84,11 +84,11 @@ export const strings = {
   examScore: (correct: number, total: number) => `Skor: ${correct}/${total}`,
 
   // Auth / login
-  authWelcomeTitle: 'Selamat datang di\nLabMatematika',
-  authWelcomeSub: 'Masuk untuk menyimpan kemajuanmu di semua perangkat.',
   authGoogleButton: 'Masuk dengan Google',
   authSigningIn: 'Menghubungkan…',
   authError: 'Gagal masuk. Coba lagi.',
+  authVersion: (version: string) => `v${version}`,
+  authMadeWithLove: 'Made with Love',
 
   // Onboarding
   onboardingProgress: (step: number, total: number) => `Langkah ${step} dari ${total}`,
