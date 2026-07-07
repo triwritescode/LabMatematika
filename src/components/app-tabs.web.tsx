@@ -7,10 +7,10 @@ import {
   TabListProps,
 } from 'expo-router/ui';
 import { FlaskConical, House, Store, Trophy, User } from 'lucide-react-native';
-import { Pressable, View, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Animated, Pressable, View, StyleSheet } from 'react-native';
 
 import { ThemedText } from './themed-text';
-import { ThemedView } from './themed-view';
 
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
@@ -49,12 +49,28 @@ type TabButtonProps = TabTriggerSlotProps & {
 
 export function TabButton({ children, isFocused, icon: Icon, ...props }: TabButtonProps) {
   const theme = useTheme();
+  const [scale] = useState(() => new Animated.Value(1));
+
+  useEffect(() => {
+    if (!isFocused) return;
+    scale.setValue(0.8);
+    Animated.spring(scale, { toValue: 1, friction: 4, useNativeDriver: true }).start();
+  }, [isFocused, scale]);
+
   return (
     <Pressable {...props} style={({ pressed }) => [styles.tabButton, pressed && styles.pressed]}>
-      <Icon color={isFocused ? AccentColor : theme.textSecondary} size={24} />
+      <View style={[styles.iconPill, isFocused && { backgroundColor: `${AccentColor}1F` }]}>
+        <Animated.View style={{ transform: [{ scale }] }}>
+          <Icon
+            color={isFocused ? AccentColor : theme.textSecondary}
+            fill={isFocused ? AccentColor : 'none'}
+            size={22}
+          />
+        </Animated.View>
+      </View>
       <ThemedText
         type="small"
-        style={[styles.tabLabel, isFocused && { color: AccentColor }]}
+        style={[styles.tabLabel, isFocused && { color: AccentColor, fontWeight: 'bold' }]}
         themeColor={isFocused ? undefined : 'textSecondary'}>
         {children}
       </ThemedText>
@@ -93,11 +109,20 @@ const styles = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     paddingTop: Spacing.two,
     paddingBottom: Spacing.three,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
   },
   tabButton: {
     flex: 1,
     alignItems: 'center',
     gap: Spacing.half,
+  },
+  iconPill: {
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.one,
+    borderRadius: 999,
   },
   tabLabel: {
     fontSize: 12,
