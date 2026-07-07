@@ -72,9 +72,27 @@ const RANKS: Record<Operation, string[]> = {
     'Penjumlah Ahli',
     'Penjumlah Master',
   ],
-  sub: ['Pengurang Pemula', 'Pengurang Andal', 'Pengurang Ahli'],
-  mul: ['Pengali Pemula', 'Ahli Tabel', 'Pengali Ahli'],
-  div: ['Pembagi Pemula', 'Pembagi Andal', 'Pembagi Ahli'],
+  sub: [
+    'Pengurang Pemula',
+    'Pengurang Andal',
+    'Pengurang Mahir',
+    'Pengurang Ahli',
+    'Pengurang Master',
+  ],
+  mul: [
+    'Pengali Pemula',
+    'Ahli Tabel',
+    'Pengali Mahir',
+    'Pengali Ahli',
+    'Pengali Master',
+  ],
+  div: [
+    'Pembagi Pemula',
+    'Pembagi Andal',
+    'Pembagi Mahir',
+    'Pembagi Ahli',
+    'Pembagi Master',
+  ],
 };
 
 export function rankFor(lab: Operation, tingkatPassed: number[]): string {

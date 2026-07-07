@@ -15,8 +15,9 @@ export function buildExam(lab: Operation, tingkat: number): Question[] {
   const pool: Level[] = [...levels, ...levels.filter((l) => l.isCore)];
   while (pool.length < EXAM_SIZE) pool.push(levels[pool.length % levels.length]);
   shuffle(pool);
+  const seen = new Set<string>();
   for (const level of pool.slice(0, EXAM_SIZE)) {
-    questions.push(makeQuestion(level, 0.6 + Math.random() * 0.3));
+    questions.push(makeQuestion(level, 0.6 + Math.random() * 0.3, seen));
   }
   return questions;
 }

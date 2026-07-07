@@ -149,6 +149,38 @@ const explainers: Record<string, Explainer> = {
       `Jadi ${a} − ${b} = ${a - b}.`,
     ];
   },
+  'sub.countup': (a, b) => {
+    const diff = a - b;
+    const toTen = 10 - b;
+    if (b + diff > 10 && b < 10) {
+      const rest = diff - toTen;
+      return [
+        `Hitung maju dari ${b} ke ${a}.`,
+        `Dari ${b} ke 10: ${toTen} langkah.`,
+        `Dari 10 ke ${a}: ${rest} langkah.`,
+        `Total ${toTen} + ${rest} = ${diff}. Jadi ${a} − ${b} = ${diff}.`,
+      ];
+    }
+    return [
+      `Hitung maju dari ${b} sampai ${a}: ${diff} langkah.`,
+      `Jadi ${a} − ${b} = ${diff}.`,
+    ];
+  },
+  'sub.tens': (a, b) => [
+    `Hitung puluhannya saja: ${a / 10} puluhan − ${b / 10} puluhan = ${(a - b) / 10} puluhan.`,
+    `${(a - b) / 10} puluhan = ${a - b}.`,
+    `Jadi ${a} − ${b} = ${a - b}.`,
+  ],
+  'sub.compensate': (a, b) => {
+    const up = Math.round(b / 10) * 10;
+    const extra = up - b;
+    return [
+      `Bulatkan ${b} ke ${up} (tambah ${extra}).`,
+      `${a} − ${up} = ${a - up}.`,
+      `Kembalikan ${extra}: ${a - up} + ${extra} = ${a - b}.`,
+      `Jadi ${a} − ${b} = ${a - b}.`,
+    ];
+  },
   'sub.column.noborrow': subColumnSteps,
   'sub.column.borrow': subColumnSteps,
   'sub.borrow.zero': subColumnSteps,
@@ -166,6 +198,22 @@ const explainers: Record<string, Explainer> = {
       `Pecah lewat 5: ${a} × ${b} = (5 × ${b}) + (${a - 5} × ${b}).`,
       `5 × ${b} = ${5 * b}, dan ${a - 5} × ${b} = ${(a - 5) * b}.`,
       `${5 * b} + ${(a - 5) * b} = ${a * b}. Jadi ${a} × ${b} = ${a * b}.`,
+    ];
+  },
+  'mul.by10': (a, b) => {
+    const zeros = b === 100 ? 'dua angka 0' : 'satu angka 0';
+    return [
+      `Kali ${b}: tambahkan ${zeros} di belakang ${a}.`,
+      `Jadi ${a} × ${b} = ${a * b}.`,
+    ];
+  },
+  'mul.tens': (a, b) => {
+    const k = b / 10;
+    return [
+      `Pecah ${b} menjadi ${k} × 10.`,
+      `${a} × ${k} = ${a * k}.`,
+      `${a * k} × 10 = ${a * b}.`,
+      `Jadi ${a} × ${b} = ${a * b}.`,
     ];
   },
   'mul.column.1d': (a, b) => {
@@ -198,6 +246,27 @@ const explainers: Record<string, Explainer> = {
       `${a} × ${ones} = ${a * ones}.`,
       `Jumlahkan: ${a * tens} + ${a * ones} = ${a * b}.`,
       `Jadi ${a} × ${b} = ${a * b}.`,
+    ];
+  },
+  'div.concept': (a, b) => [
+    `${a} ÷ ${b} artinya bagi ${a} ke dalam ${b} kelompok sama banyak.`,
+    `Tiap kelompok dapat ${a / b}, karena ${b} × ${a / b} = ${a}.`,
+    `Jadi ${a} ÷ ${b} = ${a / b}.`,
+  ],
+  'div.by10': (a, b) => {
+    const zeros = b === 100 ? 'dua angka 0' : 'satu angka 0';
+    return [
+      `Bagi ${b}: hapus ${zeros} dari belakang ${a}.`,
+      `Jadi ${a} ÷ ${b} = ${a / b}.`,
+    ];
+  },
+  'div.by.tens': (a, b) => {
+    const k = b / 10;
+    return [
+      `Pecah ${b} menjadi 10 × ${k}.`,
+      `Bagi 10 dulu: ${a} ÷ 10 = ${a / 10}.`,
+      `Lalu bagi ${k}: ${a / 10} ÷ ${k} = ${a / b}.`,
+      `Jadi ${a} ÷ ${b} = ${a / b}.`,
     ];
   },
   'div.facts': (a, b) => [

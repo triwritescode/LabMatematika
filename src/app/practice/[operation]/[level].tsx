@@ -1,7 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -36,8 +36,12 @@ export default function LatihanTerarah() {
   const masteryNow = useProgress((s) => s.labs[level.lab].levels[level.id]?.mastery ?? 0);
   const [masteryStart, setMasteryStart] = useState(masteryNow);
 
+  // Questions already served this session — no repeats within a Latihan.
+  const seenRef = useRef<Set<string>>(new Set());
   const [diff, setDiff] = useState(() => initialDiff(masteryNow));
-  const [question, setQuestion] = useState<Question>(() => makeQuestion(level, initialDiff(masteryNow)));
+  const [question, setQuestion] = useState<Question>(() =>
+    makeQuestion(level, initialDiff(masteryNow), seenRef.current)
+  );
   const [asked, setAsked] = useState(1); // fresh questions served
   const [answered, setAnswered] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
@@ -77,7 +81,7 @@ export default function LatihanTerarah() {
     setInput('');
     setShowSteps(false);
     if (asked < SESSION_SIZE) {
-      setQuestion(makeQuestion(level, diff));
+      setQuestion(makeQuestion(level, diff, seenRef.current));
       setAsked((n) => n + 1);
       setIsRetry(false);
       setPhase('question');
@@ -105,7 +109,8 @@ export default function LatihanTerarah() {
     setMasteryStart(masteryNow);
     const d = initialDiff(masteryNow);
     setDiff(d);
-    setQuestion(makeQuestion(level, d));
+    seenRef.current.clear();
+    setQuestion(makeQuestion(level, d, seenRef.current));
     setAsked(1);
     setAnswered(0);
     setCorrectCount(0);

@@ -162,12 +162,19 @@ strictly judged in exams; **F** = fact / timer-eligible, **A** = algorithm, **K*
 ### 🔴 Lab Kurang
 | Tingkat | Level id | Label (ID) | Type |
 | --- | --- | --- | --- |
+| 1 | `sub.within5` | Ambil dalam 5 | F |
 | 1 | `sub.within10` | Fakta dasar dalam 10 ⭐ | F |
+| 1 | `sub.countup` | Hitung maju | F |
 | 1 | `sub.bridge10` | Menjembatani 10 ⭐ | F |
+| 1 | `sub.tens` | Kurang puluhan | F |
 | 2 | `sub.2d.noborrow` | Dua angka tanpa meminjam | A |
 | 2 | `sub.2d.borrow` | Meminjam ⭐ | A |
-| 3 | `sub.multi.borrow` | Multi-digit meminjam ⭐ | A |
+| 2 | `sub.compensate` | Strategi kompensasi | F |
+| 3 | `sub.3d.noborrow` | Tiga angka tanpa meminjam | A |
+| 3 | `sub.multi.borrow` | Tiga angka meminjam ⭐ | A |
 | 3 | `sub.borrow.zero` | Meminjam lewat nol ⭐ | A |
+| 4 | `sub.thousands` | Ribuan meminjam ⭐ | A |
+| 4 | `sub.across.zeros` | Meminjam lewat banyak nol | A |
 
 ### 🟢 Lab Kali
 | Tingkat | Level id | Label (ID) | Type |
@@ -176,17 +183,27 @@ strictly judged in exams; **F** = fact / timer-eligible, **A** = algorithm, **K*
 | 1 | `mul.table.easy` | Tabel 2, 5, 10 | F |
 | 1 | `mul.table.mid` | Tabel 3, 4 | F |
 | 1 | `mul.table.hard` | Tabel 6, 7, 8, 9 ⭐ | F |
-| 2 | `mul.2d.1d` | 2–3 angka × 1 angka | A |
-| 2 | `mul.2d.2d` | 2 angka × 2 angka ⭐ | A |
-| 2 | `mul.multi` | Multi-digit | A |
+| 2 | `mul.by10` | Kali 10 dan 100 | F |
+| 2 | `mul.tens` | Kali kelipatan puluhan | F |
+| 2 | `mul.distribute` | Sifat distributif ⭐ | A |
+| 3 | `mul.2d.1d` | 2–3 angka × 1 angka | A |
+| 3 | `mul.2d.2d` | 2 angka × 2 angka ⭐ | A |
+| 3 | `mul.3d.2d` | 3 angka × 2 angka | A |
+| 4 | `mul.multi` | Multi-digit ⭐ | A |
+| 4 | `mul.large` | Angka ribuan | A |
 
 ### 🟡 Lab Bagi
 | Tingkat | Level id | Label (ID) | Type |
 | --- | --- | --- | --- |
+| 1 | `div.concept` | Bagi = berbagi rata | K |
 | 1 | `div.facts` | Fakta bagi (kebalikan tabel) ⭐ | F |
-| 1 | `div.2d.1d` | 2–3 angka ÷ 1 angka | A |
-| 2 | `div.long` | Pembagian panjang (pembagi 2 angka) ⭐ | A |
-| 2 | `div.large` | Angka besar | A |
+| 1 | `div.by10` | Bagi 10 dan 100 | F |
+| 2 | `div.2d.1d` | 2–3 angka ÷ 1 angka | A |
+| 2 | `div.4d.1d` | 4 angka ÷ 1 angka ⭐ | A |
+| 3 | `div.long` | Pembagian panjang (pembagi 2 angka) ⭐ | A |
+| 3 | `div.large` | Angka besar | A |
+| 4 | `div.huge` | Puluh ribuan ÷ 2 angka ⭐ | A |
+| 4 | `div.by.tens` | Bagi kelipatan puluhan | A |
 
 **Soft cross-lab link:** `div.facts` benefits from mastered times tables. The mascot
 *nudges* the child to strengthen Lab Kali first — but it is a suggestion, **never a lock**.
@@ -528,9 +545,9 @@ labmatematika/
 
 **Rank ladders (ID):**
 Tambah: *Penjumlah Pemula → Penjumlah Andal → Penjumlah Mahir → Penjumlah Ahli → Penjumlah Master* ·
-Kurang: *Pengurang Pemula → Pengurang Andal → Pengurang Ahli* ·
-Kali: *Pengali Pemula → Ahli Tabel → Pengali Ahli* ·
-Bagi: *Pembagi Pemula → Pembagi Andal → Pembagi Ahli*.
+Kurang: *Pengurang Pemula → Pengurang Andal → Pengurang Mahir → Pengurang Ahli → Pengurang Master* ·
+Kali: *Pengali Pemula → Ahli Tabel → Pengali Mahir → Pengali Ahli → Pengali Master* ·
+Bagi: *Pembagi Pemula → Pembagi Andal → Pembagi Mahir → Pembagi Ahli → Pembagi Master*.
 
 No coins/gacha. Rewards map to mastery milestones only.
 

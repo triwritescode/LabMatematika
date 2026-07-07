@@ -28,7 +28,12 @@ export function tingkatsForLab(lab: Operation): number[] {
   return [...new Set(levelsForLab(lab).map((l) => l.tingkat))].sort((a, b) => a - b);
 }
 
-export function makeQuestion(level: Level, diff: number): Question {
+/** Canonical fingerprint of a served question (the pair as shown). */
+export function questionKey(q: Pick<Question, 'a' | 'b'>): string {
+  return `${q.a}:${q.b}`;
+}
+
+function build(level: Level, diff: number): Question {
   const [a, b] = level.generate(diff);
   return {
     levelId: level.id,
@@ -38,4 +43,26 @@ export function makeQuestion(level: Level, diff: number): Question {
     answer: computeAnswer(level.lab, a, b),
     diff,
   };
+}
+
+/**
+ * Generate a question for the level. When a `seen` set is passed, avoid
+ * repeating any question already served this session: retry on a collision and,
+ * as attempts grow, widen the magnitude dial to escape a small value domain
+ * (e.g. facts within 5). The chosen question is recorded in `seen`.
+ * If the domain is genuinely exhausted the last candidate is used anyway.
+ */
+export function makeQuestion(level: Level, diff: number, seen?: Set<string>): Question {
+  let q = build(level, diff);
+  if (seen) {
+    const MAX_ATTEMPTS = 200;
+    for (let i = 0; i < MAX_ATTEMPTS && seen.has(questionKey(q)); i++) {
+      // Ramp to full magnitude within a few tries so retries sample the whole
+      // value domain, then keep trying at max range.
+      const widened = Math.min(1, diff + i * 0.12);
+      q = build(level, widened);
+    }
+    seen.add(questionKey(q));
+  }
+  return q;
 }
