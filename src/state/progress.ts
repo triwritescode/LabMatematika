@@ -136,9 +136,11 @@ export const useProgress = create<ProgressState>()(
       recordAnswer: (lab, levelId, correct, diff, streak) => {
         const labProgress = get().labs[lab];
         const prev = labProgress.levels[levelId];
+        const prevMastery = prev?.mastery ?? 0;
         const entry = {
           levelId,
-          mastery: clampMastery((prev?.mastery ?? 0) + masteryDelta(correct, diff, streak)),
+          // Already mastered (100%) → retakes for practice only, never lose progress.
+          mastery: prevMastery >= 100 ? 100 : clampMastery(prevMastery + masteryDelta(correct, diff, streak)),
           attempts: (prev?.attempts ?? 0) + 1,
           lastPracticedAt: new Date().toISOString(),
         };
