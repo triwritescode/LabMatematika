@@ -1,14 +1,15 @@
 import { useRouter } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { Gem } from 'lucide-react-native';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { MasteryMeter } from '@/components/mastery-meter';
 import { StreakCalendar } from '@/components/streak-calendar';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { DiamondColor, LabColors } from '@/constants/labs';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { LabColors } from '@/constants/labs';
+import { AccentColor, BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { levelsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
 import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
@@ -18,41 +19,41 @@ import { LABS, useProgress } from '@/state/progress';
 export default function Beranda() {
   const childName = useProgress((s) => s.childName);
   const diamonds = useProgress((s) => s.diamonds);
+  const insets = useSafeAreaInsets();
 
   return (
     <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.content}
-          showsVerticalScrollIndicator={false}>
-          <View style={styles.header}>
-            <View style={styles.headerText}>
-              <ThemedText type="subtitle" style={styles.greeting}>
-                {strings.greeting(childName)}
-              </ThemedText>
-              <ThemedText themeColor="textSecondary">{strings.greetingSub}</ThemedText>
-            </View>
-            <View style={[styles.diamondChip, { backgroundColor: `${DiamondColor}1A` }]}>
-              <Gem color={DiamondColor} fill={DiamondColor} size={20} />
-              <ThemedText type="smallBold" style={{ color: DiamondColor }}>
-                {diamonds.toLocaleString('id-ID')}
-              </ThemedText>
-            </View>
+      <StatusBar style="light" />
+      <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
+        <View style={[styles.header, { paddingTop: insets.top + Spacing.three }]}>
+          <View style={styles.headerText}>
+            <ThemedText type="subtitle" style={styles.greeting}>
+              {strings.greeting(childName)}
+            </ThemedText>
+            <ThemedText style={styles.greetingSub}>{strings.greetingSub}</ThemedText>
           </View>
+          <View style={styles.diamondChip}>
+            <Gem color="#fff" fill="#fff" size={20} />
+            <ThemedText type="smallBold" style={styles.diamondChipText}>
+              {diamonds.toLocaleString('id-ID')}
+            </ThemedText>
+          </View>
+        </View>
 
+        <View style={[styles.body, { paddingBottom: BottomTabInset + Spacing.three, gap: Spacing.five }]}>
           <StreakCalendar />
 
-          <ThemedText type="smallBold" themeColor="textSecondary" style={styles.sectionTitle}>
-            {strings.labList.toUpperCase()}
-          </ThemedText>
-
-          <View style={styles.grid}>
-            {LABS.map((lab) => (
-              <LabCard key={lab} lab={lab} />
-            ))}
+          <View style={styles.labSection}>
+            <ThemedText type="smallBold" themeColor="textSecondary" style={styles.sectionTitle}>
+              {strings.labList.toUpperCase()}
+            </ThemedText>
+            <View style={styles.grid}>
+              {LABS.map((lab) => (
+                <LabCard key={lab} lab={lab} />
+              ))}
+            </View>
           </View>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </ThemedView>
   );
@@ -101,27 +102,33 @@ const styles = StyleSheet.create({
     flex: 1,
     maxWidth: MaxContentWidth,
   },
-  scroll: {
-    flex: 1,
-  },
-  content: {
-    padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
-    gap: Spacing.three,
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: Spacing.two,
+    backgroundColor: AccentColor,
+    paddingHorizontal: Spacing.four,
+    paddingBottom: Spacing.four,
+    borderBottomLeftRadius: Spacing.five,
+    borderBottomRightRadius: Spacing.five,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
+    elevation: 4,
   },
   headerText: {
     flexShrink: 1,
     gap: Spacing.half,
   },
   greeting: {
+    color: '#fff',
     fontSize: 26,
     lineHeight: 32,
+  },
+  greetingSub: {
+    color: 'rgba(255,255,255,0.85)',
   },
   diamondChip: {
     flexDirection: 'row',
@@ -130,9 +137,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingVertical: Spacing.two,
     borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.22)',
+  },
+  diamondChipText: {
+    color: '#fff',
+  },
+  body: {
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: Spacing.four,
+  },
+  labSection: {
+    gap: Spacing.three,
   },
   sectionTitle: {
-    marginTop: Spacing.two,
     letterSpacing: 1,
   },
   grid: {

@@ -77,7 +77,8 @@ export function StreakCalendar() {
                 ) : (
                   <ThemedText
                     type="small"
-                    style={{ color: future ? theme.backgroundSelected : theme.text }}>
+                    themeColor={future ? 'textSecondary' : undefined}
+                    style={[future && { opacity: 0.6 }]}>
                     {dayNum}
                   </ThemedText>
                 )}
@@ -95,6 +96,11 @@ const styles = StyleSheet.create({
     borderRadius: Spacing.four,
     padding: Spacing.three,
     gap: Spacing.three,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.06,
+    shadowRadius: 6,
+    elevation: 2,
   },
   header: {
     flexDirection: 'row',
