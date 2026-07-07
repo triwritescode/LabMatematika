@@ -65,4 +65,4 @@ export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
 
 // Active tab / brand accent (matches design reference).
-export const AccentColor = '#EF4444';
+export const AccentColor = '#A90104';
