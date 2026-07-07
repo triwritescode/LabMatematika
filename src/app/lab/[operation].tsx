@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft, Award, Check, Lock, Star } from 'lucide-react-native';
+import { ArrowLeft, Award, Brain, Calculator, Check, Lock, Star, Zap } from 'lucide-react-native';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -9,7 +10,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
-import { levelsForLab, levelsForTingkat, tingkatsForLab } from '@/curriculum';
+import { levelsForTingkat, levelsForLab, tingkatsForLab } from '@/curriculum';
 import {
   currentTingkat,
   isExamReady,
@@ -17,15 +18,26 @@ import {
   labMasteryPercent,
   masteryBand,
 } from '@/curriculum/mastery';
-import { Level, Operation, OPERATION_SYMBOL } from '@/curriculum/types';
+import { Level, Operation, OPERATION_SYMBOL, Tipe } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
 import { useProgress } from '@/state/progress';
 
-// Zigzag offsets for the Duolingo-style skill path, cycling every 4 nodes.
-const PATH_OFFSETS = [0, 56, 0, -56];
-const NODE_SIZE = 76;
-const EXAM_NODE_SIZE = 92;
+const NODE_SIZE = 48;
+const EXAM_NODE_SIZE = 56;
+const TIMELINE_COL_WIDTH = 64;
+
+const TIPE_ICON: Record<Tipe, typeof Zap> = {
+  fakta: Zap,
+  algoritma: Calculator,
+  konsep: Brain,
+};
+
+const TIPE_LABEL: Record<Tipe, string> = {
+  fakta: 'Fakta cepat',
+  algoritma: 'Algoritma',
+  konsep: 'Konsep',
+};
 
 export default function PetaKeahlian() {
   const { operation } = useLocalSearchParams<{ operation: Operation }>();
@@ -38,6 +50,11 @@ export default function PetaKeahlian() {
   const tingkats = tingkatsForLab(lab);
   const activeTingkat = currentTingkat(progress, lab);
   const overallPercent = labMasteryPercent(progress, levelsForLab(lab));
+
+  const [selectedTingkat, setSelectedTingkat] = useState(activeTingkat);
+  const selectedLevels = levelsForTingkat(lab, selectedTingkat);
+  const selectedPassed = progress.tingkatPassed.includes(selectedTingkat);
+  const selectedReachable = selectedTingkat <= activeTingkat;
 
   return (
     <ThemedView style={styles.container}>
@@ -75,55 +92,69 @@ export default function PetaKeahlian() {
           </View>
         </View>
 
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-          {tingkats.map((tingkat) => {
-            const passed = progress.tingkatPassed.includes(tingkat);
-            const reachable = tingkat <= activeTingkat;
-            const levels = levelsForTingkat(lab, tingkat);
-            return (
-              <View key={tingkat} style={styles.tingkatSection}>
-                <View style={[styles.tingkatBanner, { backgroundColor: colors.soft }]}>
-                  <ThemedText type="smallBold" style={{ color: colors.main }}>
-                    {strings.tingkat(tingkat).toUpperCase()}
+        <View style={styles.tabsWrap}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.tabsContent}>
+            {tingkats.map((tingkat) => {
+              const passed = progress.tingkatPassed.includes(tingkat);
+              const reachable = tingkat <= activeTingkat;
+              const active = tingkat === selectedTingkat;
+              return (
+                <Pressable
+                  key={tingkat}
+                  onPress={() => setSelectedTingkat(tingkat)}
+                  style={({ pressed }) => [styles.tab, pressed && styles.rowPressed]}>
+                  <ThemedText
+                    type={active ? 'smallBold' : 'small'}
+                    themeColor={active ? undefined : 'textSecondary'}
+                    style={active && { color: colors.main }}>
+                    {strings.tingkat(tingkat)}
                   </ThemedText>
-                  {passed && <Check color={colors.main} size={16} strokeWidth={3} />}
-                </View>
+                  <View style={styles.tabSub}>
+                    {!reachable && <Lock size={11} color={theme.textSecondary} />}
+                    {passed && <Check size={12} color={colors.main} strokeWidth={3} />}
+                    <ThemedText type="small" themeColor="textSecondary" style={styles.tabSubText}>
+                      {passed
+                        ? 'Selesai'
+                        : reachable
+                          ? `${levelsForTingkat(lab, tingkat).length} level`
+                          : 'Terkunci'}
+                    </ThemedText>
+                  </View>
+                  <View style={[styles.tabUnderline, active && { backgroundColor: colors.main }]} />
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
 
-                <View style={styles.path}>
-                  {levels.map((level, i) => (
-                    <PathNode
-                      key={level.id}
-                      level={level}
-                      reachable={reachable}
-                      offset={PATH_OFFSETS[i % PATH_OFFSETS.length]}
-                    />
-                  ))}
-                  <ExamNode
-                    lab={lab}
-                    tingkat={tingkat}
-                    passed={passed}
-                    reachable={reachable}
-                    offset={PATH_OFFSETS[levels.length % PATH_OFFSETS.length]}
-                  />
-                </View>
-              </View>
-            );
-          })}
+        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+          <View style={styles.timeline}>
+            <View
+              style={[
+                styles.timelineLine,
+                { left: TIMELINE_COL_WIDTH / 2, borderColor: theme.backgroundSelected },
+              ]}
+            />
+            {selectedLevels.map((level) => (
+              <TimelineNode key={level.id} level={level} reachable={selectedReachable} />
+            ))}
+            <TimelineExamNode
+              lab={lab}
+              tingkat={selectedTingkat}
+              passed={selectedPassed}
+              reachable={selectedReachable}
+            />
+          </View>
         </ScrollView>
       </SafeAreaView>
     </ThemedView>
   );
 }
 
-function PathNode({
-  level,
-  reachable,
-  offset,
-}: {
-  level: Level;
-  reachable: boolean;
-  offset: number;
-}) {
+function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }) {
   const router = useRouter();
   const theme = useTheme();
   const progress = useProgress((s) => s.labs[level.lab]);
@@ -132,63 +163,74 @@ function PathNode({
   const unlocked = reachable && isLevelUnlocked(progress, level);
   const band = masteryBand(mastery);
   const mastered = band === 'dikuasai';
+  const TipeIcon = TIPE_ICON[level.tipe];
 
   return (
-    <View style={[styles.nodeWrap, { transform: [{ translateX: offset }] }]}>
-      <Pressable
-        disabled={!unlocked}
-        onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
-        style={({ pressed }) => [
-          styles.node,
-          !unlocked && { backgroundColor: theme.backgroundSelected },
-          unlocked &&
-            !mastered && {
-              backgroundColor: theme.background,
-              borderWidth: 5,
-              borderColor: colors.main,
-            },
-          unlocked && mastered && { backgroundColor: colors.main },
-          unlocked && styles.nodeShadow,
-          pressed && styles.rowPressed,
+    <Pressable
+      disabled={!unlocked}
+      onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
+      style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+      <View style={styles.rowIconCol}>
+        <View
+          style={[
+            styles.node,
+            { backgroundColor: theme.background },
+            !unlocked && { backgroundColor: theme.backgroundSelected },
+            unlocked && !mastered && { borderWidth: 3, borderColor: colors.main },
+            unlocked && mastered && { backgroundColor: colors.main, borderWidth: 0 },
+          ]}>
+          {!unlocked ? (
+            <Lock color={theme.textSecondary} size={18} />
+          ) : mastered ? (
+            <Check color="#fff" size={20} strokeWidth={3} />
+          ) : (
+            <TipeIcon color={colors.main} size={20} />
+          )}
+          {level.isCore && (
+            <View
+              style={[styles.coreBadge, { backgroundColor: unlocked ? '#F59E0B' : theme.backgroundSelected }]}>
+              <Star color="#fff" fill="#fff" size={10} />
+            </View>
+          )}
+        </View>
+      </View>
+
+      <View
+        style={[
+          styles.card,
+          { backgroundColor: theme.backgroundElement },
+          unlocked && styles.cardShadow,
+          !unlocked && styles.cardLocked,
         ]}>
-        {!unlocked ? (
-          <Lock color={theme.textSecondary} size={26} />
-        ) : mastered ? (
-          <Check color="#fff" size={30} strokeWidth={3} />
-        ) : (
-          <ThemedText type="smallBold" style={{ color: colors.main, fontSize: 18 }}>
-            {mastery}%
+        <View style={styles.cardMain}>
+          <ThemedText type="smallBold" themeColor={unlocked ? undefined : 'textSecondary'}>
+            {level.labelId}
           </ThemedText>
-        )}
-        {level.isCore && (
-          <View style={[styles.coreBadge, { backgroundColor: unlocked ? '#F59E0B' : theme.backgroundSelected }]}>
-            <Star color="#fff" fill="#fff" size={12} />
-          </View>
-        )}
-      </Pressable>
-      <ThemedText
-        type="small"
-        themeColor={unlocked ? undefined : 'textSecondary'}
-        style={styles.nodeLabel}
-        numberOfLines={2}>
-        {level.labelId}
-      </ThemedText>
-    </View>
+          <ThemedText type="small" themeColor="textSecondary">
+            {TIPE_LABEL[level.tipe]}
+          </ThemedText>
+        </View>
+        <ThemedText
+          type="smallBold"
+          themeColor={unlocked ? undefined : 'textSecondary'}
+          style={mastered ? { color: colors.main } : undefined}>
+          {!unlocked ? '—' : mastered ? 'Selesai' : `${mastery}%`}
+        </ThemedText>
+      </View>
+    </Pressable>
   );
 }
 
-function ExamNode({
+function TimelineExamNode({
   lab,
   tingkat,
   passed,
   reachable,
-  offset,
 }: {
   lab: Operation;
   tingkat: number;
   passed: boolean;
   reachable: boolean;
-  offset: number;
 }) {
   const router = useRouter();
   const theme = useTheme();
@@ -198,37 +240,45 @@ function ExamNode({
   const active = passed || ready;
 
   return (
-    <View style={[styles.nodeWrap, { transform: [{ translateX: offset }] }]}>
-      <Pressable
-        disabled={!ready}
-        onPress={() => router.push(`/exam/${lab}/${tingkat}`)}
-        style={({ pressed }) => [
-          styles.node,
-          styles.examNode,
-          !active && { backgroundColor: theme.backgroundSelected },
-          ready && {
-            backgroundColor: theme.background,
-            borderWidth: 5,
-            borderColor: colors.main,
-          },
-          passed && { backgroundColor: colors.main },
-          active && styles.nodeShadow,
-          pressed && styles.rowPressed,
+    <Pressable
+      disabled={!ready}
+      onPress={() => router.push(`/exam/${lab}/${tingkat}`)}
+      style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
+      <View style={styles.rowIconCol}>
+        <View
+          style={[
+            styles.node,
+            styles.examNode,
+            { backgroundColor: theme.background },
+            !active && { backgroundColor: theme.backgroundSelected },
+            ready && { borderWidth: 3, borderColor: colors.main },
+            passed && { backgroundColor: colors.main, borderWidth: 0 },
+          ]}>
+          {passed ? (
+            <Check color="#fff" size={24} strokeWidth={3} />
+          ) : (
+            <Award color={ready ? colors.main : theme.textSecondary} size={24} />
+          )}
+        </View>
+      </View>
+
+      <View
+        style={[
+          styles.card,
+          { backgroundColor: theme.backgroundElement },
+          active && styles.cardShadow,
+          !active && styles.cardLocked,
         ]}>
-        {passed ? (
-          <Check color="#fff" size={34} strokeWidth={3} />
-        ) : (
-          <Award color={ready ? colors.main : theme.textSecondary} size={34} />
-        )}
-      </Pressable>
-      <ThemedText
-        type="smallBold"
-        themeColor={active ? undefined : 'textSecondary'}
-        style={[styles.nodeLabel, active && { color: colors.main }]}
-        numberOfLines={2}>
-        {strings.ujian}
-      </ThemedText>
-    </View>
+        <View style={styles.cardMain}>
+          <ThemedText type="smallBold" themeColor={active ? undefined : 'textSecondary'} style={active && { color: colors.main }}>
+            {strings.ujian}
+          </ThemedText>
+          <ThemedText type="small" themeColor="textSecondary">
+            {passed ? strings.ujianRules : ready ? strings.ujianReady : strings.ujianLocked(tingkat)}
+          </ThemedText>
+        </View>
+      </View>
+    </Pressable>
   );
 }
 
@@ -304,31 +354,58 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'rgba(255,255,255,0.9)',
   },
+  tabsWrap: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(128,128,128,0.2)',
+  },
+  tabsContent: {
+    paddingHorizontal: Spacing.four,
+    gap: Spacing.five,
+  },
+  tab: {
+    alignItems: 'center',
+    gap: Spacing.half,
+    paddingTop: Spacing.three,
+    paddingBottom: Spacing.two,
+    minWidth: 84,
+  },
+  tabSub: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.half,
+  },
+  tabSubText: {
+    fontSize: 11,
+  },
+  tabUnderline: {
+    marginTop: Spacing.one,
+    height: 3,
+    width: '100%',
+    borderRadius: 2,
+  },
   content: {
     padding: Spacing.four,
     paddingTop: Spacing.five,
-    gap: Spacing.six,
   },
-  tingkatSection: {
-    gap: Spacing.four,
-    alignItems: 'center',
+  timeline: {
+    position: 'relative',
   },
-  tingkatBanner: {
+  timelineLine: {
+    position: 'absolute',
+    top: NODE_SIZE / 2,
+    bottom: EXAM_NODE_SIZE / 2,
+    width: 0,
+    borderLeftWidth: 2,
+    borderStyle: 'dashed',
+  },
+  row: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.one,
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.two,
-    borderRadius: 999,
+    marginBottom: Spacing.three,
   },
-  path: {
+  rowIconCol: {
+    width: TIMELINE_COL_WIDTH,
     alignItems: 'center',
-    gap: Spacing.four,
-  },
-  nodeWrap: {
-    alignItems: 'center',
-    gap: Spacing.one,
-    width: 100,
+    justifyContent: 'center',
   },
   node: {
     width: NODE_SIZE,
@@ -337,13 +414,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  nodeShadow: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-    elevation: 3,
-  },
   examNode: {
     width: EXAM_NODE_SIZE,
     height: EXAM_NODE_SIZE,
@@ -351,23 +421,41 @@ const styles = StyleSheet.create({
   },
   coreBadge: {
     position: 'absolute',
-    top: -4,
-    right: -4,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
+    top: -3,
+    right: -3,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
     borderColor: '#fff',
   },
-  nodeLabel: {
-    textAlign: 'center',
-    fontSize: 12,
-    lineHeight: 15,
+  card: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: Spacing.two,
+    borderRadius: Spacing.three,
+    paddingVertical: Spacing.three,
+    paddingHorizontal: Spacing.four,
+  },
+  cardMain: {
+    gap: Spacing.half,
+    flexShrink: 1,
+  },
+  cardShadow: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  cardLocked: {
+    opacity: 0.55,
   },
   rowPressed: {
     opacity: 0.75,
-    transform: [{ scale: 0.96 }],
   },
 });
