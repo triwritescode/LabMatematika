@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MasteryMeter } from '@/components/mastery-meter';
+import { StreakCalendar } from '@/components/streak-calendar';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { DiamondColor, LabColors, StreakColor } from '@/constants/labs';
@@ -12,11 +13,11 @@ import { levelsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
 import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
-import { LABS, useProgress } from '@/state/progress';
+import { LABS, useCurrentStreak, useProgress } from '@/state/progress';
 
 export default function Beranda() {
   const childName = useProgress((s) => s.childName);
-  const streak = useProgress((s) => s.streak.count);
+  const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
 
   return (
@@ -48,6 +49,8 @@ export default function Beranda() {
               </View>
             </View>
           </View>
+
+          <StreakCalendar />
 
           <ThemedText type="smallBold" themeColor="textSecondary" style={styles.sectionTitle}>
             {strings.labList.toUpperCase()}

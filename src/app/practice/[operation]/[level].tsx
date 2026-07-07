@@ -92,7 +92,6 @@ export default function LatihanTerarah() {
       setIsRetry(true);
       setPhase('question');
     } else {
-      touchStreak();
       setPhase('done');
     }
   }
@@ -104,6 +103,13 @@ export default function LatihanTerarah() {
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
+
+  // Record the daily streak once the session is actually finished. Keyed on the
+  // 'done' phase (not buried in advance()) so it can't be skipped by a stale
+  // closure. touchStreak() is idempotent per day.
+  useEffect(() => {
+    if (phase === 'done') touchStreak();
+  }, [phase, touchStreak]);
 
   function restart() {
     setMasteryStart(masteryNow);

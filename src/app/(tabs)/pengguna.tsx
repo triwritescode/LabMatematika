@@ -9,13 +9,13 @@ import { MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { useAuth } from '@/state/auth';
-import { useProgress } from '@/state/progress';
+import { useCurrentStreak, useProgress } from '@/state/progress';
 
 export default function Pengguna() {
   const theme = useTheme();
   const profile = useAuth((s) => s.profile);
   const signOut = useAuth((s) => s.signOut);
-  const streak = useProgress((s) => s.streak.count);
+  const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
 
   return (

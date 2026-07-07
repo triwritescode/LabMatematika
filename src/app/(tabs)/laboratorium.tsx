@@ -12,10 +12,10 @@ import { labMasteryPercent, masteryBand } from '@/curriculum/mastery';
 import { Operation } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
-import { LABS, useProgress } from '@/state/progress';
+import { LABS, useCurrentStreak, useProgress } from '@/state/progress';
 
 export default function Laboratorium() {
-  const streak = useProgress((s) => s.streak.count);
+  const streak = useCurrentStreak();
 
   return (
     <ThemedView style={styles.container}>

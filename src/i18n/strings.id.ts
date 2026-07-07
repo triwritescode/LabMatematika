@@ -58,6 +58,19 @@ export const strings = {
   perluDikuatkan: (label: string) => `Perlu dikuatkan: ${label}`,
   latihanLagi: 'Latihan lagi',
   streak: (n: number) => `${n} hari`,
+
+  // Streak + calendar widget (Beranda)
+  streakTitle: 'Runtunan Harian',
+  streakDays: (n: number) => (n === 1 ? '1 hari beruntun' : `${n} hari beruntun`),
+  streakNone: 'Latihan hari ini untuk memulai runtunan!',
+  streakKeep: 'Kerja bagus! Latihan lagi besok ya.',
+  streakTodayDone: 'Selesai hari ini 🔥',
+  months: [
+    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
+  ],
+  // Monday-first week (Senin … Minggu).
+  weekdaysShort: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
   sessionDone: 'Latihan selesai!',
   sessionScore: (correct: number, total: number) => `${correct} dari ${total} benar`,
   masteryUp: (from: number, to: number) => `Penguasaan: ${from}% → ${to}%`,
