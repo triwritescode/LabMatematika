@@ -5,11 +5,16 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import type { Session, User } from '@supabase/supabase-js';
-import { Alert } from 'react-native';
 import { create } from 'zustand';
 
 import { supabase } from '@/lib/supabase';
 import { useProgress } from '@/state/progress';
+import {
+  loadProfileSnapshot,
+  saveProfileSnapshot,
+  startProgressSync,
+  stopProgressSync,
+} from '@/state/sync';
 
 // Auth + profile store. Mirrors the local-first zustand style of progress.ts,
 // but this one is the source of truth for identity: Supabase session + the
@@ -47,6 +52,10 @@ export const useAuth = create<AuthState>()((set, get) => {
       return;
     }
 
+    // Identity is known → start offline-first progress sync immediately, so
+    // local progress is available even before (or without) the network.
+    void startProgressSync(session.user.id);
+
     const { data, error } = await supabase
       .from('profiles')
       .select('first_name, last_name, age, onboarding_complete')
@@ -54,8 +63,20 @@ export const useAuth = create<AuthState>()((set, get) => {
       .maybeSingle();
 
     if (error) {
-      // Network/RLS hiccup — treat as needing onboarding rather than hard-failing.
-      set({ status: 'needsOnboarding', session, user: session.user });
+      // Offline / network hiccup. Fall back to the cached profile snapshot so a
+      // returning, already-onboarded user still resumes (ready) without a network.
+      const snap = await loadProfileSnapshot(session.user.id);
+      if (snap?.onboarded) {
+        useProgress.getState().setChildName(snap.firstName);
+        set({
+          status: 'ready',
+          session,
+          user: session.user,
+          profile: { firstName: snap.firstName, lastName: snap.lastName, age: snap.age },
+        });
+      } else {
+        set({ status: 'needsOnboarding', session, user: session.user });
+      }
       return;
     }
 
@@ -67,6 +88,8 @@ export const useAuth = create<AuthState>()((set, get) => {
       };
       // Keep the existing home-screen greeting working (reads childName).
       useProgress.getState().setChildName(profile.firstName);
+      // Cache for offline resolution on the next cold start.
+      saveProfileSnapshot(session.user.id, { ...profile, onboarded: true });
       set({ status: 'ready', session, user: session.user, profile });
     } else {
       set({ status: 'needsOnboarding', session, user: session.user, profile: null });
@@ -123,12 +146,6 @@ export const useAuth = create<AuthState>()((set, get) => {
         if (error) throw error;
         // onAuthStateChange fires → resolveSession sets the next status.
       } catch (err) {
-        // DEBUG: surface the raw error — Google/Supabase errors often aren't
-        // plain Error instances, so the fallback message hides the real cause.
-        const rawDump = JSON.stringify(err, Object.getOwnPropertyNames(err), 2);
-        console.error('[signInWithGoogle] raw error:', rawDump, err);
-        // DEBUG: pop the raw error on-screen so it's visible without a console.
-        Alert.alert('DEBUG signin error', rawDump);
         let message = 'Gagal masuk. Coba lagi.';
         if (isErrorWithCode(err)) {
           if (err.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -166,6 +183,8 @@ export const useAuth = create<AuthState>()((set, get) => {
 
         const profile: LocalProfile = { firstName: firstName.trim(), lastName: lastName.trim(), age };
         useProgress.getState().setChildName(profile.firstName);
+        void startProgressSync(user.id);
+        saveProfileSnapshot(user.id, { ...profile, onboarded: true });
         set({ status: 'ready', profile, prefill: null });
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Gagal menyimpan profil.';
@@ -181,6 +200,10 @@ export const useAuth = create<AuthState>()((set, get) => {
       } catch {
         // Ignore — the Supabase sign-out below is what actually matters.
       }
+      // Flush pending progress + clear local state BEFORE dropping the session,
+      // so the final push still has a valid token and the next account starts
+      // clean instead of inheriting this user's rows.
+      await stopProgressSync();
       await supabase.auth.signOut();
       set({ status: 'signedOut', session: null, user: null, profile: null, prefill: null });
     },

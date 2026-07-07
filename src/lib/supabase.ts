@@ -13,7 +13,73 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+// Typed row shapes for the progress-sync tables (see supabase/schema.sql §5).
+// Every table carries the change-tracking trio Legend-State needs: updated_at,
+// created_at, deleted. `id` is a DETERMINISTIC string (see state/sync.ts) so the
+// same fact converges to one row across devices.
+type SyncMeta = { created_at: string; updated_at: string; deleted: boolean };
+
+export type LevelMasteryRow = {
+  id: string;
+  user_id: string;
+  lab: string;
+  level_id: string;
+  mastery: number;
+  attempts: number;
+  last_practiced_at: string | null;
+  due_for_review: string | null;
+} & SyncMeta;
+
+export type LabMetaRow = {
+  id: string;
+  user_id: string;
+  lab: string;
+  rank: string;
+  placement_done: boolean;
+} & SyncMeta;
+
+export type TingkatPassedRow = {
+  id: string;
+  user_id: string;
+  lab: string;
+  tingkat: number;
+} & SyncMeta;
+
+export type ActiveDayRow = {
+  id: string;
+  user_id: string;
+  day: string; // ISO yyyy-mm-dd
+} & SyncMeta;
+
+export type UserStatsRow = {
+  id: string;
+  user_id: string;
+  diamonds: number;
+} & SyncMeta;
+
+// Minimal Database generic (GenericSchema-shaped) so supabase-js queries and
+// syncedSupabase infer collection names + row types. Only declares the columns
+// the app reads/writes.
+type Table<Row> = { Row: Row; Insert: Partial<Row>; Update: Partial<Row>; Relationships: [] };
+
+export type Database = {
+  public: {
+    Tables: {
+      profiles: Table<Profile>;
+      level_mastery: Table<LevelMasteryRow>;
+      lab_meta: Table<LabMetaRow>;
+      tingkat_passed: Table<TingkatPassedRow>;
+      active_days: Table<ActiveDayRow>;
+      user_stats: Table<UserStatsRow>;
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
+  };
+};
+
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     storage: AsyncStorage,
     autoRefreshToken: true,

@@ -4,9 +4,17 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { clampMastery, masteryDelta, rankFor } from '@/curriculum/mastery';
 import { LabProgress, Operation } from '@/curriculum/types';
+import type {
+  ActiveDayRow,
+  LabMetaRow,
+  LevelMasteryRow,
+  TingkatPassedRow,
+  UserStatsRow,
+} from '@/lib/supabase';
 
-// Local-first progress store. AsyncStorage today; the storage adapter is the
-// single swap point for MMKV (+ Legend-State sync) in Phase 3.
+// Local-first progress store (zustand + AsyncStorage) — the app is fully usable
+// offline. The sync engine in sync.ts mirrors every mutation to Supabase through
+// the mutation listener below, and merges remote rows back in via mergeRemote().
 
 const LABS: Operation[] = ['add', 'sub', 'mul', 'div'];
 
@@ -35,7 +43,7 @@ export function shiftISO(iso: string, deltaDays: number): string {
 // Duolingo-style: the streak is the run of consecutive practiced days ending
 // today or yesterday. Missing a full day breaks it back to 0. Deriving from the
 // day-history (instead of a stored counter) means the displayed streak is always
-// correct on app open, even after days away without practice.
+// correct on app open — and stays correct after a cross-device merge.
 export function computeStreak(activeDates: string[], today = todayISO()): number {
   const set = new Set(activeDates);
   const yesterday = shiftISO(today, -1);
@@ -49,6 +57,45 @@ export function computeStreak(activeDates: string[], today = todayISO()): number
   return count;
 }
 
+// ── Sync bridge ───────────────────────────────────────────────────────────────
+// Actions emit a compact mutation after every state change; the sync engine
+// (sync.ts) turns these into Supabase upserts. Decoupled via a listener so this
+// module never imports sync.ts (no import cycle) and works with no engine
+// attached (e.g. before login).
+
+export type ProgressMutation =
+  | {
+      kind: 'answer';
+      lab: Operation;
+      levelId: string;
+      mastery: number;
+      attempts: number;
+      lastPracticedAt: string;
+    }
+  | { kind: 'tingkat'; lab: Operation; tingkat: number; rank: string; placementDone: boolean }
+  | { kind: 'day'; day: string }
+  | { kind: 'diamonds'; total: number };
+
+type MutationListener = (m: ProgressMutation) => void;
+let mutationListener: MutationListener | null = null;
+
+export function setMutationListener(listener: MutationListener | null) {
+  mutationListener = listener;
+}
+
+function emit(m: ProgressMutation) {
+  mutationListener?.(m);
+}
+
+// Rows pulled from Supabase by sync.ts, handed to mergeRemote().
+export type RemoteProgress = {
+  levels: LevelMasteryRow[];
+  labMeta: LabMetaRow[];
+  tingkat: TingkatPassedRow[];
+  days: ActiveDayRow[];
+  stats: UserStatsRow | null;
+};
+
 type ProgressState = {
   childName: string;
   labs: Record<Operation, LabProgress>;
@@ -61,75 +108,146 @@ type ProgressState = {
   recordAnswer: (lab: Operation, levelId: string, correct: boolean, diff: number, streak: number) => void;
   passTingkat: (lab: Operation, tingkat: number) => void;
   touchStreak: () => void;
+  addDiamonds: (amount: number) => void;
+  mergeRemote: (remote: RemoteProgress) => void;
+  resetProgress: () => void;
 };
+
+const initialData = () => ({
+  childName: '',
+  labs: {
+    add: emptyLab('add'),
+    sub: emptyLab('sub'),
+    mul: emptyLab('mul'),
+    div: emptyLab('div'),
+  },
+  streak: { count: 0, lastActiveDate: '' },
+  activeDates: [] as string[],
+  diamonds: 0,
+});
 
 export const useProgress = create<ProgressState>()(
   persist(
-    (set) => ({
-      childName: '',
-      labs: {
-        add: emptyLab('add'),
-        sub: emptyLab('sub'),
-        mul: emptyLab('mul'),
-        div: emptyLab('div'),
-      },
-      streak: { count: 0, lastActiveDate: '' },
-      activeDates: [],
-      diamonds: 0,
+    (set, get) => ({
+      ...initialData(),
 
       setChildName: (name) => set({ childName: name.trim() }),
 
-      recordAnswer: (lab, levelId, correct, diff, streak) =>
-        set((state) => {
-          const labProgress = state.labs[lab];
-          const prev = labProgress.levels[levelId];
-          const mastery = clampMastery(
-            (prev?.mastery ?? 0) + masteryDelta(correct, diff, streak)
-          );
-          return {
-            labs: {
-              ...state.labs,
-              [lab]: {
-                ...labProgress,
-                levels: {
-                  ...labProgress.levels,
-                  [levelId]: {
-                    levelId,
-                    mastery,
-                    attempts: (prev?.attempts ?? 0) + 1,
-                    lastPracticedAt: new Date().toISOString(),
-                  },
-                },
-              },
+      recordAnswer: (lab, levelId, correct, diff, streak) => {
+        const labProgress = get().labs[lab];
+        const prev = labProgress.levels[levelId];
+        const entry = {
+          levelId,
+          mastery: clampMastery((prev?.mastery ?? 0) + masteryDelta(correct, diff, streak)),
+          attempts: (prev?.attempts ?? 0) + 1,
+          lastPracticedAt: new Date().toISOString(),
+        };
+        set((state) => ({
+          labs: {
+            ...state.labs,
+            [lab]: {
+              ...state.labs[lab],
+              levels: { ...state.labs[lab].levels, [levelId]: entry },
             },
+          },
+        }));
+        emit({ kind: 'answer', lab, ...entry });
+      },
+
+      passTingkat: (lab, tingkat) => {
+        const labProgress = get().labs[lab];
+        if (labProgress.tingkatPassed.includes(tingkat)) return;
+        const tingkatPassed = [...labProgress.tingkatPassed, tingkat].sort((a, b) => a - b);
+        const rank = rankFor(lab, tingkatPassed);
+        set((state) => ({
+          labs: {
+            ...state.labs,
+            [lab]: { ...state.labs[lab], tingkatPassed, rank },
+          },
+        }));
+        emit({ kind: 'tingkat', lab, tingkat, rank, placementDone: labProgress.placementDone });
+      },
+
+      touchStreak: () => {
+        const today = todayISO();
+        // Guard on activeDates (the source of truth), not lastActiveDate.
+        if (get().activeDates.includes(today)) return;
+        set((state) => {
+          const activeDates = [...state.activeDates, today].sort();
+          return {
+            activeDates,
+            streak: { count: computeStreak(activeDates, today), lastActiveDate: today },
+          };
+        });
+        emit({ kind: 'day', day: today });
+      },
+
+      addDiamonds: (amount) => {
+        const total = get().diamonds + amount;
+        set({ diamonds: total });
+        emit({ kind: 'diamonds', total });
+      },
+
+      // Smart merge of server rows into local state. Additive data (tiers, days)
+      // is a UNION; per-level mastery is last-write-wins by lastPracticedAt with
+      // attempts kept at max; diamonds take the max. Nothing is ever lost by a
+      // stale device syncing late.
+      mergeRemote: (remote) =>
+        set((state) => {
+          const labs = { ...state.labs };
+          for (const lab of LABS) labs[lab] = { ...labs[lab], levels: { ...labs[lab].levels } };
+
+          for (const r of remote.levels) {
+            if (r.deleted) continue;
+            const lab = r.lab as Operation;
+            if (!labs[lab]) continue;
+            const local = labs[lab].levels[r.level_id];
+            const remoteAt = r.last_practiced_at ?? '';
+            const newer = !local || remoteAt > local.lastPracticedAt;
+            labs[lab].levels[r.level_id] = {
+              levelId: r.level_id,
+              mastery: newer ? r.mastery : local.mastery,
+              attempts: Math.max(local?.attempts ?? 0, r.attempts),
+              lastPracticedAt: newer ? remoteAt : local.lastPracticedAt,
+              dueForReview: (newer ? (r.due_for_review ?? undefined) : local?.dueForReview) ?? undefined,
+            };
+          }
+
+          for (const r of remote.tingkat) {
+            if (r.deleted) continue;
+            const lab = r.lab as Operation;
+            if (!labs[lab] || labs[lab].tingkatPassed.includes(r.tingkat)) continue;
+            labs[lab].tingkatPassed = [...labs[lab].tingkatPassed, r.tingkat].sort((a, b) => a - b);
+          }
+
+          for (const r of remote.labMeta) {
+            if (r.deleted) continue;
+            const lab = r.lab as Operation;
+            if (!labs[lab]) continue;
+            labs[lab].placementDone = labs[lab].placementDone || r.placement_done;
+          }
+
+          // Rank always derives from the (unioned) tiers — keeps it consistent
+          // even if a lab_meta row is stale.
+          for (const lab of LABS) labs[lab].rank = rankFor(lab, labs[lab].tingkatPassed);
+
+          const dates = new Set(state.activeDates);
+          for (const r of remote.days) if (!r.deleted) dates.add(r.day);
+          const activeDates = [...dates].sort();
+
+          return {
+            labs,
+            activeDates,
+            streak: {
+              count: computeStreak(activeDates),
+              lastActiveDate: activeDates.at(-1) ?? '',
+            },
+            diamonds: Math.max(state.diamonds, remote.stats?.diamonds ?? 0),
           };
         }),
 
-      passTingkat: (lab, tingkat) =>
-        set((state) => {
-          const labProgress = state.labs[lab];
-          if (labProgress.tingkatPassed.includes(tingkat)) return state;
-          const tingkatPassed = [...labProgress.tingkatPassed, tingkat].sort();
-          return {
-            labs: {
-              ...state.labs,
-              [lab]: { ...labProgress, tingkatPassed, rank: rankFor(lab, tingkatPassed) },
-            },
-          };
-        }),
-
-      touchStreak: () =>
-        set((state) => {
-          const today = todayISO();
-          // Guard on activeDates (the source of truth), not lastActiveDate.
-          // Guarding on lastActiveDate could early-return while activeDates is
-          // still missing today (e.g. migrated state), leaving the streak/
-          // calendar stuck at 0 for the rest of the day.
-          if (state.activeDates.includes(today)) return state;
-          const activeDates = [...state.activeDates, today];
-          const count = computeStreak(activeDates, today);
-          return { activeDates, streak: { count, lastActiveDate: today } };
-        }),
+      // Clean slate for account switches (called by sync.ts on sign-out).
+      resetProgress: () => set(initialData()),
     }),
     {
       name: 'labmatematika-progress',
