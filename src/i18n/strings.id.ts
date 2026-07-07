@@ -107,5 +107,5 @@ export const strings = {
   onboardingFinish: 'Mulai Belajar!',
   onboardingSaving: 'Menyimpan…',
   onboardingErrorName: 'Isi dulu ya.',
-  onboardingErrorAge: 'Umur harus antara 4 dan 15.',
+  onboardingErrorAge: 'Umur harus antara 1 dan 120.',
 };

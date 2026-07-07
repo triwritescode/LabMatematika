@@ -22,8 +22,8 @@ import { strings } from '@/i18n/strings.id';
 import { useAuth } from '@/state/auth';
 
 const ACCENT = LabColors.add.main;
-const MIN_AGE = 4;
-const MAX_AGE = 15;
+const MIN_AGE = 1;
+const MAX_AGE = 120;
 const TOTAL_STEPS = 3;
 
 function haptic() {
@@ -139,7 +139,7 @@ export default function Onboarding() {
                   placeholderTextColor={theme.textSecondary}
                   keyboardType={step === 2 ? 'number-pad' : 'default'}
                   autoCapitalize={step === 2 ? 'none' : 'words'}
-                  maxLength={step === 2 ? 2 : 24}
+                  maxLength={step === 2 ? 3 : 24}
                   returnKeyType={isLast ? 'done' : 'next'}
                   onSubmitEditing={next}
                   style={[

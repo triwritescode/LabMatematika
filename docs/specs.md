@@ -1,6 +1,6 @@
 # LabMatematika — Technical Specification
 
-> **Offline-first native math-practice app for elementary students (grades 1–6).**
+> **Offline-first native math-practice app for all ages.**
 > Built with React Native (Expo), grounded in **deliberate practice**, and structured
 > as **four independent operation "labs"** (Duolingo model: operation = "language").
 >
@@ -16,7 +16,7 @@
 | --- | --- |
 | **Name** | LabMatematika ("Math Lab") |
 | **Tagline (ID)** | *Latih, uji, kuasai.* |
-| **Target user** | Elementary students, grades 1–6 (ages 6–12) |
+| **Target user** | Anyone practicing arithmetic — kids through adults, no age limit |
 | **Platform** | Native Android via Expo (iOS-ready from the same codebase) |
 | **Distribution** | Google Play Store (AAB) |
 | **UI language** | Bahasa Indonesia |
