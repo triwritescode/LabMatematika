@@ -145,11 +145,19 @@ strictly judged in exams; **F** = fact / timer-eligible, **A** = algorithm, **K*
 ### 🔵 Lab Tambah
 | Tingkat | Level id | Label (ID) | Type |
 | --- | --- | --- | --- |
+| 1 | `add.within5` | Pasangan dalam 5 | F |
 | 1 | `add.within10` | Fakta dasar dalam 10 ⭐ | F |
+| 1 | `add.doubles` | Dobel & dekat-dobel | F |
 | 1 | `add.bridge10` | Menjembatani 10 ⭐ | F |
+| 1 | `add.tens` | Menjumlah puluhan | F |
 | 2 | `add.2d.nocarry` | Dua angka tanpa menyimpan | A |
 | 2 | `add.2d.carry` | Menyimpan ⭐ | A |
-| 3 | `add.multi.carry` | Multi-digit menyimpan ⭐ | A |
+| 2 | `add.compensate` | Strategi kompensasi | F |
+| 3 | `add.3d.nocarry` | Tiga angka tanpa menyimpan | A |
+| 3 | `add.3d.carry` | Tiga angka menyimpan ⭐ | A |
+| 3 | `add.3d.chain` | Menyimpan berantai | A |
+| 4 | `add.multi.carry` | Multi-digit menyimpan ⭐ | A |
+| 4 | `add.thousands` | Ribuan & puluh ribuan ⭐ | A |
 
 ### 🔴 Lab Kurang
 | Tingkat | Level id | Label (ID) | Type |
@@ -519,7 +527,7 @@ labmatematika/
 ```
 
 **Rank ladders (ID):**
-Tambah: *Penjumlah Pemula → Penjumlah Andal → Penjumlah Ahli* ·
+Tambah: *Penjumlah Pemula → Penjumlah Andal → Penjumlah Mahir → Penjumlah Ahli → Penjumlah Master* ·
 Kurang: *Pengurang Pemula → Pengurang Andal → Pengurang Ahli* ·
 Kali: *Pengali Pemula → Ahli Tabel → Pengali Ahli* ·
 Bagi: *Pembagi Pemula → Pembagi Andal → Pembagi Ahli*.

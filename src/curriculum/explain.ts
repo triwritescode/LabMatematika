@@ -97,6 +97,39 @@ const explainers: Record<string, Explainer> = {
       `Jadi ${a} + ${b} = ${a + b}.`,
     ];
   },
+  'add.doubles': (a, b) => {
+    const base = Math.min(a, b);
+    const other = Math.max(a, b);
+    if (a === b) {
+      return [
+        `${a} + ${b} adalah dobel.`,
+        `Ingat dobel ${a}: ${a} + ${a} = ${a + b}.`,
+      ];
+    }
+    return [
+      `${a} + ${b} adalah dekat-dobel.`,
+      `Pakai dobel ${base}: ${base} + ${base} = ${base + base}.`,
+      `Tambah selisih ${other - base}: ${base + base} + ${other - base} = ${a + b}.`,
+      `Jadi ${a} + ${b} = ${a + b}.`,
+    ];
+  },
+  'add.tens': (a, b) => [
+    `Hitung puluhannya saja: ${a / 10} puluhan + ${b / 10} puluhan = ${(a + b) / 10} puluhan.`,
+    `${(a + b) / 10} puluhan = ${a + b}.`,
+    `Jadi ${a} + ${b} = ${a + b}.`,
+  ],
+  'add.compensate': (a, b) => {
+    // round the addend nearer a ten up to that ten, then subtract the extra
+    const [near, other] = a % 10 >= b % 10 ? [a, b] : [b, a];
+    const up = Math.round(near / 10) * 10;
+    const extra = up - near;
+    return [
+      `Genapkan ${near} ke ${up} (tambah ${extra}).`,
+      `${up} + ${other} = ${up + other}.`,
+      `Kembalikan ${extra}: ${up + other} − ${extra} = ${a + b}.`,
+      `Jadi ${a} + ${b} = ${a + b}.`,
+    ];
+  },
   'add.column.nocarry': addColumnSteps,
   'add.column.carry': addColumnSteps,
   'sub.within10': (a, b) => {

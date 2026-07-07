@@ -65,7 +65,13 @@ export function currentTingkat(progress: LabProgress, lab: Operation): number {
 }
 
 const RANKS: Record<Operation, string[]> = {
-  add: ['Penjumlah Pemula', 'Penjumlah Andal', 'Penjumlah Ahli'],
+  add: [
+    'Penjumlah Pemula',
+    'Penjumlah Andal',
+    'Penjumlah Mahir',
+    'Penjumlah Ahli',
+    'Penjumlah Master',
+  ],
   sub: ['Pengurang Pemula', 'Pengurang Andal', 'Pengurang Ahli'],
   mul: ['Pengali Pemula', 'Ahli Tabel', 'Pengali Ahli'],
   div: ['Pembagi Pemula', 'Pembagi Andal', 'Pembagi Ahli'],
