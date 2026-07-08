@@ -61,7 +61,7 @@ export const Spacing = {
   six: 64,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
+export const BottomTabInset = Platform.select({ ios: 50, android: 58 }) ?? 0;
 export const MaxContentWidth = 800;
 
 // Active tab / brand accent (matches design reference).
