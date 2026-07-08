@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
   flameBadge: {
     width: 44,
     height: 44,
-    borderRadius: 22,
+    borderRadius: 999,
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -132,7 +133,9 @@ const styles = StyleSheet.create({
   dayDot: {
     width: 36,
     height: 36,
-    borderRadius: 18,
+    aspectRatio: 1,
+    borderRadius: 999,
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
   },
