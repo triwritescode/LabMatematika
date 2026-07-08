@@ -82,7 +82,7 @@ export function AnimatedSplashOverlay() {
         <Animated.View entering={animate ? logoKeyframe.duration(700) : undefined}>
           <Image
             style={styles.image}
-            source={require('@/assets/icons/launchericon-192x192.png')}
+            source={require('@/assets/icons/icon.png')}
           />
         </Animated.View>
         <Animated.View
@@ -159,14 +159,14 @@ export function AnimatedIcon() {
   return (
     <View style={styles.iconContainer}>
       <Animated.View entering={glowKeyframe.duration(60 * 1000 * 4)} style={styles.glow}>
-        <Image style={styles.glow} source={require('@/assets/icons/launchericon-192x192.png')} />
+        <Image style={styles.glow} source={require('@/assets/icons/icon.png')} />
       </Animated.View>
 
       <Animated.View entering={keyframe.duration(DURATION)} style={styles.background} />
       <Animated.View style={styles.imageContainer} entering={logoIconKeyframe.duration(DURATION)}>
         <Image
           style={styles.image}
-          source={require('@/assets/icons/launchericon-192x192.png')}
+          source={require('@/assets/icons/icon.png')}
         />
       </Animated.View>
     </View>

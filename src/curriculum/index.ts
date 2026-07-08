@@ -2,7 +2,11 @@ import { addLevels } from './labs/add';
 import { divLevels } from './labs/divide';
 import { mulLevels } from './labs/multiply';
 import { subLevels } from './labs/subtract';
+import { canonicalKey } from './sampler';
 import { computeAnswer, Level, Operation, Question } from './types';
+
+export { canonicalKey, createSampler } from './sampler';
+export type { Sampler } from './sampler';
 
 export const ALL_LEVELS: Level[] = [...addLevels, ...subLevels, ...mulLevels, ...divLevels];
 
@@ -28,9 +32,9 @@ export function tingkatsForLab(lab: Operation): number[] {
   return [...new Set(levelsForLab(lab).map((l) => l.tingkat))].sort((a, b) => a - b);
 }
 
-/** Canonical fingerprint of a served question (the pair as shown). */
-export function questionKey(q: Pick<Question, 'a' | 'b'>): string {
-  return `${q.a}:${q.b}`;
+/** Canonical fingerprint of a served question (commutative labs fold a·b/b·a). */
+export function questionKey(q: Pick<Question, 'lab' | 'a' | 'b'>): string {
+  return canonicalKey(q.lab, q.a, q.b);
 }
 
 function build(level: Level, diff: number): Question {

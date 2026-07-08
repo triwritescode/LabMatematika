@@ -4,18 +4,17 @@
     "slug": "LabMatematika",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/launchericon-512x512.png",
+    "icon": "./assets/icons/icon.png",
     "scheme": "labmatematika",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.labmatematika.app"
     },
     "android": {
       "package": "com.labmatematika.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/icons/launchericon-512x512.png"
+        "backgroundColor": "#E10000",
+        "foregroundImage": "./assets/icons/adaptive-foreground.png"
       },
       "predictiveBackGestureEnabled": false
     },
@@ -29,9 +28,9 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#A90104",
-          "image": "./assets/icons/launchericon-512x512.png",
-          "imageWidth": 96
+          "backgroundColor": "#E10000",
+          "image": "./assets/icons/splash.png",
+          "imageWidth": 200
         }
       ]
     ],
