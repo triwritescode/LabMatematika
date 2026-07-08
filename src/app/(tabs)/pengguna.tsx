@@ -8,6 +8,7 @@ import { DiamondColor, StreakColor } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
+import { ageFromISO } from '@/lib/age';
 import { useAuth } from '@/state/auth';
 import { useCurrentStreak, useProgress } from '@/state/progress';
 
@@ -17,6 +18,7 @@ export default function Pengguna() {
   const signOut = useAuth((s) => s.signOut);
   const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
+  const age = profile?.birthDate ? ageFromISO(profile.birthDate) : null;
 
   return (
     <ThemedView style={styles.container}>
@@ -28,8 +30,8 @@ export default function Pengguna() {
           <ThemedText type="subtitle" style={styles.name}>
             {profile ? `${profile.firstName} ${profile.lastName}`.trim() : strings.pengguna}
           </ThemedText>
-          {profile?.age ? (
-            <ThemedText themeColor="textSecondary">{strings.ageYears(profile.age)}</ThemedText>
+          {age !== null ? (
+            <ThemedText themeColor="textSecondary">{strings.ageYears(age)}</ThemedText>
           ) : null}
 
           <View style={styles.statRow}>

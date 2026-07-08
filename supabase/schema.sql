@@ -6,8 +6,12 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   first_name text not null default '',
   last_name text not null default '',
-  age int check (age between 3 and 120),
+  -- Nullable so the signup trigger can create the row before onboarding. The
+  -- check below makes birth_date mandatory *once onboarding_complete flips true*.
+  birth_date date,
   onboarding_complete boolean not null default false,
+  constraint birth_date_required_when_onboarded
+    check (not onboarding_complete or birth_date is not null),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );

@@ -23,7 +23,8 @@ import {
 
 export type AuthStatus = 'loading' | 'signedOut' | 'needsOnboarding' | 'ready';
 
-type LocalProfile = { firstName: string; lastName: string; age: number };
+// birthDate is an ISO `YYYY-MM-DD` string; age is derived from it (see lib/age).
+type LocalProfile = { firstName: string; lastName: string; birthDate: string };
 
 type AuthState = {
   status: AuthStatus;
@@ -37,7 +38,7 @@ type AuthState = {
   error: string | null;
   init: () => void;
   signInWithGoogle: () => Promise<void>;
-  saveProfile: (firstName: string, lastName: string, age: number) => Promise<void>;
+  saveProfile: (firstName: string, lastName: string, birthDate: string) => Promise<void>;
   signOut: () => Promise<void>;
   clearError: () => void;
 };
@@ -69,7 +70,7 @@ export const useAuth = create<AuthState>()((set, get) => {
         status: 'ready',
         session,
         user: session.user,
-        profile: { firstName: snap.firstName, lastName: snap.lastName, age: snap.age },
+        profile: { firstName: snap.firstName, lastName: snap.lastName, birthDate: snap.birthDate },
       });
       return;
     }
@@ -81,7 +82,7 @@ export const useAuth = create<AuthState>()((set, get) => {
 
     const { data, error } = await supabase
       .from('profiles')
-      .select('first_name, last_name, age, onboarding_complete')
+      .select('first_name, last_name, birth_date, onboarding_complete')
       .eq('id', session.user.id)
       .maybeSingle();
 
@@ -92,11 +93,11 @@ export const useAuth = create<AuthState>()((set, get) => {
       return;
     }
 
-    if (data && data.onboarding_complete) {
+    if (data && data.onboarding_complete && data.birth_date) {
       const profile: LocalProfile = {
         firstName: data.first_name,
         lastName: data.last_name,
-        age: data.age,
+        birthDate: data.birth_date,
       };
       // Keep the existing home-screen greeting working (reads childName).
       useProgress.getState().setChildName(profile.firstName);
@@ -176,7 +177,7 @@ export const useAuth = create<AuthState>()((set, get) => {
       }
     },
 
-    saveProfile: async (firstName, lastName, age) => {
+    saveProfile: async (firstName, lastName, birthDate) => {
       const user = get().user;
       if (!user) {
         set({ error: 'Sesi tidak ditemukan. Masuk ulang.' });
@@ -188,12 +189,12 @@ export const useAuth = create<AuthState>()((set, get) => {
           id: user.id,
           first_name: firstName.trim(),
           last_name: lastName.trim(),
-          age,
+          birth_date: birthDate,
           onboarding_complete: true,
         });
         if (error) throw error;
 
-        const profile: LocalProfile = { firstName: firstName.trim(), lastName: lastName.trim(), age };
+        const profile: LocalProfile = { firstName: firstName.trim(), lastName: lastName.trim(), birthDate };
         useProgress.getState().setChildName(profile.firstName);
         void startProgressSync(user.id);
         // Persist the snapshot BEFORE flipping to `ready` so any auth event that

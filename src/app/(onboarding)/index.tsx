@@ -12,13 +12,21 @@ import {
 import Animated, { Easing, FadeIn, Keyframe } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { DatePicker } from '@/components/date-picker';
 import { MasteryMeter } from '@/components/mastery-meter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
+import { ageFromISO, MAX_AGE, MIN_AGE } from '@/lib/age';
 import { useAuth } from '@/state/auth';
+
+// "5 Juni 2015" from an ISO date.
+function formatBirth(iso: string): string {
+  const [y, m, d] = iso.split('-').map(Number);
+  return strings.formatDate(d, strings.months[m - 1], y);
+}
 
 // Brand accent (matches login, header, active tab) so onboarding feels part of
 // the same app rather than a one-off blue screen.
@@ -35,9 +43,8 @@ const enterLeft = new Keyframe({
   0: { opacity: 0, transform: [{ translateX: -36 }] },
   100: { opacity: 1, transform: [{ translateX: 0 }], easing: Easing.out(Easing.cubic) },
 });
-// Age is mandatory — it will drive starting level and test difficulty. Min 3, max 120.
-const MIN_AGE = 3;
-const MAX_AGE = 120;
+// Birth date is mandatory — age is derived from it and will drive starting level
+// and test difficulty. Derived age must land in [MIN_AGE, MAX_AGE] (from lib/age).
 const TOTAL_STEPS = 3;
 
 function haptic() {
@@ -55,29 +62,31 @@ export default function Onboarding() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [firstName, setFirstName] = useState(prefill?.firstName ?? '');
   const [lastName, setLastName] = useState(prefill?.lastName ?? '');
-  const [age, setAge] = useState('');
+  // Birth date as ISO YYYY-MM-DD, chosen via the calendar; null until picked.
+  const [birthISO, setBirthISO] = useState<string | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
 
   const inputRef = useRef<TextInput>(null);
 
   useEffect(() => {
+    // Only the name steps have a text field to focus.
+    if (step === 2) return;
     const t = setTimeout(() => inputRef.current?.focus(), 350);
     return () => clearTimeout(t);
   }, [step]);
 
-  const ageNum = parseInt(age, 10);
+  const derivedAge = birthISO ? ageFromISO(birthISO) : NaN;
 
   const stepValid = useMemo(() => {
     if (step === 0) return firstName.trim().length > 0;
     if (step === 1) return lastName.trim().length > 0;
-    return Number.isFinite(ageNum) && ageNum >= MIN_AGE && ageNum <= MAX_AGE;
-  }, [step, firstName, lastName, ageNum]);
+    return birthISO !== null && derivedAge >= MIN_AGE && derivedAge <= MAX_AGE;
+  }, [step, firstName, lastName, birthISO, derivedAge]);
 
   function validateAndGetError(): string | null {
     if (step === 2) {
-      if (!Number.isFinite(ageNum) || ageNum < MIN_AGE || ageNum > MAX_AGE) {
-        return strings.onboardingErrorAge;
-      }
+      if (birthISO === null) return strings.onboardingErrorDate;
+      if (derivedAge < MIN_AGE || derivedAge > MAX_AGE) return strings.onboardingErrorAge;
     } else if (!stepValid) {
       return strings.onboardingErrorName;
     }
@@ -98,7 +107,7 @@ export default function Onboarding() {
       setStep((s) => s + 1);
       return;
     }
-    await saveProfile(firstName, lastName, ageNum);
+    await saveProfile(firstName, lastName, birthISO as string);
     // On success the router guard swaps to (tabs); on error the store sets `error`.
   }
 
@@ -111,8 +120,8 @@ export default function Onboarding() {
   }
 
   const config = STEP_CONFIG[step];
-  const value = step === 0 ? firstName : step === 1 ? lastName : age;
-  const setValue = step === 0 ? setFirstName : step === 1 ? setLastName : setAge;
+  const value = step === 0 ? firstName : lastName;
+  const setValue = step === 0 ? setFirstName : setLastName;
   const shownError = localError ?? serverError;
   const isLast = step === TOTAL_STEPS - 1;
 
@@ -141,32 +150,48 @@ export default function Onboarding() {
                 {config.sub}
               </ThemedText>
 
-              <View style={styles.inputRow}>
-                <TextInput
-                  ref={inputRef}
-                  value={value}
-                  onChangeText={(t) => {
-                    setLocalError(null);
-                    setValue(step === 2 ? t.replace(/[^0-9]/g, '') : t);
-                  }}
-                  placeholder={config.placeholder}
-                  placeholderTextColor={theme.textSecondary}
-                  keyboardType={step === 2 ? 'number-pad' : 'default'}
-                  autoCapitalize={step === 2 ? 'none' : 'words'}
-                  maxLength={step === 2 ? 3 : 24}
-                  returnKeyType={isLast ? 'done' : 'next'}
-                  onSubmitEditing={next}
-                  style={[
-                    styles.input,
-                    { color: theme.text, backgroundColor: theme.backgroundElement },
-                  ]}
-                />
-                {step === 2 ? (
-                  <ThemedText themeColor="textSecondary" style={styles.ageUnit}>
-                    {strings.onboardingAgeUnit}
+              {step === 2 ? (
+                <View style={styles.dateBlock}>
+                  <ThemedText
+                    type="subtitle"
+                    style={[styles.selectedDate, { color: birthISO ? theme.text : theme.textSecondary }]}>
+                    {birthISO ? formatBirth(birthISO) : strings.datePickerPlaceholder}
                   </ThemedText>
-                ) : null}
-              </View>
+                  {birthISO ? (
+                    <ThemedText type="smallBold" style={[styles.ageBadge, { color: ACCENT }]}>
+                      {strings.ageYears(derivedAge)}
+                    </ThemedText>
+                  ) : null}
+                  <DatePicker
+                    value={birthISO}
+                    onChange={(iso) => {
+                      setLocalError(null);
+                      setBirthISO(iso);
+                    }}
+                  />
+                </View>
+              ) : (
+                <View style={styles.inputRow}>
+                  <TextInput
+                    ref={inputRef}
+                    value={value}
+                    onChangeText={(t) => {
+                      setLocalError(null);
+                      setValue(t);
+                    }}
+                    placeholder={config.placeholder}
+                    placeholderTextColor={theme.textSecondary}
+                    autoCapitalize="words"
+                    maxLength={24}
+                    returnKeyType={isLast ? 'done' : 'next'}
+                    onSubmitEditing={next}
+                    style={[
+                      styles.input,
+                      { color: theme.text, backgroundColor: theme.backgroundElement },
+                    ]}
+                  />
+                </View>
+              )}
 
               {shownError ? (
                 <Animated.View entering={FadeIn}>
@@ -277,8 +302,16 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.three,
     fontSize: 20,
   },
-  ageUnit: {
-    fontSize: 18,
+  dateBlock: {
+    gap: Spacing.three,
+  },
+  selectedDate: {
+    textAlign: 'center',
+    fontSize: 22,
+  },
+  ageBadge: {
+    textAlign: 'center',
+    marginTop: -Spacing.two,
   },
   error: {
     color: '#EF4444',

@@ -298,7 +298,8 @@ export async function stopProgressSync(): Promise<void> {
 export type ProfileSnapshot = {
   firstName: string;
   lastName: string;
-  age: number;
+  // ISO YYYY-MM-DD birth date; age is derived on demand (see lib/age).
+  birthDate: string;
   onboarded: boolean;
 };
 

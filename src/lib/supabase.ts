@@ -103,6 +103,6 @@ export type Profile = {
   id: string;
   first_name: string;
   last_name: string;
-  age: number;
+  birth_date: string | null;
   onboarding_complete: boolean;
 };
