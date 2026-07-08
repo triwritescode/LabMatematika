@@ -9,7 +9,7 @@ import { StreakCalendar } from '@/components/streak-calendar';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
-import { AccentColor, BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { levelsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
 import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
@@ -24,7 +24,7 @@ export default function Beranda() {
   return (
     <ThemedView style={styles.container}>
       <StatusBar style="light" />
-      <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
+      <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <View style={[styles.header, { paddingTop: insets.top + Spacing.three }]}>
           <View style={styles.headerText}>
             <ThemedText type="subtitle" style={styles.greeting}>
@@ -40,7 +40,7 @@ export default function Beranda() {
           </View>
         </View>
 
-        <View style={[styles.body, { paddingBottom: BottomTabInset + Spacing.three, gap: Spacing.five }]}>
+        <View style={[styles.body, { paddingBottom: Spacing.three, gap: Spacing.five }]}>
           <StreakCalendar />
 
           <View style={styles.labSection}>
@@ -144,7 +144,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    justifyContent: 'space-between',
     padding: Spacing.four,
   },
   labSection: {

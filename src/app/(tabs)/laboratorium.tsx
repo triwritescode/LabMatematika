@@ -18,7 +18,7 @@ import { MasteryMeter } from '@/components/mastery-meter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
-import { AccentColor, BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { levelsForLab, tingkatsForLab } from '@/curriculum';
 import { isLevelUnlocked, labMasteryPercent, masteryBand } from '@/curriculum/mastery';
 import { LabProgress, Level, Operation, OPERATION_SYMBOL } from '@/curriculum/types';
@@ -35,7 +35,7 @@ export default function Laboratorium() {
   return (
     <ThemedView style={styles.container}>
       <StatusBar style="light" />
-      <SafeAreaView style={styles.safeArea} edges={['bottom', 'left', 'right']}>
+      <SafeAreaView style={styles.safeArea} edges={['left', 'right']}>
         <View style={[styles.header, { paddingTop: insets.top + Spacing.three }]}>
           <View style={styles.headerText}>
             <ThemedText type="subtitle" style={styles.title}>
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.four,
+    paddingBottom: Spacing.four,
     gap: Spacing.three,
   },
   card: {
