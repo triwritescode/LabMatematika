@@ -1,7 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -13,6 +13,7 @@ import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
 import { createSampler, getLevel } from '@/curriculum';
 import { initialDiff, nextDiff } from '@/curriculum/adaptive';
+import { sessionDiamonds } from '@/curriculum/mastery';
 import { explain } from '@/curriculum/explain';
 import { Operation, OPERATION_SYMBOL, Question } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
@@ -33,6 +34,9 @@ export default function LatihanTerarah() {
 
   const recordAnswer = useProgress((s) => s.recordAnswer);
   const touchStreak = useProgress((s) => s.touchStreak);
+  const addDiamonds = useProgress((s) => s.addDiamonds);
+  // Guards the once-per-session diamond award against re-runs / restart.
+  const awarded = useRef(false);
   const masteryNow = useProgress((s) => s.labs[level.lab].levels[level.id]?.mastery ?? 0);
   const [masteryStart, setMasteryStart] = useState(masteryNow);
 
@@ -113,10 +117,16 @@ export default function LatihanTerarah() {
   // 'done' phase (not buried in advance()) so it can't be skipped by a stale
   // closure. touchStreak() is idempotent per day.
   useEffect(() => {
-    if (phase === 'done') touchStreak();
-  }, [phase, touchStreak]);
+    if (phase !== 'done' || awarded.current) return;
+    awarded.current = true;
+    touchStreak();
+    // Full rate while learning, quarter rate reviewing an already-mastered level.
+    const reward = sessionDiamonds(correctCount, masteryStart);
+    if (reward > 0) addDiamonds(reward);
+  }, [phase, touchStreak, addDiamonds, correctCount, masteryStart]);
 
   function restart() {
+    awarded.current = false;
     setMasteryStart(masteryNow);
     const d = initialDiff(masteryNow);
     setDiff(d);

@@ -31,6 +31,7 @@ export default function Ujian() {
 
   const passTingkat = useProgress((s) => s.passTingkat);
   const touchStreak = useProgress((s) => s.touchStreak);
+  const addDiamonds = useProgress((s) => s.addDiamonds);
 
   const [questions] = useState(() => buildExam(lab, tingkat));
   const [index, setIndex] = useState(0);
@@ -58,6 +59,8 @@ export default function Ujian() {
         passTingkat(lab, tingkat);
       }
       touchStreak();
+      // Earn 1 diamond per correct answer (runs once — this branch is terminal).
+      if (verdict.correctCount > 0) addDiamonds(verdict.correctCount);
       setFinished(true);
     }
   }

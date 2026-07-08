@@ -2,12 +2,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { priceOf } from '@/constants/stickers';
 import { clampMastery, masteryDelta, rankFor } from '@/curriculum/mastery';
 import { LabProgress, Operation } from '@/curriculum/types';
 import type {
   ActiveDayRow,
   LabMetaRow,
   LevelMasteryRow,
+  OwnedStickerRow,
   TingkatPassedRow,
   UserStatsRow,
 } from '@/lib/supabase';
@@ -74,7 +76,8 @@ export type ProgressMutation =
     }
   | { kind: 'tingkat'; lab: Operation; tingkat: number; rank: string; placementDone: boolean }
   | { kind: 'day'; day: string }
-  | { kind: 'diamonds'; total: number };
+  | { kind: 'diamonds'; total: number }
+  | { kind: 'sticker'; stickerId: string };
 
 type MutationListener = (m: ProgressMutation) => void;
 let mutationListener: MutationListener | null = null;
@@ -94,6 +97,7 @@ export type RemoteProgress = {
   tingkat: TingkatPassedRow[];
   days: ActiveDayRow[];
   stats: UserStatsRow | null;
+  owned: OwnedStickerRow[];
 };
 
 type ProgressState = {
@@ -104,11 +108,17 @@ type ProgressState = {
   // Source of truth for both the streak count and the calendar widget.
   activeDates: string[];
   diamonds: number;
+  // Sticker ids owned (bought in Toko). Additive/union across devices.
+  ownedStickers: string[];
   setChildName: (name: string) => void;
   recordAnswer: (lab: Operation, levelId: string, correct: boolean, diff: number, streak: number) => void;
   passTingkat: (lab: Operation, tingkat: number) => void;
   touchStreak: () => void;
   addDiamonds: (amount: number) => void;
+  // Spend diamonds to unlock a sticker. Returns false (no-op) if already owned
+  // or the balance can't cover the price — the single source of truth for
+  // affordability, so the UI can never overspend.
+  buySticker: (stickerId: string) => boolean;
   mergeRemote: (remote: RemoteProgress) => void;
   resetProgress: () => void;
 };
@@ -124,6 +134,7 @@ const initialData = () => ({
   streak: { count: 0, lastActiveDate: '' },
   activeDates: [] as string[],
   diamonds: 0,
+  ownedStickers: [] as string[],
 });
 
 export const useProgress = create<ProgressState>()(
@@ -190,6 +201,19 @@ export const useProgress = create<ProgressState>()(
         emit({ kind: 'diamonds', total });
       },
 
+      buySticker: (stickerId) => {
+        const { diamonds, ownedStickers } = get();
+        if (ownedStickers.includes(stickerId)) return false;
+        const price = priceOf(stickerId);
+        if (price <= 0 || diamonds < price) return false;
+        const total = diamonds - price;
+        set({ diamonds: total, ownedStickers: [...ownedStickers, stickerId] });
+        // Two mutations: the debited balance and the new ownership row.
+        emit({ kind: 'diamonds', total });
+        emit({ kind: 'sticker', stickerId });
+        return true;
+      },
+
       // Smart merge of server rows into local state. Additive data (tiers, days)
       // is a UNION; per-level mastery is last-write-wins by lastPracticedAt with
       // attempts kept at max; diamonds take the max. Nothing is ever lost by a
@@ -237,6 +261,10 @@ export const useProgress = create<ProgressState>()(
           for (const r of remote.days) if (!r.deleted) dates.add(r.day);
           const activeDates = [...dates].sort();
 
+          // Owned stickers union — additive, never lossy (like active days).
+          const stickers = new Set(state.ownedStickers);
+          for (const r of remote.owned) if (!r.deleted) stickers.add(r.sticker_id);
+
           return {
             labs,
             activeDates,
@@ -245,6 +273,7 @@ export const useProgress = create<ProgressState>()(
               lastActiveDate: activeDates.at(-1) ?? '',
             },
             diamonds: Math.max(state.diamonds, remote.stats?.diamonds ?? 0),
+            ownedStickers: [...stickers],
           };
         }),
 
@@ -254,13 +283,17 @@ export const useProgress = create<ProgressState>()(
     {
       name: 'labmatematika-progress',
       storage: createJSONStorage(() => AsyncStorage),
-      version: 1,
+      version: 2,
       // v0 → v1: seed the day-history from the last recorded active day so
       // existing users keep their current streak instead of resetting to 0.
+      // v1 → v2: introduce the owned-stickers set (empty for existing users).
       migrate: (persisted: any, version) => {
         if (version < 1 && persisted && !persisted.activeDates) {
           const last: string | undefined = persisted?.streak?.lastActiveDate;
           persisted.activeDates = last ? [last] : [];
+        }
+        if (version < 2 && persisted && !persisted.ownedStickers) {
+          persisted.ownedStickers = [];
         }
         return persisted;
       },

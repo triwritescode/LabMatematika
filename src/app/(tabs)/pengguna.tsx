@@ -22,6 +22,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { DiamondColor, StreakColor } from '@/constants/labs';
+import { STICKERS } from '@/constants/stickers';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
@@ -37,22 +38,6 @@ const FRIEND_AVATARS = [
   { initial: 'C', color: '#EAB308' },
   { initial: 'D', color: '#EF4444' },
 ];
-const STICKERS = [
-  { emoji: '🎉', unlocked: true },
-  { emoji: '⭐', unlocked: true },
-  { emoji: '🚀', unlocked: true },
-  { emoji: '🧠', unlocked: true },
-  { emoji: '🔥', unlocked: false },
-  { emoji: '🏆', unlocked: false },
-  { emoji: '🎯', unlocked: false },
-  { emoji: '💯', unlocked: false },
-  { emoji: '🦉', unlocked: false },
-  { emoji: '🌈', unlocked: false },
-  { emoji: '🎨', unlocked: false },
-  { emoji: '🧩', unlocked: false },
-];
-const STICKERS_UNLOCKED = STICKERS.filter((s) => s.unlocked).length;
-
 type Theme = ReturnType<typeof useTheme>;
 
 export default function Pengguna() {
@@ -62,6 +47,14 @@ export default function Pengguna() {
   const signOut = useAuth((s) => s.signOut);
   const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
+  const ownedStickers = useProgress((s) => s.ownedStickers);
+  const owned = new Set(ownedStickers);
+  // Profile shows a compact preview (owned first); the full 100-sticker catalog
+  // lives in Toko.
+  const stickerPreview = [
+    ...STICKERS.filter((s) => owned.has(s.id)),
+    ...STICKERS.filter((s) => !owned.has(s.id)),
+  ].slice(0, 12);
   const age = profile?.birthDate ? ageFromISO(profile.birthDate) : null;
   const name = profile ? `${profile.firstName} ${profile.lastName}`.trim() : strings.pengguna;
 
@@ -169,25 +162,28 @@ export default function Pengguna() {
             <SectionHeader
               title={strings.stikerku}
               theme={theme}
-              badge={strings.stikerProgress(STICKERS_UNLOCKED, STICKERS.length)}
+              badge={strings.stikerProgress(owned.size, STICKERS.length)}
               badgeMuted
             />
             <View style={[styles.card, styles.stickerCard, { backgroundColor: theme.backgroundElement }]}>
-              {STICKERS.map((s, i) => (
-                <View
-                  key={i}
-                  style={[
-                    styles.sticker,
-                    { backgroundColor: theme.backgroundSelected },
-                    !s.unlocked && styles.stickerLocked,
-                  ]}>
-                  {s.unlocked ? (
-                    <ThemedText style={styles.stickerEmoji}>{s.emoji}</ThemedText>
-                  ) : (
-                    <Lock color={theme.textSecondary} size={18} />
-                  )}
-                </View>
-              ))}
+              {stickerPreview.map((s) => {
+                const unlocked = owned.has(s.id);
+                return (
+                  <View
+                    key={s.id}
+                    style={[
+                      styles.sticker,
+                      { backgroundColor: theme.backgroundSelected },
+                      !unlocked && styles.stickerLocked,
+                    ]}>
+                    {unlocked ? (
+                      <ThemedText style={styles.stickerEmoji}>{s.id}</ThemedText>
+                    ) : (
+                      <Lock color={theme.textSecondary} size={18} />
+                    )}
+                  </View>
+                );
+              })}
             </View>
 
             {/* Sign out */}

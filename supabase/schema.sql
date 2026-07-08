@@ -146,12 +146,23 @@ create table if not exists public.user_stats (
   deleted boolean not null default false
 );
 
+-- 5f. Owned stickers — one row per sticker so the merge is a union.  id = '<uid>:<stickerId>'
+-- Stickers are bought in Toko with diamonds; ownership syncs additively.
+create table if not exists public.owned_stickers (
+  id text primary key,
+  user_id uuid not null references auth.users (id) on delete cascade,
+  sticker_id text not null,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  deleted boolean not null default false
+);
+
 -- RLS + updated_at trigger + realtime, for every progress table.
 do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats']
+  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists "%s_own_rows" on public.%I', t, t);
@@ -175,7 +186,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats']
+  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     if not exists (
       select 1 from pg_publication_tables

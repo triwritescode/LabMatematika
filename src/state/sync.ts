@@ -29,7 +29,13 @@ import {
 // Tables + RLS: supabase/schema.sql §5.
 // ─────────────────────────────────────────────────────────────────────────────
 
-type TableName = 'level_mastery' | 'lab_meta' | 'tingkat_passed' | 'active_days' | 'user_stats';
+type TableName =
+  | 'level_mastery'
+  | 'lab_meta'
+  | 'tingkat_passed'
+  | 'active_days'
+  | 'user_stats'
+  | 'owned_stickers';
 
 type OutboxItem = { table: TableName; row: { id: string } & Record<string, unknown> };
 
@@ -90,6 +96,13 @@ function mutationToItems(u: string, m: ProgressMutation): OutboxItem[] {
       return [{ table: 'active_days', row: { id: `${u}:${m.day}`, user_id: u, day: m.day } }];
     case 'diamonds':
       return [{ table: 'user_stats', row: { id: u, user_id: u, diamonds: m.total } }];
+    case 'sticker':
+      return [
+        {
+          table: 'owned_stickers',
+          row: { id: `${u}:${m.stickerId}`, user_id: u, sticker_id: m.stickerId },
+        },
+      ];
   }
 }
 
@@ -134,26 +147,30 @@ function fullPushItems(u: string): OutboxItem[] {
   }
   for (const day of s.activeDates) items.push(...mutationToItems(u, { kind: 'day', day }));
   if (s.diamonds > 0) items.push(...mutationToItems(u, { kind: 'diamonds', total: s.diamonds }));
+  for (const stickerId of s.ownedStickers) items.push(...mutationToItems(u, { kind: 'sticker', stickerId }));
   return items;
 }
 
 // ── Transport ─────────────────────────────────────────────────────────────────
 async function pullAndMerge(u: string): Promise<boolean> {
   try {
-    const [levels, labMeta, tingkat, days, stats] = await Promise.all([
+    const [levels, labMeta, tingkat, days, stats, owned] = await Promise.all([
       supabase.from('level_mastery').select('*').eq('user_id', u),
       supabase.from('lab_meta').select('*').eq('user_id', u),
       supabase.from('tingkat_passed').select('*').eq('user_id', u),
       supabase.from('active_days').select('*').eq('user_id', u),
       supabase.from('user_stats').select('*').eq('user_id', u).maybeSingle(),
+      supabase.from('owned_stickers').select('*').eq('user_id', u),
     ]);
-    if (levels.error || labMeta.error || tingkat.error || days.error || stats.error) return false;
+    if (levels.error || labMeta.error || tingkat.error || days.error || stats.error || owned.error)
+      return false;
     useProgress.getState().mergeRemote({
       levels: levels.data ?? [],
       labMeta: labMeta.data ?? [],
       tingkat: tingkat.data ?? [],
       days: days.data ?? [],
       stats: stats.data ?? null,
+      owned: owned.data ?? [],
     });
     return true;
   } catch {

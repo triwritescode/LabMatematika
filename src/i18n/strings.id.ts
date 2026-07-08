@@ -25,6 +25,7 @@ export const strings = {
   beranda: 'Beranda',
   laboratorium: 'Laboratorium',
   lab: 'Lab',
+  toko: 'Toko',
   pengguna: 'Pengguna',
   signOut: 'Keluar',
   ageYears: (n: number) => `${n} tahun`,
@@ -134,4 +135,17 @@ export const strings = {
   stikerku: 'Stikerku',
   stikerProgress: (unlocked: number, total: number) => `${unlocked}/${total} terkumpul`,
   segeraHadir: 'Segera hadir',
+
+  // Toko (sticker shop)
+  tokoTitle: 'Toko Stiker',
+  tokoSub: 'Tukar berlianmu jadi stiker keren!',
+  tokoRarityCommon: 'Umum',
+  tokoRarityRare: 'Langka',
+  tokoRarityEpic: 'Epik',
+  tokoRarityLegendary: 'Legendaris',
+  tokoRarityMythic: 'Mitos',
+  beli: 'Beli',
+  dimiliki: 'Dimiliki',
+  berlianKurang: 'Kurang',
+  tokoOwnedProgress: (owned: number, total: number) => `${owned}/${total} stiker dimiliki`,
 };

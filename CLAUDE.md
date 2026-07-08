@@ -48,8 +48,14 @@ spec**:
 - **zustand + AsyncStorage**, not Legend-State + MMKV — runs in Expo Go without a dev build.
   `src/state/progress.ts`'s storage adapter is the single swap point if MMKV is ever adopted.
 - **Plain StyleSheet + theme tokens** (`src/constants/theme.ts`), not NativeWind.
-- **No Toko/gems shop tab** — spec explicitly forbids coins/gacha; tabs are Beranda, Laboratorium,
-  Kejuaraan, Pengguna.
+- **Toko (sticker shop) tab exists** — spec forbids coins/gacha, but the user explicitly requested
+  a diamond-funded sticker shop, overriding that. Diamonds are earned per correct answer at
+  practice/exam session end (`addDiamonds`); practice uses `sessionDiamonds()` — full rate while
+  learning, quarter rate (min 1) reviewing an already-mastered level, so a finished skill can't be
+  farmed. Spent in Toko (`buySticker`) on a 100-sticker emoji catalog across 5 rising-price rarity
+  tiers (`src/constants/stickers.ts`, sticker id = the emoji glyph); owned stickers show in
+  Pengguna's Stikerku. Screen: `src/app/(tabs)/toko.tsx`. Intentional — do not remove it. Current
+  tabs: Beranda, Laboratorium, Toko, Pengguna.
 - Practice/exam results are shown **inline** at session end, not on a separate `/result` route.
 
 ## Architecture

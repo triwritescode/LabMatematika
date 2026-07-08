@@ -30,6 +30,20 @@ export function clampMastery(value: number): number {
   return Math.min(100, Math.max(0, Math.round(value)));
 }
 
+// Diamonds earned from a practice session: 1 per correct answer while the child
+// is still LEARNING the level, but only a quarter (min 1) once the level is
+// already mastered at the start of the session. Keeps the reward tied to real
+// progress and stops farming diamonds by re-grinding a finished skill.
+export const REVIEW_DIAMOND_FACTOR = 0.25;
+
+export function sessionDiamonds(correctCount: number, masteryStart: number): number {
+  if (correctCount <= 0) return 0;
+  if (masteryStart >= MASTERED_THRESHOLD) {
+    return Math.max(1, Math.floor(correctCount * REVIEW_DIAMOND_FACTOR));
+  }
+  return correctCount;
+}
+
 function masteryOf(progress: LabProgress, levelId: string): number {
   return progress.levels[levelId]?.mastery ?? 0;
 }

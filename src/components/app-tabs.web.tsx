@@ -6,7 +6,7 @@ import {
   TabTriggerSlotProps,
   TabListProps,
 } from 'expo-router/ui';
-import { FlaskConical, House, User } from 'lucide-react-native';
+import { FlaskConical, House, ShoppingBag, User } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { Animated, Pressable, View, StyleSheet } from 'react-native';
 
@@ -27,6 +27,9 @@ export default function AppTabs() {
           </TabTrigger>
           <TabTrigger name="laboratorium" href="/laboratorium" asChild>
             <TabButton icon={FlaskConical}>{strings.lab}</TabButton>
+          </TabTrigger>
+          <TabTrigger name="toko" href="/toko" asChild>
+            <TabButton icon={ShoppingBag}>{strings.toko}</TabButton>
           </TabTrigger>
           <TabTrigger name="pengguna" href="/pengguna" asChild>
             <TabButton icon={User}>{strings.pengguna}</TabButton>

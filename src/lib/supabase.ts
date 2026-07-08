@@ -57,6 +57,12 @@ export type UserStatsRow = {
   diamonds: number;
 } & SyncMeta;
 
+export type OwnedStickerRow = {
+  id: string; // '<uid>:<stickerId>'
+  user_id: string;
+  sticker_id: string;
+} & SyncMeta;
+
 // Minimal Database generic (GenericSchema-shaped) so supabase-js queries and
 // syncedSupabase infer collection names + row types. Only declares the columns
 // the app reads/writes.
@@ -71,6 +77,7 @@ export type Database = {
       tingkat_passed: Table<TingkatPassedRow>;
       active_days: Table<ActiveDayRow>;
       user_stats: Table<UserStatsRow>;
+      owned_stickers: Table<OwnedStickerRow>;
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
