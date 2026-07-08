@@ -54,16 +54,8 @@ export default function AppTabs() {
         options={{ title: strings.beranda, tabBarIcon: tabIcon('home-outline', 'home') }}
       />
       <Tabs.Screen
-        name="kejuaraan"
-        options={{ title: strings.kejuaraan, tabBarIcon: tabIcon('trophy-outline', 'trophy') }}
-      />
-      <Tabs.Screen
         name="laboratorium"
-        options={{ title: strings.laboratorium, tabBarIcon: tabIcon('flask-outline', 'flask') }}
-      />
-      <Tabs.Screen
-        name="toko"
-        options={{ title: strings.toko, tabBarIcon: tabIcon('cart-outline', 'cart') }}
+        options={{ title: strings.lab, tabBarIcon: tabIcon('flask-outline', 'flask') }}
       />
       <Tabs.Screen
         name="pengguna"
