@@ -1,5 +1,7 @@
+import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import {
+  ChevronRight,
   Crown,
   Flame,
   Footprints,
@@ -11,6 +13,7 @@ import {
   Shirt,
   Smile,
   Sparkles,
+  Store,
   User,
   UserPlus,
   Users,
@@ -22,7 +25,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { DiamondColor, StreakColor } from '@/constants/labs';
-import { STICKERS } from '@/constants/stickers';
+import { RARITY_COLOR, STICKERS, Sticker } from '@/constants/stickers';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
@@ -42,6 +45,7 @@ type Theme = ReturnType<typeof useTheme>;
 
 export default function Pengguna() {
   const theme = useTheme();
+  const router = useRouter();
   const insets = useSafeAreaInsets();
   const profile = useAuth((s) => s.profile);
   const signOut = useAuth((s) => s.signOut);
@@ -165,25 +169,36 @@ export default function Pengguna() {
               badge={strings.stikerProgress(owned.size, STICKERS.length)}
               badgeMuted
             />
-            <View style={[styles.card, styles.stickerCard, { backgroundColor: theme.backgroundElement }]}>
-              {stickerPreview.map((s) => {
-                const unlocked = owned.has(s.id);
-                return (
-                  <View
-                    key={s.id}
-                    style={[
-                      styles.sticker,
-                      { backgroundColor: theme.backgroundSelected },
-                      !unlocked && styles.stickerLocked,
-                    ]}>
-                    {unlocked ? (
-                      <ThemedText style={styles.stickerEmoji}>{s.id}</ThemedText>
-                    ) : (
-                      <Lock color={theme.textSecondary} size={18} />
-                    )}
+            <View style={[styles.card, { backgroundColor: theme.backgroundElement }]}>
+              {owned.size === 0 ? (
+                <View style={styles.stickerEmpty}>
+                  <View style={styles.stickerEmptyIcon}>
+                    <Sparkles color={AccentColor} size={22} fill={AccentColor} />
                   </View>
-                );
-              })}
+                  <ThemedText type="small" themeColor="textSecondary" style={styles.stickerEmptyText}>
+                    {strings.stikerKosong}
+                  </ThemedText>
+                </View>
+              ) : (
+                <View style={styles.stickerGrid}>
+                  {stickerPreview.map((s) => (
+                    <StickerTile key={s.id} sticker={s} unlocked={owned.has(s.id)} theme={theme} />
+                  ))}
+                </View>
+              )}
+              <Pressable
+                onPress={() => router.push('/toko')}
+                style={({ pressed }) => [
+                  styles.tokoLink,
+                  { backgroundColor: `${AccentColor}12` },
+                  pressed && styles.pressed,
+                ]}>
+                <Store color={AccentColor} size={18} strokeWidth={2.4} />
+                <ThemedText type="smallBold" style={styles.tokoLinkText}>
+                  {strings.bukaToko}
+                </ThemedText>
+                <ChevronRight color={AccentColor} size={18} strokeWidth={2.4} />
+              </Pressable>
             </View>
 
             {/* Sign out */}
@@ -235,6 +250,25 @@ function SectionHeader({ title, theme, badge, badgeMuted }: { title: string; the
           </ThemedText>
         </View>
       ) : null}
+    </View>
+  );
+}
+
+function StickerTile({ sticker, unlocked, theme }: { sticker: Sticker; unlocked: boolean; theme: Theme }) {
+  const color = RARITY_COLOR[sticker.rarity];
+  return (
+    <View
+      style={[
+        styles.sticker,
+        unlocked
+          ? { backgroundColor: `${color}1A`, borderColor: color, borderWidth: 1.5 }
+          : { backgroundColor: theme.backgroundSelected },
+      ]}>
+      {unlocked ? (
+        <ThemedText style={styles.stickerEmoji}>{sticker.id}</ThemedText>
+      ) : (
+        <Lock color={theme.textSecondary} size={18} />
+      )}
     </View>
   );
 }
@@ -487,7 +521,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   // Stickers
-  stickerCard: {
+  stickerGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: Spacing.two,
@@ -500,12 +534,37 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexGrow: 1,
   },
-  stickerLocked: {
-    opacity: 0.6,
-  },
   stickerEmoji: {
     fontSize: 28,
     lineHeight: 34,
+  },
+  stickerEmpty: {
+    alignItems: 'center',
+    gap: Spacing.two,
+    paddingVertical: Spacing.three,
+  },
+  stickerEmptyIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: `${AccentColor}14`,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stickerEmptyText: {
+    textAlign: 'center',
+  },
+  tokoLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Spacing.two,
+    paddingVertical: Spacing.three,
+    borderRadius: 999,
+  },
+  tokoLinkText: {
+    color: AccentColor,
+    flexShrink: 1,
   },
   // Misc
   signOut: {

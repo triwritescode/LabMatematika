@@ -20,6 +20,15 @@ export const RARITY_PRICE: Record<Rarity, number> = {
   mythic: 700,
 };
 
+// Per-tier accent color (rings, badges) — signals rarity at a glance.
+export const RARITY_COLOR: Record<Rarity, string> = {
+  common: '#94A3B8',
+  rare: '#3B82F6',
+  epic: '#A855F7',
+  legendary: '#F59E0B',
+  mythic: '#EC4899',
+};
+
 // Display order (cheapest tier first).
 export const RARITY_ORDER: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic'];
 

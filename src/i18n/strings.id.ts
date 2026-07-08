@@ -134,6 +134,8 @@ export const strings = {
   tambahTeman: 'Tambah Teman',
   stikerku: 'Stikerku',
   stikerProgress: (unlocked: number, total: number) => `${unlocked}/${total} terkumpul`,
+  stikerKosong: 'Belum ada stiker. Yuk kumpulkan!',
+  bukaToko: 'Buka Toko',
   segeraHadir: 'Segera hadir',
 
   // Toko (sticker shop)
