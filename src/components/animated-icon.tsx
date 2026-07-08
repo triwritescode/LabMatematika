@@ -70,8 +70,10 @@ export function AnimatedSplashOverlay() {
     <Animated.View
       key={op}
       entering={animate ? badgeKeyframe.duration(520).delay(delay) : undefined}
-      style={[styles.badge, { top, left, backgroundColor: LabColors[op].main, transform: [{ rotate }] }]}>
-      <Text style={styles.badgeText}>{OPERATION_SYMBOL[op]}</Text>
+      style={[styles.badgePos, { top, left }]}>
+      <View style={[styles.badge, { backgroundColor: LabColors[op].main, transform: [{ rotate }] }]}>
+        <Text style={styles.badgeText}>{OPERATION_SYMBOL[op]}</Text>
+      </View>
     </Animated.View>
   ));
 
@@ -229,8 +231,10 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 1,
   },
-  badge: {
+  badgePos: {
     position: 'absolute',
+  },
+  badge: {
     width: 58,
     height: 58,
     borderRadius: 18,
