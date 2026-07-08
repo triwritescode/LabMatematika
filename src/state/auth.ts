@@ -56,6 +56,29 @@ export const useAuth = create<AuthState>()((set, get) => {
     // local progress is available even before (or without) the network.
     void startProgressSync(session.user.id);
 
+    // The local snapshot is authoritative for "already onboarded". `resolveSession`
+    // runs on every auth event (token refresh, app foreground), and each one used
+    // to re-query the profile row over the network — so a stale read-replica read
+    // right after upsert, or an offline hiccup, could bounce a finished user back
+    // to onboarding. Once a user has completed onboarding, resolve `ready` from the
+    // snapshot and never downgrade.
+    const snap = await loadProfileSnapshot(session.user.id);
+    if (snap?.onboarded) {
+      useProgress.getState().setChildName(snap.firstName);
+      set({
+        status: 'ready',
+        session,
+        user: session.user,
+        profile: { firstName: snap.firstName, lastName: snap.lastName, age: snap.age },
+      });
+      return;
+    }
+
+    // Already resolved `ready` in-memory for this same user → don't re-query and
+    // risk a transient downgrade from a lagging/failing read.
+    const cur = get();
+    if (cur.status === 'ready' && cur.user?.id === session.user.id) return;
+
     const { data, error } = await supabase
       .from('profiles')
       .select('first_name, last_name, age, onboarding_complete')
@@ -63,20 +86,9 @@ export const useAuth = create<AuthState>()((set, get) => {
       .maybeSingle();
 
     if (error) {
-      // Offline / network hiccup. Fall back to the cached profile snapshot so a
-      // returning, already-onboarded user still resumes (ready) without a network.
-      const snap = await loadProfileSnapshot(session.user.id);
-      if (snap?.onboarded) {
-        useProgress.getState().setChildName(snap.firstName);
-        set({
-          status: 'ready',
-          session,
-          user: session.user,
-          profile: { firstName: snap.firstName, lastName: snap.lastName, age: snap.age },
-        });
-      } else {
-        set({ status: 'needsOnboarding', session, user: session.user });
-      }
+      // No onboarded snapshot and the network is down → genuinely unknown. Send
+      // to onboarding, the safe default for a not-yet-onboarded account.
+      set({ status: 'needsOnboarding', session, user: session.user, profile: null });
       return;
     }
 
@@ -88,8 +100,8 @@ export const useAuth = create<AuthState>()((set, get) => {
       };
       // Keep the existing home-screen greeting working (reads childName).
       useProgress.getState().setChildName(profile.firstName);
-      // Cache for offline resolution on the next cold start.
-      saveProfileSnapshot(session.user.id, { ...profile, onboarded: true });
+      // Cache so future auth events short-circuit to `ready` above.
+      await saveProfileSnapshot(session.user.id, { ...profile, onboarded: true });
       set({ status: 'ready', session, user: session.user, profile });
     } else {
       set({ status: 'needsOnboarding', session, user: session.user, profile: null });
@@ -184,7 +196,9 @@ export const useAuth = create<AuthState>()((set, get) => {
         const profile: LocalProfile = { firstName: firstName.trim(), lastName: lastName.trim(), age };
         useProgress.getState().setChildName(profile.firstName);
         void startProgressSync(user.id);
-        saveProfileSnapshot(user.id, { ...profile, onboarded: true });
+        // Persist the snapshot BEFORE flipping to `ready` so any auth event that
+        // fires next resolves from it instead of a lagging remote read.
+        await saveProfileSnapshot(user.id, { ...profile, onboarded: true });
         set({ status: 'ready', profile, prefill: null });
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Gagal menyimpan profil.';

@@ -9,20 +9,34 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import Animated, { FadeIn, SlideInLeft, SlideInRight } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, Keyframe } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MasteryMeter } from '@/components/mastery-meter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { LabColors } from '@/constants/labs';
-import { MaxContentWidth, Spacing } from '@/constants/theme';
+import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { useAuth } from '@/state/auth';
 
-const ACCENT = LabColors.add.main;
-const MIN_AGE = 1;
+// Brand accent (matches login, header, active tab) so onboarding feels part of
+// the same app rather than a one-off blue screen.
+const ACCENT = AccentColor;
+
+// Short slide + fade per step. The old SlideInRight/Left swept the whole card in
+// from a full screen-width offscreen, which read as a jarring jump — especially
+// with the step remount + keyboard resize. A small ±36px travel is smooth.
+const enterRight = new Keyframe({
+  0: { opacity: 0, transform: [{ translateX: 36 }] },
+  100: { opacity: 1, transform: [{ translateX: 0 }], easing: Easing.out(Easing.cubic) },
+});
+const enterLeft = new Keyframe({
+  0: { opacity: 0, transform: [{ translateX: -36 }] },
+  100: { opacity: 1, transform: [{ translateX: 0 }], easing: Easing.out(Easing.cubic) },
+});
+// Age is mandatory — it will drive starting level and test difficulty. Min 3, max 120.
+const MIN_AGE = 3;
 const MAX_AGE = 120;
 const TOTAL_STEPS = 3;
 
@@ -118,7 +132,7 @@ export default function Onboarding() {
 
             <Animated.View
               key={step}
-              entering={direction === 1 ? SlideInRight.duration(320) : SlideInLeft.duration(320)}
+              entering={direction === 1 ? enterRight.duration(280) : enterLeft.duration(280)}
               style={styles.stepBody}>
               <ThemedText type="subtitle" style={styles.stepTitle}>
                 {config.title}

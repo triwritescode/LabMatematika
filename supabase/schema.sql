@@ -6,7 +6,7 @@ create table if not exists public.profiles (
   id uuid primary key references auth.users (id) on delete cascade,
   first_name text not null default '',
   last_name text not null default '',
-  age int check (age between 1 and 120),
+  age int check (age between 3 and 120),
   onboarding_complete boolean not null default false,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()

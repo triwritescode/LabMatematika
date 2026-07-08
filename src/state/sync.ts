@@ -302,8 +302,8 @@ export type ProfileSnapshot = {
   onboarded: boolean;
 };
 
-export function saveProfileSnapshot(userId: string, snap: ProfileSnapshot) {
-  void AsyncStorage.setItem(`lm-sync:profile:${userId}`, JSON.stringify(snap));
+export function saveProfileSnapshot(userId: string, snap: ProfileSnapshot): Promise<void> {
+  return AsyncStorage.setItem(`lm-sync:profile:${userId}`, JSON.stringify(snap));
 }
 
 export async function loadProfileSnapshot(userId: string): Promise<ProfileSnapshot | null> {
