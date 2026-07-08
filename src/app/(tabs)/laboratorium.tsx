@@ -10,7 +10,7 @@ import {
   Lock,
   Medal,
 } from 'lucide-react-native';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -65,7 +65,7 @@ export default function Laboratorium() {
   );
 }
 
-function LabSummary({ lab }: { lab: Operation }) {
+const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
   const router = useRouter();
   const theme = useTheme();
   const progress = useProgress((s) => s.labs[lab]);
@@ -82,6 +82,8 @@ function LabSummary({ lab }: { lab: Operation }) {
     <View style={[styles.card, { backgroundColor: theme.backgroundElement, borderLeftColor: colors.main }]}>
       <Pressable
         onPress={() => router.push(`/lab/${lab}`)}
+        accessibilityRole="button"
+        accessibilityLabel={`${LAB_NAMES[lab]}, ${percent}%`}
         style={({ pressed }) => [styles.cardTop, pressed && styles.cardPressed]}>
         <View style={styles.cardHeader}>
           <View style={[styles.symbolBadge, { backgroundColor: colors.main }]}>
@@ -153,9 +155,9 @@ function LabSummary({ lab }: { lab: Operation }) {
       )}
     </View>
   );
-}
+});
 
-function SkillRow({
+const SkillRow = memo(function SkillRow({
   level,
   progress,
   colors,
@@ -177,6 +179,9 @@ function SkillRow({
     <Pressable
       disabled={!unlocked}
       onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: !unlocked }}
+      accessibilityLabel={`${level.labelId}, ${!unlocked ? strings.terkunci : mastered ? strings.selesai : `${mastery}%`}`}
       style={({ pressed }) => [
         styles.skillRow,
         !isLast && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.backgroundSelected },
@@ -210,7 +215,7 @@ function SkillRow({
       </ThemedText>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

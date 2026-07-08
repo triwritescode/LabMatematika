@@ -1,11 +1,18 @@
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider, useRouter, useSegments } from 'expo-router';
+import { DarkTheme, DefaultTheme, ErrorBoundaryProps, Stack, ThemeProvider, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
+import { ErrorFallback } from '@/components/error-fallback';
 import { useAuth } from '@/state/auth';
+
+// expo-router renders this instead of a white screen when any child route
+// throws during render. Kid-safe fallback with a retry (see error-fallback).
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
+  return <ErrorFallback retry={retry} />;
+}
 
 SplashScreen.preventAutoHideAsync();
 

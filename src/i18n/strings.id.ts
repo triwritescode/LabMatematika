@@ -19,6 +19,13 @@ export const LAB_SHORT: Record<Operation, string> = {
 export const strings = {
   appName: 'LabMatematika',
   tagline: 'Latih, uji, kuasai.',
+  errorTitle: 'Ups, ada yang salah',
+  errorSub: 'Coba mulai ulang, ya. Kemajuanmu tetap tersimpan.',
+  errorRetry: 'Coba Lagi',
+  numpadDigit: (d: string) => `Angka ${d}`,
+  numpadBackspace: 'Hapus',
+  numpadSubmit: 'Kirim jawaban',
+  tutup: 'Tutup',
   greeting: (name: string) => (name ? `Halo, ${name}!` : 'Halo, Ilmuwan Cilik!'),
   greetingSub: 'Siap latihan hari ini?',
   labList: 'Daftar Laboratorium',

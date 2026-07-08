@@ -18,7 +18,7 @@ import {
   UserPlus,
   Users,
 } from 'lucide-react-native';
-import { ReactNode } from 'react';
+import { memo, ReactNode, useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -52,13 +52,17 @@ export default function Pengguna() {
   const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
   const ownedStickers = useProgress((s) => s.ownedStickers);
-  const owned = new Set(ownedStickers);
+  const owned = useMemo(() => new Set(ownedStickers), [ownedStickers]);
   // Profile shows a compact preview (owned first); the full 100-sticker catalog
-  // lives in Toko.
-  const stickerPreview = [
-    ...STICKERS.filter((s) => owned.has(s.id)),
-    ...STICKERS.filter((s) => !owned.has(s.id)),
-  ].slice(0, 12);
+  // lives in Toko. Recomputed only when ownership changes, not every render.
+  const stickerPreview = useMemo(
+    () =>
+      [
+        ...STICKERS.filter((s) => owned.has(s.id)),
+        ...STICKERS.filter((s) => !owned.has(s.id)),
+      ].slice(0, 12),
+    [owned]
+  );
   const age = profile?.birthDate ? ageFromISO(profile.birthDate) : null;
   const name = profile ? `${profile.firstName} ${profile.lastName}`.trim() : strings.pengguna;
 
@@ -188,6 +192,8 @@ export default function Pengguna() {
               )}
               <Pressable
                 onPress={() => router.push('/toko')}
+                accessibilityRole="button"
+                accessibilityLabel={strings.bukaToko}
                 style={({ pressed }) => [
                   styles.tokoLink,
                   { backgroundColor: `${AccentColor}12` },
@@ -204,6 +210,8 @@ export default function Pengguna() {
             {/* Sign out */}
             <Pressable
               onPress={signOut}
+              accessibilityRole="button"
+              accessibilityLabel={strings.signOut}
               style={({ pressed }) => [
                 styles.signOut,
                 { borderColor: theme.backgroundSelected },
@@ -254,7 +262,7 @@ function SectionHeader({ title, theme, badge, badgeMuted }: { title: string; the
   );
 }
 
-function StickerTile({ sticker, unlocked, theme }: { sticker: Sticker; unlocked: boolean; theme: Theme }) {
+const StickerTile = memo(function StickerTile({ sticker, unlocked, theme }: { sticker: Sticker; unlocked: boolean; theme: Theme }) {
   const color = RARITY_COLOR[sticker.rarity];
   return (
     <View
@@ -271,7 +279,7 @@ function StickerTile({ sticker, unlocked, theme }: { sticker: Sticker; unlocked:
       )}
     </View>
   );
-}
+});
 
 function Slot({ icon, label, theme }: { icon: ReactNode; label: string; theme: Theme }) {
   return (

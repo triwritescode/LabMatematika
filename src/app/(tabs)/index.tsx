@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Gem } from 'lucide-react-native';
+import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -59,7 +60,7 @@ export default function Beranda() {
   );
 }
 
-function LabCard({ lab }: { lab: Operation }) {
+const LabCard = memo(function LabCard({ lab }: { lab: Operation }) {
   const router = useRouter();
   const progress = useProgress((s) => s.labs[lab]);
   const colors = LabColors[lab];
@@ -68,6 +69,8 @@ function LabCard({ lab }: { lab: Operation }) {
   return (
     <Pressable
       onPress={() => router.push(`/lab/${lab}`)}
+      accessibilityRole="button"
+      accessibilityLabel={`${LAB_NAMES[lab]}, ${percent}%`}
       style={({ pressed }) => [
         styles.card,
         { backgroundColor: colors.soft },
@@ -90,7 +93,7 @@ function LabCard({ lab }: { lab: Operation }) {
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

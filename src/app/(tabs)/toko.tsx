@@ -1,6 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
 import { Check, Gem } from 'lucide-react-native';
+import { memo, useCallback, useMemo } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -37,15 +38,22 @@ export default function Toko() {
   const ownedStickers = useProgress((s) => s.ownedStickers);
   const buySticker = useProgress((s) => s.buySticker);
 
-  const owned = new Set(ownedStickers);
-  const groups = stickersByRarity();
+  // Derive once per change — not per render. Rebuilding a 100-entry Set and the
+  // grouped catalog on every render would re-run for each of the 100 cards.
+  const owned = useMemo(() => new Set(ownedStickers), [ownedStickers]);
+  const groups = useMemo(() => stickersByRarity(), []);
 
-  function onBuy(id: string) {
-    const ok = buySticker(id);
-    Haptics.notificationAsync(
-      ok ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Error
-    );
-  }
+  // Stable identity so memoized StickerCards don't all re-render when one is
+  // bought (buySticker is itself a stable zustand action).
+  const onBuy = useCallback(
+    (id: string) => {
+      const ok = buySticker(id);
+      Haptics.notificationAsync(
+        ok ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Error
+      );
+    },
+    [buySticker]
+  );
 
   return (
     <ThemedView style={styles.container}>
@@ -94,7 +102,7 @@ export default function Toko() {
                       sticker={sticker}
                       owned={owned.has(sticker.id)}
                       affordable={diamonds >= RARITY_PRICE[sticker.rarity]}
-                      onBuy={() => onBuy(sticker.id)}
+                      onBuy={onBuy}
                       theme={theme}
                     />
                   ))}
@@ -108,7 +116,7 @@ export default function Toko() {
   );
 }
 
-function StickerCard({
+const StickerCard = memo(function StickerCard({
   sticker,
   owned,
   affordable,
@@ -118,7 +126,7 @@ function StickerCard({
   sticker: Sticker;
   owned: boolean;
   affordable: boolean;
-  onBuy: () => void;
+  onBuy: (id: string) => void;
   theme: Theme;
 }) {
   const price = RARITY_PRICE[sticker.rarity];
@@ -130,7 +138,10 @@ function StickerCard({
         </ThemedText>
       </View>
       {owned ? (
-        <View style={[styles.buyBtn, styles.ownedBtn]}>
+        <View
+          style={[styles.buyBtn, styles.ownedBtn]}
+          accessibilityRole="text"
+          accessibilityLabel={strings.dimiliki}>
           <Check color={theme.textSecondary} size={14} strokeWidth={3} />
           <ThemedText type="small" themeColor="textSecondary" style={styles.buyLabel}>
             {strings.dimiliki}
@@ -138,8 +149,11 @@ function StickerCard({
         </View>
       ) : (
         <Pressable
-          onPress={onBuy}
+          onPress={() => onBuy(sticker.id)}
           disabled={!affordable}
+          accessibilityRole="button"
+          accessibilityLabel={`${sticker.id} — ${price}`}
+          accessibilityState={{ disabled: !affordable }}
           style={({ pressed }) => [
             styles.buyBtn,
             { backgroundColor: affordable ? AccentColor : theme.backgroundSelected },
@@ -155,7 +169,7 @@ function StickerCard({
       )}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

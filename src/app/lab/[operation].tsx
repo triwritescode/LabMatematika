@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ArrowLeft, Award, Brain, Calculator, Check, Lock, Star, Zap } from 'lucide-react-native';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -154,7 +154,7 @@ export default function PetaKeahlian() {
   );
 }
 
-function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }) {
+const TimelineNode = memo(function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }) {
   const router = useRouter();
   const theme = useTheme();
   const progress = useProgress((s) => s.labs[level.lab]);
@@ -169,6 +169,9 @@ function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }
     <Pressable
       disabled={!unlocked}
       onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: !unlocked }}
+      accessibilityLabel={`${level.labelId}, ${!unlocked ? '—' : mastered ? 'Selesai' : `${mastery}%`}`}
       style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
       <View style={styles.rowIconCol}>
         <View
@@ -219,9 +222,9 @@ function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }
       </View>
     </Pressable>
   );
-}
+});
 
-function TimelineExamNode({
+const TimelineExamNode = memo(function TimelineExamNode({
   lab,
   tingkat,
   passed,
@@ -243,6 +246,9 @@ function TimelineExamNode({
     <Pressable
       disabled={!ready}
       onPress={() => router.push(`/exam/${lab}/${tingkat}`)}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: !ready }}
+      accessibilityLabel={strings.ujian}
       style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
       <View style={styles.rowIconCol}>
         <View
@@ -280,7 +286,7 @@ function TimelineExamNode({
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
