@@ -1,7 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X } from 'lucide-react-native';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -38,6 +38,9 @@ export default function Ujian() {
   const [answers, setAnswers] = useState<ExamAnswer[]>([]);
   const [input, setInput] = useState('');
   const [finished, setFinished] = useState(false);
+  // Guards the terminal award (passTingkat/streak/diamonds) against a double-tap
+  // firing submit twice on the last question before the re-render disables it.
+  const finalized = useRef(false);
 
   const question = questions[index];
 
@@ -53,6 +56,8 @@ export default function Ujian() {
     if (index + 1 < questions.length) {
       setIndex(index + 1);
     } else {
+      if (finalized.current) return;
+      finalized.current = true;
       const verdict = judgeExam(nextAnswers);
       if (verdict.passed) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
