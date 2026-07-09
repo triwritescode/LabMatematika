@@ -12,36 +12,45 @@ import {
 import Animated, { Easing, FadeIn, Keyframe } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { DatePicker } from '@/components/date-picker';
+import { AgePicker } from '@/components/age-picker';
 import { MasteryMeter } from '@/components/mastery-meter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
-import { ageFromISO, MAX_AGE, MIN_AGE } from '@/lib/age';
+import { MAX_AGE, MIN_AGE, toISODate } from '@/lib/age';
 import { useAuth } from '@/state/auth';
 
-// "5 Juni 2015" from an ISO date.
-function formatBirth(iso: string): string {
-  const [y, m, d] = iso.split('-').map(Number);
-  return strings.formatDate(d, strings.months[m - 1], y);
+// Store a synthetic birth date from the picked age: born `age` years ago on today's
+// month/day, so ageFromISO(dob) === age today and stays stable (see docs/plan). The
+// DB/sync/profile layers keep consuming an ISO birthDate unchanged. Feb-29 (or any
+// day the born-year lacks) falls back to the 28th.
+function synthBirthISO(age: number): string {
+  const now = new Date();
+  const y = now.getFullYear() - age;
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  return toISODate(y, m, d) ?? toISODate(y, m, 28) ?? `${y}-01-01`;
 }
 
 // Brand accent (matches login, header, active tab) so onboarding feels part of
 // the same app rather than a one-off blue screen.
 const ACCENT = AccentColor;
 
-// Short slide + fade per step. The old SlideInRight/Left swept the whole card in
-// from a full screen-width offscreen, which read as a jarring jump — especially
-// with the step remount + keyboard resize. A small ±36px travel is smooth.
-const enterRight = new Keyframe({
-  0: { opacity: 0, transform: [{ translateX: 36 }] },
-  100: { opacity: 1, transform: [{ translateX: 0 }], easing: Easing.out(Easing.cubic) },
+// Vertical fade-rise per step. Horizontal translate (the old ±36px translateX)
+// let the flex-1 input bleed past the screen's right edge mid-transition — the
+// parent doesn't clip on the X axis, and the step remount + keyboard resize made
+// the transient overflow visible as a cut-off input box. Y-axis travel is clipped
+// by `content`'s overflow:hidden, so no horizontal reflow, no glitch. Direction is
+// no longer needed for the animation, but forward/back still adjust it subtly.
+const enterForward = new Keyframe({
+  0: { opacity: 0, transform: [{ translateY: 16 }] },
+  100: { opacity: 1, transform: [{ translateY: 0 }], easing: Easing.out(Easing.cubic) },
 });
-const enterLeft = new Keyframe({
-  0: { opacity: 0, transform: [{ translateX: -36 }] },
-  100: { opacity: 1, transform: [{ translateX: 0 }], easing: Easing.out(Easing.cubic) },
+const enterBack = new Keyframe({
+  0: { opacity: 0, transform: [{ translateY: -16 }] },
+  100: { opacity: 1, transform: [{ translateY: 0 }], easing: Easing.out(Easing.cubic) },
 });
 // Birth date is mandatory — age is derived from it and will drive starting level
 // and test difficulty. Derived age must land in [MIN_AGE, MAX_AGE] (from lib/age).
@@ -62,8 +71,9 @@ export default function Onboarding() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [firstName, setFirstName] = useState(prefill?.firstName ?? '');
   const [lastName, setLastName] = useState(prefill?.lastName ?? '');
-  // Birth date as ISO YYYY-MM-DD, chosen via the calendar; null until picked.
-  const [birthISO, setBirthISO] = useState<string | null>(null);
+  // Age in whole years, chosen via the wheel; null until picked. Birth date is
+  // synthesized from it on save (synthBirthISO).
+  const [age, setAge] = useState<number | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
 
   const inputRef = useRef<TextInput>(null);
@@ -75,18 +85,16 @@ export default function Onboarding() {
     return () => clearTimeout(t);
   }, [step]);
 
-  const derivedAge = birthISO ? ageFromISO(birthISO) : NaN;
-
   const stepValid = useMemo(() => {
     if (step === 0) return firstName.trim().length > 0;
-    if (step === 1) return lastName.trim().length > 0;
-    return birthISO !== null && derivedAge >= MIN_AGE && derivedAge <= MAX_AGE;
-  }, [step, firstName, lastName, birthISO, derivedAge]);
+    if (step === 1) return true; // Last name is optional — empty is allowed.
+    // The wheel is clamped to [MIN_AGE, MAX_AGE], so any picked age is in range.
+    return age !== null && age >= MIN_AGE && age <= MAX_AGE;
+  }, [step, firstName, age]);
 
   function validateAndGetError(): string | null {
     if (step === 2) {
-      if (birthISO === null) return strings.onboardingErrorDate;
-      if (derivedAge < MIN_AGE || derivedAge > MAX_AGE) return strings.onboardingErrorAge;
+      if (age === null || age < MIN_AGE || age > MAX_AGE) return strings.onboardingErrorAge;
     } else if (!stepValid) {
       return strings.onboardingErrorName;
     }
@@ -107,7 +115,7 @@ export default function Onboarding() {
       setStep((s) => s + 1);
       return;
     }
-    await saveProfile(firstName, lastName, birthISO as string);
+    await saveProfile(firstName, lastName, synthBirthISO(age as number));
     // On success the router guard swaps to (tabs); on error the store sets `error`.
   }
 
@@ -124,6 +132,12 @@ export default function Onboarding() {
   const setValue = step === 0 ? setFirstName : setLastName;
   const shownError = localError ?? serverError;
   const isLast = step === TOTAL_STEPS - 1;
+  // Last name is optional: label the advance button "Lewati" (skip) when it's blank.
+  const nextLabel = isLast
+    ? strings.onboardingFinish
+    : step === 1 && lastName.trim().length === 0
+      ? strings.onboardingSkip
+      : strings.onboardingNext;
 
   return (
     <ThemedView style={styles.root}>
@@ -141,11 +155,20 @@ export default function Onboarding() {
 
             <Animated.View
               key={step}
-              entering={direction === 1 ? enterRight.duration(280) : enterLeft.duration(280)}
+              entering={direction === 1 ? enterForward.duration(260) : enterBack.duration(260)}
               style={styles.stepBody}>
-              <ThemedText type="subtitle" style={styles.stepTitle}>
-                {config.title}
-              </ThemedText>
+              <View style={styles.titleRow}>
+                <ThemedText type="subtitle" style={styles.stepTitle}>
+                  {config.title}
+                </ThemedText>
+                {step === 1 ? (
+                  <ThemedText
+                    type="smallBold"
+                    style={[styles.optionalBadge, { color: theme.textSecondary, backgroundColor: theme.backgroundElement }]}>
+                    {strings.onboardingOptional}
+                  </ThemedText>
+                ) : null}
+              </View>
               <ThemedText themeColor="textSecondary" style={styles.stepSub}>
                 {config.sub}
               </ThemedText>
@@ -154,19 +177,14 @@ export default function Onboarding() {
                 <View style={styles.dateBlock}>
                   <ThemedText
                     type="subtitle"
-                    style={[styles.selectedDate, { color: birthISO ? theme.text : theme.textSecondary }]}>
-                    {birthISO ? formatBirth(birthISO) : strings.datePickerPlaceholder}
+                    style={[styles.selectedDate, { color: age !== null ? theme.text : theme.textSecondary }]}>
+                    {age !== null ? strings.ageYears(age) : strings.agePickerPlaceholder}
                   </ThemedText>
-                  {birthISO ? (
-                    <ThemedText type="smallBold" style={[styles.ageBadge, { color: ACCENT }]}>
-                      {strings.ageYears(derivedAge)}
-                    </ThemedText>
-                  ) : null}
-                  <DatePicker
-                    value={birthISO}
-                    onChange={(iso) => {
+                  <AgePicker
+                    value={age}
+                    onChange={(a) => {
                       setLocalError(null);
-                      setBirthISO(iso);
+                      setAge(a);
                     }}
                   />
                 </View>
@@ -182,9 +200,12 @@ export default function Onboarding() {
                     placeholder={config.placeholder}
                     placeholderTextColor={theme.textSecondary}
                     autoCapitalize="words"
+                    autoComplete={step === 0 ? 'name-given' : 'name-family'}
+                    textContentType={step === 0 ? 'givenName' : 'familyName'}
                     maxLength={24}
                     returnKeyType={isLast ? 'done' : 'next'}
                     onSubmitEditing={next}
+                    submitBehavior="submit"
                     style={[
                       styles.input,
                       { color: theme.text, backgroundColor: theme.backgroundElement },
@@ -227,7 +248,7 @@ export default function Onboarding() {
                   <ActivityIndicator color="#fff" />
                 ) : (
                   <ThemedText type="smallBold" style={styles.nextLabel}>
-                    {isLast ? strings.onboardingFinish : strings.onboardingNext}
+                    {nextLabel}
                   </ThemedText>
                 )}
               </Pressable>
@@ -253,7 +274,8 @@ const STEP_CONFIG = [
   {
     title: strings.onboardingAgeTitle,
     sub: strings.onboardingAgeSub,
-    placeholder: strings.onboardingAgePlaceholder,
+    // Step 2 (age wheel) has no text input, so no placeholder.
+    placeholder: '',
   },
 ] as const;
 
@@ -270,6 +292,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: Spacing.four,
     gap: Spacing.four,
+    // Clip step-transition travel so an animating flex child can never bleed past
+    // the screen edge (see enterForward/enterBack).
+    overflow: 'hidden',
   },
   header: {
     gap: Spacing.one,
@@ -282,9 +307,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: Spacing.two,
   },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: Spacing.two,
+  },
   stepTitle: {
     fontSize: 28,
     lineHeight: 36,
+  },
+  optionalBadge: {
+    overflow: 'hidden',
+    borderRadius: 999,
+    paddingHorizontal: Spacing.two,
+    paddingVertical: Spacing.half,
+    fontSize: 12,
   },
   stepSub: {
     fontSize: 16,
@@ -308,10 +346,6 @@ const styles = StyleSheet.create({
   selectedDate: {
     textAlign: 'center',
     fontSize: 22,
-  },
-  ageBadge: {
-    textAlign: 'center',
-    marginTop: -Spacing.two,
   },
   error: {
     color: '#EF4444',
