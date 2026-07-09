@@ -5,6 +5,10 @@ import { create } from 'zustand';
 import { supabase } from '@/lib/supabase';
 import type { FriendRow, PendingRow } from '@/lib/supabase';
 
+// A friend + their derived shared streak (Runtunan Teman, §7). streak/sharedToday
+// are merged in from the friend_streaks RPC after list_friends returns.
+export type Friend = FriendRow & { streak: number; sharedToday: boolean };
+
 // Friends store — the app's online/social state. Deliberately NOT routed through
 // the offline-first progress outbox (sync.ts): a friend request needs the other
 // user to exist server-side *now*, so it can't be a fire-and-forget mutation.
@@ -18,7 +22,6 @@ import type { FriendRow, PendingRow } from '@/lib/supabase';
 // the network is down; mutating actions surface a Bahasa error instead of
 // silently queueing (a request to an unknown peer can't be replayed blindly).
 
-export type Friend = FriendRow;
 export type Pending = PendingRow;
 
 // Error codes raised by the RPCs (schema §6c) → Bahasa messages. Anything else
@@ -73,15 +76,24 @@ export const useFriends = create<FriendsState>()((set, get) => ({
     if (!uid) return;
     set({ loading: true });
     try {
-      const [friendsRes, pendingRes, profileRes] = await Promise.all([
+      const [friendsRes, pendingRes, streaksRes, profileRes] = await Promise.all([
         supabase.rpc('list_friends'),
         supabase.rpc('list_pending'),
+        supabase.rpc('friend_streaks'),
         supabase.from('profiles').select('friend_code').eq('id', uid).maybeSingle(),
       ]);
       if (friendsRes.error || pendingRes.error) throw friendsRes.error ?? pendingRes.error;
 
       const pending = (pendingRes.data ?? []) as Pending[];
-      const friends = (friendsRes.data ?? []) as Friend[];
+      // Merge each friend's derived shared streak (friend_streaks may fail
+      // independently — default to 0 so the list still renders).
+      const streaks = new Map(
+        (streaksRes.data ?? []).map((s) => [s.friend_id, s])
+      );
+      const friends: Friend[] = (friendsRes.data ?? []).map((f) => {
+        const st = streaks.get(f.friend_id);
+        return { ...f, streak: st?.streak ?? 0, sharedToday: st?.shared_today ?? false };
+      });
       const myCode = profileRes.data?.friend_code ?? get().myCode;
 
       set({

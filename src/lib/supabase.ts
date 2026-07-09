@@ -95,6 +95,15 @@ export type PendingRow = {
   created_at: string;
 };
 
+// Shared Friend Streak (§7): derived, per accepted friend. `shared_today` = both
+// practiced today (flame lit); `streak` = consecutive shared days ending
+// today/yesterday.
+export type FriendStreakRow = {
+  friend_id: string;
+  streak: number;
+  shared_today: boolean;
+};
+
 // Minimal Database generic (GenericSchema-shaped) so supabase-js queries and
 // syncedSupabase infer collection names + row types. Only declares the columns
 // the app reads/writes.
@@ -119,6 +128,7 @@ export type Database = {
       remove_friend: { Args: { friendship_id: string }; Returns: undefined };
       list_friends: { Args: Record<string, never>; Returns: FriendRow[] };
       list_pending: { Args: Record<string, never>; Returns: PendingRow[] };
+      friend_streaks: { Args: Record<string, never>; Returns: FriendStreakRow[] };
     };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;

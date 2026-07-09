@@ -63,6 +63,11 @@ export default function Pengguna() {
       })),
     [friends]
   );
+  // Active shared streaks (Runtunan Teman), strongest first.
+  const streakFriends = useMemo(
+    () => friends.filter((f) => f.streak > 0).sort((a, b) => b.streak - a.streak),
+    [friends]
+  );
   const ownedStickers = useProgress((s) => s.ownedStickers);
   const owned = useMemo(() => new Set(ownedStickers), [ownedStickers]);
   // Profile shows a compact preview (owned first); the full 100-sticker catalog
@@ -195,6 +200,62 @@ export default function Pengguna() {
                 </ThemedText>
               </Pressable>
             </View>
+
+            {/* Runtunan Teman */}
+            <SectionHeader
+              title={strings.runtunanTeman}
+              theme={theme}
+              badge={streakFriends.length > 0 ? `${streakFriends.length}` : undefined}
+            />
+            <Pressable
+              onPress={() => router.push('/friends')}
+              accessibilityRole="button"
+              accessibilityLabel={strings.runtunanTeman}
+              style={({ pressed }) => [
+                styles.card,
+                { backgroundColor: theme.backgroundElement },
+                pressed && styles.pressed,
+              ]}>
+              {streakFriends.length === 0 ? (
+                <View style={styles.stickerEmpty}>
+                  <View style={styles.stickerEmptyIcon}>
+                    <Flame color={StreakColor} size={22} fill={StreakColor} />
+                  </View>
+                  <ThemedText type="small" themeColor="textSecondary" style={styles.stickerEmptyText}>
+                    {strings.runtunanBelum}
+                  </ThemedText>
+                </View>
+              ) : (
+                streakFriends.slice(0, 5).map((f) => (
+                  <View key={f.friend_id} style={styles.streakRow}>
+                    <View style={[styles.streakAvatar, { backgroundColor: avatarColor(f.friend_id) }]}>
+                      <ThemedText type="smallBold" style={styles.friendInitial}>
+                        {(f.first_name.trim()[0] ?? '?').toUpperCase()}
+                      </ThemedText>
+                    </View>
+                    <ThemedText type="smallBold" style={styles.streakName} numberOfLines={1}>
+                      {`${f.first_name} ${f.last_name}`.trim()}
+                    </ThemedText>
+                    <View
+                      style={[
+                        styles.streakPill,
+                        { backgroundColor: f.sharedToday ? `${StreakColor}22` : theme.backgroundSelected },
+                      ]}>
+                      <Flame
+                        color={f.sharedToday ? StreakColor : theme.textSecondary}
+                        fill={f.sharedToday ? StreakColor : 'transparent'}
+                        size={15}
+                      />
+                      <ThemedText
+                        type="smallBold"
+                        style={{ fontSize: 13, color: f.sharedToday ? StreakColor : theme.textSecondary }}>
+                        {strings.runtunanHari(f.streak)}
+                      </ThemedText>
+                    </View>
+                  </View>
+                ))
+              )}
+            </Pressable>
 
             {/* Stikerku */}
             <SectionHeader
@@ -545,6 +606,31 @@ const styles = StyleSheet.create({
   friendAvatarEmpty: {
     borderWidth: 1.5,
     borderStyle: 'dashed',
+  },
+  // Runtunan Teman rows
+  streakRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
+  },
+  streakAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  streakName: {
+    flex: 1,
+    fontSize: 15,
+  },
+  streakPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.half,
+    paddingHorizontal: Spacing.two,
+    paddingVertical: Spacing.one,
+    borderRadius: 999,
   },
   friendText: {
     flex: 1,

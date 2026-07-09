@@ -160,6 +160,12 @@ export const strings = {
   daftarTeman: 'Daftar Teman',
   salin: 'Salin',
   tersalin: 'Kode disalin!',
+  // Runtunan Teman (shared friend streak)
+  runtunanTeman: 'Runtunan Teman',
+  runtunanHari: (n: number) => (n === 1 ? '1 hari' : `${n} hari`),
+  runtunanAktifHariIni: 'Kalian berdua sudah belajar hari ini!',
+  runtunanMenunggu: 'Belajar hari ini untuk jaga runtunan!',
+  runtunanBelum: 'Belajar di hari yang sama untuk mulai runtunan!',
   stikerku: 'Stikerku',
   stikerProgress: (unlocked: number, total: number) => `${unlocked}/${total} terkumpul`,
   stikerKosong: 'Belum ada stiker. Yuk kumpulkan!',

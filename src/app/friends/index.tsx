@@ -1,13 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ArrowLeft, Check, Gem, Share2, UserPlus, X } from 'lucide-react-native';
+import { ArrowLeft, Check, Flame, Gem, Share2, UserPlus, X } from 'lucide-react-native';
 import { useCallback } from 'react';
 import { Alert, Pressable, ScrollView, Share, StyleSheet, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { DiamondColor } from '@/constants/labs';
+import { DiamondColor, StreakColor } from '@/constants/labs';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
@@ -39,6 +39,12 @@ export default function TemanScreen() {
   const myCode = useFriends((s) => s.myCode);
   const respond = useFriends((s) => s.respond);
   const remove = useFriends((s) => s.remove);
+  const load = useFriends((s) => s.load);
+
+  // Refresh on focus — friend streaks change when either party practices, and a
+  // friend's active_days changes aren't visible to our realtime (own-rows RLS),
+  // so re-pull whenever the screen comes forward.
+  useFocusEffect(useCallback(() => void load(), [load]));
 
   const onShare = useCallback(() => {
     if (!myCode) return;
@@ -247,6 +253,25 @@ function FriendRow({
           </ThemedText>
         </View>
       </View>
+      {friend.streak > 0 ? (
+        <View
+          style={[
+            styles.streakPill,
+            { backgroundColor: friend.sharedToday ? `${StreakColor}22` : theme.backgroundSelected },
+          ]}
+          accessibilityLabel={strings.runtunanHari(friend.streak)}>
+          <Flame
+            color={friend.sharedToday ? StreakColor : theme.textSecondary}
+            fill={friend.sharedToday ? StreakColor : 'transparent'}
+            size={15}
+          />
+          <ThemedText
+            type="smallBold"
+            style={[styles.streakNum, { color: friend.sharedToday ? StreakColor : theme.textSecondary }]}>
+            {friend.streak}
+          </ThemedText>
+        </View>
+      ) : null}
     </Pressable>
   );
 }
@@ -335,6 +360,15 @@ const styles = StyleSheet.create({
   },
   rowText: { flex: 1, gap: 2 },
   diamondRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
+  streakPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.half,
+    paddingHorizontal: Spacing.two,
+    paddingVertical: Spacing.one,
+    borderRadius: 999,
+  },
+  streakNum: { fontSize: 13 },
   avatar: {
     width: 44,
     height: 44,
