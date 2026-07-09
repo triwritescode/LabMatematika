@@ -63,6 +63,38 @@ export type OwnedStickerRow = {
   sticker_id: string;
 } & SyncMeta;
 
+// Friends (§6). Direction-bearing: one row per relationship. Written only via
+// the RPCs below (RLS grants SELECT to involved parties, no direct writes).
+export type FriendshipRow = {
+  id: string;
+  requester_id: string;
+  addressee_id: string;
+  status: 'pending' | 'accepted';
+  created_at: string;
+  updated_at: string;
+};
+
+// Shapes returned by the friends RPCs (list_friends / list_pending).
+export type FriendRow = {
+  friendship_id: string;
+  friend_id: string;
+  first_name: string;
+  last_name: string;
+  friend_code: string;
+  diamonds: number;
+  since: string;
+};
+
+export type PendingRow = {
+  friendship_id: string;
+  user_id: string;
+  first_name: string;
+  last_name: string;
+  friend_code: string;
+  direction: 'incoming' | 'outgoing';
+  created_at: string;
+};
+
 // Minimal Database generic (GenericSchema-shaped) so supabase-js queries and
 // syncedSupabase infer collection names + row types. Only declares the columns
 // the app reads/writes.
@@ -78,9 +110,16 @@ export type Database = {
       active_days: Table<ActiveDayRow>;
       user_stats: Table<UserStatsRow>;
       owned_stickers: Table<OwnedStickerRow>;
+      friendships: Table<FriendshipRow>;
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      send_friend_request: { Args: { code: string }; Returns: FriendshipRow };
+      respond_friend_request: { Args: { friendship_id: string; accept: boolean }; Returns: undefined };
+      remove_friend: { Args: { friendship_id: string }; Returns: undefined };
+      list_friends: { Args: Record<string, never>; Returns: FriendRow[] };
+      list_pending: { Args: Record<string, never>; Returns: PendingRow[] };
+    };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };
@@ -112,4 +151,5 @@ export type Profile = {
   last_name: string;
   birth_date: string | null;
   onboarding_complete: boolean;
+  friend_code: string | null;
 };

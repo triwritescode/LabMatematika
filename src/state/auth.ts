@@ -8,6 +8,7 @@ import type { Session, User } from '@supabase/supabase-js';
 import { create } from 'zustand';
 
 import { supabase } from '@/lib/supabase';
+import { startFriends, stopFriends } from '@/state/friends';
 import { useProgress } from '@/state/progress';
 import {
   loadProfileSnapshot,
@@ -54,8 +55,10 @@ export const useAuth = create<AuthState>()((set, get) => {
     }
 
     // Identity is known → start offline-first progress sync immediately, so
-    // local progress is available even before (or without) the network.
+    // local progress is available even before (or without) the network. Friends
+    // (online/social) starts on the same seam.
     void startProgressSync(session.user.id);
+    void startFriends(session.user.id);
 
     // The local snapshot is authoritative for "already onboarded". `resolveSession`
     // runs on every auth event (token refresh, app foreground), and each one used
@@ -219,6 +222,7 @@ export const useAuth = create<AuthState>()((set, get) => {
       // so the final push still has a valid token and the next account starts
       // clean instead of inheriting this user's rows.
       await stopProgressSync();
+      await stopFriends();
       await supabase.auth.signOut();
       set({ status: 'signedOut', session: null, user: null, profile: null, prefill: null });
     },

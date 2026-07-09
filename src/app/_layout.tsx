@@ -72,6 +72,8 @@ export default function RootLayout() {
         <Stack.Screen name="lab/[operation]" />
         <Stack.Screen name="practice/[operation]/[level]" />
         <Stack.Screen name="exam/[operation]/[tingkat]" />
+        <Stack.Screen name="friends/index" />
+        <Stack.Screen name="friends/add" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
   );

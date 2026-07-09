@@ -31,16 +31,17 @@ import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { ageFromISO } from '@/lib/age';
 import { useAuth } from '@/state/auth';
+import { useFriends } from '@/state/friends';
 import { useCurrentStreak, useProgress } from '@/state/progress';
 
-// --- Mock data (feature not built yet — placeholders for the future). ---
-const FRIEND_COUNT = 8;
-const FRIEND_AVATARS = [
-  { initial: 'A', color: '#3B82F6' },
-  { initial: 'B', color: '#22C55E' },
-  { initial: 'C', color: '#EAB308' },
-  { initial: 'D', color: '#EF4444' },
-];
+// Deterministic avatar color from an id — a friend always looks the same here
+// and on the Teman screen.
+const AVATAR_COLORS = ['#3B82F6', '#22C55E', '#EAB308', '#EF4444', '#8B5CF6', '#EC4899', '#14B8A6'];
+function avatarColor(id: string): string {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) | 0;
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+}
 type Theme = ReturnType<typeof useTheme>;
 
 export default function Pengguna() {
@@ -51,6 +52,17 @@ export default function Pengguna() {
   const signOut = useAuth((s) => s.signOut);
   const streak = useCurrentStreak();
   const diamonds = useProgress((s) => s.diamonds);
+  const friends = useFriends((s) => s.friends);
+  const incomingCount = useFriends((s) => s.incoming.length);
+  const friendAvatars = useMemo(
+    () =>
+      friends.slice(0, 4).map((f) => ({
+        id: f.friend_id,
+        initial: (f.first_name.trim()[0] ?? '?').toUpperCase(),
+        color: avatarColor(f.friend_id),
+      })),
+    [friends]
+  );
   const ownedStickers = useProgress((s) => s.ownedStickers);
   const owned = useMemo(() => new Set(ownedStickers), [ownedStickers]);
   // Profile shows a compact preview (owned first); the full 100-sticker catalog
@@ -99,7 +111,7 @@ export default function Pengguna() {
               <View style={[styles.statDivider, { backgroundColor: theme.backgroundSelected }]} />
               <Stat icon={<Gem color={DiamondColor} fill={DiamondColor} size={22} />} value={diamonds.toLocaleString('id-ID')} label={strings.labelDiamonds} theme={theme} />
               <View style={[styles.statDivider, { backgroundColor: theme.backgroundSelected }]} />
-              <Stat icon={<Users color={AccentColor} size={22} />} value={`${FRIEND_COUNT}`} label={strings.labelTeman} theme={theme} />
+              <Stat icon={<Users color={AccentColor} size={22} />} value={`${friends.length}`} label={strings.labelTeman} theme={theme} />
             </View>
 
             {/* Karakterku */}
@@ -130,33 +142,51 @@ export default function Pengguna() {
             </View>
 
             {/* Teman */}
-            <SectionHeader title={strings.teman} theme={theme} />
+            <SectionHeader
+              title={strings.teman}
+              theme={theme}
+              badge={incomingCount > 0 ? `${incomingCount}` : undefined}
+            />
             <View style={[styles.card, { backgroundColor: theme.backgroundElement }]}>
-              <View style={styles.friendRow}>
-                <View style={styles.friendAvatars}>
-                  {FRIEND_AVATARS.map((f, i) => (
-                    <View
-                      key={f.initial}
-                      style={[
-                        styles.friendAvatar,
-                        { backgroundColor: f.color, marginLeft: i === 0 ? 0 : -12, borderColor: theme.backgroundElement },
-                      ]}>
-                      <ThemedText type="smallBold" style={styles.friendInitial}>
-                        {f.initial}
-                      </ThemedText>
-                    </View>
-                  ))}
-                </View>
+              <Pressable
+                onPress={() => router.push('/friends')}
+                accessibilityRole="button"
+                accessibilityLabel={strings.daftarTeman}
+                style={({ pressed }) => [styles.friendRow, pressed && styles.pressed]}>
+                {friendAvatars.length > 0 ? (
+                  <View style={styles.friendAvatars}>
+                    {friendAvatars.map((f, i) => (
+                      <View
+                        key={f.id}
+                        style={[
+                          styles.friendAvatar,
+                          { backgroundColor: f.color, marginLeft: i === 0 ? 0 : -12, borderColor: theme.backgroundElement },
+                        ]}>
+                        <ThemedText type="smallBold" style={styles.friendInitial}>
+                          {f.initial}
+                        </ThemedText>
+                      </View>
+                    ))}
+                  </View>
+                ) : (
+                  <View style={[styles.friendAvatar, styles.friendAvatarEmpty, { borderColor: theme.backgroundSelected }]}>
+                    <Users color={theme.textSecondary} size={20} />
+                  </View>
+                )}
                 <View style={styles.friendText}>
                   <ThemedText type="smallBold" style={styles.cardTitle}>
-                    {strings.temanCount(FRIEND_COUNT)}
+                    {strings.temanCount(friends.length)}
                   </ThemedText>
                   <ThemedText type="small" themeColor="textSecondary">
-                    {strings.temanKosong}
+                    {incomingCount > 0 ? strings.permintaanMasuk : strings.temanKosong}
                   </ThemedText>
                 </View>
-              </View>
+                <ChevronRight color={theme.textSecondary} size={20} strokeWidth={2.4} />
+              </Pressable>
               <Pressable
+                onPress={() => router.push('/friends/add')}
+                accessibilityRole="button"
+                accessibilityLabel={strings.tambahTeman}
                 style={({ pressed }) => [styles.addFriendBtn, pressed && styles.pressed]}
                 hitSlop={6}>
                 <UserPlus color="#fff" size={18} strokeWidth={2.4} />
@@ -511,6 +541,10 @@ const styles = StyleSheet.create({
   friendInitial: {
     color: '#fff',
     fontSize: 15,
+  },
+  friendAvatarEmpty: {
+    borderWidth: 1.5,
+    borderStyle: 'dashed',
   },
   friendText: {
     flex: 1,
