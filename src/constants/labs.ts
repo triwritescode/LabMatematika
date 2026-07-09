@@ -6,7 +6,7 @@ export const LabColors: Record<
   { main: string; soft: string; softDark: string; onMain: string }
 > = {
   add: { main: '#3B82F6', soft: '#DBEAFE', softDark: '#1E3A5F', onMain: '#FFFFFF' },
-  sub: { main: '#EF4444', soft: '#FEE2E2', softDark: '#5F1E1E', onMain: '#FFFFFF' },
+  sub: { main: '#E800DD', soft: '#FCE1FA', softDark: '#5F1E5C', onMain: '#FFFFFF' },
   mul: { main: '#22C55E', soft: '#DCFCE7', softDark: '#1E5F2E', onMain: '#FFFFFF' },
   div: { main: '#EAB308', soft: '#FEF9C3', softDark: '#5F4E1E', onMain: '#FFFFFF' },
 };
