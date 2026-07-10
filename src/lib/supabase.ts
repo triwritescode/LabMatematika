@@ -38,11 +38,11 @@ export type LabMetaRow = {
   placement_done: boolean;
 } & SyncMeta;
 
-export type TingkatPassedRow = {
+export type TiersPassedRow = {
   id: string;
   user_id: string;
   lab: string;
-  tingkat: number;
+  tier: number;
 } & SyncMeta;
 
 export type ActiveDayRow = {
@@ -115,7 +115,7 @@ export type Database = {
       profiles: Table<Profile>;
       level_mastery: Table<LevelMasteryRow>;
       lab_meta: Table<LabMetaRow>;
-      tingkat_passed: Table<TingkatPassedRow>;
+      tiers_passed: Table<TiersPassedRow>;
       active_days: Table<ActiveDayRow>;
       user_stats: Table<UserStatsRow>;
       owned_stickers: Table<OwnedStickerRow>;

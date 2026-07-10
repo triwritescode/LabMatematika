@@ -32,7 +32,7 @@ import {
 type TableName =
   | 'level_mastery'
   | 'lab_meta'
-  | 'tingkat_passed'
+  | 'tiers_passed'
   | 'active_days'
   | 'user_stats'
   | 'owned_stickers';
@@ -84,8 +84,8 @@ function mutationToItems(u: string, m: ProgressMutation): OutboxItem[] {
     case 'tingkat':
       return [
         {
-          table: 'tingkat_passed',
-          row: { id: `${u}:${m.lab}:${m.tingkat}`, user_id: u, lab: m.lab, tingkat: m.tingkat },
+          table: 'tiers_passed',
+          row: { id: `${u}:${m.lab}:${m.tingkat}`, user_id: u, lab: m.lab, tier: m.tingkat },
         },
         {
           table: 'lab_meta',
@@ -157,7 +157,7 @@ async function pullAndMerge(u: string): Promise<boolean> {
     const [levels, labMeta, tingkat, days, stats, owned] = await Promise.all([
       supabase.from('level_mastery').select('*').eq('user_id', u),
       supabase.from('lab_meta').select('*').eq('user_id', u),
-      supabase.from('tingkat_passed').select('*').eq('user_id', u),
+      supabase.from('tiers_passed').select('*').eq('user_id', u),
       supabase.from('active_days').select('*').eq('user_id', u),
       supabase.from('user_stats').select('*').eq('user_id', u).maybeSingle(),
       supabase.from('owned_stickers').select('*').eq('user_id', u),

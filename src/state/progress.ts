@@ -10,7 +10,7 @@ import type {
   LabMetaRow,
   LevelMasteryRow,
   OwnedStickerRow,
-  TingkatPassedRow,
+  TiersPassedRow,
   UserStatsRow,
 } from '@/lib/supabase';
 
@@ -94,7 +94,7 @@ function emit(m: ProgressMutation) {
 export type RemoteProgress = {
   levels: LevelMasteryRow[];
   labMeta: LabMetaRow[];
-  tingkat: TingkatPassedRow[];
+  tingkat: TiersPassedRow[];
   days: ActiveDayRow[];
   stats: UserStatsRow | null;
   owned: OwnedStickerRow[];
@@ -242,8 +242,8 @@ export const useProgress = create<ProgressState>()(
           for (const r of remote.tingkat) {
             if (r.deleted) continue;
             const lab = r.lab as Operation;
-            if (!labs[lab] || labs[lab].tingkatPassed.includes(r.tingkat)) continue;
-            labs[lab].tingkatPassed = [...labs[lab].tingkatPassed, r.tingkat].sort((a, b) => a - b);
+            if (!labs[lab] || labs[lab].tingkatPassed.includes(r.tier)) continue;
+            labs[lab].tingkatPassed = [...labs[lab].tingkatPassed, r.tier].sort((a, b) => a - b);
           }
 
           for (const r of remote.labMeta) {

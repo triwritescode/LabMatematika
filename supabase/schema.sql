@@ -114,12 +114,12 @@ create table if not exists public.lab_meta (
   deleted boolean not null default false
 );
 
--- 5c. Tiers passed — one row per tier so the merge is a union.  id = '<uid>:<lab>:<tingkat>'
-create table if not exists public.tingkat_passed (
+-- 5c. Tiers passed — one row per tier so the merge is a union.  id = '<uid>:<lab>:<tier>'
+create table if not exists public.tiers_passed (
   id text primary key,
   user_id uuid not null references auth.users (id) on delete cascade,
   lab text not null,
-  tingkat int not null,
+  tier int not null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   deleted boolean not null default false
@@ -162,7 +162,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats', 'owned_stickers']
+  foreach t in array array['level_mastery', 'lab_meta', 'tiers_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists "%s_own_rows" on public.%I', t, t);
@@ -186,7 +186,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tingkat_passed', 'active_days', 'user_stats', 'owned_stickers']
+  foreach t in array array['level_mastery', 'lab_meta', 'tiers_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     if not exists (
       select 1 from pg_publication_tables
