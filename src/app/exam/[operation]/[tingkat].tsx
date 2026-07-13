@@ -14,7 +14,7 @@ import { MaxContentWidth, Spacing } from '@/constants/theme';
 import { getLevel } from '@/curriculum';
 import { buildExam, ExamAnswer, judgeExam } from '@/curriculum/exam';
 import { rankFor } from '@/curriculum/mastery';
-import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
+import { Operation } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { useProgress } from '@/state/progress';
@@ -167,7 +167,7 @@ export default function Ujian() {
             {strings.ujianRules}
           </ThemedText>
           <ThemedText style={styles.question}>
-            {question.a} {OPERATION_SYMBOL[question.lab]} {question.b} = {input || '…'}
+            {question.prompt} = {input || '…'}
           </ThemedText>
         </View>
 

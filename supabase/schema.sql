@@ -199,6 +199,50 @@ end;
 $$;
 
 -- ============================================================================
+-- 5g. Question bank (shared, read-only content).
+--
+-- The curriculum is re-keyed from the authored CSV bank (curriculum/*.csv →
+-- src/curriculum/bank.data.ts, the offline bundle). This table lets the bank be
+-- UPDATED without an app release: clients pull rows changed since their last
+-- watermark (updated_at) into an AsyncStorage cache that overlays the bundle
+-- (src/curriculum/bank.ts). Content is global (not per-user): every signed-in or
+-- anonymous client may READ it; writes go only through the service-role seed
+-- script (scripts/seed-questions.mjs), never the app.
+-- ============================================================================
+create table if not exists public.questions (
+  code text primary key,          -- stable CSV id, e.g. 'ADD0000000000001'
+  level_id text not null,         -- matches Level.id in the app
+  lab text not null,              -- 'add' | 'sub' | 'mul' | 'div'
+  tingkat int not null default 1,
+  skill text not null,            -- CSV SKILL (the level's display label)
+  urutan int not null default 1,
+  prompt text not null,           -- display text, e.g. '0 ÷ 1'
+  answer int not null,
+  difficulty text not null check (difficulty in ('mudah', 'sedang', 'sulit')),
+  explanation text not null default '',
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now(),
+  deleted boolean not null default false
+);
+
+create index if not exists questions_level_id_idx on public.questions (level_id);
+create index if not exists questions_updated_at_idx on public.questions (updated_at);
+
+drop trigger if exists questions_touch_updated_at on public.questions;
+create trigger questions_touch_updated_at
+  before update on public.questions
+  for each row execute function public.touch_updated_at();
+
+-- RLS: read-only to everyone (anon + authenticated); no client write policy, so
+-- inserts/updates require the service role (the seed script).
+alter table public.questions enable row level security;
+
+drop policy if exists "questions_read_all" on public.questions;
+create policy "questions_read_all"
+  on public.questions for select
+  using (true);
+
+-- ============================================================================
 -- 6. Friends (Add Friend feature).
 --
 -- Social/online feature — the first place a user reads *another* user's data.

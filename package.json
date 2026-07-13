@@ -49,6 +49,8 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "build:bank": "node ./scripts/build-question-bank.mjs",
+    "seed:questions": "node --env-file-if-exists=.env.local ./scripts/seed-questions.mjs",
     "build": "cd ./android && ./gradlew assembleRelease && cd .."
   },
   "private": true

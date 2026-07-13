@@ -3,6 +3,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { priceOf } from '@/constants/stickers';
+import { ALL_LEVELS, tingkatsForLab } from '@/curriculum';
 import { clampMastery, masteryDelta, rankFor } from '@/curriculum/mastery';
 import { LabProgress, Operation } from '@/curriculum/types';
 import type {
@@ -283,10 +284,13 @@ export const useProgress = create<ProgressState>()(
     {
       name: 'labmatematika-progress',
       storage: createJSONStorage(() => AsyncStorage),
-      version: 2,
+      version: 3,
       // v0 → v1: seed the day-history from the last recorded active day so
       // existing users keep their current streak instead of resetting to 0.
       // v1 → v2: introduce the owned-stickers set (empty for existing users).
+      // v2 → v3: curriculum re-keyed from the CSV bank — level ids and the
+      // tingkat ladder changed. Prune orphaned mastery keys / passed tingkats
+      // that no longer exist so stale entries don't linger in the store.
       migrate: (persisted: any, version) => {
         if (version < 1 && persisted && !persisted.activeDates) {
           const last: string | undefined = persisted?.streak?.lastActiveDate;
@@ -294,6 +298,22 @@ export const useProgress = create<ProgressState>()(
         }
         if (version < 2 && persisted && !persisted.ownedStickers) {
           persisted.ownedStickers = [];
+        }
+        if (version < 3 && persisted?.labs) {
+          const validIds = new Set(ALL_LEVELS.map((l) => l.id));
+          for (const lab of Object.keys(persisted.labs) as Operation[]) {
+            const lp = persisted.labs[lab];
+            if (!lp) continue;
+            if (lp.levels) {
+              for (const id of Object.keys(lp.levels)) {
+                if (!validIds.has(id)) delete lp.levels[id];
+              }
+            }
+            if (Array.isArray(lp.tingkatPassed)) {
+              const validTingkats = new Set(tingkatsForLab(lab));
+              lp.tingkatPassed = lp.tingkatPassed.filter((t: number) => validTingkats.has(t));
+            }
+          }
         }
         return persisted;
       },

@@ -6,6 +6,7 @@ import { useColorScheme } from 'react-native';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
 import { ErrorFallback } from '@/components/error-fallback';
+import { hydrateBankCache, refreshBankFromRemote } from '@/curriculum/bank';
 import { useAuth } from '@/state/auth';
 
 // expo-router renders this instead of a white screen when any child route
@@ -53,6 +54,13 @@ export default function RootLayout() {
   useEffect(() => {
     init();
   }, [init]);
+
+  // Question bank: layer the persisted remote cache over the bundled questions,
+  // then (best-effort, offline-safe) pull any updates. Bank is global content,
+  // so this runs regardless of auth; foreground re-pulls are handled in sync.ts.
+  useEffect(() => {
+    void hydrateBankCache().then(() => refreshBankFromRemote());
+  }, []);
 
   useEffect(() => {
     if (status !== 'loading') {

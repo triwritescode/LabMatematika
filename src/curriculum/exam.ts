@@ -1,25 +1,38 @@
-import { getLevel, levelsForTingkat, makeQuestion } from './index';
-import { Level, Operation, Question } from './types';
+import { questionsForLevel } from './bank';
+import { getLevel, levelsForTingkat } from './index';
+import { BankQuestion, Difficulty, DIFF_FOR, Operation, Question } from './types';
 
-// Ujian Kenaikan Tingkat (specs §4.3): 10 questions covering all levels of the
-// tingkat, test conditions (no hints/explanations/re-queue), NO timer.
+// Ujian Kenaikan Tingkat (specs §4.3): test conditions (no hints/explanations/
+// re-queue), NO timer. Per the bank refactor the exam draws only the hardest
+// authored questions: 15 Sulit questions spread across the tingkat's skills.
 
-export const EXAM_SIZE = 10;
-export const EXAM_PASS_CORRECT = 9; // ≥ 9/10
+export const EXAM_SIZE = 15;
+export const EXAM_PASS_CORRECT = 13; // ≥ 13/15
 export const EXAM_MAX_CORE_MISSES = 1; // ≤ 1 miss on core levels
 
+// Prefer Sulit; fall back to Sedang then Mudah only if a lab lacks enough Sulit.
+const TIER_ORDER: Difficulty[] = ['sulit', 'sedang', 'mudah'];
+
+function toQuestion(q: BankQuestion): Question {
+  return { ...q, diff: DIFF_FOR[q.difficulty] };
+}
+
 export function buildExam(lab: Operation, tingkat: number): Question[] {
-  const levels = levelsForTingkat(lab, tingkat);
-  const questions: Question[] = [];
-  // Cover every level at least once, core levels twice where room allows.
-  const pool: Level[] = [...levels, ...levels.filter((l) => l.isCore)];
-  while (pool.length < EXAM_SIZE) pool.push(levels[pool.length % levels.length]);
-  shuffle(pool);
-  const seen = new Set<string>();
-  for (const level of pool.slice(0, EXAM_SIZE)) {
-    questions.push(makeQuestion(level, 0.6 + Math.random() * 0.3, seen));
+  const levelIds = levelsForTingkat(lab, tingkat).map((l) => l.id);
+  const chosen: BankQuestion[] = [];
+  const used = new Set<string>();
+  for (const tier of TIER_ORDER) {
+    if (chosen.length >= EXAM_SIZE) break;
+    const pool = levelIds
+      .flatMap((id) => questionsForLevel(id, tier))
+      .filter((q) => !used.has(q.code));
+    for (const q of shuffle(pool)) {
+      if (chosen.length >= EXAM_SIZE) break;
+      chosen.push(q);
+      used.add(q.code);
+    }
   }
-  return questions;
+  return shuffle(chosen).map(toQuestion);
 }
 
 export type ExamAnswer = { question: Question; correct: boolean };
@@ -57,9 +70,11 @@ function isCore(levelId: string): boolean {
   return getLevel(levelId).isCore;
 }
 
-function shuffle<T>(arr: T[]): void {
-  for (let i = arr.length - 1; i > 0; i--) {
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    [a[i], a[j]] = [a[j], a[i]];
   }
+  return a;
 }

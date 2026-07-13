@@ -12,10 +12,8 @@ import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
 import { createSampler, getLevel } from '@/curriculum';
-import { initialDiff, nextDiff } from '@/curriculum/adaptive';
 import { sessionDiamonds } from '@/curriculum/mastery';
-import { explain } from '@/curriculum/explain';
-import { Operation, OPERATION_SYMBOL, Question } from '@/curriculum/types';
+import { Operation, Question } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { useProgress } from '@/state/progress';
@@ -40,13 +38,10 @@ export default function LatihanTerarah() {
   const masteryNow = useProgress((s) => s.labs[level.lab].levels[level.id]?.mastery ?? 0);
   const [masteryStart, setMasteryStart] = useState(masteryNow);
 
-  // Per-session sampler: unique, evenly-spread pairs — no repeats within a
-  // Latihan, no clustering at small numbers.
+  // Per-session sampler: draws authored questions from the bank, mixed
+  // difficulty, no repeats within a Latihan until the level's pool is exhausted.
   const [sampler, setSampler] = useState(() => createSampler(level));
-  const [diff, setDiff] = useState(() => initialDiff(masteryNow));
-  const [question, setQuestion] = useState<Question>(() =>
-    sampler.next(initialDiff(masteryNow))
-  );
+  const [question, setQuestion] = useState<Question>(() => sampler.next());
   const [asked, setAsked] = useState(1); // fresh questions served
   const [answered, setAnswered] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
@@ -83,14 +78,13 @@ export default function LatihanTerarah() {
       }
       setPhase('wrong');
     }
-    setDiff((d) => nextDiff(d, correct, correct ? streak + 1 : 0));
   }
 
   function advance() {
     setInput('');
     setShowSteps(false);
     if (asked < SESSION_SIZE) {
-      setQuestion(sampler.next(diff));
+      setQuestion(sampler.next());
       setAsked((n) => n + 1);
       setIsRetry(false);
       setPhase('question');
@@ -128,11 +122,9 @@ export default function LatihanTerarah() {
   function restart() {
     awarded.current = false;
     setMasteryStart(masteryNow);
-    const d = initialDiff(masteryNow);
-    setDiff(d);
     const fresh = createSampler(level);
     setSampler(fresh);
-    setQuestion(fresh.next(d));
+    setQuestion(fresh.next());
     setAsked(1);
     setAnswered(0);
     setCorrectCount(0);
@@ -213,7 +205,7 @@ export default function LatihanTerarah() {
 
         <View style={styles.questionArea}>
           <ThemedText style={styles.question}>
-            {question.a} {OPERATION_SYMBOL[level.lab]} {question.b} = {input || '…'}
+            {question.prompt} = {input || '…'}
           </ThemedText>
 
           {phase === 'correct' && (
@@ -238,11 +230,7 @@ export default function LatihanTerarah() {
                 <ScrollView
                   style={[styles.steps, { backgroundColor: theme.backgroundElement }]}
                   contentContainerStyle={styles.stepsContent}>
-                  {explain(level.explainId, question.a, question.b).map((step, i) => (
-                    <ThemedText key={i} type="small">
-                      {i + 1}. {step}
-                    </ThemedText>
-                  ))}
+                  <ThemedText type="small">{question.explanation}</ThemedText>
                 </ScrollView>
               ) : (
                 <Pressable

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, type NativeEventSubscription } from 'react-native';
 
+import { refreshBankFromRemote } from '@/curriculum/bank';
 import { supabase } from '@/lib/supabase';
 import {
   LABS,
@@ -226,6 +227,9 @@ async function syncNow(): Promise<void> {
   const u = uid;
   const now = Date.now();
   if (!pulled || now - lastPullAt > PULL_MIN_INTERVAL_MS) {
+    // Refresh the shared question bank alongside the per-user pull (offline-safe,
+    // no-op when unchanged). Decoupled from the outbox — global content.
+    void refreshBankFromRemote();
     const ok = await pullAndMerge(u);
     if (ok) {
       lastPullAt = now;
