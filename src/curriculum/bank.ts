@@ -32,9 +32,9 @@ function rebuild(remote: BankQuestion[]): void {
   merged = next;
   const grouped = new Map<string, BankQuestion[]>();
   for (const q of merged.values()) {
-    const list = grouped.get(q.levelId) ?? [];
+    const list = grouped.get(q.skillId) ?? [];
     list.push(q);
-    grouped.set(q.levelId, list);
+    grouped.set(q.skillId, list);
   }
   byLevel = grouped;
 }
@@ -55,9 +55,9 @@ export async function hydrateBankCache(): Promise<void> {
   rebuild(await readCache());
 }
 
-/** All bank questions for a level, optionally filtered to one difficulty tier. */
-export function questionsForLevel(levelId: string, difficulty?: Difficulty): BankQuestion[] {
-  const list = byLevel.get(levelId) ?? [];
+/** All bank questions for a skill, optionally filtered to one difficulty level. */
+export function questionsForLevel(skillId: string, difficulty?: Difficulty): BankQuestion[] {
+  const list = byLevel.get(skillId) ?? [];
   return difficulty ? list.filter((q) => q.difficulty === difficulty) : list;
 }
 
@@ -65,7 +65,7 @@ export function questionsForLevel(levelId: string, difficulty?: Difficulty): Ban
 // tombstone, handled by the caller.
 type RemoteRow = {
   code: string;
-  level_id: string;
+  skill_id: string;
   lab: BankQuestion['lab'];
   prompt: string;
   answer: number;
@@ -85,7 +85,7 @@ export async function refreshBankFromRemote(): Promise<void> {
   try {
     const { data, error } = await supabase
       .from('questions')
-      .select('code, level_id, lab, prompt, answer, difficulty, explanation, updated_at, deleted')
+      .select('code, skill_id, lab, prompt, answer, difficulty, explanation, updated_at, deleted')
       .gt('updated_at', watermark);
     if (error || !data) return;
     rows = data as RemoteRow[];
@@ -103,7 +103,7 @@ export async function refreshBankFromRemote(): Promise<void> {
     else
       cache.set(r.code, {
         code: r.code,
-        levelId: r.level_id,
+        skillId: r.skill_id,
         lab: r.lab,
         prompt: r.prompt,
         answer: r.answer,

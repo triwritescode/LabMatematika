@@ -10,15 +10,15 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
-import { levelsForTingkat, levelsForLab, tingkatsForLab } from '@/curriculum';
+import { skillsForLevel, skillsForLab, levelsForLab } from '@/curriculum';
 import {
-  currentTingkat,
+  currentLevel,
   isExamReady,
-  isLevelUnlocked,
+  isSkillUnlocked,
   labMasteryPercent,
   masteryBand,
 } from '@/curriculum/mastery';
-import { Level, Operation, OPERATION_SYMBOL, Tipe } from '@/curriculum/types';
+import { Skill, Operation, OPERATION_SYMBOL, Tipe } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
 import { useProgress } from '@/state/progress';
@@ -47,14 +47,14 @@ export default function PetaKeahlian() {
   const lab = operation as Operation;
   const progress = useProgress((s) => s.labs[lab]);
   const colors = LabColors[lab];
-  const tingkats = tingkatsForLab(lab);
-  const activeTingkat = currentTingkat(progress, lab);
-  const overallPercent = labMasteryPercent(progress, levelsForLab(lab));
+  const levels = levelsForLab(lab);
+  const activeLevel = currentLevel(progress, lab);
+  const overallPercent = labMasteryPercent(progress, skillsForLab(lab));
 
-  const [selectedTingkat, setSelectedTingkat] = useState(activeTingkat);
-  const selectedLevels = levelsForTingkat(lab, selectedTingkat);
-  const selectedPassed = progress.tingkatPassed.includes(selectedTingkat);
-  const selectedReachable = selectedTingkat <= activeTingkat;
+  const [selectedLevel, setSelectedLevel] = useState(activeLevel);
+  const selectedSkills = skillsForLevel(lab, selectedLevel);
+  const selectedPassed = progress.levelsPassed.includes(selectedLevel);
+  const selectedReachable = selectedLevel <= activeLevel;
 
   return (
     <ThemedView style={styles.container}>
@@ -97,20 +97,20 @@ export default function PetaKeahlian() {
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.tabsContent}>
-            {tingkats.map((tingkat) => {
-              const passed = progress.tingkatPassed.includes(tingkat);
-              const reachable = tingkat <= activeTingkat;
-              const active = tingkat === selectedTingkat;
+            {levels.map((level) => {
+              const passed = progress.levelsPassed.includes(level);
+              const reachable = level <= activeLevel;
+              const active = level === selectedLevel;
               return (
                 <Pressable
-                  key={tingkat}
-                  onPress={() => setSelectedTingkat(tingkat)}
+                  key={level}
+                  onPress={() => setSelectedLevel(level)}
                   style={({ pressed }) => [styles.tab, pressed && styles.rowPressed]}>
                   <ThemedText
                     type={active ? 'smallBold' : 'small'}
                     themeColor={active ? undefined : 'textSecondary'}
                     style={active && { color: colors.main }}>
-                    {strings.tingkat(tingkat)}
+                    {strings.level(level)}
                   </ThemedText>
                   <View style={styles.tabSub}>
                     {!reachable && <Lock size={11} color={theme.textSecondary} />}
@@ -119,7 +119,7 @@ export default function PetaKeahlian() {
                       {passed
                         ? 'Selesai'
                         : reachable
-                          ? `${levelsForTingkat(lab, tingkat).length} level`
+                          ? `${skillsForLevel(lab, level).length} Keahlian`
                           : 'Terkunci'}
                     </ThemedText>
                   </View>
@@ -138,12 +138,12 @@ export default function PetaKeahlian() {
                 { left: TIMELINE_COL_WIDTH / 2, borderColor: theme.backgroundSelected },
               ]}
             />
-            {selectedLevels.map((level) => (
-              <TimelineNode key={level.id} level={level} reachable={selectedReachable} />
+            {selectedSkills.map((skill) => (
+              <TimelineNode key={skill.id} skill={skill} reachable={selectedReachable} />
             ))}
             <TimelineExamNode
               lab={lab}
-              tingkat={selectedTingkat}
+              level={selectedLevel}
               passed={selectedPassed}
               reachable={selectedReachable}
             />
@@ -154,24 +154,24 @@ export default function PetaKeahlian() {
   );
 }
 
-const TimelineNode = memo(function TimelineNode({ level, reachable }: { level: Level; reachable: boolean }) {
+const TimelineNode = memo(function TimelineNode({ skill, reachable }: { skill: Skill; reachable: boolean }) {
   const router = useRouter();
   const theme = useTheme();
-  const progress = useProgress((s) => s.labs[level.lab]);
-  const colors = LabColors[level.lab];
-  const mastery = progress.levels[level.id]?.mastery ?? 0;
-  const unlocked = reachable && isLevelUnlocked(progress, level);
+  const progress = useProgress((s) => s.labs[skill.lab]);
+  const colors = LabColors[skill.lab];
+  const mastery = progress.skills[skill.id]?.mastery ?? 0;
+  const unlocked = reachable && isSkillUnlocked(progress, skill);
   const band = masteryBand(mastery);
   const mastered = band === 'dikuasai';
-  const TipeIcon = TIPE_ICON[level.tipe];
+  const TipeIcon = TIPE_ICON[skill.tipe];
 
   return (
     <Pressable
       disabled={!unlocked}
-      onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
+      onPress={() => router.push(`/practice/${skill.lab}/${skill.id}`)}
       accessibilityRole="button"
       accessibilityState={{ disabled: !unlocked }}
-      accessibilityLabel={`${level.labelId}, ${!unlocked ? '—' : mastered ? 'Selesai' : `${mastery}%`}`}
+      accessibilityLabel={`${skill.labelId}, ${!unlocked ? '—' : mastered ? 'Selesai' : `${mastery}%`}`}
       style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}>
       <View style={styles.rowIconCol}>
         <View
@@ -189,7 +189,7 @@ const TimelineNode = memo(function TimelineNode({ level, reachable }: { level: L
           ) : (
             <TipeIcon color={colors.main} size={20} />
           )}
-          {level.isCore && (
+          {skill.isCore && (
             <View
               style={[styles.coreBadge, { backgroundColor: unlocked ? '#F59E0B' : theme.backgroundSelected }]}>
               <Star color="#fff" fill="#fff" size={10} />
@@ -207,10 +207,10 @@ const TimelineNode = memo(function TimelineNode({ level, reachable }: { level: L
         ]}>
         <View style={styles.cardMain}>
           <ThemedText type="smallBold" themeColor={unlocked ? undefined : 'textSecondary'}>
-            {level.labelId}
+            {skill.labelId}
           </ThemedText>
           <ThemedText type="small" themeColor="textSecondary">
-            {TIPE_LABEL[level.tipe]}
+            {TIPE_LABEL[skill.tipe]}
           </ThemedText>
         </View>
         <ThemedText
@@ -226,12 +226,12 @@ const TimelineNode = memo(function TimelineNode({ level, reachable }: { level: L
 
 const TimelineExamNode = memo(function TimelineExamNode({
   lab,
-  tingkat,
+  level,
   passed,
   reachable,
 }: {
   lab: Operation;
-  tingkat: number;
+  level: number;
   passed: boolean;
   reachable: boolean;
 }) {
@@ -239,13 +239,13 @@ const TimelineExamNode = memo(function TimelineExamNode({
   const theme = useTheme();
   const progress = useProgress((s) => s.labs[lab]);
   const colors = LabColors[lab];
-  const ready = reachable && !passed && isExamReady(progress, lab, tingkat);
+  const ready = reachable && !passed && isExamReady(progress, lab, level);
   const active = passed || ready;
 
   return (
     <Pressable
       disabled={!ready}
-      onPress={() => router.push(`/exam/${lab}/${tingkat}`)}
+      onPress={() => router.push(`/exam/${lab}/${level}`)}
       accessibilityRole="button"
       accessibilityState={{ disabled: !ready }}
       accessibilityLabel={strings.ujian}
@@ -280,7 +280,7 @@ const TimelineExamNode = memo(function TimelineExamNode({
             {strings.ujian}
           </ThemedText>
           <ThemedText type="small" themeColor="textSecondary">
-            {passed ? strings.ujianRules : ready ? strings.ujianReady : strings.ujianLocked(tingkat)}
+            {passed ? strings.ujianRules : ready ? strings.ujianReady : strings.ujianLocked(level)}
           </ThemedText>
         </View>
       </View>

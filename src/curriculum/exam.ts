@@ -1,14 +1,14 @@
 import { questionsForLevel } from './bank';
-import { getLevel, levelsForTingkat } from './index';
+import { getSkill, skillsForLevel } from './index';
 import { BankQuestion, Difficulty, DIFF_FOR, Operation, Question } from './types';
 
-// Ujian Kenaikan Tingkat (specs §4.3): test conditions (no hints/explanations/
+// Ujian Kenaikan Level (specs §4.3): test conditions (no hints/explanations/
 // re-queue), NO timer. Per the bank refactor the exam draws only the hardest
-// authored questions: 15 Sulit questions spread across the tingkat's skills.
+// authored questions: 15 Sulit questions spread across the level's skills.
 
 export const EXAM_SIZE = 15;
 export const EXAM_PASS_CORRECT = 13; // ≥ 13/15
-export const EXAM_MAX_CORE_MISSES = 1; // ≤ 1 miss on core levels
+export const EXAM_MAX_CORE_MISSES = 1; // ≤ 1 miss on core skills
 
 // Prefer Sulit; fall back to Sedang then Mudah only if a lab lacks enough Sulit.
 const TIER_ORDER: Difficulty[] = ['sulit', 'sedang', 'mudah'];
@@ -17,14 +17,14 @@ function toQuestion(q: BankQuestion): Question {
   return { ...q, diff: DIFF_FOR[q.difficulty] };
 }
 
-export function buildExam(lab: Operation, tingkat: number): Question[] {
-  const levelIds = levelsForTingkat(lab, tingkat).map((l) => l.id);
+export function buildExam(lab: Operation, level: number): Question[] {
+  const levelIds = skillsForLevel(lab, level).map((l) => l.id);
   const chosen: BankQuestion[] = [];
   const used = new Set<string>();
-  for (const tier of TIER_ORDER) {
+  for (const level of TIER_ORDER) {
     if (chosen.length >= EXAM_SIZE) break;
     const pool = levelIds
-      .flatMap((id) => questionsForLevel(id, tier))
+      .flatMap((id) => questionsForLevel(id, level))
       .filter((q) => !used.has(q.code));
     for (const q of shuffle(pool)) {
       if (chosen.length >= EXAM_SIZE) break;
@@ -41,22 +41,22 @@ export type ExamVerdict = {
   passed: boolean;
   correctCount: number;
   coreMisses: number;
-  /** Weakest level to route back to Latihan Terarah on failure. */
+  /** Weakest skill to route back to Latihan Terarah on failure. */
   failedLevelId?: string;
 };
 
 export function judgeExam(answers: ExamAnswer[]): ExamVerdict {
   const correctCount = answers.filter((a) => a.correct).length;
   const misses = answers.filter((a) => !a.correct);
-  const coreMisses = misses.filter((a) => isCore(a.question.levelId)).length;
+  const coreMisses = misses.filter((a) => isCore(a.question.skillId)).length;
   const passed = correctCount >= EXAM_PASS_CORRECT && coreMisses <= EXAM_MAX_CORE_MISSES;
 
   let failedLevelId: string | undefined;
   if (!passed && misses.length > 0) {
-    // Route to the level missed most often (core misses win ties).
+    // Route to the skill missed most often (core misses win ties).
     const counts = new Map<string, number>();
     for (const m of misses) {
-      counts.set(m.question.levelId, (counts.get(m.question.levelId) ?? 0) + 1);
+      counts.set(m.question.skillId, (counts.get(m.question.skillId) ?? 0) + 1);
     }
     failedLevelId = [...counts.entries()].sort(
       (x, y) => y[1] - x[1] || Number(isCore(y[0])) - Number(isCore(x[0]))
@@ -66,8 +66,8 @@ export function judgeExam(answers: ExamAnswer[]): ExamVerdict {
   return { passed, correctCount, coreMisses, failedLevelId };
 }
 
-function isCore(levelId: string): boolean {
-  return getLevel(levelId).isCore;
+function isCore(skillId: string): boolean {
+  return getSkill(skillId).isCore;
 }
 
 function shuffle<T>(arr: T[]): T[] {

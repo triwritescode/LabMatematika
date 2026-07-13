@@ -1,13 +1,13 @@
 import { questionsForLevel } from './bank';
-import { DIFF_FOR, Level, Question } from './types';
+import { DIFF_FOR, Skill, Question } from './types';
 
 // Session question sampler. Serves authored questions from the CSV bank
 // (bank.ts) instead of generating them. Practice mixes all difficulty tiers
 // (Mudah/Sedang/Sulit) — no adaptive climb — and never repeats a question within
-// a session until the level's pool is exhausted, then reshuffles.
+// a session until the skill's pool is exhausted, then reshuffles.
 
 export type Sampler = {
-  /** Draw the next question for this level. */
+  /** Draw the next question for this skill. */
   next: () => Question;
 };
 
@@ -20,20 +20,20 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export function createSampler(level: Level): Sampler {
-  const pool = questionsForLevel(level.id);
+export function createSampler(skill: Skill): Sampler {
+  const pool = questionsForLevel(skill.id);
   let queue = shuffle(pool);
   let i = 0;
 
   return {
     next(): Question {
       if (pool.length === 0) {
-        // No questions for this level (bank not yet covering it). Degrade
+        // No questions for this skill (bank not yet covering it). Degrade
         // gracefully with a placeholder rather than crashing the screen.
         return {
-          code: `${level.id}:empty`,
-          levelId: level.id,
-          lab: level.lab,
+          code: `${skill.id}:empty`,
+          skillId: skill.id,
+          lab: skill.lab,
           prompt: '—',
           answer: 0,
           difficulty: 'mudah',

@@ -16,7 +16,7 @@ create table if not exists public.profiles (
   updated_at timestamptz not null default now()
 );
 
--- 2. Row Level Security: a user can only see/edit their own row.
+-- 2. Row Skill Security: a user can only see/edit their own row.
 alter table public.profiles enable row level security;
 
 drop policy if exists "profiles_select_own" on public.profiles;
@@ -77,7 +77,7 @@ create trigger profiles_touch_updated_at
 -- ============================================================================
 -- 5. Progress sync (Legend-State syncedSupabase, offline-first).
 --
--- Design: row-level last-write-wins keyed by a DETERMINISTIC text `id`, so the
+-- Design: row-skill last-write-wins keyed by a DETERMINISTIC text `id`, so the
 -- same fact on two devices maps to the same row (converges, idempotent). Additive
 -- data (tiers passed, practiced days) is modeled as SEPARATE rows so the merge is
 -- a natural UNION and nothing is ever lost. Every table carries updated_at +
@@ -87,12 +87,12 @@ create trigger profiles_touch_updated_at
 -- Helper: apply the shared own-rows RLS + updated_at trigger to a progress table.
 -- (Written inline per table below — no dynamic SQL, to stay copy-paste friendly.)
 
--- 5a. Per-(user, level) mastery.  id = '<uid>:<levelId>'
-create table if not exists public.level_mastery (
+-- 5a. Per-(user, skill) mastery.  id = '<uid>:<skillId>'
+create table if not exists public.skill_mastery (
   id text primary key,
   user_id uuid not null references auth.users (id) on delete cascade,
   lab text not null,
-  level_id text not null,
+  skill_id text not null,
   mastery int not null default 0,
   attempts int not null default 0,
   last_practiced_at timestamptz,
@@ -114,12 +114,12 @@ create table if not exists public.lab_meta (
   deleted boolean not null default false
 );
 
--- 5c. Tiers passed — one row per tier so the merge is a union.  id = '<uid>:<lab>:<tier>'
-create table if not exists public.tiers_passed (
+-- 5c. Tiers passed — one row per level so the merge is a union.  id = '<uid>:<lab>:<level>'
+create table if not exists public.levels_passed (
   id text primary key,
   user_id uuid not null references auth.users (id) on delete cascade,
   lab text not null,
-  tier int not null,
+  level int not null,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   deleted boolean not null default false
@@ -162,7 +162,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tiers_passed', 'active_days', 'user_stats', 'owned_stickers']
+  foreach t in array array['skill_mastery', 'lab_meta', 'levels_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists "%s_own_rows" on public.%I', t, t);
@@ -186,7 +186,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['level_mastery', 'lab_meta', 'tiers_passed', 'active_days', 'user_stats', 'owned_stickers']
+  foreach t in array array['skill_mastery', 'lab_meta', 'levels_passed', 'active_days', 'user_stats', 'owned_stickers']
   loop
     if not exists (
       select 1 from pg_publication_tables
@@ -211,11 +211,11 @@ $$;
 -- ============================================================================
 create table if not exists public.questions (
   code text primary key,          -- stable CSV id, e.g. 'ADD0000000000001'
-  level_id text not null,         -- matches Level.id in the app
+  skill_id text not null,         -- matches Skill.id in the app
   lab text not null,              -- 'add' | 'sub' | 'mul' | 'div'
-  tingkat int not null default 1,
-  skill text not null,            -- CSV SKILL (the level's display label)
-  urutan int not null default 1,
+  level int not null default 1,
+  skill text not null,            -- CSV SKILL (the skill's display label)
+  ordinal int not null default 1,
   prompt text not null,           -- display text, e.g. '0 ÷ 1'
   answer int not null,
   difficulty text not null check (difficulty in ('mudah', 'sedang', 'sulit')),
@@ -225,7 +225,7 @@ create table if not exists public.questions (
   deleted boolean not null default false
 );
 
-create index if not exists questions_level_id_idx on public.questions (level_id);
+create index if not exists questions_skill_id_idx on public.questions (skill_id);
 create index if not exists questions_updated_at_idx on public.questions (updated_at);
 
 drop trigger if exists questions_touch_updated_at on public.questions;

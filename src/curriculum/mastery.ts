@@ -1,9 +1,9 @@
-import { levelsForTingkat, tingkatsForLab } from './index';
-import { LabProgress, Level, Operation } from './types';
+import { skillsForLevel, levelsForLab } from './index';
+import { LabProgress, Skill, Operation } from './types';
 
 // Mastery meter math + unlock/readiness rules (specs §5).
 
-export const UNLOCK_THRESHOLD = 70; // prereqs ≥ 70% unlock the next level
+export const UNLOCK_THRESHOLD = 70; // prereqs ≥ 70% unlock the next skill
 export const MASTERED_THRESHOLD = 80;
 
 export type MasteryBand = 'belum' | 'sedang' | 'dikuasai';
@@ -31,7 +31,7 @@ export function clampMastery(value: number): number {
 }
 
 // Diamonds earned from a practice session: 1 per correct answer while the child
-// is still LEARNING the level, but only a quarter (min 1) once the level is
+// is still LEARNING the skill, but only a quarter (min 1) once the skill is
 // already mastered at the start of the session. Keeps the reward tied to real
 // progress and stops farming diamonds by re-grinding a finished skill.
 export const REVIEW_DIAMOND_FACTOR = 0.25;
@@ -44,38 +44,38 @@ export function sessionDiamonds(correctCount: number, masteryStart: number): num
   return correctCount;
 }
 
-function masteryOf(progress: LabProgress, levelId: string): number {
-  return progress.levels[levelId]?.mastery ?? 0;
+function masteryOf(progress: LabProgress, skillId: string): number {
+  return progress.skills?.[skillId]?.mastery ?? 0;
 }
 
-export function isLevelUnlocked(progress: LabProgress, level: Level): boolean {
-  // A level also requires its tingkat to be reachable (previous tingkat passed).
-  const tingkats = tingkatsForLab(level.lab);
-  const idx = tingkats.indexOf(level.tingkat);
-  if (idx > 0 && !progress.tingkatPassed.includes(tingkats[idx - 1])) return false;
-  return level.prereqs.every((id) => masteryOf(progress, id) >= UNLOCK_THRESHOLD);
+export function isSkillUnlocked(progress: LabProgress, skill: Skill): boolean {
+  // A skill also requires its level to be reachable (previous level passed).
+  const levels = levelsForLab(skill.lab);
+  const idx = levels.indexOf(skill.level);
+  if (idx > 0 && !progress.levelsPassed.includes(levels[idx - 1])) return false;
+  return skill.prereqs.every((id) => masteryOf(progress, id) >= UNLOCK_THRESHOLD);
 }
 
-/** All levels of the tingkat ≥ 70% → exam unlocked. */
-export function isExamReady(progress: LabProgress, lab: Operation, tingkat: number): boolean {
-  return levelsForTingkat(lab, tingkat).every(
+/** All skills of the level ≥ 70% → exam unlocked. */
+export function isExamReady(progress: LabProgress, lab: Operation, level: number): boolean {
+  return skillsForLevel(lab, level).every(
     (l) => masteryOf(progress, l.id) >= UNLOCK_THRESHOLD
   );
 }
 
-export function labMasteryPercent(progress: LabProgress, levels: Level[]): number {
-  if (levels.length === 0) return 0;
-  const total = levels.reduce((sum, l) => sum + masteryOf(progress, l.id), 0);
-  return Math.round(total / levels.length);
+export function labMasteryPercent(progress: LabProgress, skills: Skill[]): number {
+  if (skills.length === 0) return 0;
+  const total = skills.reduce((sum, l) => sum + masteryOf(progress, l.id), 0);
+  return Math.round(total / skills.length);
 }
 
-/** Current tingkat the child is working on (first unpassed). */
-export function currentTingkat(progress: LabProgress, lab: Operation): number {
-  const tingkats = tingkatsForLab(lab);
-  for (const t of tingkats) {
-    if (!progress.tingkatPassed.includes(t)) return t;
+/** Current level the child is working on (first unpassed). */
+export function currentLevel(progress: LabProgress, lab: Operation): number {
+  const levels = levelsForLab(lab);
+  for (const t of levels) {
+    if (!progress.levelsPassed.includes(t)) return t;
   }
-  return tingkats[tingkats.length - 1];
+  return levels[levels.length - 1];
 }
 
 const RANKS: Record<Operation, string[]> = {
@@ -109,7 +109,7 @@ const RANKS: Record<Operation, string[]> = {
   ],
 };
 
-export function rankFor(lab: Operation, tingkatPassed: number[]): string {
-  const idx = Math.min(tingkatPassed.length, RANKS[lab].length - 1);
+export function rankFor(lab: Operation, levelsPassed: number[]): string {
+  const idx = Math.min(levelsPassed.length, RANKS[lab].length - 1);
   return RANKS[lab][idx];
 }

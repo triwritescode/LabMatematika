@@ -11,7 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
-import { levelsForLab } from '@/curriculum';
+import { skillsForLab } from '@/curriculum';
 import { labMasteryPercent } from '@/curriculum/mastery';
 import { Operation, OPERATION_SYMBOL } from '@/curriculum/types';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
@@ -64,7 +64,7 @@ const LabCard = memo(function LabCard({ lab }: { lab: Operation }) {
   const router = useRouter();
   const progress = useProgress((s) => s.labs[lab]);
   const colors = LabColors[lab];
-  const percent = labMasteryPercent(progress, levelsForLab(lab));
+  const percent = labMasteryPercent(progress, skillsForLab(lab));
 
   return (
     <Pressable

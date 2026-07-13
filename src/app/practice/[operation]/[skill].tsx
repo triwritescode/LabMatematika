@@ -11,7 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
-import { createSampler, getLevel } from '@/curriculum';
+import { createSampler, getSkill } from '@/curriculum';
 import { sessionDiamonds } from '@/curriculum/mastery';
 import { Operation, Question } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
@@ -23,24 +23,24 @@ const SESSION_SIZE = 10;
 type Phase = 'question' | 'correct' | 'wrong' | 'done';
 
 export default function LatihanTerarah() {
-  const { level: levelId } = useLocalSearchParams<{ operation: Operation; level: string }>();
+  const { skill: skillId } = useLocalSearchParams<{ operation: Operation; skill: string }>();
   const router = useRouter();
   const theme = useTheme();
 
-  const level = getLevel(levelId);
-  const colors = LabColors[level.lab];
+  const skill = getSkill(skillId);
+  const colors = LabColors[skill.lab];
 
   const recordAnswer = useProgress((s) => s.recordAnswer);
   const touchStreak = useProgress((s) => s.touchStreak);
   const addDiamonds = useProgress((s) => s.addDiamonds);
   // Guards the once-per-session diamond award against re-runs / restart.
   const awarded = useRef(false);
-  const masteryNow = useProgress((s) => s.labs[level.lab].levels[level.id]?.mastery ?? 0);
+  const masteryNow = useProgress((s) => s.labs[skill.lab].skills[skill.id]?.mastery ?? 0);
   const [masteryStart, setMasteryStart] = useState(masteryNow);
 
   // Per-session sampler: draws authored questions from the bank, mixed
-  // difficulty, no repeats within a Latihan until the level's pool is exhausted.
-  const [sampler, setSampler] = useState(() => createSampler(level));
+  // difficulty, no repeats within a Latihan until the skill's pool is exhausted.
+  const [sampler, setSampler] = useState(() => createSampler(skill));
   const [question, setQuestion] = useState<Question>(() => sampler.next());
   const [asked, setAsked] = useState(1); // fresh questions served
   const [answered, setAnswered] = useState(0);
@@ -59,7 +59,7 @@ export default function LatihanTerarah() {
   function submit() {
     if (!input) return;
     const correct = Number(input) === question.answer;
-    recordAnswer(level.lab, level.id, correct, question.diff, streak);
+    recordAnswer(skill.lab, skill.id, correct, question.diff, streak);
     setAnswered((n) => n + 1);
     if (correct) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -114,7 +114,7 @@ export default function LatihanTerarah() {
     if (phase !== 'done' || awarded.current) return;
     awarded.current = true;
     touchStreak();
-    // Full rate while learning, quarter rate reviewing an already-mastered level.
+    // Full rate while learning, quarter rate reviewing an already-mastered skill.
     const reward = sessionDiamonds(correctCount, masteryStart);
     if (reward > 0) addDiamonds(reward);
   }, [phase, touchStreak, addDiamonds, correctCount, masteryStart]);
@@ -122,7 +122,7 @@ export default function LatihanTerarah() {
   function restart() {
     awarded.current = false;
     setMasteryStart(masteryNow);
-    const fresh = createSampler(level);
+    const fresh = createSampler(skill);
     setSampler(fresh);
     setQuestion(fresh.next());
     setAsked(1);
@@ -191,7 +191,7 @@ export default function LatihanTerarah() {
           </Pressable>
           <View style={styles.headerCenter}>
             <ThemedText type="small" themeColor="textSecondary">
-              {level.labelId}
+              {skill.labelId}
             </ThemedText>
             <ThemedText type="smallBold">{strings.soalOf(progressIndex, totalPlanned)}</ThemedText>
           </View>

@@ -1,6 +1,6 @@
 // Birth-date helpers. The profile stores a date of birth (ISO `YYYY-MM-DD`) and
 // age is derived on demand — so a user's age stays correct over time without any
-// re-entry, and the DOB can later seed starting level / test difficulty.
+// re-entry, and the DOB can later seed starting skill / test difficulty.
 
 export const MIN_AGE = 3;
 export const MAX_AGE = 120;

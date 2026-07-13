@@ -5,7 +5,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-// LAB (Bahasa) → Operation + level-id prefix.
+// LAB (Bahasa) → Operation + skill-id prefix.
 const LAB_TO_OP = {
   PENJUMLAHAN: 'add',
   PENGURANGAN: 'sub',
@@ -58,15 +58,15 @@ function slug(s) {
 }
 
 /**
- * Parse all curriculum/*.csv into levels + questions.
- * `questions` carry the level meta (tingkat/skill/urutan) too, so the seed
+ * Parse all curriculum/*.csv into skills + questions.
+ * `questions` carry the skill meta (level/skill/ordinal) too, so the seed
  * script can populate the remote table; bank.data.ts only keeps the runtime
  * subset (see build-question-bank.mjs).
  */
 export function buildBank(csvDir) {
   const questions = [];
-  const levels = [];
-  const levelById = new Map();
+  const skills = [];
+  const skillById = new Map();
 
   const files = readdirSync(csvDir)
     .filter((f) => f.toLowerCase().endsWith('.csv'))
@@ -93,47 +93,47 @@ export function buildBank(csvDir) {
       explanation: col('EXPLANATION'),
     };
 
-    const urutanByTingkat = new Map();
+    const ordinalByLevel = new Map();
 
     for (const r of rows.slice(headerIdx + 1)) {
       if (!r[ci.code] || !r[ci.code].trim()) continue; // skip blank/spacer rows
       const labName = r[ci.lab].trim();
       const op = LAB_TO_OP[labName];
       if (!op) throw new Error(`Unknown LAB "${labName}" in ${file}`);
-      const tingkat = Number(r[ci.level].trim());
-      const skill = r[ci.skill].trim();
+      const level = Number(r[ci.level].trim());
+      const skillName = r[ci.skill].trim();
       const prompt = r[ci.question].trim();
       const difficulty = DIFFICULTY[r[ci.difficulty].trim()];
       if (!difficulty) throw new Error(`Unknown DIFFICULTY "${r[ci.difficulty]}" in ${file}`);
       const answer = Number(r[ci.answer].trim());
       if (!Number.isFinite(answer)) throw new Error(`Bad ANSWER "${r[ci.answer]}" for ${r[ci.code]}`);
 
-      const levelId = `${op}.${slug(skill)}`;
-      if (!levelById.has(levelId)) {
-        const urutan = (urutanByTingkat.get(tingkat) ?? 0) + 1;
-        urutanByTingkat.set(tingkat, urutan);
-        const prev = levels.filter((l) => l.lab === op && l.tingkat === tingkat).slice(-1)[0];
-        const level = {
-          id: levelId,
+      const skillId = `${op}.${slug(skillName)}`;
+      if (!skillById.has(skillId)) {
+        const ordinal = (ordinalByLevel.get(level) ?? 0) + 1;
+        ordinalByLevel.set(level, ordinal);
+        const prev = skills.filter((s) => s.lab === op && s.level === level).slice(-1)[0];
+        const skill = {
+          id: skillId,
           lab: op,
-          tingkat,
-          urutan,
-          labelId: skill,
+          level,
+          ordinal,
+          labelId: skillName,
           tipe: 'fakta',
           isCore: true,
           prereqs: prev ? [prev.id] : [],
         };
-        levelById.set(levelId, level);
-        levels.push(level);
+        skillById.set(skillId, skill);
+        skills.push(skill);
       }
 
       questions.push({
         code: r[ci.code].trim(),
-        levelId,
+        skillId,
         lab: op,
-        tingkat,
-        skill,
-        urutan: levelById.get(levelId).urutan,
+        level,
+        skill: skillName,
+        ordinal: skillById.get(skillId).ordinal,
         prompt,
         answer,
         difficulty,
@@ -142,5 +142,5 @@ export function buildBank(csvDir) {
     }
   }
 
-  return { levels, questions };
+  return { skills, questions };
 }

@@ -19,9 +19,9 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { AccentColor, MaxContentWidth, Spacing } from '@/constants/theme';
-import { levelsForLab, tingkatsForLab } from '@/curriculum';
-import { isLevelUnlocked, labMasteryPercent, masteryBand } from '@/curriculum/mastery';
-import { LabProgress, Level, Operation, OPERATION_SYMBOL } from '@/curriculum/types';
+import { skillsForLab, levelsForLab } from '@/curriculum';
+import { isSkillUnlocked, labMasteryPercent, masteryBand } from '@/curriculum/mastery';
+import { LabProgress, Skill, Operation, OPERATION_SYMBOL } from '@/curriculum/types';
 import { useTheme } from '@/hooks/use-theme';
 import { LAB_NAMES, strings } from '@/i18n/strings.id';
 import { LABS, useCurrentStreak, useProgress } from '@/state/progress';
@@ -70,11 +70,11 @@ const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
   const theme = useTheme();
   const progress = useProgress((s) => s.labs[lab]);
   const colors = LabColors[lab];
-  const levels = levelsForLab(lab);
-  const percent = labMasteryPercent(progress, levels);
-  const totalTingkat = tingkatsForLab(lab).length;
-  const masteredCount = levels.filter(
-    (level) => masteryBand(progress.levels[level.id]?.mastery ?? 0) === 'dikuasai'
+  const skills = skillsForLab(lab);
+  const percent = labMasteryPercent(progress, skills);
+  const totalLevel = levelsForLab(lab).length;
+  const masteredCount = skills.filter(
+    (skill) => masteryBand(progress.skills[skill.id]?.mastery ?? 0) === 'dikuasai'
   ).length;
   const [expanded, setExpanded] = useState(false);
 
@@ -114,13 +114,13 @@ const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
           <View style={[styles.statChip, { backgroundColor: colors.soft }]}>
             <Layers color={colors.main} size={14} />
             <ThemedText type="small" style={{ color: colors.main }}>
-              {progress.tingkatPassed.length}/{totalTingkat} tingkat
+              {progress.levelsPassed.length}/{totalLevel} Tingkat
             </ThemedText>
           </View>
           <View style={[styles.statChip, { backgroundColor: colors.soft }]}>
             <CheckCircle2 color={colors.main} size={14} />
             <ThemedText type="small" style={{ color: colors.main }}>
-              {masteredCount}/{levels.length} {strings.bandDikuasai.toLowerCase()}
+              {masteredCount}/{skills.length} {strings.bandDikuasai.toLowerCase()}
             </ThemedText>
           </View>
         </View>
@@ -130,7 +130,7 @@ const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
         onPress={() => setExpanded((e) => !e)}
         style={({ pressed }) => [styles.toggleRow, pressed && styles.cardPressed]}>
         <ThemedText type="smallBold" style={{ color: colors.main }}>
-          {expanded ? strings.sembunyikanSkill : strings.lihatSemuaSkill(levels.length)}
+          {expanded ? strings.sembunyikanSkill : strings.lihatSemuaSkill(skills.length)}
         </ThemedText>
         <ChevronDown
           color={colors.main}
@@ -141,14 +141,14 @@ const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
 
       {expanded && (
         <View style={styles.skillList}>
-          {levels.map((level, i) => (
+          {skills.map((skill, i) => (
             <SkillRow
-              key={level.id}
-              level={level}
+              key={skill.id}
+              skill={skill}
               progress={progress}
               colors={colors}
               theme={theme}
-              isLast={i === levels.length - 1}
+              isLast={i === skills.length - 1}
             />
           ))}
         </View>
@@ -158,30 +158,30 @@ const LabSummary = memo(function LabSummary({ lab }: { lab: Operation }) {
 });
 
 const SkillRow = memo(function SkillRow({
-  level,
+  skill,
   progress,
   colors,
   theme,
   isLast,
 }: {
-  level: Level;
+  skill: Skill;
   progress: LabProgress;
   colors: (typeof LabColors)[Operation];
   theme: Theme;
   isLast: boolean;
 }) {
   const router = useRouter();
-  const mastery = progress.levels[level.id]?.mastery ?? 0;
-  const unlocked = isLevelUnlocked(progress, level);
+  const mastery = progress.skills[skill.id]?.mastery ?? 0;
+  const unlocked = isSkillUnlocked(progress, skill);
   const mastered = masteryBand(mastery) === 'dikuasai';
 
   return (
     <Pressable
       disabled={!unlocked}
-      onPress={() => router.push(`/practice/${level.lab}/${level.id}`)}
+      onPress={() => router.push(`/practice/${skill.lab}/${skill.id}`)}
       accessibilityRole="button"
       accessibilityState={{ disabled: !unlocked }}
-      accessibilityLabel={`${level.labelId}, ${!unlocked ? strings.terkunci : mastered ? strings.selesai : `${mastery}%`}`}
+      accessibilityLabel={`${skill.labelId}, ${!unlocked ? strings.terkunci : mastered ? strings.selesai : `${mastery}%`}`}
       style={({ pressed }) => [
         styles.skillRow,
         !isLast && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: theme.backgroundSelected },
@@ -205,7 +205,7 @@ const SkillRow = memo(function SkillRow({
         numberOfLines={1}
         themeColor={unlocked ? undefined : 'textSecondary'}
         style={styles.skillRowLabel}>
-        {level.labelId}
+        {skill.labelId}
       </ThemedText>
       <ThemedText
         type="smallBold"

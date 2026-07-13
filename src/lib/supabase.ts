@@ -19,11 +19,11 @@ if (!supabaseUrl || !supabaseAnonKey) {
 // same fact converges to one row across devices.
 type SyncMeta = { created_at: string; updated_at: string; deleted: boolean };
 
-export type LevelMasteryRow = {
+export type SkillMasteryRow = {
   id: string;
   user_id: string;
   lab: string;
-  level_id: string;
+  skill_id: string;
   mastery: number;
   attempts: number;
   last_practiced_at: string | null;
@@ -38,11 +38,25 @@ export type LabMetaRow = {
   placement_done: boolean;
 } & SyncMeta;
 
-export type TiersPassedRow = {
+export type LevelsPassedRow = {
   id: string;
   user_id: string;
   lab: string;
-  tier: number;
+  level: number;
+} & SyncMeta;
+
+// Global question bank (read-only content; see supabase/schema.sql §5g).
+export type QuestionRow = {
+  code: string;
+  skill_id: string;
+  lab: string;
+  level: number;
+  skill: string;
+  ordinal: number;
+  prompt: string;
+  answer: number;
+  difficulty: 'mudah' | 'sedang' | 'sulit';
+  explanation: string;
 } & SyncMeta;
 
 export type ActiveDayRow = {
@@ -113,12 +127,13 @@ export type Database = {
   public: {
     Tables: {
       profiles: Table<Profile>;
-      level_mastery: Table<LevelMasteryRow>;
+      skill_mastery: Table<SkillMasteryRow>;
       lab_meta: Table<LabMetaRow>;
-      tiers_passed: Table<TiersPassedRow>;
+      levels_passed: Table<LevelsPassedRow>;
       active_days: Table<ActiveDayRow>;
       user_stats: Table<UserStatsRow>;
       owned_stickers: Table<OwnedStickerRow>;
+      questions: Table<QuestionRow>;
       friendships: Table<FriendshipRow>;
     };
     Views: Record<string, never>;

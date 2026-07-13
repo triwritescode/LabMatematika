@@ -11,7 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LabColors } from '@/constants/labs';
 import { MaxContentWidth, Spacing } from '@/constants/theme';
-import { getLevel } from '@/curriculum';
+import { getSkill } from '@/curriculum';
 import { buildExam, ExamAnswer, judgeExam } from '@/curriculum/exam';
 import { rankFor } from '@/curriculum/mastery';
 import { Operation } from '@/curriculum/types';
@@ -19,26 +19,26 @@ import { useTheme } from '@/hooks/use-theme';
 import { strings } from '@/i18n/strings.id';
 import { useProgress } from '@/state/progress';
 
-// Ujian Kenaikan Tingkat: test conditions — no hints, no explanations,
+// Ujian Kenaikan Level: test conditions — no hints, no explanations,
 // no re-queue, NO timer (specs §4.3).
 export default function Ujian() {
-  const params = useLocalSearchParams<{ operation: Operation; tingkat: string }>();
+  const params = useLocalSearchParams<{ operation: Operation; level: string }>();
   const router = useRouter();
   const theme = useTheme();
   const lab = params.operation as Operation;
-  const tingkat = Number(params.tingkat);
+  const level = Number(params.level);
   const colors = LabColors[lab];
 
-  const passTingkat = useProgress((s) => s.passTingkat);
+  const passLevel = useProgress((s) => s.passLevel);
   const touchStreak = useProgress((s) => s.touchStreak);
   const addDiamonds = useProgress((s) => s.addDiamonds);
 
-  const [questions] = useState(() => buildExam(lab, tingkat));
+  const [questions] = useState(() => buildExam(lab, level));
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<ExamAnswer[]>([]);
   const [input, setInput] = useState('');
   const [finished, setFinished] = useState(false);
-  // Guards the terminal award (passTingkat/streak/diamonds) against a double-tap
+  // Guards the terminal award (passLevel/streak/diamonds) against a double-tap
   // firing submit twice on the last question before the re-render disables it.
   const finalized = useRef(false);
 
@@ -61,7 +61,7 @@ export default function Ujian() {
       const verdict = judgeExam(nextAnswers);
       if (verdict.passed) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        passTingkat(lab, tingkat);
+        passLevel(lab, level);
       }
       touchStreak();
       // Earn 1 diamond per correct answer (runs once — this branch is terminal).
@@ -72,7 +72,7 @@ export default function Ujian() {
 
   if (finished) {
     const verdict = judgeExam(answers);
-    const failedLevel = verdict.failedLevelId ? getLevel(verdict.failedLevelId) : undefined;
+    const failedLevel = verdict.failedLevelId ? getSkill(verdict.failedLevelId) : undefined;
     return (
       <ThemedView style={styles.container}>
         <SafeAreaView style={[styles.safeArea, styles.verdictWrap]}>
@@ -87,10 +87,10 @@ export default function Ujian() {
             {verdict.passed ? (
               <>
                 <ThemedText type="smallBold" style={{ color: colors.main }}>
-                  {strings.naikTingkat(tingkat + 1)}
+                  {strings.naikTingkat(level + 1)}
                 </ThemedText>
                 <ThemedText type="small" themeColor="textSecondary">
-                  {strings.rankBaru(rankFor(lab, [tingkat]))}
+                  {strings.rankBaru(rankFor(lab, [level]))}
                 </ThemedText>
                 <Pressable
                   onPress={() => router.back()}
@@ -152,7 +152,7 @@ export default function Ujian() {
           </Pressable>
           <View style={styles.headerCenter}>
             <ThemedText type="small" themeColor="textSecondary">
-              {strings.ujian} · {strings.tingkat(tingkat)}
+              {strings.ujian} · {strings.level(level)}
             </ThemedText>
             <ThemedText type="smallBold">
               {strings.soalOf(index + 1, questions.length)}

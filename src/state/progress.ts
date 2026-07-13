@@ -3,15 +3,15 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { priceOf } from '@/constants/stickers';
-import { ALL_LEVELS, tingkatsForLab } from '@/curriculum';
+import { ALL_SKILLS, levelsForLab } from '@/curriculum';
 import { clampMastery, masteryDelta, rankFor } from '@/curriculum/mastery';
-import { LabProgress, Operation } from '@/curriculum/types';
+import { LabProgress, Operation, SkillMastery } from '@/curriculum/types';
 import type {
   ActiveDayRow,
   LabMetaRow,
-  LevelMasteryRow,
+  LevelsPassedRow,
   OwnedStickerRow,
-  TiersPassedRow,
+  SkillMasteryRow,
   UserStatsRow,
 } from '@/lib/supabase';
 
@@ -26,8 +26,8 @@ function emptyLab(lab: Operation): LabProgress {
     lab,
     rank: rankFor(lab, []),
     placementDone: false,
-    tingkatPassed: [],
-    levels: {},
+    levelsPassed: [],
+    skills: {},
   };
 }
 
@@ -70,12 +70,12 @@ export type ProgressMutation =
   | {
       kind: 'answer';
       lab: Operation;
-      levelId: string;
+      skillId: string;
       mastery: number;
       attempts: number;
       lastPracticedAt: string;
     }
-  | { kind: 'tingkat'; lab: Operation; tingkat: number; rank: string; placementDone: boolean }
+  | { kind: 'level'; lab: Operation; level: number; rank: string; placementDone: boolean }
   | { kind: 'day'; day: string }
   | { kind: 'diamonds'; total: number }
   | { kind: 'sticker'; stickerId: string };
@@ -93,9 +93,9 @@ function emit(m: ProgressMutation) {
 
 // Rows pulled from Supabase by sync.ts, handed to mergeRemote().
 export type RemoteProgress = {
-  levels: LevelMasteryRow[];
+  skills: SkillMasteryRow[];
   labMeta: LabMetaRow[];
-  tingkat: TiersPassedRow[];
+  levels: LevelsPassedRow[];
   days: ActiveDayRow[];
   stats: UserStatsRow | null;
   owned: OwnedStickerRow[];
@@ -112,8 +112,8 @@ type ProgressState = {
   // Sticker ids owned (bought in Toko). Additive/union across devices.
   ownedStickers: string[];
   setChildName: (name: string) => void;
-  recordAnswer: (lab: Operation, levelId: string, correct: boolean, diff: number, streak: number) => void;
-  passTingkat: (lab: Operation, tingkat: number) => void;
+  recordAnswer: (lab: Operation, skillId: string, correct: boolean, diff: number, streak: number) => void;
+  passLevel: (lab: Operation, level: number) => void;
   touchStreak: () => void;
   addDiamonds: (amount: number) => void;
   // Spend diamonds to unlock a sticker. Returns false (no-op) if already owned
@@ -145,12 +145,12 @@ export const useProgress = create<ProgressState>()(
 
       setChildName: (name) => set({ childName: name.trim() }),
 
-      recordAnswer: (lab, levelId, correct, diff, streak) => {
+      recordAnswer: (lab, skillId, correct, diff, streak) => {
         const labProgress = get().labs[lab];
-        const prev = labProgress.levels[levelId];
+        const prev = labProgress.skills[skillId];
         const prevMastery = prev?.mastery ?? 0;
         const entry = {
-          levelId,
+          skillId,
           // Already mastered (100%) → retakes for practice only, never lose progress.
           mastery: prevMastery >= 100 ? 100 : clampMastery(prevMastery + masteryDelta(correct, diff, streak)),
           attempts: (prev?.attempts ?? 0) + 1,
@@ -161,25 +161,25 @@ export const useProgress = create<ProgressState>()(
             ...state.labs,
             [lab]: {
               ...state.labs[lab],
-              levels: { ...state.labs[lab].levels, [levelId]: entry },
+              skills: { ...state.labs[lab].skills, [skillId]: entry },
             },
           },
         }));
         emit({ kind: 'answer', lab, ...entry });
       },
 
-      passTingkat: (lab, tingkat) => {
+      passLevel: (lab, level) => {
         const labProgress = get().labs[lab];
-        if (labProgress.tingkatPassed.includes(tingkat)) return;
-        const tingkatPassed = [...labProgress.tingkatPassed, tingkat].sort((a, b) => a - b);
-        const rank = rankFor(lab, tingkatPassed);
+        if (labProgress.levelsPassed.includes(level)) return;
+        const levelsPassed = [...labProgress.levelsPassed, level].sort((a, b) => a - b);
+        const rank = rankFor(lab, levelsPassed);
         set((state) => ({
           labs: {
             ...state.labs,
-            [lab]: { ...state.labs[lab], tingkatPassed, rank },
+            [lab]: { ...state.labs[lab], levelsPassed, rank },
           },
         }));
-        emit({ kind: 'tingkat', lab, tingkat, rank, placementDone: labProgress.placementDone });
+        emit({ kind: 'level', lab, level, rank, placementDone: labProgress.placementDone });
       },
 
       touchStreak: () => {
@@ -216,23 +216,23 @@ export const useProgress = create<ProgressState>()(
       },
 
       // Smart merge of server rows into local state. Additive data (tiers, days)
-      // is a UNION; per-level mastery is last-write-wins by lastPracticedAt with
+      // is a UNION; per-skill mastery is last-write-wins by lastPracticedAt with
       // attempts kept at max; diamonds take the max. Nothing is ever lost by a
       // stale device syncing late.
       mergeRemote: (remote) =>
         set((state) => {
           const labs = { ...state.labs };
-          for (const lab of LABS) labs[lab] = { ...labs[lab], levels: { ...labs[lab].levels } };
+          for (const lab of LABS) labs[lab] = { ...labs[lab], skills: { ...labs[lab].skills } };
 
-          for (const r of remote.levels) {
+          for (const r of remote.skills) {
             if (r.deleted) continue;
             const lab = r.lab as Operation;
             if (!labs[lab]) continue;
-            const local = labs[lab].levels[r.level_id];
+            const local = labs[lab].skills[r.skill_id];
             const remoteAt = r.last_practiced_at ?? '';
             const newer = !local || remoteAt > local.lastPracticedAt;
-            labs[lab].levels[r.level_id] = {
-              levelId: r.level_id,
+            labs[lab].skills[r.skill_id] = {
+              skillId: r.skill_id,
               mastery: newer ? r.mastery : local.mastery,
               attempts: Math.max(local?.attempts ?? 0, r.attempts),
               lastPracticedAt: newer ? remoteAt : local.lastPracticedAt,
@@ -240,11 +240,11 @@ export const useProgress = create<ProgressState>()(
             };
           }
 
-          for (const r of remote.tingkat) {
+          for (const r of remote.levels) {
             if (r.deleted) continue;
             const lab = r.lab as Operation;
-            if (!labs[lab] || labs[lab].tingkatPassed.includes(r.tier)) continue;
-            labs[lab].tingkatPassed = [...labs[lab].tingkatPassed, r.tier].sort((a, b) => a - b);
+            if (!labs[lab] || labs[lab].levelsPassed.includes(r.level)) continue;
+            labs[lab].levelsPassed = [...labs[lab].levelsPassed, r.level].sort((a, b) => a - b);
           }
 
           for (const r of remote.labMeta) {
@@ -256,7 +256,7 @@ export const useProgress = create<ProgressState>()(
 
           // Rank always derives from the (unioned) tiers — keeps it consistent
           // even if a lab_meta row is stale.
-          for (const lab of LABS) labs[lab].rank = rankFor(lab, labs[lab].tingkatPassed);
+          for (const lab of LABS) labs[lab].rank = rankFor(lab, labs[lab].levelsPassed);
 
           const dates = new Set(state.activeDates);
           for (const r of remote.days) if (!r.deleted) dates.add(r.day);
@@ -288,8 +288,8 @@ export const useProgress = create<ProgressState>()(
       // v0 → v1: seed the day-history from the last recorded active day so
       // existing users keep their current streak instead of resetting to 0.
       // v1 → v2: introduce the owned-stickers set (empty for existing users).
-      // v2 → v3: curriculum re-keyed from the CSV bank — level ids and the
-      // tingkat ladder changed. Prune orphaned mastery keys / passed tingkats
+      // v2 → v3: curriculum re-keyed from the CSV bank — skill ids and the
+      // level ladder changed. Prune orphaned mastery keys / passed levels
       // that no longer exist so stale entries don't linger in the store.
       migrate: (persisted: any, version) => {
         if (version < 1 && persisted && !persisted.activeDates) {
@@ -300,22 +300,60 @@ export const useProgress = create<ProgressState>()(
           persisted.ownedStickers = [];
         }
         if (version < 3 && persisted?.labs) {
-          const validIds = new Set(ALL_LEVELS.map((l) => l.id));
+          // Field renames (level→skill unit, tingkat→level tier) + curriculum
+          // re-key. Move old keys onto the new names, then drop orphaned skill
+          // ids (the ladder changed) and any passed level that no longer exists.
+          const validIds = new Set(ALL_SKILLS.map((s) => s.id));
           for (const lab of Object.keys(persisted.labs) as Operation[]) {
             const lp = persisted.labs[lab];
             if (!lp) continue;
-            if (lp.levels) {
-              for (const id of Object.keys(lp.levels)) {
-                if (!validIds.has(id)) delete lp.levels[id];
-              }
+            const skills = lp.skills ?? lp.levels ?? {};
+            for (const id of Object.keys(skills)) {
+              if (!validIds.has(id)) delete skills[id];
             }
-            if (Array.isArray(lp.tingkatPassed)) {
-              const validTingkats = new Set(tingkatsForLab(lab));
-              lp.tingkatPassed = lp.tingkatPassed.filter((t: number) => validTingkats.has(t));
-            }
+            lp.skills = skills;
+            delete lp.levels;
+            const passed = lp.levelsPassed ?? lp.tingkatPassed ?? [];
+            const validLevels = new Set(levelsForLab(lab));
+            lp.levelsPassed = passed.filter((t: number) => validLevels.has(t));
+            delete lp.tingkatPassed;
           }
         }
         return persisted;
+      },
+      // Safety-net merge: runs on EVERY rehydrate (unlike migrate, which only
+      // fires on a version bump). Guarantees each lab has a well-formed shape —
+      // tolerating any older/partial persisted layout (e.g. `.levels` before the
+      // skill rename, or a lab object missing `skills`) so selectors never hit an
+      // undefined `progress.skills`. Also prunes orphaned skill ids.
+      merge: (persistedState, current) => {
+        const p = (persistedState ?? {}) as Partial<ProgressState> & {
+          labs?: Record<string, any>;
+        };
+        const validIds = new Set(ALL_SKILLS.map((s) => s.id));
+        const labs = { ...current.labs };
+        for (const lab of LABS) {
+          const pl: any = p.labs?.[lab] ?? {};
+          const rawSkills: Record<string, SkillMastery> = pl.skills ?? pl.levels ?? {};
+          const skills: Record<string, SkillMastery> = {};
+          for (const [id, m] of Object.entries(rawSkills)) {
+            if (validIds.has(id)) skills[id] = m;
+          }
+          const validLevels = new Set(levelsForLab(lab));
+          const passed: number[] = pl.levelsPassed ?? pl.tingkatPassed ?? [];
+          labs[lab] = {
+            ...current.labs[lab],
+            ...pl,
+            lab,
+            skills,
+            levelsPassed: passed.filter((t) => validLevels.has(t)),
+            rank: pl.rank ?? current.labs[lab].rank,
+            placementDone: pl.placementDone ?? current.labs[lab].placementDone,
+          };
+          delete (labs[lab] as any).levels;
+          delete (labs[lab] as any).tingkatPassed;
+        }
+        return { ...current, ...p, labs };
       },
     }
   )

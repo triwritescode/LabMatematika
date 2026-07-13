@@ -10,7 +10,7 @@ export type Sticker = {
   rarity: Rarity;
 };
 
-// Diamond cost per rarity tier — a rising ladder so the top tiers are long-term
+// Diamond cost per rarity level — a rising ladder so the top tiers are long-term
 // collection goals and a real sink for earned diamonds.
 export const RARITY_PRICE: Record<Rarity, number> = {
   common: 20,
@@ -20,7 +20,7 @@ export const RARITY_PRICE: Record<Rarity, number> = {
   mythic: 700,
 };
 
-// Per-tier accent color (rings, badges) — signals rarity at a glance.
+// Per-level accent color (rings, badges) — signals rarity at a glance.
 export const RARITY_COLOR: Record<Rarity, string> = {
   common: '#94A3B8',
   rare: '#3B82F6',
@@ -29,7 +29,7 @@ export const RARITY_COLOR: Record<Rarity, string> = {
   mythic: '#EC4899',
 };
 
-// Display order (cheapest tier first).
+// Display order (cheapest level first).
 export const RARITY_ORDER: Rarity[] = ['common', 'rare', 'epic', 'legendary', 'mythic'];
 
 // 100 stickers total across the five tiers.

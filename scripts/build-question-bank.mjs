@@ -2,7 +2,7 @@
 // Codegen: curriculum/*.csv → src/curriculum/bank.data.ts (the offline bundle).
 //
 // Re-key the curriculum from the authored CSV bank. Each CSV row becomes a
-// BankQuestion; each distinct (lab, SKILL) becomes a Level. Deterministic level
+// BankQuestion; each distinct (lab, SKILL) becomes a Skill. Deterministic skill
 // ids let mastery/exam/sync keep working. Run with `pnpm build:bank` and commit
 // the generated file — it ships in the app so questions work fully offline.
 
@@ -15,13 +15,13 @@ import { buildBank } from './lib/parse-bank.mjs';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outFile = join(root, 'src', 'curriculum', 'bank.data.ts');
 
-const { levels, questions } = buildBank(join(root, 'curriculum'));
+const { skills, questions } = buildBank(join(root, 'curriculum'));
 
-// Runtime subset of each question (tingkat/skill/urutan live only on the Level /
+// Runtime subset of each question (level/skill/ordinal live only on the Skill /
 // remote table, not on the served BankQuestion).
 const runtimeQuestions = questions.map((q) => ({
   code: q.code,
-  levelId: q.levelId,
+  skillId: q.skillId,
   lab: q.lab,
   prompt: q.prompt,
   answer: q.answer,
@@ -35,17 +35,17 @@ const banner =
 
 const out =
   banner +
-  "import type { BankQuestion, Level } from './types';\n\n" +
-  `export const BANK_LEVELS: Level[] = ${JSON.stringify(levels, null, 2)};\n\n` +
+  "import type { BankQuestion, Skill } from './types';\n\n" +
+  `export const BANK_SKILLS: Skill[] = ${JSON.stringify(skills, null, 2)};\n\n` +
   `export const BANK_QUESTIONS: BankQuestion[] = ${JSON.stringify(runtimeQuestions, null, 2)};\n`;
 
 writeFileSync(outFile, out);
 
 const perLab = {};
-for (const l of levels) (perLab[l.lab] ??= { levels: 0, questions: 0 }).levels++;
-for (const q of questions) (perLab[q.lab] ??= { levels: 0, questions: 0 }).questions++;
+for (const l of skills) (perLab[l.lab] ??= { skills: 0, questions: 0 }).skills++;
+for (const q of questions) (perLab[q.lab] ??= { skills: 0, questions: 0 }).questions++;
 console.log(`Wrote ${outFile}`);
-console.log(`Levels: ${levels.length}  Questions: ${questions.length}`);
+console.log(`Levels: ${skills.length}  Questions: ${questions.length}`);
 for (const [lab, c] of Object.entries(perLab)) {
-  console.log(`  ${lab}: ${c.levels} levels, ${c.questions} questions`);
+  console.log(`  ${lab}: ${c.skills} skills, ${c.questions} questions`);
 }

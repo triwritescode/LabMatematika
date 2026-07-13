@@ -31,11 +31,11 @@ const { questions } = buildBank(join(root, 'curriculum'));
 
 const rows = questions.map((q) => ({
   code: q.code,
-  level_id: q.levelId,
+  skill_id: q.skillId,
   lab: q.lab,
-  tingkat: q.tingkat,
+  level: q.level,
   skill: q.skill,
-  urutan: q.urutan,
+  ordinal: q.ordinal,
   prompt: q.prompt,
   answer: q.answer,
   difficulty: q.difficulty,

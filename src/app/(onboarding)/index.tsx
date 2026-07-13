@@ -52,7 +52,7 @@ const enterBack = new Keyframe({
   0: { opacity: 0, transform: [{ translateY: -16 }] },
   100: { opacity: 1, transform: [{ translateY: 0 }], easing: Easing.out(Easing.cubic) },
 });
-// Birth date is mandatory — age is derived from it and will drive starting level
+// Birth date is mandatory — age is derived from it and will drive starting skill
 // and test difficulty. Derived age must land in [MIN_AGE, MAX_AGE] (from lib/age).
 const TOTAL_STEPS = 3;
 

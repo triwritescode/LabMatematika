@@ -25,15 +25,15 @@ import {
 // them into the local store (mergeRemote — union/max/LWW, never lossy).
 //
 // Convergence: rows use DETERMINISTIC ids (same fact → same row on any device),
-// so repeated upserts are idempotent and cross-device merge is row-level
+// so repeated upserts are idempotent and cross-device merge is row-skill
 // last-write-wins, with additive data (tiers, days) modeled as union rows.
 // Tables + RLS: supabase/schema.sql §5.
 // ─────────────────────────────────────────────────────────────────────────────
 
 type TableName =
-  | 'level_mastery'
+  | 'skill_mastery'
   | 'lab_meta'
-  | 'tiers_passed'
+  | 'levels_passed'
   | 'active_days'
   | 'user_stats'
   | 'owned_stickers';
@@ -70,23 +70,23 @@ function mutationToItems(u: string, m: ProgressMutation): OutboxItem[] {
     case 'answer':
       return [
         {
-          table: 'level_mastery',
+          table: 'skill_mastery',
           row: {
-            id: `${u}:${m.levelId}`,
+            id: `${u}:${m.skillId}`,
             user_id: u,
             lab: m.lab,
-            level_id: m.levelId,
+            skill_id: m.skillId,
             mastery: m.mastery,
             attempts: m.attempts,
             last_practiced_at: m.lastPracticedAt || null,
           },
         },
       ];
-    case 'tingkat':
+    case 'level':
       return [
         {
-          table: 'tiers_passed',
-          row: { id: `${u}:${m.lab}:${m.tingkat}`, user_id: u, lab: m.lab, tier: m.tingkat },
+          table: 'levels_passed',
+          row: { id: `${u}:${m.lab}:${m.level}`, user_id: u, lab: m.lab, level: m.level },
         },
         {
           table: 'lab_meta',
@@ -120,25 +120,25 @@ function fullPushItems(u: string): OutboxItem[] {
   const items: OutboxItem[] = [];
   for (const lab of LABS) {
     const lp = s.labs[lab];
-    if (lp.tingkatPassed.length || lp.placementDone) {
-      for (const t of lp.tingkatPassed) {
+    if (lp.levelsPassed.length || lp.placementDone) {
+      for (const t of lp.levelsPassed) {
         items.push(
           ...mutationToItems(u, {
-            kind: 'tingkat',
+            kind: 'level',
             lab,
-            tingkat: t,
+            level: t,
             rank: lp.rank,
             placementDone: lp.placementDone,
           })
         );
       }
     }
-    for (const lm of Object.values(lp.levels)) {
+    for (const lm of Object.values(lp.skills)) {
       items.push(
         ...mutationToItems(u, {
           kind: 'answer',
           lab,
-          levelId: lm.levelId,
+          skillId: lm.skillId,
           mastery: lm.mastery,
           attempts: lm.attempts,
           lastPracticedAt: lm.lastPracticedAt,
@@ -155,20 +155,20 @@ function fullPushItems(u: string): OutboxItem[] {
 // ── Transport ─────────────────────────────────────────────────────────────────
 async function pullAndMerge(u: string): Promise<boolean> {
   try {
-    const [levels, labMeta, tingkat, days, stats, owned] = await Promise.all([
-      supabase.from('level_mastery').select('*').eq('user_id', u),
+    const [skills, labMeta, levels, days, stats, owned] = await Promise.all([
+      supabase.from('skill_mastery').select('*').eq('user_id', u),
       supabase.from('lab_meta').select('*').eq('user_id', u),
-      supabase.from('tiers_passed').select('*').eq('user_id', u),
+      supabase.from('levels_passed').select('*').eq('user_id', u),
       supabase.from('active_days').select('*').eq('user_id', u),
       supabase.from('user_stats').select('*').eq('user_id', u).maybeSingle(),
       supabase.from('owned_stickers').select('*').eq('user_id', u),
     ]);
-    if (levels.error || labMeta.error || tingkat.error || days.error || stats.error || owned.error)
+    if (skills.error || labMeta.error || levels.error || days.error || stats.error || owned.error)
       return false;
     useProgress.getState().mergeRemote({
-      levels: levels.data ?? [],
+      skills: skills.data ?? [],
       labMeta: labMeta.data ?? [],
-      tingkat: tingkat.data ?? [],
+      levels: levels.data ?? [],
       days: days.data ?? [],
       stats: stats.data ?? null,
       owned: owned.data ?? [],
