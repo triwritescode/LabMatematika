@@ -1,0 +1,292 @@
+,,,,,,,,,
+,NO,CODE,LAB,LEVEL,SKILL,QUESTION,ANSWER,DIFFICULTY,EXPLANATION
+,1,MUL0000000000001,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 1,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 1 = 0."
+,2,MUL0000000000002,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 1 × 0 = 0."
+,3,MUL0000000000003,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 2 × 0 = 0."
+,4,MUL0000000000004,PERKALIAN,1,"Perkalian 0, 1, dan 2",3 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 3 × 0 = 0."
+,5,MUL0000000000005,PERKALIAN,1,"Perkalian 0, 1, dan 2",4 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 4 × 0 = 0."
+,6,MUL0000000000006,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 4,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 4 = 0."
+,7,MUL0000000000007,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 5,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 5 = 0."
+,8,MUL0000000000008,PERKALIAN,1,"Perkalian 0, 1, dan 2",5 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 5 × 0 = 0."
+,9,MUL0000000000009,PERKALIAN,1,"Perkalian 0, 1, dan 2",6 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 6 × 0 = 0."
+,10,MUL0000000000010,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 6,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 6 = 0."
+,11,MUL0000000000011,PERKALIAN,1,"Perkalian 0, 1, dan 2",7 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 7 × 0 = 0."
+,12,MUL0000000000012,PERKALIAN,1,"Perkalian 0, 1, dan 2",8 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 8 × 0 = 0."
+,13,MUL0000000000013,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 9,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 9 = 0."
+,14,MUL0000000000014,PERKALIAN,1,"Perkalian 0, 1, dan 2",9 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 9 × 0 = 0."
+,15,MUL0000000000015,PERKALIAN,1,"Perkalian 0, 1, dan 2",10 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 10 × 0 = 0."
+,16,MUL0000000000016,PERKALIAN,1,"Perkalian 0, 1, dan 2",0 × 12,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 12 = 0."
+,17,MUL0000000000017,PERKALIAN,1,"Perkalian 0, 1, dan 2",12 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 12 × 0 = 0."
+,18,MUL0000000000018,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 1,1,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 1 = 1.
+,19,MUL0000000000019,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 1,2,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 2 × 1 = 2.
+,20,MUL0000000000020,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 3,3,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 3 = 3.
+,21,MUL0000000000021,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 2,4,Mudah,Dikali 2 sama dengan dua kali lipat. 2 + 2 = 4.
+,22,MUL0000000000022,PERKALIAN,1,"Perkalian 0, 1, dan 2",4 × 1,4,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 4 × 1 = 4.
+,23,MUL0000000000023,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 4,4,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 4 = 4.
+,24,MUL0000000000024,PERKALIAN,1,"Perkalian 0, 1, dan 2",5 × 1,5,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 5 × 1 = 5.
+,25,MUL0000000000025,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 3,6,Mudah,Dikali 2 sama dengan dua kali lipat. 3 + 3 = 6.
+,26,MUL0000000000026,PERKALIAN,1,"Perkalian 0, 1, dan 2",3 × 2,6,Mudah,Dikali 2 sama dengan dua kali lipat. 3 + 3 = 6.
+,27,MUL0000000000027,PERKALIAN,1,"Perkalian 0, 1, dan 2",6 × 1,6,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 6 × 1 = 6.
+,28,MUL0000000000028,PERKALIAN,1,"Perkalian 0, 1, dan 2",7 × 1,7,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 7 × 1 = 7.
+,29,MUL0000000000029,PERKALIAN,1,"Perkalian 0, 1, dan 2",4 × 2,8,Mudah,Dikali 2 sama dengan dua kali lipat. 4 + 4 = 8.
+,30,MUL0000000000030,PERKALIAN,1,"Perkalian 0, 1, dan 2",9 × 1,9,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 9 × 1 = 9.
+,31,MUL0000000000031,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 9,9,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 9 = 9.
+,32,MUL0000000000032,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 5,10,Mudah,Dikali 2 sama dengan dua kali lipat. 5 + 5 = 10.
+,33,MUL0000000000033,PERKALIAN,1,"Perkalian 0, 1, dan 2",5 × 2,10,Mudah,Dikali 2 sama dengan dua kali lipat. 5 + 5 = 10.
+,34,MUL0000000000034,PERKALIAN,1,"Perkalian 0, 1, dan 2",11 × 1,11,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 11 × 1 = 11.
+,35,MUL0000000000035,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 11,11,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 11 = 11.
+,36,MUL0000000000036,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 6,12,Mudah,Dikali 2 sama dengan dua kali lipat. 6 + 6 = 12.
+,37,MUL0000000000037,PERKALIAN,1,"Perkalian 0, 1, dan 2",1 × 12,12,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 12 = 12.
+,38,MUL0000000000038,PERKALIAN,1,"Perkalian 0, 1, dan 2",12 × 1,12,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 12 × 1 = 12.
+,39,MUL0000000000039,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 7,14,Mudah,Dikali 2 sama dengan dua kali lipat. 7 + 7 = 14.
+,40,MUL0000000000040,PERKALIAN,1,"Perkalian 0, 1, dan 2",7 × 2,14,Mudah,Dikali 2 sama dengan dua kali lipat. 7 + 7 = 14.
+,41,MUL0000000000041,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 8,16,Mudah,Dikali 2 sama dengan dua kali lipat. 8 + 8 = 16.
+,42,MUL0000000000042,PERKALIAN,1,"Perkalian 0, 1, dan 2",8 × 2,16,Mudah,Dikali 2 sama dengan dua kali lipat. 8 + 8 = 16.
+,43,MUL0000000000043,PERKALIAN,1,"Perkalian 0, 1, dan 2",9 × 2,18,Mudah,Dikali 2 sama dengan dua kali lipat. 9 + 9 = 18.
+,44,MUL0000000000044,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 9,18,Mudah,Dikali 2 sama dengan dua kali lipat. 9 + 9 = 18.
+,45,MUL0000000000045,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 10,20,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 2. 2 × 10 = 20.
+,46,MUL0000000000046,PERKALIAN,1,"Perkalian 0, 1, dan 2",10 × 2,20,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 2. 10 × 2 = 20.
+,47,MUL0000000000047,PERKALIAN,1,"Perkalian 0, 1, dan 2",11 × 2,22,Sedang,Dikali 2 sama dengan dua kali lipat. 11 + 11 = 22.
+,48,MUL0000000000048,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 11,22,Sedang,Dikali 2 sama dengan dua kali lipat. 11 + 11 = 22.
+,49,MUL0000000000049,PERKALIAN,1,"Perkalian 0, 1, dan 2",12 × 2,24,Sedang,Dikali 2 sama dengan dua kali lipat. 12 + 12 = 24.
+,50,MUL0000000000050,PERKALIAN,1,"Perkalian 0, 1, dan 2",2 × 12,24,Sedang,Dikali 2 sama dengan dua kali lipat. 12 + 12 = 24.
+,51,MUL0000000000051,PERKALIAN,1,Perkalian 5 dan 10,5 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 5 × 0 = 0."
+,52,MUL0000000000052,PERKALIAN,1,Perkalian 5 dan 10,0 × 5,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 5 = 0."
+,53,MUL0000000000053,PERKALIAN,1,Perkalian 5 dan 10,0 × 10,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 10 = 0."
+,54,MUL0000000000054,PERKALIAN,1,Perkalian 5 dan 10,10 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 10 × 0 = 0."
+,55,MUL0000000000055,PERKALIAN,1,Perkalian 5 dan 10,5 × 1,5,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 5 × 1 = 5.
+,56,MUL0000000000056,PERKALIAN,1,Perkalian 5 dan 10,1 × 5,5,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 5 = 5.
+,57,MUL0000000000057,PERKALIAN,1,Perkalian 5 dan 10,2 × 5,10,Mudah,Dikali 2 sama dengan dua kali lipat. 5 + 5 = 10.
+,58,MUL0000000000058,PERKALIAN,1,Perkalian 5 dan 10,5 × 2,10,Mudah,Dikali 2 sama dengan dua kali lipat. 5 + 5 = 10.
+,59,MUL0000000000059,PERKALIAN,1,Perkalian 5 dan 10,10 × 1,10,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 10 × 1 = 10.
+,60,MUL0000000000060,PERKALIAN,1,Perkalian 5 dan 10,1 × 10,10,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 10 = 10.
+,61,MUL0000000000061,PERKALIAN,1,Perkalian 5 dan 10,3 × 5,15,Mudah,"Perkalian 5 dihitung dengan lompat lima. 3 × 5 = 15, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,62,MUL0000000000062,PERKALIAN,1,Perkalian 5 dan 10,5 × 3,15,Mudah,"Perkalian 5 dihitung dengan lompat lima. 3 × 5 = 15, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,63,MUL0000000000063,PERKALIAN,1,Perkalian 5 dan 10,5 × 4,20,Mudah,"Perkalian 5 dihitung dengan lompat lima. 4 × 5 = 20, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,64,MUL0000000000064,PERKALIAN,1,Perkalian 5 dan 10,4 × 5,20,Mudah,"Perkalian 5 dihitung dengan lompat lima. 4 × 5 = 20, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,65,MUL0000000000065,PERKALIAN,1,Perkalian 5 dan 10,2 × 10,20,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 2. 2 × 10 = 20.
+,66,MUL0000000000066,PERKALIAN,1,Perkalian 5 dan 10,10 × 2,20,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 2. 10 × 2 = 20.
+,67,MUL0000000000067,PERKALIAN,1,Perkalian 5 dan 10,5 × 5,25,Mudah,"Perkalian 5 dihitung dengan lompat lima. 5 × 5 = 25, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,68,MUL0000000000068,PERKALIAN,1,Perkalian 5 dan 10,5 × 6,30,Mudah,"Perkalian 5 dihitung dengan lompat lima. 6 × 5 = 30, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,69,MUL0000000000069,PERKALIAN,1,Perkalian 5 dan 10,6 × 5,30,Mudah,"Perkalian 5 dihitung dengan lompat lima. 6 × 5 = 30, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,70,MUL0000000000070,PERKALIAN,1,Perkalian 5 dan 10,3 × 10,30,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 3. 3 × 10 = 30.
+,71,MUL0000000000071,PERKALIAN,1,Perkalian 5 dan 10,10 × 3,30,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 3. 10 × 3 = 30.
+,72,MUL0000000000072,PERKALIAN,1,Perkalian 5 dan 10,7 × 5,35,Mudah,"Perkalian 5 dihitung dengan lompat lima. 7 × 5 = 35, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,73,MUL0000000000073,PERKALIAN,1,Perkalian 5 dan 10,5 × 7,35,Mudah,"Perkalian 5 dihitung dengan lompat lima. 7 × 5 = 35, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,74,MUL0000000000074,PERKALIAN,1,Perkalian 5 dan 10,5 × 8,40,Mudah,"Perkalian 5 dihitung dengan lompat lima. 8 × 5 = 40, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,75,MUL0000000000075,PERKALIAN,1,Perkalian 5 dan 10,8 × 5,40,Mudah,"Perkalian 5 dihitung dengan lompat lima. 8 × 5 = 40, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,76,MUL0000000000076,PERKALIAN,1,Perkalian 5 dan 10,10 × 4,40,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 4. 10 × 4 = 40.
+,77,MUL0000000000077,PERKALIAN,1,Perkalian 5 dan 10,4 × 10,40,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 4. 4 × 10 = 40.
+,78,MUL0000000000078,PERKALIAN,1,Perkalian 5 dan 10,5 × 9,45,Mudah,"Perkalian 5 dihitung dengan lompat lima. 9 × 5 = 45, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,79,MUL0000000000079,PERKALIAN,1,Perkalian 5 dan 10,9 × 5,45,Mudah,"Perkalian 5 dihitung dengan lompat lima. 9 × 5 = 45, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,80,MUL0000000000080,PERKALIAN,1,Perkalian 5 dan 10,10 × 5,50,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 5. 10 × 5 = 50.
+,81,MUL0000000000081,PERKALIAN,1,Perkalian 5 dan 10,5 × 10,50,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 5. 5 × 10 = 50.
+,82,MUL0000000000082,PERKALIAN,1,Perkalian 5 dan 10,10 × 6,60,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 6. 10 × 6 = 60.
+,83,MUL0000000000083,PERKALIAN,1,Perkalian 5 dan 10,6 × 10,60,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 6. 6 × 10 = 60.
+,84,MUL0000000000084,PERKALIAN,1,Perkalian 5 dan 10,7 × 10,70,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 7. 7 × 10 = 70.
+,85,MUL0000000000085,PERKALIAN,1,Perkalian 5 dan 10,10 × 7,70,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 7. 10 × 7 = 70.
+,86,MUL0000000000086,PERKALIAN,1,Perkalian 5 dan 10,10 × 8,80,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 8. 10 × 8 = 80.
+,87,MUL0000000000087,PERKALIAN,1,Perkalian 5 dan 10,8 × 10,80,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 8. 8 × 10 = 80.
+,88,MUL0000000000088,PERKALIAN,1,Perkalian 5 dan 10,10 × 9,90,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 9. 10 × 9 = 90.
+,89,MUL0000000000089,PERKALIAN,1,Perkalian 5 dan 10,9 × 10,90,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 9. 9 × 10 = 90.
+,90,MUL0000000000090,PERKALIAN,1,Perkalian 5 dan 10,10 × 10,100,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 10. 10 × 10 = 100.
+,91,MUL0000000000091,PERKALIAN,1,Perkalian 5 dan 10,5 × 11,55,Sedang,"Perkalian 5 dihitung dengan lompat lima. 11 × 5 = 55, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,92,MUL0000000000092,PERKALIAN,1,Perkalian 5 dan 10,11 × 5,55,Sedang,"Perkalian 5 dihitung dengan lompat lima. 11 × 5 = 55, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,93,MUL0000000000093,PERKALIAN,1,Perkalian 5 dan 10,12 × 5,60,Sedang,"Perkalian 5 dihitung dengan lompat lima. 12 × 5 = 60, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,94,MUL0000000000094,PERKALIAN,1,Perkalian 5 dan 10,5 × 12,60,Sedang,"Perkalian 5 dihitung dengan lompat lima. 12 × 5 = 60, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,95,MUL0000000000095,PERKALIAN,1,Perkalian 5 dan 10,11 × 10,110,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 11. 11 × 10 = 110.
+,96,MUL0000000000096,PERKALIAN,1,Perkalian 5 dan 10,10 × 11,110,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 11. 10 × 11 = 110.
+,97,MUL0000000000097,PERKALIAN,1,Perkalian 5 dan 10,10 × 12,120,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 12. 10 × 12 = 120.
+,98,MUL0000000000098,PERKALIAN,1,Perkalian 5 dan 10,12 × 10,120,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 12. 12 × 10 = 120.
+,99,MUL0000000000099,PERKALIAN,1,Perkalian 3 dan 4,0 × 3,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 3 = 0."
+,100,MUL0000000000100,PERKALIAN,1,Perkalian 3 dan 4,3 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 3 × 0 = 0."
+,101,MUL0000000000101,PERKALIAN,1,Perkalian 3 dan 4,0 × 4,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 4 = 0."
+,102,MUL0000000000102,PERKALIAN,1,Perkalian 3 dan 4,4 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 4 × 0 = 0."
+,103,MUL0000000000103,PERKALIAN,1,Perkalian 3 dan 4,1 × 3,3,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 3 = 3.
+,104,MUL0000000000104,PERKALIAN,1,Perkalian 3 dan 4,3 × 1,3,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 3 × 1 = 3.
+,105,MUL0000000000105,PERKALIAN,1,Perkalian 3 dan 4,4 × 1,4,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 4 × 1 = 4.
+,106,MUL0000000000106,PERKALIAN,1,Perkalian 3 dan 4,1 × 4,4,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 4 = 4.
+,107,MUL0000000000107,PERKALIAN,1,Perkalian 3 dan 4,2 × 3,6,Mudah,Dikali 2 sama dengan dua kali lipat. 3 + 3 = 6.
+,108,MUL0000000000108,PERKALIAN,1,Perkalian 3 dan 4,3 × 2,6,Mudah,Dikali 2 sama dengan dua kali lipat. 3 + 3 = 6.
+,109,MUL0000000000109,PERKALIAN,1,Perkalian 3 dan 4,2 × 4,8,Mudah,Dikali 2 sama dengan dua kali lipat. 4 + 4 = 8.
+,110,MUL0000000000110,PERKALIAN,1,Perkalian 3 dan 4,4 × 2,8,Mudah,Dikali 2 sama dengan dua kali lipat. 4 + 4 = 8.
+,111,MUL0000000000111,PERKALIAN,1,Perkalian 3 dan 4,3 × 5,15,Mudah,"Perkalian 5 dihitung dengan lompat lima. 3 × 5 = 15, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,112,MUL0000000000112,PERKALIAN,1,Perkalian 3 dan 4,5 × 3,15,Mudah,"Perkalian 5 dihitung dengan lompat lima. 3 × 5 = 15, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,113,MUL0000000000113,PERKALIAN,1,Perkalian 3 dan 4,4 × 5,20,Mudah,"Perkalian 5 dihitung dengan lompat lima. 4 × 5 = 20, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,114,MUL0000000000114,PERKALIAN,1,Perkalian 3 dan 4,5 × 4,20,Mudah,"Perkalian 5 dihitung dengan lompat lima. 4 × 5 = 20, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,115,MUL0000000000115,PERKALIAN,1,Perkalian 3 dan 4,10 × 3,30,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 3. 10 × 3 = 30.
+,116,MUL0000000000116,PERKALIAN,1,Perkalian 3 dan 4,3 × 10,30,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 3. 3 × 10 = 30.
+,117,MUL0000000000117,PERKALIAN,1,Perkalian 3 dan 4,4 × 10,40,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 4. 4 × 10 = 40.
+,118,MUL0000000000118,PERKALIAN,1,Perkalian 3 dan 4,10 × 4,40,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 4. 10 × 4 = 40.
+,119,MUL0000000000119,PERKALIAN,1,Perkalian 3 dan 4,3 × 3,9,Sedang,3 × 3 berarti menjumlahkan 3 sebanyak 3 kali: 3 + 3 + 3 = 9.
+,120,MUL0000000000120,PERKALIAN,1,Perkalian 3 dan 4,3 × 4,12,Sedang,3 × 4 berarti menjumlahkan 4 sebanyak 3 kali: 4 + 4 + 4 = 12.
+,121,MUL0000000000121,PERKALIAN,1,Perkalian 3 dan 4,4 × 3,12,Sedang,4 × 3 berarti menjumlahkan 4 sebanyak 3 kali: 4 + 4 + 4 = 12.
+,122,MUL0000000000122,PERKALIAN,1,Perkalian 3 dan 4,4 × 4,16,Sedang,4 × 4 berarti menjumlahkan 4 sebanyak 4 kali: 4 + 4 + 4 + 4 = 16.
+,123,MUL0000000000123,PERKALIAN,1,Perkalian 3 dan 4,6 × 3,18,Sedang,6 × 3 berarti menjumlahkan 6 sebanyak 3 kali: 6 + 6 + 6 = 18.
+,124,MUL0000000000124,PERKALIAN,1,Perkalian 3 dan 4,3 × 6,18,Sedang,3 × 6 berarti menjumlahkan 6 sebanyak 3 kali: 6 + 6 + 6 = 18.
+,125,MUL0000000000125,PERKALIAN,1,Perkalian 3 dan 4,3 × 7,21,Sedang,3 × 7 berarti menjumlahkan 7 sebanyak 3 kali: 7 + 7 + 7 = 21.
+,126,MUL0000000000126,PERKALIAN,1,Perkalian 3 dan 4,7 × 3,21,Sedang,7 × 3 berarti menjumlahkan 7 sebanyak 3 kali: 7 + 7 + 7 = 21.
+,127,MUL0000000000127,PERKALIAN,1,Perkalian 3 dan 4,6 × 4,24,Sedang,6 × 4 berarti menjumlahkan 6 sebanyak 4 kali: 6 + 6 + 6 + 6 = 24.
+,128,MUL0000000000128,PERKALIAN,1,Perkalian 3 dan 4,4 × 6,24,Sedang,4 × 6 berarti menjumlahkan 6 sebanyak 4 kali: 6 + 6 + 6 + 6 = 24.
+,129,MUL0000000000129,PERKALIAN,1,Perkalian 3 dan 4,8 × 3,24,Sedang,8 × 3 berarti menjumlahkan 8 sebanyak 3 kali: 8 + 8 + 8 = 24.
+,130,MUL0000000000130,PERKALIAN,1,Perkalian 3 dan 4,3 × 8,24,Sedang,3 × 8 berarti menjumlahkan 8 sebanyak 3 kali: 8 + 8 + 8 = 24.
+,131,MUL0000000000131,PERKALIAN,1,Perkalian 3 dan 4,9 × 3,27,Sedang,9 × 3 berarti menjumlahkan 9 sebanyak 3 kali: 9 + 9 + 9 = 27.
+,132,MUL0000000000132,PERKALIAN,1,Perkalian 3 dan 4,3 × 9,27,Sedang,3 × 9 berarti menjumlahkan 9 sebanyak 3 kali: 9 + 9 + 9 = 27.
+,133,MUL0000000000133,PERKALIAN,1,Perkalian 3 dan 4,7 × 4,28,Sedang,7 × 4 berarti menjumlahkan 7 sebanyak 4 kali: 7 + 7 + 7 + 7 = 28.
+,134,MUL0000000000134,PERKALIAN,1,Perkalian 3 dan 4,4 × 7,28,Sedang,4 × 7 berarti menjumlahkan 7 sebanyak 4 kali: 7 + 7 + 7 + 7 = 28.
+,135,MUL0000000000135,PERKALIAN,1,Perkalian 3 dan 4,4 × 8,32,Sedang,4 × 8 berarti menjumlahkan 8 sebanyak 4 kali: 8 + 8 + 8 + 8 = 32.
+,136,MUL0000000000136,PERKALIAN,1,Perkalian 3 dan 4,8 × 4,32,Sedang,8 × 4 berarti menjumlahkan 8 sebanyak 4 kali: 8 + 8 + 8 + 8 = 32.
+,137,MUL0000000000137,PERKALIAN,1,Perkalian 3 dan 4,3 × 11,33,Sedang,3 × 11 berarti menjumlahkan 11 sebanyak 3 kali: 11 + 11 + 11 = 33.
+,138,MUL0000000000138,PERKALIAN,1,Perkalian 3 dan 4,11 × 3,33,Sedang,11 × 3 berarti menjumlahkan 11 sebanyak 3 kali: 11 + 11 + 11 = 33.
+,139,MUL0000000000139,PERKALIAN,1,Perkalian 3 dan 4,9 × 4,36,Sedang,9 × 4 berarti menjumlahkan 9 sebanyak 4 kali: 9 + 9 + 9 + 9 = 36.
+,140,MUL0000000000140,PERKALIAN,1,Perkalian 3 dan 4,4 × 9,36,Sedang,4 × 9 berarti menjumlahkan 9 sebanyak 4 kali: 9 + 9 + 9 + 9 = 36.
+,141,MUL0000000000141,PERKALIAN,1,Perkalian 3 dan 4,12 × 3,36,Sedang,12 × 3 berarti menjumlahkan 12 sebanyak 3 kali: 12 + 12 + 12 = 36.
+,142,MUL0000000000142,PERKALIAN,1,Perkalian 3 dan 4,3 × 12,36,Sedang,3 × 12 berarti menjumlahkan 12 sebanyak 3 kali: 12 + 12 + 12 = 36.
+,143,MUL0000000000143,PERKALIAN,1,Perkalian 3 dan 4,11 × 4,44,Sedang,11 × 4 berarti menjumlahkan 11 sebanyak 4 kali: 11 + 11 + 11 + 11 = 44.
+,144,MUL0000000000144,PERKALIAN,1,Perkalian 3 dan 4,4 × 11,44,Sedang,4 × 11 berarti menjumlahkan 11 sebanyak 4 kali: 11 + 11 + 11 + 11 = 44.
+,145,MUL0000000000145,PERKALIAN,1,Perkalian 3 dan 4,4 × 12,48,Sedang,4 × 12 berarti menjumlahkan 12 sebanyak 4 kali: 12 + 12 + 12 + 12 = 48.
+,146,MUL0000000000146,PERKALIAN,1,Perkalian 3 dan 4,12 × 4,48,Sedang,12 × 4 berarti menjumlahkan 12 sebanyak 4 kali: 12 + 12 + 12 + 12 = 48.
+,147,MUL0000000000147,PERKALIAN,1,Perkalian 6 dan 7,0 × 6,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 6 = 0."
+,148,MUL0000000000148,PERKALIAN,1,Perkalian 6 dan 7,6 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 6 × 0 = 0."
+,149,MUL0000000000149,PERKALIAN,1,Perkalian 6 dan 7,0 × 7,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 7 = 0."
+,150,MUL0000000000150,PERKALIAN,1,Perkalian 6 dan 7,7 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 7 × 0 = 0."
+,151,MUL0000000000151,PERKALIAN,1,Perkalian 6 dan 7,1 × 6,6,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 6 = 6.
+,152,MUL0000000000152,PERKALIAN,1,Perkalian 6 dan 7,6 × 1,6,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 6 × 1 = 6.
+,153,MUL0000000000153,PERKALIAN,1,Perkalian 6 dan 7,1 × 7,7,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 7 = 7.
+,154,MUL0000000000154,PERKALIAN,1,Perkalian 6 dan 7,7 × 1,7,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 7 × 1 = 7.
+,155,MUL0000000000155,PERKALIAN,1,Perkalian 6 dan 7,6 × 2,12,Mudah,Dikali 2 sama dengan dua kali lipat. 6 + 6 = 12.
+,156,MUL0000000000156,PERKALIAN,1,Perkalian 6 dan 7,2 × 6,12,Mudah,Dikali 2 sama dengan dua kali lipat. 6 + 6 = 12.
+,157,MUL0000000000157,PERKALIAN,1,Perkalian 6 dan 7,7 × 2,14,Mudah,Dikali 2 sama dengan dua kali lipat. 7 + 7 = 14.
+,158,MUL0000000000158,PERKALIAN,1,Perkalian 6 dan 7,2 × 7,14,Mudah,Dikali 2 sama dengan dua kali lipat. 7 + 7 = 14.
+,159,MUL0000000000159,PERKALIAN,1,Perkalian 6 dan 7,5 × 6,30,Mudah,"Perkalian 5 dihitung dengan lompat lima. 6 × 5 = 30, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,160,MUL0000000000160,PERKALIAN,1,Perkalian 6 dan 7,6 × 5,30,Mudah,"Perkalian 5 dihitung dengan lompat lima. 6 × 5 = 30, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,161,MUL0000000000161,PERKALIAN,1,Perkalian 6 dan 7,5 × 7,35,Mudah,"Perkalian 5 dihitung dengan lompat lima. 7 × 5 = 35, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,162,MUL0000000000162,PERKALIAN,1,Perkalian 6 dan 7,7 × 5,35,Mudah,"Perkalian 5 dihitung dengan lompat lima. 7 × 5 = 35, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,163,MUL0000000000163,PERKALIAN,1,Perkalian 6 dan 7,10 × 6,60,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 6. 10 × 6 = 60.
+,164,MUL0000000000164,PERKALIAN,1,Perkalian 6 dan 7,6 × 10,60,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 6. 6 × 10 = 60.
+,165,MUL0000000000165,PERKALIAN,1,Perkalian 6 dan 7,7 × 10,70,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 7. 7 × 10 = 70.
+,166,MUL0000000000166,PERKALIAN,1,Perkalian 6 dan 7,10 × 7,70,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 7. 10 × 7 = 70.
+,167,MUL0000000000167,PERKALIAN,1,Perkalian 6 dan 7,6 × 3,18,Sedang,6 × 3 berarti menjumlahkan 6 sebanyak 3 kali: 6 + 6 + 6 = 18.
+,168,MUL0000000000168,PERKALIAN,1,Perkalian 6 dan 7,3 × 6,18,Sedang,3 × 6 berarti menjumlahkan 6 sebanyak 3 kali: 6 + 6 + 6 = 18.
+,169,MUL0000000000169,PERKALIAN,1,Perkalian 6 dan 7,3 × 7,21,Sedang,3 × 7 berarti menjumlahkan 7 sebanyak 3 kali: 7 + 7 + 7 = 21.
+,170,MUL0000000000170,PERKALIAN,1,Perkalian 6 dan 7,7 × 3,21,Sedang,7 × 3 berarti menjumlahkan 7 sebanyak 3 kali: 7 + 7 + 7 = 21.
+,171,MUL0000000000171,PERKALIAN,1,Perkalian 6 dan 7,4 × 6,24,Sedang,4 × 6 berarti menjumlahkan 6 sebanyak 4 kali: 6 + 6 + 6 + 6 = 24.
+,172,MUL0000000000172,PERKALIAN,1,Perkalian 6 dan 7,6 × 4,24,Sedang,6 × 4 berarti menjumlahkan 6 sebanyak 4 kali: 6 + 6 + 6 + 6 = 24.
+,173,MUL0000000000173,PERKALIAN,1,Perkalian 6 dan 7,4 × 7,28,Sedang,4 × 7 berarti menjumlahkan 7 sebanyak 4 kali: 7 + 7 + 7 + 7 = 28.
+,174,MUL0000000000174,PERKALIAN,1,Perkalian 6 dan 7,7 × 4,28,Sedang,7 × 4 berarti menjumlahkan 7 sebanyak 4 kali: 7 + 7 + 7 + 7 = 28.
+,175,MUL0000000000175,PERKALIAN,1,Perkalian 6 dan 7,6 × 6,36,Sedang,6 × 6 berarti menjumlahkan 6 sebanyak 6 kali: 6 + 6 + 6 + 6 + 6 + 6 = 36.
+,176,MUL0000000000176,PERKALIAN,1,Perkalian 6 dan 7,7 × 6,42,Sedang,7 × 6 berarti menjumlahkan 7 sebanyak 6 kali: 7 + 7 + 7 + 7 + 7 + 7 = 42.
+,177,MUL0000000000177,PERKALIAN,1,Perkalian 6 dan 7,6 × 7,42,Sedang,6 × 7 berarti menjumlahkan 7 sebanyak 6 kali: 7 + 7 + 7 + 7 + 7 + 7 = 42.
+,178,MUL0000000000178,PERKALIAN,1,Perkalian 6 dan 7,7 × 7,49,Sedang,"7 × 7 berarti menjumlahkan 7 sebanyak 7 kali, hasilnya 49."
+,179,MUL0000000000179,PERKALIAN,1,Perkalian 6 dan 7,8 × 6,48,Sulit,8 × 6 berarti menjumlahkan 8 sebanyak 6 kali: 8 + 8 + 8 + 8 + 8 + 8 = 48.
+,180,MUL0000000000180,PERKALIAN,1,Perkalian 6 dan 7,6 × 8,48,Sulit,6 × 8 berarti menjumlahkan 8 sebanyak 6 kali: 8 + 8 + 8 + 8 + 8 + 8 = 48.
+,181,MUL0000000000181,PERKALIAN,1,Perkalian 6 dan 7,9 × 6,54,Sulit,9 × 6 berarti menjumlahkan 9 sebanyak 6 kali: 9 + 9 + 9 + 9 + 9 + 9 = 54.
+,182,MUL0000000000182,PERKALIAN,1,Perkalian 6 dan 7,6 × 9,54,Sulit,6 × 9 berarti menjumlahkan 9 sebanyak 6 kali: 9 + 9 + 9 + 9 + 9 + 9 = 54.
+,183,MUL0000000000183,PERKALIAN,1,Perkalian 6 dan 7,8 × 7,56,Sulit,"8 × 7 berarti menjumlahkan 8 sebanyak 7 kali, hasilnya 56."
+,184,MUL0000000000184,PERKALIAN,1,Perkalian 6 dan 7,7 × 8,56,Sulit,"7 × 8 berarti menjumlahkan 8 sebanyak 7 kali, hasilnya 56."
+,185,MUL0000000000185,PERKALIAN,1,Perkalian 6 dan 7,9 × 7,63,Sulit,"9 × 7 berarti menjumlahkan 9 sebanyak 7 kali, hasilnya 63."
+,186,MUL0000000000186,PERKALIAN,1,Perkalian 6 dan 7,7 × 9,63,Sulit,"7 × 9 berarti menjumlahkan 9 sebanyak 7 kali, hasilnya 63."
+,187,MUL0000000000187,PERKALIAN,1,Perkalian 6 dan 7,6 × 11,66,Sulit,6 × 11 berarti menjumlahkan 11 sebanyak 6 kali: 11 + 11 + 11 + 11 + 11 + 11 = 66.
+,188,MUL0000000000188,PERKALIAN,1,Perkalian 6 dan 7,11 × 6,66,Sulit,11 × 6 berarti menjumlahkan 11 sebanyak 6 kali: 11 + 11 + 11 + 11 + 11 + 11 = 66.
+,189,MUL0000000000189,PERKALIAN,1,Perkalian 6 dan 7,6 × 12,72,Sulit,6 × 12 berarti menjumlahkan 12 sebanyak 6 kali: 12 + 12 + 12 + 12 + 12 + 12 = 72.
+,190,MUL0000000000190,PERKALIAN,1,Perkalian 6 dan 7,12 × 6,72,Sulit,12 × 6 berarti menjumlahkan 12 sebanyak 6 kali: 12 + 12 + 12 + 12 + 12 + 12 = 72.
+,191,MUL0000000000191,PERKALIAN,1,Perkalian 6 dan 7,7 × 11,77,Sulit,"7 × 11 berarti menjumlahkan 11 sebanyak 7 kali, hasilnya 77."
+,192,MUL0000000000192,PERKALIAN,1,Perkalian 6 dan 7,11 × 7,77,Sulit,"11 × 7 berarti menjumlahkan 11 sebanyak 7 kali, hasilnya 77."
+,193,MUL0000000000193,PERKALIAN,1,Perkalian 6 dan 7,12 × 7,84,Sulit,"12 × 7 berarti menjumlahkan 12 sebanyak 7 kali, hasilnya 84."
+,194,MUL0000000000194,PERKALIAN,1,Perkalian 6 dan 7,7 × 12,84,Sulit,"7 × 12 berarti menjumlahkan 12 sebanyak 7 kali, hasilnya 84."
+,195,MUL0000000000195,PERKALIAN,1,Perkalian 8 dan 9,8 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 8 × 0 = 0."
+,196,MUL0000000000196,PERKALIAN,1,Perkalian 8 dan 9,0 × 8,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 8 = 0."
+,197,MUL0000000000197,PERKALIAN,1,Perkalian 8 dan 9,0 × 9,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 9 = 0."
+,198,MUL0000000000198,PERKALIAN,1,Perkalian 8 dan 9,9 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 9 × 0 = 0."
+,199,MUL0000000000199,PERKALIAN,1,Perkalian 8 dan 9,8 × 1,8,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 8 × 1 = 8.
+,200,MUL0000000000200,PERKALIAN,1,Perkalian 8 dan 9,1 × 8,8,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 8 = 8.
+,201,MUL0000000000201,PERKALIAN,1,Perkalian 8 dan 9,1 × 9,9,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 9 = 9.
+,202,MUL0000000000202,PERKALIAN,1,Perkalian 8 dan 9,9 × 1,9,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 9 × 1 = 9.
+,203,MUL0000000000203,PERKALIAN,1,Perkalian 8 dan 9,8 × 2,16,Mudah,Dikali 2 sama dengan dua kali lipat. 8 + 8 = 16.
+,204,MUL0000000000204,PERKALIAN,1,Perkalian 8 dan 9,2 × 8,16,Mudah,Dikali 2 sama dengan dua kali lipat. 8 + 8 = 16.
+,205,MUL0000000000205,PERKALIAN,1,Perkalian 8 dan 9,9 × 2,18,Mudah,Dikali 2 sama dengan dua kali lipat. 9 + 9 = 18.
+,206,MUL0000000000206,PERKALIAN,1,Perkalian 8 dan 9,2 × 9,18,Mudah,Dikali 2 sama dengan dua kali lipat. 9 + 9 = 18.
+,207,MUL0000000000207,PERKALIAN,1,Perkalian 8 dan 9,8 × 5,40,Mudah,"Perkalian 5 dihitung dengan lompat lima. 8 × 5 = 40, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,208,MUL0000000000208,PERKALIAN,1,Perkalian 8 dan 9,5 × 8,40,Mudah,"Perkalian 5 dihitung dengan lompat lima. 8 × 5 = 40, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,209,MUL0000000000209,PERKALIAN,1,Perkalian 8 dan 9,9 × 5,45,Mudah,"Perkalian 5 dihitung dengan lompat lima. 9 × 5 = 45, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,210,MUL0000000000210,PERKALIAN,1,Perkalian 8 dan 9,5 × 9,45,Mudah,"Perkalian 5 dihitung dengan lompat lima. 9 × 5 = 45, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,211,MUL0000000000211,PERKALIAN,1,Perkalian 8 dan 9,10 × 8,80,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 8. 10 × 8 = 80.
+,212,MUL0000000000212,PERKALIAN,1,Perkalian 8 dan 9,8 × 10,80,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 8. 8 × 10 = 80.
+,213,MUL0000000000213,PERKALIAN,1,Perkalian 8 dan 9,10 × 9,90,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 9. 10 × 9 = 90.
+,214,MUL0000000000214,PERKALIAN,1,Perkalian 8 dan 9,9 × 10,90,Mudah,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 9. 9 × 10 = 90.
+,215,MUL0000000000215,PERKALIAN,1,Perkalian 8 dan 9,3 × 8,24,Sedang,3 × 8 berarti menjumlahkan 8 sebanyak 3 kali: 8 + 8 + 8 = 24.
+,216,MUL0000000000216,PERKALIAN,1,Perkalian 8 dan 9,8 × 3,24,Sedang,8 × 3 berarti menjumlahkan 8 sebanyak 3 kali: 8 + 8 + 8 = 24.
+,217,MUL0000000000217,PERKALIAN,1,Perkalian 8 dan 9,3 × 9,27,Sedang,3 × 9 berarti menjumlahkan 9 sebanyak 3 kali: 9 + 9 + 9 = 27.
+,218,MUL0000000000218,PERKALIAN,1,Perkalian 8 dan 9,9 × 3,27,Sedang,9 × 3 berarti menjumlahkan 9 sebanyak 3 kali: 9 + 9 + 9 = 27.
+,219,MUL0000000000219,PERKALIAN,1,Perkalian 8 dan 9,8 × 4,32,Sedang,8 × 4 berarti menjumlahkan 8 sebanyak 4 kali: 8 + 8 + 8 + 8 = 32.
+,220,MUL0000000000220,PERKALIAN,1,Perkalian 8 dan 9,4 × 8,32,Sedang,4 × 8 berarti menjumlahkan 8 sebanyak 4 kali: 8 + 8 + 8 + 8 = 32.
+,221,MUL0000000000221,PERKALIAN,1,Perkalian 8 dan 9,9 × 4,36,Sedang,9 × 4 berarti menjumlahkan 9 sebanyak 4 kali: 9 + 9 + 9 + 9 = 36.
+,222,MUL0000000000222,PERKALIAN,1,Perkalian 8 dan 9,4 × 9,36,Sedang,4 × 9 berarti menjumlahkan 9 sebanyak 4 kali: 9 + 9 + 9 + 9 = 36.
+,223,MUL0000000000223,PERKALIAN,1,Perkalian 8 dan 9,6 × 8,48,Sulit,6 × 8 berarti menjumlahkan 8 sebanyak 6 kali: 8 + 8 + 8 + 8 + 8 + 8 = 48.
+,224,MUL0000000000224,PERKALIAN,1,Perkalian 8 dan 9,8 × 6,48,Sulit,8 × 6 berarti menjumlahkan 8 sebanyak 6 kali: 8 + 8 + 8 + 8 + 8 + 8 = 48.
+,225,MUL0000000000225,PERKALIAN,1,Perkalian 8 dan 9,9 × 6,54,Sulit,9 × 6 berarti menjumlahkan 9 sebanyak 6 kali: 9 + 9 + 9 + 9 + 9 + 9 = 54.
+,226,MUL0000000000226,PERKALIAN,1,Perkalian 8 dan 9,6 × 9,54,Sulit,6 × 9 berarti menjumlahkan 9 sebanyak 6 kali: 9 + 9 + 9 + 9 + 9 + 9 = 54.
+,227,MUL0000000000227,PERKALIAN,1,Perkalian 8 dan 9,7 × 8,56,Sulit,"7 × 8 berarti menjumlahkan 8 sebanyak 7 kali, hasilnya 56."
+,228,MUL0000000000228,PERKALIAN,1,Perkalian 8 dan 9,8 × 7,56,Sulit,"8 × 7 berarti menjumlahkan 8 sebanyak 7 kali, hasilnya 56."
+,229,MUL0000000000229,PERKALIAN,1,Perkalian 8 dan 9,7 × 9,63,Sulit,"7 × 9 berarti menjumlahkan 9 sebanyak 7 kali, hasilnya 63."
+,230,MUL0000000000230,PERKALIAN,1,Perkalian 8 dan 9,9 × 7,63,Sulit,"9 × 7 berarti menjumlahkan 9 sebanyak 7 kali, hasilnya 63."
+,231,MUL0000000000231,PERKALIAN,1,Perkalian 8 dan 9,8 × 8,64,Sulit,"8 × 8 berarti menjumlahkan 8 sebanyak 8 kali, hasilnya 64."
+,232,MUL0000000000232,PERKALIAN,1,Perkalian 8 dan 9,8 × 9,72,Sulit,"8 × 9 berarti menjumlahkan 9 sebanyak 8 kali, hasilnya 72."
+,233,MUL0000000000233,PERKALIAN,1,Perkalian 8 dan 9,9 × 8,72,Sulit,"9 × 8 berarti menjumlahkan 9 sebanyak 8 kali, hasilnya 72."
+,234,MUL0000000000234,PERKALIAN,1,Perkalian 8 dan 9,9 × 9,81,Sulit,"9 × 9 berarti menjumlahkan 9 sebanyak 9 kali, hasilnya 81."
+,235,MUL0000000000235,PERKALIAN,1,Perkalian 8 dan 9,11 × 8,88,Sulit,"11 × 8 berarti menjumlahkan 11 sebanyak 8 kali, hasilnya 88."
+,236,MUL0000000000236,PERKALIAN,1,Perkalian 8 dan 9,8 × 11,88,Sulit,"8 × 11 berarti menjumlahkan 11 sebanyak 8 kali, hasilnya 88."
+,237,MUL0000000000237,PERKALIAN,1,Perkalian 8 dan 9,8 × 12,96,Sulit,"8 × 12 berarti menjumlahkan 12 sebanyak 8 kali, hasilnya 96."
+,238,MUL0000000000238,PERKALIAN,1,Perkalian 8 dan 9,12 × 8,96,Sulit,"12 × 8 berarti menjumlahkan 12 sebanyak 8 kali, hasilnya 96."
+,239,MUL0000000000239,PERKALIAN,1,Perkalian 8 dan 9,9 × 11,99,Sulit,"9 × 11 berarti menjumlahkan 11 sebanyak 9 kali, hasilnya 99."
+,240,MUL0000000000240,PERKALIAN,1,Perkalian 8 dan 9,11 × 9,99,Sulit,"11 × 9 berarti menjumlahkan 11 sebanyak 9 kali, hasilnya 99."
+,241,MUL0000000000241,PERKALIAN,1,Perkalian 8 dan 9,12 × 9,108,Sulit,"12 × 9 berarti menjumlahkan 12 sebanyak 9 kali, hasilnya 108."
+,242,MUL0000000000242,PERKALIAN,1,Perkalian 8 dan 9,9 × 12,108,Sulit,"9 × 12 berarti menjumlahkan 12 sebanyak 9 kali, hasilnya 108."
+,243,MUL0000000000243,PERKALIAN,1,Perkalian 11 dan 12,0 × 11,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 11 = 0."
+,244,MUL0000000000244,PERKALIAN,1,Perkalian 11 dan 12,11 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 11 × 0 = 0."
+,245,MUL0000000000245,PERKALIAN,1,Perkalian 11 dan 12,12 × 0,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 12 × 0 = 0."
+,246,MUL0000000000246,PERKALIAN,1,Perkalian 11 dan 12,0 × 12,0,Mudah,"Berapa pun dikali 0 hasilnya selalu 0, karena tidak ada kelompok yang dihitung. 0 × 12 = 0."
+,247,MUL0000000000247,PERKALIAN,1,Perkalian 11 dan 12,11 × 1,11,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 11 × 1 = 11.
+,248,MUL0000000000248,PERKALIAN,1,Perkalian 11 dan 12,1 × 11,11,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 11 = 11.
+,249,MUL0000000000249,PERKALIAN,1,Perkalian 11 dan 12,12 × 1,12,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 12 × 1 = 12.
+,250,MUL0000000000250,PERKALIAN,1,Perkalian 11 dan 12,1 × 12,12,Mudah,Dikali 1 nilainya tidak berubah; hanya ada satu kelompok. 1 × 12 = 12.
+,251,MUL0000000000251,PERKALIAN,1,Perkalian 11 dan 12,11 × 2,22,Sedang,Dikali 2 sama dengan dua kali lipat. 11 + 11 = 22.
+,252,MUL0000000000252,PERKALIAN,1,Perkalian 11 dan 12,2 × 11,22,Sedang,Dikali 2 sama dengan dua kali lipat. 11 + 11 = 22.
+,253,MUL0000000000253,PERKALIAN,1,Perkalian 11 dan 12,2 × 12,24,Sedang,Dikali 2 sama dengan dua kali lipat. 12 + 12 = 24.
+,254,MUL0000000000254,PERKALIAN,1,Perkalian 11 dan 12,12 × 2,24,Sedang,Dikali 2 sama dengan dua kali lipat. 12 + 12 = 24.
+,255,MUL0000000000255,PERKALIAN,1,Perkalian 11 dan 12,3 × 11,33,Sedang,3 × 11 berarti menjumlahkan 11 sebanyak 3 kali: 11 + 11 + 11 = 33.
+,256,MUL0000000000256,PERKALIAN,1,Perkalian 11 dan 12,11 × 3,33,Sedang,11 × 3 berarti menjumlahkan 11 sebanyak 3 kali: 11 + 11 + 11 = 33.
+,257,MUL0000000000257,PERKALIAN,1,Perkalian 11 dan 12,12 × 3,36,Sedang,12 × 3 berarti menjumlahkan 12 sebanyak 3 kali: 12 + 12 + 12 = 36.
+,258,MUL0000000000258,PERKALIAN,1,Perkalian 11 dan 12,3 × 12,36,Sedang,3 × 12 berarti menjumlahkan 12 sebanyak 3 kali: 12 + 12 + 12 = 36.
+,259,MUL0000000000259,PERKALIAN,1,Perkalian 11 dan 12,11 × 4,44,Sedang,11 × 4 berarti menjumlahkan 11 sebanyak 4 kali: 11 + 11 + 11 + 11 = 44.
+,260,MUL0000000000260,PERKALIAN,1,Perkalian 11 dan 12,4 × 11,44,Sedang,4 × 11 berarti menjumlahkan 11 sebanyak 4 kali: 11 + 11 + 11 + 11 = 44.
+,261,MUL0000000000261,PERKALIAN,1,Perkalian 11 dan 12,12 × 4,48,Sedang,12 × 4 berarti menjumlahkan 12 sebanyak 4 kali: 12 + 12 + 12 + 12 = 48.
+,262,MUL0000000000262,PERKALIAN,1,Perkalian 11 dan 12,4 × 12,48,Sedang,4 × 12 berarti menjumlahkan 12 sebanyak 4 kali: 12 + 12 + 12 + 12 = 48.
+,263,MUL0000000000263,PERKALIAN,1,Perkalian 11 dan 12,5 × 11,55,Sedang,"Perkalian 5 dihitung dengan lompat lima. 11 × 5 = 55, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,264,MUL0000000000264,PERKALIAN,1,Perkalian 11 dan 12,11 × 5,55,Sedang,"Perkalian 5 dihitung dengan lompat lima. 11 × 5 = 55, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,265,MUL0000000000265,PERKALIAN,1,Perkalian 11 dan 12,12 × 5,60,Sedang,"Perkalian 5 dihitung dengan lompat lima. 12 × 5 = 60, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,266,MUL0000000000266,PERKALIAN,1,Perkalian 11 dan 12,5 × 12,60,Sedang,"Perkalian 5 dihitung dengan lompat lima. 12 × 5 = 60, dan hasil kali 5 selalu berakhiran 0 atau 5."
+,267,MUL0000000000267,PERKALIAN,1,Perkalian 11 dan 12,11 × 10,110,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 11. 11 × 10 = 110.
+,268,MUL0000000000268,PERKALIAN,1,Perkalian 11 dan 12,10 × 11,110,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 11. 10 × 11 = 110.
+,269,MUL0000000000269,PERKALIAN,1,Perkalian 11 dan 12,12 × 10,120,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 12. 12 × 10 = 120.
+,270,MUL0000000000270,PERKALIAN,1,Perkalian 11 dan 12,10 × 12,120,Sedang,Perkalian 10 itu mudah: cukup tambahkan satu angka nol di belakang 12. 10 × 12 = 120.
+,271,MUL0000000000271,PERKALIAN,1,Perkalian 11 dan 12,11 × 6,66,Sulit,11 × 6 berarti menjumlahkan 11 sebanyak 6 kali: 11 + 11 + 11 + 11 + 11 + 11 = 66.
+,272,MUL0000000000272,PERKALIAN,1,Perkalian 11 dan 12,6 × 11,66,Sulit,6 × 11 berarti menjumlahkan 11 sebanyak 6 kali: 11 + 11 + 11 + 11 + 11 + 11 = 66.
+,273,MUL0000000000273,PERKALIAN,1,Perkalian 11 dan 12,12 × 6,72,Sulit,12 × 6 berarti menjumlahkan 12 sebanyak 6 kali: 12 + 12 + 12 + 12 + 12 + 12 = 72.
+,274,MUL0000000000274,PERKALIAN,1,Perkalian 11 dan 12,6 × 12,72,Sulit,6 × 12 berarti menjumlahkan 12 sebanyak 6 kali: 12 + 12 + 12 + 12 + 12 + 12 = 72.
+,275,MUL0000000000275,PERKALIAN,1,Perkalian 11 dan 12,7 × 11,77,Sulit,"7 × 11 berarti menjumlahkan 11 sebanyak 7 kali, hasilnya 77."
+,276,MUL0000000000276,PERKALIAN,1,Perkalian 11 dan 12,11 × 7,77,Sulit,"11 × 7 berarti menjumlahkan 11 sebanyak 7 kali, hasilnya 77."
+,277,MUL0000000000277,PERKALIAN,1,Perkalian 11 dan 12,12 × 7,84,Sulit,"12 × 7 berarti menjumlahkan 12 sebanyak 7 kali, hasilnya 84."
+,278,MUL0000000000278,PERKALIAN,1,Perkalian 11 dan 12,7 × 12,84,Sulit,"7 × 12 berarti menjumlahkan 12 sebanyak 7 kali, hasilnya 84."
+,279,MUL0000000000279,PERKALIAN,1,Perkalian 11 dan 12,8 × 11,88,Sulit,"8 × 11 berarti menjumlahkan 11 sebanyak 8 kali, hasilnya 88."
+,280,MUL0000000000280,PERKALIAN,1,Perkalian 11 dan 12,11 × 8,88,Sulit,"11 × 8 berarti menjumlahkan 11 sebanyak 8 kali, hasilnya 88."
+,281,MUL0000000000281,PERKALIAN,1,Perkalian 11 dan 12,8 × 12,96,Sulit,"8 × 12 berarti menjumlahkan 12 sebanyak 8 kali, hasilnya 96."
+,282,MUL0000000000282,PERKALIAN,1,Perkalian 11 dan 12,12 × 8,96,Sulit,"12 × 8 berarti menjumlahkan 12 sebanyak 8 kali, hasilnya 96."
+,283,MUL0000000000283,PERKALIAN,1,Perkalian 11 dan 12,9 × 11,99,Sulit,"9 × 11 berarti menjumlahkan 11 sebanyak 9 kali, hasilnya 99."
+,284,MUL0000000000284,PERKALIAN,1,Perkalian 11 dan 12,11 × 9,99,Sulit,"11 × 9 berarti menjumlahkan 11 sebanyak 9 kali, hasilnya 99."
+,285,MUL0000000000285,PERKALIAN,1,Perkalian 11 dan 12,9 × 12,108,Sulit,"9 × 12 berarti menjumlahkan 12 sebanyak 9 kali, hasilnya 108."
+,286,MUL0000000000286,PERKALIAN,1,Perkalian 11 dan 12,12 × 9,108,Sulit,"12 × 9 berarti menjumlahkan 12 sebanyak 9 kali, hasilnya 108."
+,287,MUL0000000000287,PERKALIAN,1,Perkalian 11 dan 12,11 × 11,121,Sulit,"11 × 11 berarti menjumlahkan 11 sebanyak 11 kali, hasilnya 121."
+,288,MUL0000000000288,PERKALIAN,1,Perkalian 11 dan 12,12 × 11,132,Sulit,"12 × 11 berarti menjumlahkan 12 sebanyak 11 kali, hasilnya 132."
+,289,MUL0000000000289,PERKALIAN,1,Perkalian 11 dan 12,11 × 12,132,Sulit,"11 × 12 berarti menjumlahkan 12 sebanyak 11 kali, hasilnya 132."
+,290,MUL0000000000290,PERKALIAN,1,Perkalian 11 dan 12,12 × 12,144,Sulit,"12 × 12 berarti menjumlahkan 12 sebanyak 12 kali, hasilnya 144."

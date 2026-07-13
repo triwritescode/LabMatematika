@@ -1,0 +1,352 @@
+,,,,,,,,,
+,NO,CODE,LAB,LEVEL,SKILL,QUESTION,ANSWER,DIFFICULTY,EXPLANATION
+,1,ADD0000000000001,PENJUMLAHAN,1,Pertambahan 0-9,1 + 0,1,Mudah,Menambahkan nol tidak menambah apa pun. 1 + 0 tetap 1. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,2,ADD0000000000002,PENJUMLAHAN,1,Pertambahan 0-9,0 + 1,1,Mudah,Menambahkan nol tidak menambah apa pun. 0 + 1 tetap 1. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,3,ADD0000000000003,PENJUMLAHAN,1,Pertambahan 0-9,1 + 2,3,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 2, lalu hitung maju 1 langkah: 3. Berhenti di 3."
+,4,ADD0000000000004,PENJUMLAHAN,1,Pertambahan 0-9,2 + 1,3,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 2, lalu hitung maju 1 langkah: 3. Berhenti di 3."
+,5,ADD0000000000005,PENJUMLAHAN,1,Pertambahan 0-9,3 + 0,3,Mudah,Menambahkan nol tidak menambah apa pun. 3 + 0 tetap 3. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,6,ADD0000000000006,PENJUMLAHAN,1,Pertambahan 0-9,4 + 0,4,Mudah,Menambahkan nol tidak menambah apa pun. 4 + 0 tetap 4. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,7,ADD0000000000007,PENJUMLAHAN,1,Pertambahan 0-9,3 + 2,5,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 3, lalu hitung maju 2 langkah: 4 → 5. Berhenti di 5."
+,8,ADD0000000000008,PENJUMLAHAN,1,Pertambahan 0-9,2 + 3,5,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 3, lalu hitung maju 2 langkah: 4 → 5. Berhenti di 5."
+,9,ADD0000000000009,PENJUMLAHAN,1,Pertambahan 0-9,4 + 1,5,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 4, lalu hitung maju 1 langkah: 5. Berhenti di 5."
+,10,ADD0000000000010,PENJUMLAHAN,1,Pertambahan 0-9,5 + 0,5,Mudah,Menambahkan nol tidak menambah apa pun. 5 + 0 tetap 5. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,11,ADD0000000000011,PENJUMLAHAN,1,Pertambahan 0-9,3 + 3,6,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 3, lalu hitung maju 3 langkah: 4 → 5 → 6. Berhenti di 6."
+,12,ADD0000000000012,PENJUMLAHAN,1,Pertambahan 0-9,4 + 2,6,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 4, lalu hitung maju 2 langkah: 5 → 6. Berhenti di 6."
+,13,ADD0000000000013,PENJUMLAHAN,1,Pertambahan 0-9,1 + 5,6,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 5, lalu hitung maju 1 langkah: 6. Berhenti di 6."
+,14,ADD0000000000014,PENJUMLAHAN,1,Pertambahan 0-9,6 + 0,6,Mudah,Menambahkan nol tidak menambah apa pun. 6 + 0 tetap 6. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,15,ADD0000000000015,PENJUMLAHAN,1,Pertambahan 0-9,3 + 4,7,Mudah,"Ambil bilangan yang lebih besar dulu, yaitu 4, lalu hitung maju 3 langkah: 5 → 6 → 7. Berhenti di 7."
+,16,ADD0000000000016,PENJUMLAHAN,1,Pertambahan 0-9,5 + 2,7,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 5, lalu hitung maju 2 langkah: 6 → 7. Berhenti di 7."
+,17,ADD0000000000017,PENJUMLAHAN,1,Pertambahan 0-9,6 + 1,7,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 6, lalu hitung maju 1 langkah: 7. Berhenti di 7."
+,18,ADD0000000000018,PENJUMLAHAN,1,Pertambahan 0-9,0 + 7,7,Sedang,Menambahkan nol tidak menambah apa pun. 0 + 7 tetap 7. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,19,ADD0000000000019,PENJUMLAHAN,1,Pertambahan 0-9,7 + 0,7,Sedang,Menambahkan nol tidak menambah apa pun. 7 + 0 tetap 7. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,20,ADD0000000000020,PENJUMLAHAN,1,Pertambahan 0-9,4 + 4,8,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 4, lalu hitung maju 4 langkah: 5 → 6 → 7 → 8. Berhenti di 8."
+,21,ADD0000000000021,PENJUMLAHAN,1,Pertambahan 0-9,2 + 6,8,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 6, lalu hitung maju 2 langkah: 7 → 8. Berhenti di 8."
+,22,ADD0000000000022,PENJUMLAHAN,1,Pertambahan 0-9,8 + 0,8,Sedang,Menambahkan nol tidak menambah apa pun. 8 + 0 tetap 8. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,23,ADD0000000000023,PENJUMLAHAN,1,Pertambahan 0-9,0 + 8,8,Sedang,Menambahkan nol tidak menambah apa pun. 0 + 8 tetap 8. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,24,ADD0000000000024,PENJUMLAHAN,1,Pertambahan 0-9,4 + 5,9,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 5, lalu hitung maju 4 langkah: 6 → 7 → 8 → 9. Berhenti di 9."
+,25,ADD0000000000025,PENJUMLAHAN,1,Pertambahan 0-9,3 + 6,9,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 6, lalu hitung maju 3 langkah: 7 → 8 → 9. Berhenti di 9."
+,26,ADD0000000000026,PENJUMLAHAN,1,Pertambahan 0-9,6 + 3,9,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 6, lalu hitung maju 3 langkah: 7 → 8 → 9. Berhenti di 9."
+,27,ADD0000000000027,PENJUMLAHAN,1,Pertambahan 0-9,7 + 2,9,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 7, lalu hitung maju 2 langkah: 8 → 9. Berhenti di 9."
+,28,ADD0000000000028,PENJUMLAHAN,1,Pertambahan 0-9,1 + 8,9,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 8, lalu hitung maju 1 langkah: 9. Berhenti di 9."
+,29,ADD0000000000029,PENJUMLAHAN,1,Pertambahan 0-9,0 + 9,9,Sedang,Menambahkan nol tidak menambah apa pun. 0 + 9 tetap 9. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,30,ADD0000000000030,PENJUMLAHAN,1,Pertambahan 0-9,5 + 5,10,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 5, lalu hitung maju 5 langkah: 6 → 7 → 8 → 9 → 10. Berhenti di 10."
+,31,ADD0000000000031,PENJUMLAHAN,1,Pertambahan 0-9,3 + 7,10,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 7, lalu hitung maju 3 langkah: 8 → 9 → 10. Berhenti di 10."
+,32,ADD0000000000032,PENJUMLAHAN,1,Pertambahan 0-9,7 + 3,10,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 7, lalu hitung maju 3 langkah: 8 → 9 → 10. Berhenti di 10."
+,33,ADD0000000000033,PENJUMLAHAN,1,Pertambahan 0-9,9 + 1,10,Sedang,"Ambil bilangan yang lebih besar dulu, yaitu 9, lalu hitung maju 1 langkah: 10. Berhenti di 10."
+,34,ADD0000000000034,PENJUMLAHAN,1,Pertambahan 0-9,6 + 5,11,Sedang,"Pakai cara genapkan sepuluh. 6 kurang 4 lagi untuk jadi 10, jadi pecah 5 menjadi 4 + 1. 6 + 4 = 10, lalu 10 + 1 = 11."
+,35,ADD0000000000035,PENJUMLAHAN,1,Pertambahan 0-9,5 + 6,11,Sedang,"Pakai cara genapkan sepuluh. 6 kurang 4 lagi untuk jadi 10, jadi pecah 5 menjadi 4 + 1. 6 + 4 = 10, lalu 10 + 1 = 11."
+,36,ADD0000000000036,PENJUMLAHAN,1,Pertambahan 0-9,7 + 4,11,Sulit,"Pakai cara genapkan sepuluh. 7 kurang 3 lagi untuk jadi 10, jadi pecah 4 menjadi 3 + 1. 7 + 3 = 10, lalu 10 + 1 = 11."
+,37,ADD0000000000037,PENJUMLAHAN,1,Pertambahan 0-9,4 + 7,11,Sulit,"Pakai cara genapkan sepuluh. 7 kurang 3 lagi untuk jadi 10, jadi pecah 4 menjadi 3 + 1. 7 + 3 = 10, lalu 10 + 1 = 11."
+,38,ADD0000000000038,PENJUMLAHAN,1,Pertambahan 0-9,8 + 3,11,Sulit,"Pakai cara genapkan sepuluh. 8 kurang 2 lagi untuk jadi 10, jadi pecah 3 menjadi 2 + 1. 8 + 2 = 10, lalu 10 + 1 = 11."
+,39,ADD0000000000039,PENJUMLAHAN,1,Pertambahan 0-9,9 + 2,11,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 2 menjadi 1 + 1. 9 + 1 = 10, lalu 10 + 1 = 11."
+,40,ADD0000000000040,PENJUMLAHAN,1,Pertambahan 0-9,6 + 6,12,Sulit,"Pakai cara genapkan sepuluh. 6 kurang 4 lagi untuk jadi 10, jadi pecah 6 menjadi 4 + 2. 6 + 4 = 10, lalu 10 + 2 = 12."
+,41,ADD0000000000041,PENJUMLAHAN,1,Pertambahan 0-9,4 + 8,12,Sulit,"Pakai cara genapkan sepuluh. 8 kurang 2 lagi untuk jadi 10, jadi pecah 4 menjadi 2 + 2. 8 + 2 = 10, lalu 10 + 2 = 12."
+,42,ADD0000000000042,PENJUMLAHAN,1,Pertambahan 0-9,3 + 9,12,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 3 menjadi 1 + 2. 9 + 1 = 10, lalu 10 + 2 = 12."
+,43,ADD0000000000043,PENJUMLAHAN,1,Pertambahan 0-9,7 + 6,13,Sulit,"Pakai cara genapkan sepuluh. 7 kurang 3 lagi untuk jadi 10, jadi pecah 6 menjadi 3 + 3. 7 + 3 = 10, lalu 10 + 3 = 13."
+,44,ADD0000000000044,PENJUMLAHAN,1,Pertambahan 0-9,8 + 5,13,Sulit,"Pakai cara genapkan sepuluh. 8 kurang 2 lagi untuk jadi 10, jadi pecah 5 menjadi 2 + 3. 8 + 2 = 10, lalu 10 + 3 = 13."
+,45,ADD0000000000045,PENJUMLAHAN,1,Pertambahan 0-9,4 + 9,13,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 4 menjadi 1 + 3. 9 + 1 = 10, lalu 10 + 3 = 13."
+,46,ADD0000000000046,PENJUMLAHAN,1,Pertambahan 0-9,5 + 9,14,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 5 menjadi 1 + 4. 9 + 1 = 10, lalu 10 + 4 = 14."
+,47,ADD0000000000047,PENJUMLAHAN,1,Pertambahan 0-9,8 + 7,15,Sulit,"Pakai cara genapkan sepuluh. 8 kurang 2 lagi untuk jadi 10, jadi pecah 7 menjadi 2 + 5. 8 + 2 = 10, lalu 10 + 5 = 15."
+,48,ADD0000000000048,PENJUMLAHAN,1,Pertambahan 0-9,7 + 8,15,Sulit,"Pakai cara genapkan sepuluh. 8 kurang 2 lagi untuk jadi 10, jadi pecah 7 menjadi 2 + 5. 8 + 2 = 10, lalu 10 + 5 = 15."
+,49,ADD0000000000049,PENJUMLAHAN,1,Pertambahan 0-9,9 + 6,15,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 6 menjadi 1 + 5. 9 + 1 = 10, lalu 10 + 5 = 15."
+,50,ADD0000000000050,PENJUMLAHAN,1,Pertambahan 0-9,9 + 8,17,Sulit,"Pakai cara genapkan sepuluh. 9 kurang 1 lagi untuk jadi 10, jadi pecah 8 menjadi 1 + 7. 9 + 1 = 10, lalu 10 + 7 = 17."
+,51,ADD0000000000051,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,10 + 0,10,Mudah,Menambahkan nol tidak menambah apa pun. 10 + 0 tetap 10. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,52,ADD0000000000052,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 10,11,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 1 = 1. Jadi hasilnya 11.
+,53,ADD0000000000053,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,11 + 0,11,Mudah,Menambahkan nol tidak menambah apa pun. 11 + 0 tetap 11. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,54,ADD0000000000054,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 11,12,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 1 + 1 = 2. Jadi hasilnya 12.
+,55,ADD0000000000055,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,12 + 0,12,Mudah,Menambahkan nol tidak menambah apa pun. 12 + 0 tetap 12. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,56,ADD0000000000056,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 12,13,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 2 + 1 = 3. Jadi hasilnya 13.
+,57,ADD0000000000057,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,2 + 12,14,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 2 + 2 = 4. Jadi hasilnya 14.
+,58,ADD0000000000058,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,5 + 10,15,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 5 = 5. Jadi hasilnya 15.
+,59,ADD0000000000059,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,15 + 0,15,Mudah,Menambahkan nol tidak menambah apa pun. 15 + 0 tetap 15. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,60,ADD0000000000060,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,6 + 10,16,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 6 = 6. Jadi hasilnya 16.
+,61,ADD0000000000061,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,11 + 5,16,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 1 + 5 = 6. Jadi hasilnya 16.
+,62,ADD0000000000062,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,2 + 14,16,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 4 + 2 = 6. Jadi hasilnya 16.
+,63,ADD0000000000063,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,14 + 2,16,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 4 + 2 = 6. Jadi hasilnya 16.
+,64,ADD0000000000064,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,16 + 0,16,Mudah,Menambahkan nol tidak menambah apa pun. 16 + 0 tetap 16. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,65,ADD0000000000065,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,7 + 10,17,Mudah,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 7 = 7. Jadi hasilnya 17.
+,66,ADD0000000000066,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,11 + 6,17,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 1 + 6 = 7. Jadi hasilnya 17.
+,67,ADD0000000000067,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,4 + 13,17,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 3 + 4 = 7. Jadi hasilnya 17.
+,68,ADD0000000000068,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 16,17,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 6 + 1 = 7. Jadi hasilnya 17.
+,69,ADD0000000000069,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,0 + 17,17,Sedang,Menambahkan nol tidak menambah apa pun. 0 + 17 tetap 17. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,70,ADD0000000000070,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,5 + 13,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 3 + 5 = 8. Jadi hasilnya 18.
+,71,ADD0000000000071,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,13 + 5,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 3 + 5 = 8. Jadi hasilnya 18.
+,72,ADD0000000000072,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,14 + 4,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 4 + 4 = 8. Jadi hasilnya 18.
+,73,ADD0000000000073,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,15 + 3,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 5 + 3 = 8. Jadi hasilnya 18.
+,74,ADD0000000000074,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,2 + 16,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 6 + 2 = 8. Jadi hasilnya 18.
+,75,ADD0000000000075,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,16 + 2,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 6 + 2 = 8. Jadi hasilnya 18.
+,76,ADD0000000000076,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 17,18,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 7 + 1 = 8. Jadi hasilnya 18.
+,77,ADD0000000000077,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,18 + 0,18,Sedang,Menambahkan nol tidak menambah apa pun. 18 + 0 tetap 18. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,78,ADD0000000000078,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,10 + 9,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 9 = 9. Jadi hasilnya 19.
+,79,ADD0000000000079,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,9 + 10,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 0 + 9 = 9. Jadi hasilnya 19.
+,80,ADD0000000000080,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,7 + 12,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 2 + 7 = 9. Jadi hasilnya 19.
+,81,ADD0000000000081,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,16 + 3,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 6 + 3 = 9. Jadi hasilnya 19.
+,82,ADD0000000000082,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,17 + 2,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 7 + 2 = 9. Jadi hasilnya 19.
+,83,ADD0000000000083,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,18 + 1,19,Sedang,Puluhannya tetap 10. Cukup tambahkan satuannya: 8 + 1 = 9. Jadi hasilnya 19.
+,84,ADD0000000000084,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,19 + 0,19,Sedang,Menambahkan nol tidak menambah apa pun. 19 + 0 tetap 19. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,85,ADD0000000000085,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,0 + 19,19,Sedang,Menambahkan nol tidak menambah apa pun. 0 + 19 tetap 19. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,86,ADD0000000000086,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,3 + 17,20,Sulit,"Tambahkan satuannya: 7 + 3 = 10, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 0 = 20."
+,87,ADD0000000000087,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,1 + 19,20,Sulit,"Tambahkan satuannya: 9 + 1 = 10, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 0 = 20."
+,88,ADD0000000000088,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,2 + 19,21,Sulit,"Tambahkan satuannya: 9 + 2 = 11, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 1 = 21."
+,89,ADD0000000000089,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,9 + 13,22,Sulit,"Tambahkan satuannya: 3 + 9 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 2 = 22."
+,90,ADD0000000000090,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,16 + 6,22,Sulit,"Tambahkan satuannya: 6 + 6 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 2 = 22."
+,91,ADD0000000000091,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,17 + 5,22,Sulit,"Tambahkan satuannya: 7 + 5 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 2 = 22."
+,92,ADD0000000000092,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,5 + 17,22,Sulit,"Tambahkan satuannya: 7 + 5 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 2 = 22."
+,93,ADD0000000000093,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,9 + 15,24,Sulit,"Tambahkan satuannya: 5 + 9 = 14, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 4 = 24."
+,94,ADD0000000000094,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,16 + 8,24,Sulit,"Tambahkan satuannya: 6 + 8 = 14, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 4 = 24."
+,95,ADD0000000000095,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,17 + 7,24,Sulit,"Tambahkan satuannya: 7 + 7 = 14, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 4 = 24."
+,96,ADD0000000000096,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,6 + 18,24,Sulit,"Tambahkan satuannya: 8 + 6 = 14, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 4 = 24."
+,97,ADD0000000000097,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,9 + 16,25,Sulit,"Tambahkan satuannya: 6 + 9 = 15, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 5 = 25."
+,98,ADD0000000000098,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,7 + 19,26,Sulit,"Tambahkan satuannya: 9 + 7 = 16, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 6 = 26."
+,99,ADD0000000000099,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,19 + 7,26,Sulit,"Tambahkan satuannya: 9 + 7 = 16, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 6 = 26."
+,100,ADD0000000000100,PENJUMLAHAN,1,Campuran 0-9 dan 10-19,9 + 18,27,Sulit,"Tambahkan satuannya: 8 + 9 = 17, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 10 + 10 + 7 = 27."
+,101,ADD0000000000101,PENJUMLAHAN,1,Pertambahan 10-19,10 + 10,20,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 10 + 10 = 20."
+,102,ADD0000000000102,PENJUMLAHAN,1,Pertambahan 10-19,10 + 11,21,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 11 + 10 = 21."
+,103,ADD0000000000103,PENJUMLAHAN,1,Pertambahan 10-19,11 + 11,22,Mudah,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 11 + 10 = 21, baru tambahkan satuannya: 21 + 1 = 22."
+,104,ADD0000000000104,PENJUMLAHAN,1,Pertambahan 10-19,10 + 12,22,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 12 + 10 = 22."
+,105,ADD0000000000105,PENJUMLAHAN,1,Pertambahan 10-19,12 + 11,23,Mudah,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 12 + 10 = 22, baru tambahkan satuannya: 22 + 1 = 23."
+,106,ADD0000000000106,PENJUMLAHAN,1,Pertambahan 10-19,11 + 12,23,Mudah,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 12 + 10 = 22, baru tambahkan satuannya: 22 + 1 = 23."
+,107,ADD0000000000107,PENJUMLAHAN,1,Pertambahan 10-19,10 + 13,23,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 13 + 10 = 23."
+,108,ADD0000000000108,PENJUMLAHAN,1,Pertambahan 10-19,12 + 12,24,Mudah,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 12 + 10 = 22, baru tambahkan satuannya: 22 + 2 = 24."
+,109,ADD0000000000109,PENJUMLAHAN,1,Pertambahan 10-19,10 + 14,24,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 14 + 10 = 24."
+,110,ADD0000000000110,PENJUMLAHAN,1,Pertambahan 10-19,13 + 12,25,Mudah,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 13 + 10 = 23, baru tambahkan satuannya: 23 + 2 = 25."
+,111,ADD0000000000111,PENJUMLAHAN,1,Pertambahan 10-19,11 + 14,25,Mudah,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 14 + 10 = 24, baru tambahkan satuannya: 24 + 1 = 25."
+,112,ADD0000000000112,PENJUMLAHAN,1,Pertambahan 10-19,15 + 10,25,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 15 + 10 = 25."
+,113,ADD0000000000113,PENJUMLAHAN,1,Pertambahan 10-19,16 + 10,26,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 16 + 10 = 26."
+,114,ADD0000000000114,PENJUMLAHAN,1,Pertambahan 10-19,14 + 13,27,Mudah,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 14 + 10 = 24, baru tambahkan satuannya: 24 + 3 = 27."
+,115,ADD0000000000115,PENJUMLAHAN,1,Pertambahan 10-19,13 + 14,27,Mudah,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 14 + 10 = 24, baru tambahkan satuannya: 24 + 3 = 27."
+,116,ADD0000000000116,PENJUMLAHAN,1,Pertambahan 10-19,15 + 12,27,Sedang,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 15 + 10 = 25, baru tambahkan satuannya: 25 + 2 = 27."
+,117,ADD0000000000117,PENJUMLAHAN,1,Pertambahan 10-19,17 + 10,27,Sedang,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 17 + 10 = 27."
+,118,ADD0000000000118,PENJUMLAHAN,1,Pertambahan 10-19,14 + 14,28,Sedang,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 14 + 10 = 24, baru tambahkan satuannya: 24 + 4 = 28."
+,119,ADD0000000000119,PENJUMLAHAN,1,Pertambahan 10-19,13 + 15,28,Sedang,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 15 + 10 = 25, baru tambahkan satuannya: 25 + 3 = 28."
+,120,ADD0000000000120,PENJUMLAHAN,1,Pertambahan 10-19,12 + 16,28,Sedang,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 2 = 28."
+,121,ADD0000000000121,PENJUMLAHAN,1,Pertambahan 10-19,11 + 17,28,Sedang,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 17 + 10 = 27, baru tambahkan satuannya: 27 + 1 = 28."
+,122,ADD0000000000122,PENJUMLAHAN,1,Pertambahan 10-19,18 + 10,28,Sedang,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 18 + 10 = 28."
+,123,ADD0000000000123,PENJUMLAHAN,1,Pertambahan 10-19,15 + 14,29,Sedang,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 15 + 10 = 25, baru tambahkan satuannya: 25 + 4 = 29."
+,124,ADD0000000000124,PENJUMLAHAN,1,Pertambahan 10-19,16 + 13,29,Sedang,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 3 = 29."
+,125,ADD0000000000125,PENJUMLAHAN,1,Pertambahan 10-19,13 + 16,29,Sedang,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 3 = 29."
+,126,ADD0000000000126,PENJUMLAHAN,1,Pertambahan 10-19,11 + 18,29,Sedang,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 1 = 29."
+,127,ADD0000000000127,PENJUMLAHAN,1,Pertambahan 10-19,19 + 10,29,Sedang,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 19 + 10 = 29."
+,128,ADD0000000000128,PENJUMLAHAN,1,Pertambahan 10-19,10 + 19,29,Sedang,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 19 + 10 = 29."
+,129,ADD0000000000129,PENJUMLAHAN,1,Pertambahan 10-19,15 + 15,30,Sedang,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 15 + 10 = 25, baru tambahkan satuannya: 25 + 5 = 30."
+,130,ADD0000000000130,PENJUMLAHAN,1,Pertambahan 10-19,14 + 16,30,Sedang,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 4 = 30."
+,131,ADD0000000000131,PENJUMLAHAN,1,Pertambahan 10-19,12 + 18,30,Sedang,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 2 = 30."
+,132,ADD0000000000132,PENJUMLAHAN,1,Pertambahan 10-19,18 + 12,30,Sedang,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 2 = 30."
+,133,ADD0000000000133,PENJUMLAHAN,1,Pertambahan 10-19,15 + 16,31,Sedang,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 5 = 31."
+,134,ADD0000000000134,PENJUMLAHAN,1,Pertambahan 10-19,14 + 17,31,Sedang,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 17 + 10 = 27, baru tambahkan satuannya: 27 + 4 = 31."
+,135,ADD0000000000135,PENJUMLAHAN,1,Pertambahan 10-19,18 + 13,31,Sedang,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 3 = 31."
+,136,ADD0000000000136,PENJUMLAHAN,1,Pertambahan 10-19,13 + 18,31,Sulit,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 3 = 31."
+,137,ADD0000000000137,PENJUMLAHAN,1,Pertambahan 10-19,19 + 12,31,Sulit,"Pecah 12 menjadi 10 + 2. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 2 = 31."
+,138,ADD0000000000138,PENJUMLAHAN,1,Pertambahan 10-19,16 + 16,32,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 16 + 10 = 26, baru tambahkan satuannya: 26 + 6 = 32."
+,139,ADD0000000000139,PENJUMLAHAN,1,Pertambahan 10-19,15 + 17,32,Sulit,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 17 + 10 = 27, baru tambahkan satuannya: 27 + 5 = 32."
+,140,ADD0000000000140,PENJUMLAHAN,1,Pertambahan 10-19,14 + 18,32,Sulit,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 4 = 32."
+,141,ADD0000000000141,PENJUMLAHAN,1,Pertambahan 10-19,13 + 19,32,Sulit,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 3 = 32."
+,142,ADD0000000000142,PENJUMLAHAN,1,Pertambahan 10-19,17 + 16,33,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 17 + 10 = 27, baru tambahkan satuannya: 27 + 6 = 33."
+,143,ADD0000000000143,PENJUMLAHAN,1,Pertambahan 10-19,15 + 18,33,Sulit,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 5 = 33."
+,144,ADD0000000000144,PENJUMLAHAN,1,Pertambahan 10-19,14 + 19,33,Sulit,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 4 = 33."
+,145,ADD0000000000145,PENJUMLAHAN,1,Pertambahan 10-19,19 + 14,33,Sulit,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 4 = 33."
+,146,ADD0000000000146,PENJUMLAHAN,1,Pertambahan 10-19,17 + 17,34,Sulit,"Pecah 17 menjadi 10 + 7. Tambahkan puluhannya dulu: 17 + 10 = 27, baru tambahkan satuannya: 27 + 7 = 34."
+,147,ADD0000000000147,PENJUMLAHAN,1,Pertambahan 10-19,16 + 18,34,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 18 + 10 = 28, baru tambahkan satuannya: 28 + 6 = 34."
+,148,ADD0000000000148,PENJUMLAHAN,1,Pertambahan 10-19,19 + 15,34,Sulit,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 5 = 34."
+,149,ADD0000000000149,PENJUMLAHAN,1,Pertambahan 10-19,19 + 17,36,Sulit,"Pecah 17 menjadi 10 + 7. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 7 = 36."
+,150,ADD0000000000150,PENJUMLAHAN,1,Pertambahan 10-19,17 + 19,36,Sulit,"Pecah 17 menjadi 10 + 7. Tambahkan puluhannya dulu: 19 + 10 = 29, baru tambahkan satuannya: 29 + 7 = 36."
+,151,ADD0000000000151,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,20 + 3,23,Mudah,Puluhannya tetap 20. Cukup tambahkan satuannya: 0 + 3 = 3. Jadi hasilnya 23.
+,152,ADD0000000000152,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,1 + 24,25,Mudah,Puluhannya tetap 20. Cukup tambahkan satuannya: 4 + 1 = 5. Jadi hasilnya 25.
+,153,ADD0000000000153,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,2 + 26,28,Mudah,Puluhannya tetap 20. Cukup tambahkan satuannya: 6 + 2 = 8. Jadi hasilnya 28.
+,154,ADD0000000000154,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,8 + 21,29,Mudah,Puluhannya tetap 20. Cukup tambahkan satuannya: 1 + 8 = 9. Jadi hasilnya 29.
+,155,ADD0000000000155,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,2 + 28,30,Mudah,"Tambahkan satuannya: 8 + 2 = 10, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 20 + 10 + 0 = 30."
+,156,ADD0000000000156,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,6 + 26,32,Mudah,"Tambahkan satuannya: 6 + 6 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 20 + 10 + 2 = 32."
+,157,ADD0000000000157,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,0 + 32,32,Mudah,Menambahkan nol tidak menambah apa pun. 0 + 32 tetap 32. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,158,ADD0000000000158,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,27 + 6,33,Mudah,"Tambahkan satuannya: 7 + 6 = 13, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 20 + 10 + 3 = 33."
+,159,ADD0000000000159,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,29 + 4,33,Mudah,"Tambahkan satuannya: 9 + 4 = 13, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 20 + 10 + 3 = 33."
+,160,ADD0000000000160,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,3 + 30,33,Mudah,Puluhannya tetap 30. Cukup tambahkan satuannya: 0 + 3 = 3. Jadi hasilnya 33.
+,161,ADD0000000000161,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,7 + 27,34,Mudah,"Tambahkan satuannya: 7 + 7 = 14, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 20 + 10 + 4 = 34."
+,162,ADD0000000000162,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,0 + 35,35,Mudah,Menambahkan nol tidak menambah apa pun. 0 + 35 tetap 35. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,163,ADD0000000000163,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,32 + 4,36,Mudah,Puluhannya tetap 30. Cukup tambahkan satuannya: 2 + 4 = 6. Jadi hasilnya 36.
+,164,ADD0000000000164,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,26 + 11,37,Mudah,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 26 + 10 = 36, baru tambahkan satuannya: 36 + 1 = 37."
+,165,ADD0000000000165,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,30 + 7,37,Mudah,Puluhannya tetap 30. Cukup tambahkan satuannya: 0 + 7 = 7. Jadi hasilnya 37.
+,166,ADD0000000000166,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,13 + 26,39,Sedang,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 26 + 10 = 36, baru tambahkan satuannya: 36 + 3 = 39."
+,167,ADD0000000000167,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,7 + 32,39,Sedang,Puluhannya tetap 30. Cukup tambahkan satuannya: 2 + 7 = 9. Jadi hasilnya 39.
+,168,ADD0000000000168,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,36 + 3,39,Sedang,Puluhannya tetap 30. Cukup tambahkan satuannya: 6 + 3 = 9. Jadi hasilnya 39.
+,169,ADD0000000000169,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,22 + 19,41,Sedang,"Pecah 19 menjadi 10 + 9. Tambahkan puluhannya dulu: 22 + 10 = 32, baru tambahkan satuannya: 32 + 9 = 41."
+,170,ADD0000000000170,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,35 + 6,41,Sedang,"Tambahkan satuannya: 5 + 6 = 11, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 30 + 10 + 1 = 41."
+,171,ADD0000000000171,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,40 + 2,42,Sedang,Puluhannya tetap 40. Cukup tambahkan satuannya: 0 + 2 = 2. Jadi hasilnya 42.
+,172,ADD0000000000172,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,37 + 8,45,Sedang,"Tambahkan satuannya: 7 + 8 = 15, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 30 + 10 + 5 = 45."
+,173,ADD0000000000173,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,30 + 16,46,Sedang,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 30 + 10 = 40, baru tambahkan satuannya: 40 + 6 = 46."
+,174,ADD0000000000174,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,40 + 6,46,Sedang,Puluhannya tetap 40. Cukup tambahkan satuannya: 0 + 6 = 6. Jadi hasilnya 46.
+,175,ADD0000000000175,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,11 + 36,47,Sedang,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 36 + 10 = 46, baru tambahkan satuannya: 46 + 1 = 47."
+,176,ADD0000000000176,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,10 + 37,47,Sedang,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 37 + 10 = 47."
+,177,ADD0000000000177,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,18 + 30,48,Sedang,"Pecah 18 menjadi 10 + 8. Tambahkan puluhannya dulu: 30 + 10 = 40, baru tambahkan satuannya: 40 + 8 = 48."
+,178,ADD0000000000178,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,33 + 15,48,Sedang,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 33 + 10 = 43, baru tambahkan satuannya: 43 + 5 = 48."
+,179,ADD0000000000179,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,48 + 0,48,Sedang,Menambahkan nol tidak menambah apa pun. 48 + 0 tetap 48. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,180,ADD0000000000180,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,34 + 16,50,Sedang,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 34 + 10 = 44, baru tambahkan satuannya: 44 + 6 = 50."
+,181,ADD0000000000181,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,45 + 5,50,Sedang,"Tambahkan satuannya: 5 + 5 = 10, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 40 + 10 + 0 = 50."
+,182,ADD0000000000182,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,19 + 32,51,Sedang,"Pecah 19 menjadi 10 + 9. Tambahkan puluhannya dulu: 32 + 10 = 42, baru tambahkan satuannya: 42 + 9 = 51."
+,183,ADD0000000000183,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,45 + 7,52,Sedang,"Tambahkan satuannya: 5 + 7 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 40 + 10 + 2 = 52."
+,184,ADD0000000000184,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,37 + 16,53,Sedang,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 37 + 10 = 47, baru tambahkan satuannya: 47 + 6 = 53."
+,185,ADD0000000000185,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,19 + 35,54,Sedang,"Pecah 19 menjadi 10 + 9. Tambahkan puluhannya dulu: 35 + 10 = 45, baru tambahkan satuannya: 45 + 9 = 54."
+,186,ADD0000000000186,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,16 + 38,54,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 38 + 10 = 48, baru tambahkan satuannya: 48 + 6 = 54."
+,187,ADD0000000000187,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,13 + 41,54,Sulit,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 41 + 10 = 51, baru tambahkan satuannya: 51 + 3 = 54."
+,188,ADD0000000000188,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,44 + 11,55,Sulit,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 44 + 10 = 54, baru tambahkan satuannya: 54 + 1 = 55."
+,189,ADD0000000000189,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,19 + 37,56,Sulit,"Pecah 19 menjadi 10 + 9. Tambahkan puluhannya dulu: 37 + 10 = 47, baru tambahkan satuannya: 47 + 9 = 56."
+,190,ADD0000000000190,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,17 + 39,56,Sulit,"Pecah 17 menjadi 10 + 7. Tambahkan puluhannya dulu: 39 + 10 = 49, baru tambahkan satuannya: 49 + 7 = 56."
+,191,ADD0000000000191,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,13 + 44,57,Sulit,"Pecah 13 menjadi 10 + 3. Tambahkan puluhannya dulu: 44 + 10 = 54, baru tambahkan satuannya: 54 + 3 = 57."
+,192,ADD0000000000192,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,48 + 9,57,Sulit,"Tambahkan satuannya: 8 + 9 = 17, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 40 + 10 + 7 = 57."
+,193,ADD0000000000193,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,16 + 42,58,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 42 + 10 = 52, baru tambahkan satuannya: 52 + 6 = 58."
+,194,ADD0000000000194,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,48 + 10,58,Sulit,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 48 + 10 = 58."
+,195,ADD0000000000195,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,49 + 9,58,Sulit,"Tambahkan satuannya: 9 + 9 = 18, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 40 + 10 + 8 = 58."
+,196,ADD0000000000196,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,47 + 14,61,Sulit,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 47 + 10 = 57, baru tambahkan satuannya: 57 + 4 = 61."
+,197,ADD0000000000197,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,14 + 49,63,Sulit,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 49 + 10 = 59, baru tambahkan satuannya: 59 + 4 = 63."
+,198,ADD0000000000198,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,48 + 16,64,Sulit,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 48 + 10 = 58, baru tambahkan satuannya: 58 + 6 = 64."
+,199,ADD0000000000199,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,15 + 49,64,Sulit,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 49 + 10 = 59, baru tambahkan satuannya: 59 + 5 = 64."
+,200,ADD0000000000200,PENJUMLAHAN,1,Campuran 0-19 dan 20-49,19 + 46,65,Sulit,"Pecah 19 menjadi 10 + 9. Tambahkan puluhannya dulu: 46 + 10 = 56, baru tambahkan satuannya: 56 + 9 = 65."
+,201,ADD0000000000201,PENJUMLAHAN,1,Pertambahan 20-49,20 + 20,40,Mudah,"20 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 20 + 20 = 40."
+,202,ADD0000000000202,PENJUMLAHAN,1,Pertambahan 20-49,20 + 23,43,Mudah,"20 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 23 + 20 = 43."
+,203,ADD0000000000203,PENJUMLAHAN,1,Pertambahan 20-49,20 + 28,48,Mudah,"20 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 28 + 20 = 48."
+,204,ADD0000000000204,PENJUMLAHAN,1,Pertambahan 20-49,27 + 24,51,Mudah,"Pecah 24 menjadi 20 + 4. Tambahkan puluhannya dulu: 27 + 20 = 47, baru tambahkan satuannya: 47 + 4 = 51."
+,205,ADD0000000000205,PENJUMLAHAN,1,Pertambahan 20-49,30 + 23,53,Mudah,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 30 + 20 = 50, baru tambahkan satuannya: 50 + 3 = 53."
+,206,ADD0000000000206,PENJUMLAHAN,1,Pertambahan 20-49,30 + 24,54,Mudah,"Pecah 24 menjadi 20 + 4. Tambahkan puluhannya dulu: 30 + 20 = 50, baru tambahkan satuannya: 50 + 4 = 54."
+,207,ADD0000000000207,PENJUMLAHAN,1,Pertambahan 20-49,29 + 30,59,Mudah,"Pecah 29 menjadi 20 + 9. Tambahkan puluhannya dulu: 30 + 20 = 50, baru tambahkan satuannya: 50 + 9 = 59."
+,208,ADD0000000000208,PENJUMLAHAN,1,Pertambahan 20-49,34 + 25,59,Mudah,"Pecah 25 menjadi 20 + 5. Tambahkan puluhannya dulu: 34 + 20 = 54, baru tambahkan satuannya: 54 + 5 = 59."
+,209,ADD0000000000209,PENJUMLAHAN,1,Pertambahan 20-49,26 + 34,60,Mudah,"Pecah 26 menjadi 20 + 6. Tambahkan puluhannya dulu: 34 + 20 = 54, baru tambahkan satuannya: 54 + 6 = 60."
+,210,ADD0000000000210,PENJUMLAHAN,1,Pertambahan 20-49,36 + 26,62,Mudah,"Pecah 26 menjadi 20 + 6. Tambahkan puluhannya dulu: 36 + 20 = 56, baru tambahkan satuannya: 56 + 6 = 62."
+,211,ADD0000000000211,PENJUMLAHAN,1,Pertambahan 20-49,21 + 41,62,Mudah,"Pecah 21 menjadi 20 + 1. Tambahkan puluhannya dulu: 41 + 20 = 61, baru tambahkan satuannya: 61 + 1 = 62."
+,212,ADD0000000000212,PENJUMLAHAN,1,Pertambahan 20-49,25 + 38,63,Mudah,"Pecah 25 menjadi 20 + 5. Tambahkan puluhannya dulu: 38 + 20 = 58, baru tambahkan satuannya: 58 + 5 = 63."
+,213,ADD0000000000213,PENJUMLAHAN,1,Pertambahan 20-49,40 + 24,64,Mudah,"Pecah 24 menjadi 20 + 4. Tambahkan puluhannya dulu: 40 + 20 = 60, baru tambahkan satuannya: 60 + 4 = 64."
+,214,ADD0000000000214,PENJUMLAHAN,1,Pertambahan 20-49,23 + 42,65,Mudah,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 42 + 20 = 62, baru tambahkan satuannya: 62 + 3 = 65."
+,215,ADD0000000000215,PENJUMLAHAN,1,Pertambahan 20-49,44 + 21,65,Mudah,"Pecah 21 menjadi 20 + 1. Tambahkan puluhannya dulu: 44 + 20 = 64, baru tambahkan satuannya: 64 + 1 = 65."
+,216,ADD0000000000216,PENJUMLAHAN,1,Pertambahan 20-49,20 + 45,65,Sedang,"20 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 45 + 20 = 65."
+,217,ADD0000000000217,PENJUMLAHAN,1,Pertambahan 20-49,26 + 40,66,Sedang,"Pecah 26 menjadi 20 + 6. Tambahkan puluhannya dulu: 40 + 20 = 60, baru tambahkan satuannya: 60 + 6 = 66."
+,218,ADD0000000000218,PENJUMLAHAN,1,Pertambahan 20-49,33 + 34,67,Sedang,"Pecah 33 menjadi 30 + 3. Tambahkan puluhannya dulu: 34 + 30 = 64, baru tambahkan satuannya: 64 + 3 = 67."
+,219,ADD0000000000219,PENJUMLAHAN,1,Pertambahan 20-49,40 + 27,67,Sedang,"Pecah 27 menjadi 20 + 7. Tambahkan puluhannya dulu: 40 + 20 = 60, baru tambahkan satuannya: 60 + 7 = 67."
+,220,ADD0000000000220,PENJUMLAHAN,1,Pertambahan 20-49,46 + 21,67,Sedang,"Pecah 21 menjadi 20 + 1. Tambahkan puluhannya dulu: 46 + 20 = 66, baru tambahkan satuannya: 66 + 1 = 67."
+,221,ADD0000000000221,PENJUMLAHAN,1,Pertambahan 20-49,28 + 41,69,Sedang,"Pecah 28 menjadi 20 + 8. Tambahkan puluhannya dulu: 41 + 20 = 61, baru tambahkan satuannya: 61 + 8 = 69."
+,222,ADD0000000000222,PENJUMLAHAN,1,Pertambahan 20-49,47 + 22,69,Sedang,"Pecah 22 menjadi 20 + 2. Tambahkan puluhannya dulu: 47 + 20 = 67, baru tambahkan satuannya: 67 + 2 = 69."
+,223,ADD0000000000223,PENJUMLAHAN,1,Pertambahan 20-49,42 + 28,70,Sedang,"Pecah 28 menjadi 20 + 8. Tambahkan puluhannya dulu: 42 + 20 = 62, baru tambahkan satuannya: 62 + 8 = 70."
+,224,ADD0000000000224,PENJUMLAHAN,1,Pertambahan 20-49,46 + 24,70,Sedang,"Pecah 24 menjadi 20 + 4. Tambahkan puluhannya dulu: 46 + 20 = 66, baru tambahkan satuannya: 66 + 4 = 70."
+,225,ADD0000000000225,PENJUMLAHAN,1,Pertambahan 20-49,23 + 48,71,Sedang,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 48 + 20 = 68, baru tambahkan satuannya: 68 + 3 = 71."
+,226,ADD0000000000226,PENJUMLAHAN,1,Pertambahan 20-49,34 + 38,72,Sedang,"Pecah 34 menjadi 30 + 4. Tambahkan puluhannya dulu: 38 + 30 = 68, baru tambahkan satuannya: 68 + 4 = 72."
+,227,ADD0000000000227,PENJUMLAHAN,1,Pertambahan 20-49,30 + 42,72,Sedang,"30 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 42 + 30 = 72."
+,228,ADD0000000000228,PENJUMLAHAN,1,Pertambahan 20-49,49 + 23,72,Sedang,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 49 + 20 = 69, baru tambahkan satuannya: 69 + 3 = 72."
+,229,ADD0000000000229,PENJUMLAHAN,1,Pertambahan 20-49,37 + 36,73,Sedang,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 37 + 30 = 67, baru tambahkan satuannya: 67 + 6 = 73."
+,230,ADD0000000000230,PENJUMLAHAN,1,Pertambahan 20-49,31 + 42,73,Sedang,"Pecah 31 menjadi 30 + 1. Tambahkan puluhannya dulu: 42 + 30 = 72, baru tambahkan satuannya: 72 + 1 = 73."
+,231,ADD0000000000231,PENJUMLAHAN,1,Pertambahan 20-49,38 + 36,74,Sedang,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 38 + 30 = 68, baru tambahkan satuannya: 68 + 6 = 74."
+,232,ADD0000000000232,PENJUMLAHAN,1,Pertambahan 20-49,44 + 30,74,Sedang,"30 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 44 + 30 = 74."
+,233,ADD0000000000233,PENJUMLAHAN,1,Pertambahan 20-49,47 + 27,74,Sedang,"Pecah 27 menjadi 20 + 7. Tambahkan puluhannya dulu: 47 + 20 = 67, baru tambahkan satuannya: 67 + 7 = 74."
+,234,ADD0000000000234,PENJUMLAHAN,1,Pertambahan 20-49,38 + 37,75,Sedang,"Pecah 37 menjadi 30 + 7. Tambahkan puluhannya dulu: 38 + 30 = 68, baru tambahkan satuannya: 68 + 7 = 75."
+,235,ADD0000000000235,PENJUMLAHAN,1,Pertambahan 20-49,36 + 39,75,Sedang,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 39 + 30 = 69, baru tambahkan satuannya: 69 + 6 = 75."
+,236,ADD0000000000236,PENJUMLAHAN,1,Pertambahan 20-49,43 + 32,75,Sulit,"Pecah 32 menjadi 30 + 2. Tambahkan puluhannya dulu: 43 + 30 = 73, baru tambahkan satuannya: 73 + 2 = 75."
+,237,ADD0000000000237,PENJUMLAHAN,1,Pertambahan 20-49,43 + 33,76,Sulit,"Pecah 33 menjadi 30 + 3. Tambahkan puluhannya dulu: 43 + 30 = 73, baru tambahkan satuannya: 73 + 3 = 76."
+,238,ADD0000000000238,PENJUMLAHAN,1,Pertambahan 20-49,33 + 43,76,Sulit,"Pecah 33 menjadi 30 + 3. Tambahkan puluhannya dulu: 43 + 30 = 73, baru tambahkan satuannya: 73 + 3 = 76."
+,239,ADD0000000000239,PENJUMLAHAN,1,Pertambahan 20-49,32 + 44,76,Sulit,"Pecah 32 menjadi 30 + 2. Tambahkan puluhannya dulu: 44 + 30 = 74, baru tambahkan satuannya: 74 + 2 = 76."
+,240,ADD0000000000240,PENJUMLAHAN,1,Pertambahan 20-49,44 + 33,77,Sulit,"Pecah 33 menjadi 30 + 3. Tambahkan puluhannya dulu: 44 + 30 = 74, baru tambahkan satuannya: 74 + 3 = 77."
+,241,ADD0000000000241,PENJUMLAHAN,1,Pertambahan 20-49,36 + 43,79,Sulit,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 43 + 30 = 73, baru tambahkan satuannya: 73 + 6 = 79."
+,242,ADD0000000000242,PENJUMLAHAN,1,Pertambahan 20-49,36 + 44,80,Sulit,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 44 + 30 = 74, baru tambahkan satuannya: 74 + 6 = 80."
+,243,ADD0000000000243,PENJUMLAHAN,1,Pertambahan 20-49,42 + 40,82,Sulit,"40 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 42 + 40 = 82."
+,244,ADD0000000000244,PENJUMLAHAN,1,Pertambahan 20-49,36 + 47,83,Sulit,"Pecah 36 menjadi 30 + 6. Tambahkan puluhannya dulu: 47 + 30 = 77, baru tambahkan satuannya: 77 + 6 = 83."
+,245,ADD0000000000245,PENJUMLAHAN,1,Pertambahan 20-49,48 + 37,85,Sulit,"Pecah 37 menjadi 30 + 7. Tambahkan puluhannya dulu: 48 + 30 = 78, baru tambahkan satuannya: 78 + 7 = 85."
+,246,ADD0000000000246,PENJUMLAHAN,1,Pertambahan 20-49,46 + 41,87,Sulit,"Pecah 41 menjadi 40 + 1. Tambahkan puluhannya dulu: 46 + 40 = 86, baru tambahkan satuannya: 86 + 1 = 87."
+,247,ADD0000000000247,PENJUMLAHAN,1,Pertambahan 20-49,43 + 45,88,Sulit,"Pecah 43 menjadi 40 + 3. Tambahkan puluhannya dulu: 45 + 40 = 85, baru tambahkan satuannya: 85 + 3 = 88."
+,248,ADD0000000000248,PENJUMLAHAN,1,Pertambahan 20-49,49 + 40,89,Sulit,"40 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 49 + 40 = 89."
+,249,ADD0000000000249,PENJUMLAHAN,1,Pertambahan 20-49,49 + 44,93,Sulit,"Pecah 44 menjadi 40 + 4. Tambahkan puluhannya dulu: 49 + 40 = 89, baru tambahkan satuannya: 89 + 4 = 93."
+,250,ADD0000000000250,PENJUMLAHAN,1,Pertambahan 20-49,49 + 48,97,Sulit,"Pecah 48 menjadi 40 + 8. Tambahkan puluhannya dulu: 49 + 40 = 89, baru tambahkan satuannya: 89 + 8 = 97."
+,251,ADD0000000000251,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,6 + 53,59,Mudah,Puluhannya tetap 50. Cukup tambahkan satuannya: 3 + 6 = 9. Jadi hasilnya 59.
+,252,ADD0000000000252,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,15 + 50,65,Mudah,"Pecah 15 menjadi 10 + 5. Tambahkan puluhannya dulu: 50 + 10 = 60, baru tambahkan satuannya: 60 + 5 = 65."
+,253,ADD0000000000253,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,70 + 0,70,Mudah,Menambahkan nol tidak menambah apa pun. 70 + 0 tetap 70. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,254,ADD0000000000254,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,56 + 16,72,Mudah,"Pecah 16 menjadi 10 + 6. Tambahkan puluhannya dulu: 56 + 10 = 66, baru tambahkan satuannya: 66 + 6 = 72."
+,255,ADD0000000000255,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,56 + 18,74,Mudah,"Pecah 18 menjadi 10 + 8. Tambahkan puluhannya dulu: 56 + 10 = 66, baru tambahkan satuannya: 66 + 8 = 74."
+,256,ADD0000000000256,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,2 + 72,74,Mudah,Puluhannya tetap 70. Cukup tambahkan satuannya: 2 + 2 = 4. Jadi hasilnya 74.
+,257,ADD0000000000257,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,5 + 70,75,Mudah,Puluhannya tetap 70. Cukup tambahkan satuannya: 0 + 5 = 5. Jadi hasilnya 75.
+,258,ADD0000000000258,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,52 + 25,77,Mudah,"Pecah 25 menjadi 20 + 5. Tambahkan puluhannya dulu: 52 + 20 = 72, baru tambahkan satuannya: 72 + 5 = 77."
+,259,ADD0000000000259,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,9 + 69,78,Mudah,"Tambahkan satuannya: 9 + 9 = 18, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 60 + 10 + 8 = 78."
+,260,ADD0000000000260,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,80 + 0,80,Mudah,Menambahkan nol tidak menambah apa pun. 80 + 0 tetap 80. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,261,ADD0000000000261,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,24 + 57,81,Mudah,"Pecah 24 menjadi 20 + 4. Tambahkan puluhannya dulu: 57 + 20 = 77, baru tambahkan satuannya: 77 + 4 = 81."
+,262,ADD0000000000262,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,81 + 0,81,Mudah,Menambahkan nol tidak menambah apa pun. 81 + 0 tetap 81. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,263,ADD0000000000263,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,69 + 14,83,Mudah,"Pecah 14 menjadi 10 + 4. Tambahkan puluhannya dulu: 69 + 10 = 79, baru tambahkan satuannya: 79 + 4 = 83."
+,264,ADD0000000000264,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,2 + 83,85,Mudah,Puluhannya tetap 80. Cukup tambahkan satuannya: 3 + 2 = 5. Jadi hasilnya 85.
+,265,ADD0000000000265,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,76 + 10,86,Mudah,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 76 + 10 = 86."
+,266,ADD0000000000266,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,37 + 52,89,Sedang,"Pecah 37 menjadi 30 + 7. Tambahkan puluhannya dulu: 52 + 30 = 82, baru tambahkan satuannya: 82 + 7 = 89."
+,267,ADD0000000000267,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,81 + 9,90,Sedang,"Tambahkan satuannya: 1 + 9 = 10, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 80 + 10 + 0 = 90."
+,268,ADD0000000000268,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,39 + 52,91,Sedang,"Pecah 39 menjadi 30 + 9. Tambahkan puluhannya dulu: 52 + 30 = 82, baru tambahkan satuannya: 82 + 9 = 91."
+,269,ADD0000000000269,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,62 + 30,92,Sedang,"30 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 62 + 30 = 92."
+,270,ADD0000000000270,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,71 + 21,92,Sedang,"Pecah 21 menjadi 20 + 1. Tambahkan puluhannya dulu: 71 + 20 = 91, baru tambahkan satuannya: 91 + 1 = 92."
+,271,ADD0000000000271,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,7 + 85,92,Sedang,"Tambahkan satuannya: 5 + 7 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 80 + 10 + 2 = 92."
+,272,ADD0000000000272,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,92 + 0,92,Sedang,Menambahkan nol tidak menambah apa pun. 92 + 0 tetap 92. Setiap bilangan yang ditambah 0 nilainya tidak berubah.
+,273,ADD0000000000273,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,44 + 51,95,Sedang,"Pecah 44 menjadi 40 + 4. Tambahkan puluhannya dulu: 51 + 40 = 91, baru tambahkan satuannya: 91 + 4 = 95."
+,274,ADD0000000000274,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,23 + 72,95,Sedang,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 72 + 20 = 92, baru tambahkan satuannya: 92 + 3 = 95."
+,275,ADD0000000000275,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,52 + 44,96,Sedang,"Pecah 44 menjadi 40 + 4. Tambahkan puluhannya dulu: 52 + 40 = 92, baru tambahkan satuannya: 92 + 4 = 96."
+,276,ADD0000000000276,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,71 + 25,96,Sedang,"Pecah 25 menjadi 20 + 5. Tambahkan puluhannya dulu: 71 + 20 = 91, baru tambahkan satuannya: 91 + 5 = 96."
+,277,ADD0000000000277,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,56 + 41,97,Sedang,"Pecah 41 menjadi 40 + 1. Tambahkan puluhannya dulu: 56 + 40 = 96, baru tambahkan satuannya: 96 + 1 = 97."
+,278,ADD0000000000278,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,7 + 92,99,Sedang,Puluhannya tetap 90. Cukup tambahkan satuannya: 2 + 7 = 9. Jadi hasilnya 99.
+,279,ADD0000000000279,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,42 + 58,100,Sedang,"Pecah 42 menjadi 40 + 2. Tambahkan puluhannya dulu: 58 + 40 = 98, baru tambahkan satuannya: 98 + 2 = 100."
+,280,ADD0000000000280,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,64 + 38,102,Sedang,"Pecah 38 menjadi 30 + 8. Tambahkan puluhannya dulu: 64 + 30 = 94, baru tambahkan satuannya: 94 + 8 = 102."
+,281,ADD0000000000281,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,91 + 11,102,Sedang,"Pecah 11 menjadi 10 + 1. Tambahkan puluhannya dulu: 91 + 10 = 101, baru tambahkan satuannya: 101 + 1 = 102."
+,282,ADD0000000000282,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,5 + 97,102,Sedang,"Tambahkan satuannya: 7 + 5 = 12, lewat sepuluh. Simpan 1 puluhan lalu gabungkan: 90 + 10 + 2 = 102."
+,283,ADD0000000000283,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,77 + 26,103,Sedang,"Pecah 26 menjadi 20 + 6. Tambahkan puluhannya dulu: 77 + 20 = 97, baru tambahkan satuannya: 97 + 6 = 103."
+,284,ADD0000000000284,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,81 + 23,104,Sedang,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 81 + 20 = 101, baru tambahkan satuannya: 101 + 3 = 104."
+,285,ADD0000000000285,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,28 + 78,106,Sedang,"Pecah 28 menjadi 20 + 8. Tambahkan puluhannya dulu: 78 + 20 = 98, baru tambahkan satuannya: 98 + 8 = 106."
+,286,ADD0000000000286,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,10 + 96,106,Sulit,"10 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 96 + 10 = 106."
+,287,ADD0000000000287,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,38 + 69,107,Sulit,"Pecah 38 menjadi 30 + 8. Tambahkan puluhannya dulu: 69 + 30 = 99, baru tambahkan satuannya: 99 + 8 = 107."
+,288,ADD0000000000288,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,39 + 69,108,Sulit,"Pecah 39 menjadi 30 + 9. Tambahkan puluhannya dulu: 69 + 30 = 99, baru tambahkan satuannya: 99 + 9 = 108."
+,289,ADD0000000000289,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,75 + 35,110,Sulit,"Pecah 35 menjadi 30 + 5. Tambahkan puluhannya dulu: 75 + 30 = 105, baru tambahkan satuannya: 105 + 5 = 110."
+,290,ADD0000000000290,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,69 + 42,111,Sulit,"Pecah 42 menjadi 40 + 2. Tambahkan puluhannya dulu: 69 + 40 = 109, baru tambahkan satuannya: 109 + 2 = 111."
+,291,ADD0000000000291,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,21 + 91,112,Sulit,"Pecah 21 menjadi 20 + 1. Tambahkan puluhannya dulu: 91 + 20 = 111, baru tambahkan satuannya: 111 + 1 = 112."
+,292,ADD0000000000292,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,46 + 67,113,Sulit,"Pecah 46 menjadi 40 + 6. Tambahkan puluhannya dulu: 67 + 40 = 107, baru tambahkan satuannya: 107 + 6 = 113."
+,293,ADD0000000000293,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,40 + 74,114,Sulit,"40 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 74 + 40 = 114."
+,294,ADD0000000000294,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,91 + 23,114,Sulit,"Pecah 23 menjadi 20 + 3. Tambahkan puluhannya dulu: 91 + 20 = 111, baru tambahkan satuannya: 111 + 3 = 114."
+,295,ADD0000000000295,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,86 + 29,115,Sulit,"Pecah 29 menjadi 20 + 9. Tambahkan puluhannya dulu: 86 + 20 = 106, baru tambahkan satuannya: 106 + 9 = 115."
+,296,ADD0000000000296,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,25 + 91,116,Sulit,"Pecah 25 menjadi 20 + 5. Tambahkan puluhannya dulu: 91 + 20 = 111, baru tambahkan satuannya: 111 + 5 = 116."
+,297,ADD0000000000297,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,90 + 40,130,Sulit,"40 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 90 + 40 = 130."
+,298,ADD0000000000298,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,39 + 97,136,Sulit,"Pecah 39 menjadi 30 + 9. Tambahkan puluhannya dulu: 97 + 30 = 127, baru tambahkan satuannya: 127 + 9 = 136."
+,299,ADD0000000000299,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,88 + 49,137,Sulit,"Pecah 49 menjadi 40 + 9. Tambahkan puluhannya dulu: 88 + 40 = 128, baru tambahkan satuannya: 128 + 9 = 137."
+,300,ADD0000000000300,PENJUMLAHAN,1,Campuran 0-49 dan 50-99,45 + 95,140,Sulit,"Pecah 45 menjadi 40 + 5. Tambahkan puluhannya dulu: 95 + 40 = 135, baru tambahkan satuannya: 135 + 5 = 140."
+,301,ADD0000000000301,PENJUMLAHAN,1,Pertambahan 50-99,54 + 57,111,Mudah,"Pecah 54 menjadi 50 + 4. Tambahkan puluhannya dulu: 57 + 50 = 107, baru tambahkan satuannya: 107 + 4 = 111."
+,302,ADD0000000000302,PENJUMLAHAN,1,Pertambahan 50-99,56 + 56,112,Mudah,"Pecah 56 menjadi 50 + 6. Tambahkan puluhannya dulu: 56 + 50 = 106, baru tambahkan satuannya: 106 + 6 = 112."
+,303,ADD0000000000303,PENJUMLAHAN,1,Pertambahan 50-99,56 + 64,120,Mudah,"Pecah 56 menjadi 50 + 6. Tambahkan puluhannya dulu: 64 + 50 = 114, baru tambahkan satuannya: 114 + 6 = 120."
+,304,ADD0000000000304,PENJUMLAHAN,1,Pertambahan 50-99,53 + 69,122,Mudah,"Pecah 53 menjadi 50 + 3. Tambahkan puluhannya dulu: 69 + 50 = 119, baru tambahkan satuannya: 119 + 3 = 122."
+,305,ADD0000000000305,PENJUMLAHAN,1,Pertambahan 50-99,69 + 55,124,Mudah,"Pecah 55 menjadi 50 + 5. Tambahkan puluhannya dulu: 69 + 50 = 119, baru tambahkan satuannya: 119 + 5 = 124."
+,306,ADD0000000000306,PENJUMLAHAN,1,Pertambahan 50-99,66 + 59,125,Mudah,"Pecah 59 menjadi 50 + 9. Tambahkan puluhannya dulu: 66 + 50 = 116, baru tambahkan satuannya: 116 + 9 = 125."
+,307,ADD0000000000307,PENJUMLAHAN,1,Pertambahan 50-99,52 + 77,129,Mudah,"Pecah 52 menjadi 50 + 2. Tambahkan puluhannya dulu: 77 + 50 = 127, baru tambahkan satuannya: 127 + 2 = 129."
+,308,ADD0000000000308,PENJUMLAHAN,1,Pertambahan 50-99,51 + 79,130,Mudah,"Pecah 51 menjadi 50 + 1. Tambahkan puluhannya dulu: 79 + 50 = 129, baru tambahkan satuannya: 129 + 1 = 130."
+,309,ADD0000000000309,PENJUMLAHAN,1,Pertambahan 50-99,68 + 65,133,Mudah,"Pecah 65 menjadi 60 + 5. Tambahkan puluhannya dulu: 68 + 60 = 128, baru tambahkan satuannya: 128 + 5 = 133."
+,310,ADD0000000000310,PENJUMLAHAN,1,Pertambahan 50-99,61 + 74,135,Mudah,"Pecah 61 menjadi 60 + 1. Tambahkan puluhannya dulu: 74 + 60 = 134, baru tambahkan satuannya: 134 + 1 = 135."
+,311,ADD0000000000311,PENJUMLAHAN,1,Pertambahan 50-99,72 + 64,136,Mudah,"Pecah 64 menjadi 60 + 4. Tambahkan puluhannya dulu: 72 + 60 = 132, baru tambahkan satuannya: 132 + 4 = 136."
+,312,ADD0000000000312,PENJUMLAHAN,1,Pertambahan 50-99,81 + 56,137,Mudah,"Pecah 56 menjadi 50 + 6. Tambahkan puluhannya dulu: 81 + 50 = 131, baru tambahkan satuannya: 131 + 6 = 137."
+,313,ADD0000000000313,PENJUMLAHAN,1,Pertambahan 50-99,81 + 57,138,Mudah,"Pecah 57 menjadi 50 + 7. Tambahkan puluhannya dulu: 81 + 50 = 131, baru tambahkan satuannya: 131 + 7 = 138."
+,314,ADD0000000000314,PENJUMLAHAN,1,Pertambahan 50-99,86 + 54,140,Mudah,"Pecah 54 menjadi 50 + 4. Tambahkan puluhannya dulu: 86 + 50 = 136, baru tambahkan satuannya: 136 + 4 = 140."
+,315,ADD0000000000315,PENJUMLAHAN,1,Pertambahan 50-99,77 + 64,141,Mudah,"Pecah 64 menjadi 60 + 4. Tambahkan puluhannya dulu: 77 + 60 = 137, baru tambahkan satuannya: 137 + 4 = 141."
+,316,ADD0000000000316,PENJUMLAHAN,1,Pertambahan 50-99,55 + 88,143,Sedang,"Pecah 55 menjadi 50 + 5. Tambahkan puluhannya dulu: 88 + 50 = 138, baru tambahkan satuannya: 138 + 5 = 143."
+,317,ADD0000000000317,PENJUMLAHAN,1,Pertambahan 50-99,52 + 93,145,Sedang,"Pecah 52 menjadi 50 + 2. Tambahkan puluhannya dulu: 93 + 50 = 143, baru tambahkan satuannya: 143 + 2 = 145."
+,318,ADD0000000000318,PENJUMLAHAN,1,Pertambahan 50-99,93 + 53,146,Sedang,"Pecah 53 menjadi 50 + 3. Tambahkan puluhannya dulu: 93 + 50 = 143, baru tambahkan satuannya: 143 + 3 = 146."
+,319,ADD0000000000319,PENJUMLAHAN,1,Pertambahan 50-99,69 + 78,147,Sedang,"Pecah 69 menjadi 60 + 9. Tambahkan puluhannya dulu: 78 + 60 = 138, baru tambahkan satuannya: 138 + 9 = 147."
+,320,ADD0000000000320,PENJUMLAHAN,1,Pertambahan 50-99,73 + 75,148,Sedang,"Pecah 73 menjadi 70 + 3. Tambahkan puluhannya dulu: 75 + 70 = 145, baru tambahkan satuannya: 145 + 3 = 148."
+,321,ADD0000000000321,PENJUMLAHAN,1,Pertambahan 50-99,72 + 76,148,Sedang,"Pecah 72 menjadi 70 + 2. Tambahkan puluhannya dulu: 76 + 70 = 146, baru tambahkan satuannya: 146 + 2 = 148."
+,322,ADD0000000000322,PENJUMLAHAN,1,Pertambahan 50-99,74 + 75,149,Sedang,"Pecah 74 menjadi 70 + 4. Tambahkan puluhannya dulu: 75 + 70 = 145, baru tambahkan satuannya: 145 + 4 = 149."
+,323,ADD0000000000323,PENJUMLAHAN,1,Pertambahan 50-99,95 + 54,149,Sedang,"Pecah 54 menjadi 50 + 4. Tambahkan puluhannya dulu: 95 + 50 = 145, baru tambahkan satuannya: 145 + 4 = 149."
+,324,ADD0000000000324,PENJUMLAHAN,1,Pertambahan 50-99,95 + 55,150,Sedang,"Pecah 55 menjadi 50 + 5. Tambahkan puluhannya dulu: 95 + 50 = 145, baru tambahkan satuannya: 145 + 5 = 150."
+,325,ADD0000000000325,PENJUMLAHAN,1,Pertambahan 50-99,80 + 71,151,Sedang,"Pecah 71 menjadi 70 + 1. Tambahkan puluhannya dulu: 80 + 70 = 150, baru tambahkan satuannya: 150 + 1 = 151."
+,326,ADD0000000000326,PENJUMLAHAN,1,Pertambahan 50-99,58 + 93,151,Sedang,"Pecah 58 menjadi 50 + 8. Tambahkan puluhannya dulu: 93 + 50 = 143, baru tambahkan satuannya: 143 + 8 = 151."
+,327,ADD0000000000327,PENJUMLAHAN,1,Pertambahan 50-99,57 + 94,151,Sedang,"Pecah 57 menjadi 50 + 7. Tambahkan puluhannya dulu: 94 + 50 = 144, baru tambahkan satuannya: 144 + 7 = 151."
+,328,ADD0000000000328,PENJUMLAHAN,1,Pertambahan 50-99,84 + 68,152,Sedang,"Pecah 68 menjadi 60 + 8. Tambahkan puluhannya dulu: 84 + 60 = 144, baru tambahkan satuannya: 144 + 8 = 152."
+,329,ADD0000000000329,PENJUMLAHAN,1,Pertambahan 50-99,97 + 56,153,Sedang,"Pecah 56 menjadi 50 + 6. Tambahkan puluhannya dulu: 97 + 50 = 147, baru tambahkan satuannya: 147 + 6 = 153."
+,330,ADD0000000000330,PENJUMLAHAN,1,Pertambahan 50-99,71 + 86,157,Sedang,"Pecah 71 menjadi 70 + 1. Tambahkan puluhannya dulu: 86 + 70 = 156, baru tambahkan satuannya: 156 + 1 = 157."
+,331,ADD0000000000331,PENJUMLAHAN,1,Pertambahan 50-99,90 + 71,161,Sedang,"Pecah 71 menjadi 70 + 1. Tambahkan puluhannya dulu: 90 + 70 = 160, baru tambahkan satuannya: 160 + 1 = 161."
+,332,ADD0000000000332,PENJUMLAHAN,1,Pertambahan 50-99,94 + 67,161,Sedang,"Pecah 67 menjadi 60 + 7. Tambahkan puluhannya dulu: 94 + 60 = 154, baru tambahkan satuannya: 154 + 7 = 161."
+,333,ADD0000000000333,PENJUMLAHAN,1,Pertambahan 50-99,94 + 68,162,Sedang,"Pecah 68 menjadi 60 + 8. Tambahkan puluhannya dulu: 94 + 60 = 154, baru tambahkan satuannya: 154 + 8 = 162."
+,334,ADD0000000000334,PENJUMLAHAN,1,Pertambahan 50-99,95 + 67,162,Sedang,"Pecah 67 menjadi 60 + 7. Tambahkan puluhannya dulu: 95 + 60 = 155, baru tambahkan satuannya: 155 + 7 = 162."
+,335,ADD0000000000335,PENJUMLAHAN,1,Pertambahan 50-99,65 + 97,162,Sedang,"Pecah 65 menjadi 60 + 5. Tambahkan puluhannya dulu: 97 + 60 = 157, baru tambahkan satuannya: 157 + 5 = 162."
+,336,ADD0000000000336,PENJUMLAHAN,1,Pertambahan 50-99,64 + 98,162,Sulit,"Pecah 64 menjadi 60 + 4. Tambahkan puluhannya dulu: 98 + 60 = 158, baru tambahkan satuannya: 158 + 4 = 162."
+,337,ADD0000000000337,PENJUMLAHAN,1,Pertambahan 50-99,80 + 84,164,Sulit,"80 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 84 + 80 = 164."
+,338,ADD0000000000338,PENJUMLAHAN,1,Pertambahan 50-99,96 + 70,166,Sulit,"70 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 96 + 70 = 166."
+,339,ADD0000000000339,PENJUMLAHAN,1,Pertambahan 50-99,83 + 84,167,Sulit,"Pecah 83 menjadi 80 + 3. Tambahkan puluhannya dulu: 84 + 80 = 164, baru tambahkan satuannya: 164 + 3 = 167."
+,340,ADD0000000000340,PENJUMLAHAN,1,Pertambahan 50-99,85 + 84,169,Sulit,"Pecah 84 menjadi 80 + 4. Tambahkan puluhannya dulu: 85 + 80 = 165, baru tambahkan satuannya: 165 + 4 = 169."
+,341,ADD0000000000341,PENJUMLAHAN,1,Pertambahan 50-99,76 + 94,170,Sulit,"Pecah 76 menjadi 70 + 6. Tambahkan puluhannya dulu: 94 + 70 = 164, baru tambahkan satuannya: 164 + 6 = 170."
+,342,ADD0000000000342,PENJUMLAHAN,1,Pertambahan 50-99,74 + 96,170,Sulit,"Pecah 74 menjadi 70 + 4. Tambahkan puluhannya dulu: 96 + 70 = 166, baru tambahkan satuannya: 166 + 4 = 170."
+,343,ADD0000000000343,PENJUMLAHAN,1,Pertambahan 50-99,94 + 81,175,Sulit,"Pecah 81 menjadi 80 + 1. Tambahkan puluhannya dulu: 94 + 80 = 174, baru tambahkan satuannya: 174 + 1 = 175."
+,344,ADD0000000000344,PENJUMLAHAN,1,Pertambahan 50-99,96 + 80,176,Sulit,"80 adalah puluhan bulat, jadi cukup jumlahkan puluhannya: 96 + 80 = 176."
+,345,ADD0000000000345,PENJUMLAHAN,1,Pertambahan 50-99,91 + 87,178,Sulit,"Pecah 87 menjadi 80 + 7. Tambahkan puluhannya dulu: 91 + 80 = 171, baru tambahkan satuannya: 171 + 7 = 178."
+,346,ADD0000000000346,PENJUMLAHAN,1,Pertambahan 50-99,87 + 92,179,Sulit,"Pecah 87 menjadi 80 + 7. Tambahkan puluhannya dulu: 92 + 80 = 172, baru tambahkan satuannya: 172 + 7 = 179."
+,347,ADD0000000000347,PENJUMLAHAN,1,Pertambahan 50-99,96 + 83,179,Sulit,"Pecah 83 menjadi 80 + 3. Tambahkan puluhannya dulu: 96 + 80 = 176, baru tambahkan satuannya: 176 + 3 = 179."
+,348,ADD0000000000348,PENJUMLAHAN,1,Pertambahan 50-99,91 + 93,184,Sulit,"Pecah 91 menjadi 90 + 1. Tambahkan puluhannya dulu: 93 + 90 = 183, baru tambahkan satuannya: 183 + 1 = 184."
+,349,ADD0000000000349,PENJUMLAHAN,1,Pertambahan 50-99,92 + 97,189,Sulit,"Pecah 92 menjadi 90 + 2. Tambahkan puluhannya dulu: 97 + 90 = 187, baru tambahkan satuannya: 187 + 2 = 189."
+,350,ADD0000000000350,PENJUMLAHAN,1,Pertambahan 50-99,96 + 97,193,Sulit,"Pecah 96 menjadi 90 + 6. Tambahkan puluhannya dulu: 97 + 90 = 187, baru tambahkan satuannya: 187 + 6 = 193."

@@ -1,0 +1,297 @@
+,,,,,,,,,
+,NO,CODE,LAB,LEVEL,SKILL,QUESTION,ANSWER,DIFFICULTY,EXPLANATION
+,1,SUB0000000000001,PENGURANGAN,1,Pengurangan dasar 0-9,0 − 0,0,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 0 − 0 = 0."
+,2,SUB0000000000002,PENGURANGAN,1,Pengurangan dasar 0-9,1 − 0,1,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 1 − 0 = 1."
+,3,SUB0000000000003,PENGURANGAN,1,Pengurangan dasar 0-9,2 − 0,2,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 2 − 0 = 2."
+,4,SUB0000000000004,PENGURANGAN,1,Pengurangan dasar 0-9,2 − 1,1,Mudah,Hitung mundur dari 2 sebanyak 1 langkah: 1. Berhenti di 1.
+,5,SUB0000000000005,PENGURANGAN,1,Pengurangan dasar 0-9,2 − 2,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 2 − 2 = 0."
+,6,SUB0000000000006,PENGURANGAN,1,Pengurangan dasar 0-9,3 − 0,3,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 3 − 0 = 3."
+,7,SUB0000000000007,PENGURANGAN,1,Pengurangan dasar 0-9,3 − 3,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 3 − 3 = 0."
+,8,SUB0000000000008,PENGURANGAN,1,Pengurangan dasar 0-9,4 − 0,4,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 4 − 0 = 4."
+,9,SUB0000000000009,PENGURANGAN,1,Pengurangan dasar 0-9,4 − 1,3,Mudah,Hitung mundur dari 4 sebanyak 1 langkah: 3. Berhenti di 3.
+,10,SUB0000000000010,PENGURANGAN,1,Pengurangan dasar 0-9,4 − 3,1,Mudah,Hitung mundur dari 4 sebanyak 3 langkah: 3 → 2 → 1. Berhenti di 1.
+,11,SUB0000000000011,PENGURANGAN,1,Pengurangan dasar 0-9,4 − 4,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 4 − 4 = 0."
+,12,SUB0000000000012,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 0,5,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 5 − 0 = 5."
+,13,SUB0000000000013,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 1,4,Mudah,Hitung mundur dari 5 sebanyak 1 langkah: 4. Berhenti di 4.
+,14,SUB0000000000014,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 4,1,Mudah,Hitung mundur dari 5 sebanyak 4 langkah: 4 → 3 → 2 → 1. Berhenti di 1.
+,15,SUB0000000000015,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 5,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 5 − 5 = 0."
+,16,SUB0000000000016,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 0,6,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 6 − 0 = 6."
+,17,SUB0000000000017,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 1,5,Mudah,Hitung mundur dari 6 sebanyak 1 langkah: 5. Berhenti di 5.
+,18,SUB0000000000018,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 6,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 6 − 6 = 0."
+,19,SUB0000000000019,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 0,7,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 7 − 0 = 7."
+,20,SUB0000000000020,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 6,1,Mudah,Hitung mundur dari 7 sebanyak 6 langkah: 6 → 5 → 4 → 3 → 2 → 1. Berhenti di 1.
+,21,SUB0000000000021,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 7,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 7 − 7 = 0."
+,22,SUB0000000000022,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 0,8,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 8 − 0 = 8."
+,23,SUB0000000000023,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 1,7,Mudah,Hitung mundur dari 8 sebanyak 1 langkah: 7. Berhenti di 7.
+,24,SUB0000000000024,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 7,1,Mudah,Hitung mundur dari 8 sebanyak 7 langkah: 7 → 6 → 5 → 4 → 3 → 2 → 1. Berhenti di 1.
+,25,SUB0000000000025,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 8,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 8 − 8 = 0."
+,26,SUB0000000000026,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 0,9,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 9 − 0 = 9."
+,27,SUB0000000000027,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 1,8,Mudah,Hitung mundur dari 9 sebanyak 1 langkah: 8. Berhenti di 8.
+,28,SUB0000000000028,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 8,1,Mudah,Hitung mundur dari 9 sebanyak 8 langkah: 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1. Berhenti di 1.
+,29,SUB0000000000029,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 9,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 9 − 9 = 0."
+,30,SUB0000000000030,PENGURANGAN,1,Pengurangan dasar 0-9,4 − 2,2,Sedang,Hitung mundur dari 4 sebanyak 2 langkah: 3 → 2. Berhenti di 2.
+,31,SUB0000000000031,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 2,3,Sedang,Hitung mundur dari 5 sebanyak 2 langkah: 4 → 3. Berhenti di 3.
+,32,SUB0000000000032,PENGURANGAN,1,Pengurangan dasar 0-9,5 − 3,2,Sedang,Hitung mundur dari 5 sebanyak 3 langkah: 4 → 3 → 2. Berhenti di 2.
+,33,SUB0000000000033,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 2,4,Sedang,Hitung mundur dari 6 sebanyak 2 langkah: 5 → 4. Berhenti di 4.
+,34,SUB0000000000034,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 3,3,Sedang,Hitung mundur dari 6 sebanyak 3 langkah: 5 → 4 → 3. Berhenti di 3.
+,35,SUB0000000000035,PENGURANGAN,1,Pengurangan dasar 0-9,6 − 4,2,Sedang,Hitung mundur dari 6 sebanyak 4 langkah: 5 → 4 → 3 → 2. Berhenti di 2.
+,36,SUB0000000000036,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 2,5,Sedang,Hitung mundur dari 7 sebanyak 2 langkah: 6 → 5. Berhenti di 5.
+,37,SUB0000000000037,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 3,4,Sedang,Hitung mundur dari 7 sebanyak 3 langkah: 6 → 5 → 4. Berhenti di 4.
+,38,SUB0000000000038,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 4,3,Sedang,Hitung mundur dari 7 sebanyak 4 langkah: 6 → 5 → 4 → 3. Berhenti di 3.
+,39,SUB0000000000039,PENGURANGAN,1,Pengurangan dasar 0-9,7 − 5,2,Sedang,Hitung mundur dari 7 sebanyak 5 langkah: 6 → 5 → 4 → 3 → 2. Berhenti di 2.
+,40,SUB0000000000040,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 2,6,Sedang,Hitung mundur dari 8 sebanyak 2 langkah: 7 → 6. Berhenti di 6.
+,41,SUB0000000000041,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 3,5,Sedang,Hitung mundur dari 8 sebanyak 3 langkah: 7 → 6 → 5. Berhenti di 5.
+,42,SUB0000000000042,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 5,3,Sedang,Hitung mundur dari 8 sebanyak 5 langkah: 7 → 6 → 5 → 4 → 3. Berhenti di 3.
+,43,SUB0000000000043,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 6,2,Sedang,Hitung mundur dari 8 sebanyak 6 langkah: 7 → 6 → 5 → 4 → 3 → 2. Berhenti di 2.
+,44,SUB0000000000044,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 2,7,Sedang,Hitung mundur dari 9 sebanyak 2 langkah: 8 → 7. Berhenti di 7.
+,45,SUB0000000000045,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 3,6,Sedang,Hitung mundur dari 9 sebanyak 3 langkah: 8 → 7 → 6. Berhenti di 6.
+,46,SUB0000000000046,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 6,3,Sedang,Hitung mundur dari 9 sebanyak 6 langkah: 8 → 7 → 6 → 5 → 4 → 3. Berhenti di 3.
+,47,SUB0000000000047,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 7,2,Sedang,Hitung mundur dari 9 sebanyak 7 langkah: 8 → 7 → 6 → 5 → 4 → 3 → 2. Berhenti di 2.
+,48,SUB0000000000048,PENGURANGAN,1,Pengurangan dasar 0-9,8 − 4,4,Sulit,Hitung mundur dari 8 sebanyak 4 langkah: 7 → 6 → 5 → 4. Berhenti di 4.
+,49,SUB0000000000049,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 4,5,Sulit,Hitung mundur dari 9 sebanyak 4 langkah: 8 → 7 → 6 → 5. Berhenti di 5.
+,50,SUB0000000000050,PENGURANGAN,1,Pengurangan dasar 0-9,9 − 5,4,Sulit,Hitung mundur dari 9 sebanyak 5 langkah: 8 → 7 → 6 → 5 → 4. Berhenti di 4.
+,51,SUB0000000000051,PENGURANGAN,1,Belasan tanpa meminjam,10 − 0,10,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 10 − 0 = 10."
+,52,SUB0000000000052,PENGURANGAN,1,Belasan tanpa meminjam,11 − 0,11,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 11 − 0 = 11."
+,53,SUB0000000000053,PENGURANGAN,1,Belasan tanpa meminjam,11 − 1,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 1 − 1 = 0. Jadi 11 − 1 = 10.
+,54,SUB0000000000054,PENGURANGAN,1,Belasan tanpa meminjam,12 − 0,12,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 12 − 0 = 12."
+,55,SUB0000000000055,PENGURANGAN,1,Belasan tanpa meminjam,12 − 1,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 2 − 1 = 1. Jadi 12 − 1 = 11.
+,56,SUB0000000000056,PENGURANGAN,1,Belasan tanpa meminjam,12 − 2,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 2 − 2 = 0. Jadi 12 − 2 = 10.
+,57,SUB0000000000057,PENGURANGAN,1,Belasan tanpa meminjam,13 − 0,13,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 13 − 0 = 13."
+,58,SUB0000000000058,PENGURANGAN,1,Belasan tanpa meminjam,13 − 1,12,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 3 − 1 = 2. Jadi 13 − 1 = 12.
+,59,SUB0000000000059,PENGURANGAN,1,Belasan tanpa meminjam,13 − 2,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 3 − 2 = 1. Jadi 13 − 2 = 11.
+,60,SUB0000000000060,PENGURANGAN,1,Belasan tanpa meminjam,13 − 3,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 3 − 3 = 0. Jadi 13 − 3 = 10.
+,61,SUB0000000000061,PENGURANGAN,1,Belasan tanpa meminjam,14 − 0,14,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 14 − 0 = 14."
+,62,SUB0000000000062,PENGURANGAN,1,Belasan tanpa meminjam,14 − 1,13,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 4 − 1 = 3. Jadi 14 − 1 = 13.
+,63,SUB0000000000063,PENGURANGAN,1,Belasan tanpa meminjam,14 − 3,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 4 − 3 = 1. Jadi 14 − 3 = 11.
+,64,SUB0000000000064,PENGURANGAN,1,Belasan tanpa meminjam,14 − 4,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 4 − 4 = 0. Jadi 14 − 4 = 10.
+,65,SUB0000000000065,PENGURANGAN,1,Belasan tanpa meminjam,15 − 0,15,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 15 − 0 = 15."
+,66,SUB0000000000066,PENGURANGAN,1,Belasan tanpa meminjam,15 − 1,14,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 5 − 1 = 4. Jadi 15 − 1 = 14.
+,67,SUB0000000000067,PENGURANGAN,1,Belasan tanpa meminjam,15 − 4,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 5 − 4 = 1. Jadi 15 − 4 = 11.
+,68,SUB0000000000068,PENGURANGAN,1,Belasan tanpa meminjam,15 − 5,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 5 − 5 = 0. Jadi 15 − 5 = 10.
+,69,SUB0000000000069,PENGURANGAN,1,Belasan tanpa meminjam,16 − 0,16,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 16 − 0 = 16."
+,70,SUB0000000000070,PENGURANGAN,1,Belasan tanpa meminjam,16 − 1,15,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 6 − 1 = 5. Jadi 16 − 1 = 15.
+,71,SUB0000000000071,PENGURANGAN,1,Belasan tanpa meminjam,16 − 4,12,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 6 − 4 = 2. Jadi 16 − 4 = 12.
+,72,SUB0000000000072,PENGURANGAN,1,Belasan tanpa meminjam,17 − 0,17,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 17 − 0 = 17."
+,73,SUB0000000000073,PENGURANGAN,1,Belasan tanpa meminjam,17 − 1,16,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 1 = 6. Jadi 17 − 1 = 16.
+,74,SUB0000000000074,PENGURANGAN,1,Belasan tanpa meminjam,17 − 5,12,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 5 = 2. Jadi 17 − 5 = 12.
+,75,SUB0000000000075,PENGURANGAN,1,Belasan tanpa meminjam,17 − 7,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 7 = 0. Jadi 17 − 7 = 10.
+,76,SUB0000000000076,PENGURANGAN,1,Belasan tanpa meminjam,18 − 0,18,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 18 − 0 = 18."
+,77,SUB0000000000077,PENGURANGAN,1,Belasan tanpa meminjam,18 − 1,17,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 1 = 7. Jadi 18 − 1 = 17.
+,78,SUB0000000000078,PENGURANGAN,1,Belasan tanpa meminjam,18 − 6,12,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 6 = 2. Jadi 18 − 6 = 12.
+,79,SUB0000000000079,PENGURANGAN,1,Belasan tanpa meminjam,18 − 7,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 7 = 1. Jadi 18 − 7 = 11.
+,80,SUB0000000000080,PENGURANGAN,1,Belasan tanpa meminjam,18 − 8,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 8 = 0. Jadi 18 − 8 = 10.
+,81,SUB0000000000081,PENGURANGAN,1,Belasan tanpa meminjam,19 − 0,19,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 19 − 0 = 19."
+,82,SUB0000000000082,PENGURANGAN,1,Belasan tanpa meminjam,19 − 1,18,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 1 = 8. Jadi 19 − 1 = 18.
+,83,SUB0000000000083,PENGURANGAN,1,Belasan tanpa meminjam,19 − 7,12,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 7 = 2. Jadi 19 − 7 = 12.
+,84,SUB0000000000084,PENGURANGAN,1,Belasan tanpa meminjam,19 − 8,11,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 8 = 1. Jadi 19 − 8 = 11.
+,85,SUB0000000000085,PENGURANGAN,1,Belasan tanpa meminjam,19 − 9,10,Mudah,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 9 = 0. Jadi 19 − 9 = 10.
+,86,SUB0000000000086,PENGURANGAN,1,Belasan tanpa meminjam,15 − 2,13,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 5 − 2 = 3. Jadi 15 − 2 = 13.
+,87,SUB0000000000087,PENGURANGAN,1,Belasan tanpa meminjam,16 − 2,14,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 6 − 2 = 4. Jadi 16 − 2 = 14.
+,88,SUB0000000000088,PENGURANGAN,1,Belasan tanpa meminjam,16 − 3,13,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 6 − 3 = 3. Jadi 16 − 3 = 13.
+,89,SUB0000000000089,PENGURANGAN,1,Belasan tanpa meminjam,17 − 2,15,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 2 = 5. Jadi 17 − 2 = 15.
+,90,SUB0000000000090,PENGURANGAN,1,Belasan tanpa meminjam,17 − 3,14,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 3 = 4. Jadi 17 − 3 = 14.
+,91,SUB0000000000091,PENGURANGAN,1,Belasan tanpa meminjam,17 − 4,13,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 7 − 4 = 3. Jadi 17 − 4 = 13.
+,92,SUB0000000000092,PENGURANGAN,1,Belasan tanpa meminjam,18 − 2,16,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 2 = 6. Jadi 18 − 2 = 16.
+,93,SUB0000000000093,PENGURANGAN,1,Belasan tanpa meminjam,18 − 3,15,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 3 = 5. Jadi 18 − 3 = 15.
+,94,SUB0000000000094,PENGURANGAN,1,Belasan tanpa meminjam,18 − 4,14,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 4 = 4. Jadi 18 − 4 = 14.
+,95,SUB0000000000095,PENGURANGAN,1,Belasan tanpa meminjam,19 − 2,17,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 2 = 7. Jadi 19 − 2 = 17.
+,96,SUB0000000000096,PENGURANGAN,1,Belasan tanpa meminjam,19 − 3,16,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 3 = 6. Jadi 19 − 3 = 16.
+,97,SUB0000000000097,PENGURANGAN,1,Belasan tanpa meminjam,19 − 4,15,Sedang,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 4 = 5. Jadi 19 − 4 = 15.
+,98,SUB0000000000098,PENGURANGAN,1,Belasan tanpa meminjam,18 − 5,13,Sulit,Puluhannya tetap 10. Kurangi satuannya saja: 8 − 5 = 3. Jadi 18 − 5 = 13.
+,99,SUB0000000000099,PENGURANGAN,1,Belasan tanpa meminjam,19 − 5,14,Sulit,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 5 = 4. Jadi 19 − 5 = 14.
+,100,SUB0000000000100,PENGURANGAN,1,Belasan tanpa meminjam,19 − 6,13,Sulit,Puluhannya tetap 10. Kurangi satuannya saja: 9 − 6 = 3. Jadi 19 − 6 = 13.
+,101,SUB0000000000101,PENGURANGAN,1,Belasan dengan meminjam,10 − 1,9,Mudah,Hitung mundur dari 10 sebanyak 1 langkah: 9. Berhenti di 9.
+,102,SUB0000000000102,PENGURANGAN,1,Belasan dengan meminjam,10 − 2,8,Mudah,Hitung mundur dari 10 sebanyak 2 langkah: 9 → 8. Berhenti di 8.
+,103,SUB0000000000103,PENGURANGAN,1,Belasan dengan meminjam,11 − 2,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,104,SUB0000000000104,PENGURANGAN,1,Belasan dengan meminjam,11 − 3,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,105,SUB0000000000105,PENGURANGAN,1,Belasan dengan meminjam,12 − 3,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,106,SUB0000000000106,PENGURANGAN,1,Belasan dengan meminjam,12 − 4,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,107,SUB0000000000107,PENGURANGAN,1,Belasan dengan meminjam,13 − 4,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,108,SUB0000000000108,PENGURANGAN,1,Belasan dengan meminjam,13 − 5,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,109,SUB0000000000109,PENGURANGAN,1,Belasan dengan meminjam,14 − 5,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 4 dulu supaya pas di 10: 14 − 4 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,110,SUB0000000000110,PENGURANGAN,1,Belasan dengan meminjam,14 − 6,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 4 dulu supaya pas di 10: 14 − 4 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,111,SUB0000000000111,PENGURANGAN,1,Belasan dengan meminjam,15 − 6,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 5 dulu supaya pas di 10: 15 − 5 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,112,SUB0000000000112,PENGURANGAN,1,Belasan dengan meminjam,15 − 7,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 5 dulu supaya pas di 10: 15 − 5 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,113,SUB0000000000113,PENGURANGAN,1,Belasan dengan meminjam,16 − 7,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 6 dulu supaya pas di 10: 16 − 6 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,114,SUB0000000000114,PENGURANGAN,1,Belasan dengan meminjam,16 − 8,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 6 dulu supaya pas di 10: 16 − 6 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,115,SUB0000000000115,PENGURANGAN,1,Belasan dengan meminjam,17 − 8,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 7 dulu supaya pas di 10: 17 − 7 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,116,SUB0000000000116,PENGURANGAN,1,Belasan dengan meminjam,17 − 9,8,Mudah,Pakai cara mundur ke sepuluh. Kurangi 7 dulu supaya pas di 10: 17 − 7 = 10. Lalu kurangi sisanya: 10 − 2 = 8.
+,117,SUB0000000000117,PENGURANGAN,1,Belasan dengan meminjam,18 − 9,9,Mudah,Pakai cara mundur ke sepuluh. Kurangi 8 dulu supaya pas di 10: 18 − 8 = 10. Lalu kurangi sisanya: 10 − 1 = 9.
+,118,SUB0000000000118,PENGURANGAN,1,Belasan dengan meminjam,10 − 3,7,Sedang,Hitung mundur dari 10 sebanyak 3 langkah: 9 → 8 → 7. Berhenti di 7.
+,119,SUB0000000000119,PENGURANGAN,1,Belasan dengan meminjam,10 − 4,6,Sedang,Hitung mundur dari 10 sebanyak 4 langkah: 9 → 8 → 7 → 6. Berhenti di 6.
+,120,SUB0000000000120,PENGURANGAN,1,Belasan dengan meminjam,10 − 5,5,Sedang,Hitung mundur dari 10 sebanyak 5 langkah: 9 → 8 → 7 → 6 → 5. Berhenti di 5.
+,121,SUB0000000000121,PENGURANGAN,1,Belasan dengan meminjam,11 − 4,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,122,SUB0000000000122,PENGURANGAN,1,Belasan dengan meminjam,11 − 5,6,Sedang,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 4 = 6.
+,123,SUB0000000000123,PENGURANGAN,1,Belasan dengan meminjam,11 − 6,5,Sedang,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 5 = 5.
+,124,SUB0000000000124,PENGURANGAN,1,Belasan dengan meminjam,12 − 5,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,125,SUB0000000000125,PENGURANGAN,1,Belasan dengan meminjam,12 − 6,6,Sedang,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 4 = 6.
+,126,SUB0000000000126,PENGURANGAN,1,Belasan dengan meminjam,12 − 7,5,Sedang,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 5 = 5.
+,127,SUB0000000000127,PENGURANGAN,1,Belasan dengan meminjam,13 − 6,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,128,SUB0000000000128,PENGURANGAN,1,Belasan dengan meminjam,13 − 7,6,Sedang,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 4 = 6.
+,129,SUB0000000000129,PENGURANGAN,1,Belasan dengan meminjam,13 − 8,5,Sedang,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 5 = 5.
+,130,SUB0000000000130,PENGURANGAN,1,Belasan dengan meminjam,14 − 7,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 4 dulu supaya pas di 10: 14 − 4 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,131,SUB0000000000131,PENGURANGAN,1,Belasan dengan meminjam,14 − 8,6,Sedang,Pakai cara mundur ke sepuluh. Kurangi 4 dulu supaya pas di 10: 14 − 4 = 10. Lalu kurangi sisanya: 10 − 4 = 6.
+,132,SUB0000000000132,PENGURANGAN,1,Belasan dengan meminjam,14 − 9,5,Sedang,Pakai cara mundur ke sepuluh. Kurangi 4 dulu supaya pas di 10: 14 − 4 = 10. Lalu kurangi sisanya: 10 − 5 = 5.
+,133,SUB0000000000133,PENGURANGAN,1,Belasan dengan meminjam,15 − 8,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 5 dulu supaya pas di 10: 15 − 5 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,134,SUB0000000000134,PENGURANGAN,1,Belasan dengan meminjam,15 − 9,6,Sedang,Pakai cara mundur ke sepuluh. Kurangi 5 dulu supaya pas di 10: 15 − 5 = 10. Lalu kurangi sisanya: 10 − 4 = 6.
+,135,SUB0000000000135,PENGURANGAN,1,Belasan dengan meminjam,16 − 9,7,Sedang,Pakai cara mundur ke sepuluh. Kurangi 6 dulu supaya pas di 10: 16 − 6 = 10. Lalu kurangi sisanya: 10 − 3 = 7.
+,136,SUB0000000000136,PENGURANGAN,1,Belasan dengan meminjam,10 − 6,4,Sulit,Hitung mundur dari 10 sebanyak 6 langkah: 9 → 8 → 7 → 6 → 5 → 4. Berhenti di 4.
+,137,SUB0000000000137,PENGURANGAN,1,Belasan dengan meminjam,10 − 7,3,Sulit,Hitung mundur dari 10 sebanyak 7 langkah: 9 → 8 → 7 → 6 → 5 → 4 → 3. Berhenti di 3.
+,138,SUB0000000000138,PENGURANGAN,1,Belasan dengan meminjam,10 − 8,2,Sulit,Hitung mundur dari 10 sebanyak 8 langkah: 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2. Berhenti di 2.
+,139,SUB0000000000139,PENGURANGAN,1,Belasan dengan meminjam,10 − 9,1,Sulit,Hitung mundur dari 10 sebanyak 9 langkah: 9 → 8 → 7 → 6 → 5 → 4 → 3 → 2 → 1. Berhenti di 1.
+,140,SUB0000000000140,PENGURANGAN,1,Belasan dengan meminjam,11 − 7,4,Sulit,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 6 = 4.
+,141,SUB0000000000141,PENGURANGAN,1,Belasan dengan meminjam,11 − 8,3,Sulit,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 7 = 3.
+,142,SUB0000000000142,PENGURANGAN,1,Belasan dengan meminjam,11 − 9,2,Sulit,Pakai cara mundur ke sepuluh. Kurangi 1 dulu supaya pas di 10: 11 − 1 = 10. Lalu kurangi sisanya: 10 − 8 = 2.
+,143,SUB0000000000143,PENGURANGAN,1,Belasan dengan meminjam,12 − 8,4,Sulit,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 6 = 4.
+,144,SUB0000000000144,PENGURANGAN,1,Belasan dengan meminjam,12 − 9,3,Sulit,Pakai cara mundur ke sepuluh. Kurangi 2 dulu supaya pas di 10: 12 − 2 = 10. Lalu kurangi sisanya: 10 − 7 = 3.
+,145,SUB0000000000145,PENGURANGAN,1,Belasan dengan meminjam,13 − 9,4,Sulit,Pakai cara mundur ke sepuluh. Kurangi 3 dulu supaya pas di 10: 13 − 3 = 10. Lalu kurangi sisanya: 10 − 6 = 4.
+,146,SUB0000000000146,PENGURANGAN,1,Dua digit tanpa meminjam,26 − 10,16,Mudah,Kurangi menurut nilai tempat. Satuan: 6 − 0 = 6. Puluhan: 2 − 1 = 1. Hasilnya 16.
+,147,SUB0000000000147,PENGURANGAN,1,Dua digit tanpa meminjam,34 − 14,20,Mudah,Kurangi menurut nilai tempat. Satuan: 4 − 4 = 0. Puluhan: 3 − 1 = 2. Hasilnya 20.
+,148,SUB0000000000148,PENGURANGAN,1,Dua digit tanpa meminjam,47 − 20,27,Mudah,Kurangi menurut nilai tempat. Satuan: 7 − 0 = 7. Puluhan: 4 − 2 = 2. Hasilnya 27.
+,149,SUB0000000000149,PENGURANGAN,1,Dua digit tanpa meminjam,59 − 59,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 59 − 59 = 0."
+,150,SUB0000000000150,PENGURANGAN,1,Dua digit tanpa meminjam,67 − 67,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 67 − 67 = 0."
+,151,SUB0000000000151,PENGURANGAN,1,Dua digit tanpa meminjam,72 − 12,60,Mudah,Kurangi menurut nilai tempat. Satuan: 2 − 2 = 0. Puluhan: 7 − 1 = 6. Hasilnya 60.
+,152,SUB0000000000152,PENGURANGAN,1,Dua digit tanpa meminjam,77 − 70,7,Mudah,Kurangi menurut nilai tempat. Satuan: 7 − 0 = 7. Puluhan: 7 − 7 = 0. Hasilnya 7.
+,153,SUB0000000000153,PENGURANGAN,1,Dua digit tanpa meminjam,82 − 20,62,Mudah,Kurangi menurut nilai tempat. Satuan: 2 − 0 = 2. Puluhan: 8 − 2 = 6. Hasilnya 62.
+,154,SUB0000000000154,PENGURANGAN,1,Dua digit tanpa meminjam,82 − 72,10,Mudah,Kurangi menurut nilai tempat. Satuan: 2 − 2 = 0. Puluhan: 8 − 7 = 1. Hasilnya 10.
+,155,SUB0000000000155,PENGURANGAN,1,Dua digit tanpa meminjam,85 − 60,25,Mudah,Kurangi menurut nilai tempat. Satuan: 5 − 0 = 5. Puluhan: 8 − 6 = 2. Hasilnya 25.
+,156,SUB0000000000156,PENGURANGAN,1,Dua digit tanpa meminjam,88 − 50,38,Mudah,Kurangi menurut nilai tempat. Satuan: 8 − 0 = 8. Puluhan: 8 − 5 = 3. Hasilnya 38.
+,157,SUB0000000000157,PENGURANGAN,1,Dua digit tanpa meminjam,91 − 71,20,Mudah,Kurangi menurut nilai tempat. Satuan: 1 − 1 = 0. Puluhan: 9 − 7 = 2. Hasilnya 20.
+,158,SUB0000000000158,PENGURANGAN,1,Dua digit tanpa meminjam,92 − 60,32,Mudah,Kurangi menurut nilai tempat. Satuan: 2 − 0 = 2. Puluhan: 9 − 6 = 3. Hasilnya 32.
+,159,SUB0000000000159,PENGURANGAN,1,Dua digit tanpa meminjam,94 − 14,80,Mudah,Kurangi menurut nilai tempat. Satuan: 4 − 4 = 0. Puluhan: 9 − 1 = 8. Hasilnya 80.
+,160,SUB0000000000160,PENGURANGAN,1,Dua digit tanpa meminjam,98 − 78,20,Mudah,Kurangi menurut nilai tempat. Satuan: 8 − 8 = 0. Puluhan: 9 − 7 = 2. Hasilnya 20.
+,161,SUB0000000000161,PENGURANGAN,1,Dua digit tanpa meminjam,99 − 80,19,Mudah,Kurangi menurut nilai tempat. Satuan: 9 − 0 = 9. Puluhan: 9 − 8 = 1. Hasilnya 19.
+,162,SUB0000000000162,PENGURANGAN,1,Dua digit tanpa meminjam,27 − 23,4,Sedang,Kurangi menurut nilai tempat. Satuan: 7 − 3 = 4. Puluhan: 2 − 2 = 0. Hasilnya 4.
+,163,SUB0000000000163,PENGURANGAN,1,Dua digit tanpa meminjam,35 − 13,22,Sedang,Kurangi menurut nilai tempat. Satuan: 5 − 3 = 2. Puluhan: 3 − 1 = 2. Hasilnya 22.
+,164,SUB0000000000164,PENGURANGAN,1,Dua digit tanpa meminjam,37 − 23,14,Sedang,Kurangi menurut nilai tempat. Satuan: 7 − 3 = 4. Puluhan: 3 − 2 = 1. Hasilnya 14.
+,165,SUB0000000000165,PENGURANGAN,1,Dua digit tanpa meminjam,44 − 42,2,Sedang,Kurangi menurut nilai tempat. Satuan: 4 − 2 = 2. Puluhan: 4 − 4 = 0. Hasilnya 2.
+,166,SUB0000000000166,PENGURANGAN,1,Dua digit tanpa meminjam,49 − 43,6,Sedang,Kurangi menurut nilai tempat. Satuan: 9 − 3 = 6. Puluhan: 4 − 4 = 0. Hasilnya 6.
+,167,SUB0000000000167,PENGURANGAN,1,Dua digit tanpa meminjam,54 − 52,2,Sedang,Kurangi menurut nilai tempat. Satuan: 4 − 2 = 2. Puluhan: 5 − 5 = 0. Hasilnya 2.
+,168,SUB0000000000168,PENGURANGAN,1,Dua digit tanpa meminjam,59 − 51,8,Sedang,Kurangi menurut nilai tempat. Satuan: 9 − 1 = 8. Puluhan: 5 − 5 = 0. Hasilnya 8.
+,169,SUB0000000000169,PENGURANGAN,1,Dua digit tanpa meminjam,65 − 62,3,Sedang,Kurangi menurut nilai tempat. Satuan: 5 − 2 = 3. Puluhan: 6 − 6 = 0. Hasilnya 3.
+,170,SUB0000000000170,PENGURANGAN,1,Dua digit tanpa meminjam,66 − 42,24,Sedang,Kurangi menurut nilai tempat. Satuan: 6 − 2 = 4. Puluhan: 6 − 4 = 2. Hasilnya 24.
+,171,SUB0000000000171,PENGURANGAN,1,Dua digit tanpa meminjam,75 − 54,21,Sedang,Kurangi menurut nilai tempat. Satuan: 5 − 4 = 1. Puluhan: 7 − 5 = 2. Hasilnya 21.
+,172,SUB0000000000172,PENGURANGAN,1,Dua digit tanpa meminjam,77 − 71,6,Sedang,Kurangi menurut nilai tempat. Satuan: 7 − 1 = 6. Puluhan: 7 − 7 = 0. Hasilnya 6.
+,173,SUB0000000000173,PENGURANGAN,1,Dua digit tanpa meminjam,78 − 75,3,Sedang,Kurangi menurut nilai tempat. Satuan: 8 − 5 = 3. Puluhan: 7 − 7 = 0. Hasilnya 3.
+,174,SUB0000000000174,PENGURANGAN,1,Dua digit tanpa meminjam,84 − 71,13,Sedang,Kurangi menurut nilai tempat. Satuan: 4 − 1 = 3. Puluhan: 8 − 7 = 1. Hasilnya 13.
+,175,SUB0000000000175,PENGURANGAN,1,Dua digit tanpa meminjam,95 − 71,24,Sedang,Kurangi menurut nilai tempat. Satuan: 5 − 1 = 4. Puluhan: 9 − 7 = 2. Hasilnya 24.
+,176,SUB0000000000176,PENGURANGAN,1,Dua digit tanpa meminjam,95 − 72,23,Sedang,Kurangi menurut nilai tempat. Satuan: 5 − 2 = 3. Puluhan: 9 − 7 = 2. Hasilnya 23.
+,177,SUB0000000000177,PENGURANGAN,1,Dua digit tanpa meminjam,99 − 88,11,Sedang,Kurangi menurut nilai tempat. Satuan: 9 − 8 = 1. Puluhan: 9 − 8 = 1. Hasilnya 11.
+,178,SUB0000000000178,PENGURANGAN,1,Dua digit tanpa meminjam,55 − 14,41,Sulit,Kurangi menurut nilai tempat. Satuan: 5 − 4 = 1. Puluhan: 5 − 1 = 4. Hasilnya 41.
+,179,SUB0000000000179,PENGURANGAN,1,Dua digit tanpa meminjam,58 − 17,41,Sulit,Kurangi menurut nilai tempat. Satuan: 8 − 7 = 1. Puluhan: 5 − 1 = 4. Hasilnya 41.
+,180,SUB0000000000180,PENGURANGAN,1,Dua digit tanpa meminjam,63 − 32,31,Sulit,Kurangi menurut nilai tempat. Satuan: 3 − 2 = 1. Puluhan: 6 − 3 = 3. Hasilnya 31.
+,181,SUB0000000000181,PENGURANGAN,1,Dua digit tanpa meminjam,68 − 11,57,Sulit,Kurangi menurut nilai tempat. Satuan: 8 − 1 = 7. Puluhan: 6 − 1 = 5. Hasilnya 57.
+,182,SUB0000000000182,PENGURANGAN,1,Dua digit tanpa meminjam,75 − 42,33,Sulit,Kurangi menurut nilai tempat. Satuan: 5 − 2 = 3. Puluhan: 7 − 4 = 3. Hasilnya 33.
+,183,SUB0000000000183,PENGURANGAN,1,Dua digit tanpa meminjam,76 − 34,42,Sulit,Kurangi menurut nilai tempat. Satuan: 6 − 4 = 2. Puluhan: 7 − 3 = 4. Hasilnya 42.
+,184,SUB0000000000184,PENGURANGAN,1,Dua digit tanpa meminjam,79 − 24,55,Sulit,Kurangi menurut nilai tempat. Satuan: 9 − 4 = 5. Puluhan: 7 − 2 = 5. Hasilnya 55.
+,185,SUB0000000000185,PENGURANGAN,1,Dua digit tanpa meminjam,85 − 13,72,Sulit,Kurangi menurut nilai tempat. Satuan: 5 − 3 = 2. Puluhan: 8 − 1 = 7. Hasilnya 72.
+,186,SUB0000000000186,PENGURANGAN,1,Dua digit tanpa meminjam,86 − 14,72,Sulit,Kurangi menurut nilai tempat. Satuan: 6 − 4 = 2. Puluhan: 8 − 1 = 7. Hasilnya 72.
+,187,SUB0000000000187,PENGURANGAN,1,Dua digit tanpa meminjam,86 − 53,33,Sulit,Kurangi menurut nilai tempat. Satuan: 6 − 3 = 3. Puluhan: 8 − 5 = 3. Hasilnya 33.
+,188,SUB0000000000188,PENGURANGAN,1,Dua digit tanpa meminjam,88 − 43,45,Sulit,Kurangi menurut nilai tempat. Satuan: 8 − 3 = 5. Puluhan: 8 − 4 = 4. Hasilnya 45.
+,189,SUB0000000000189,PENGURANGAN,1,Dua digit tanpa meminjam,94 − 12,82,Sulit,Kurangi menurut nilai tempat. Satuan: 4 − 2 = 2. Puluhan: 9 − 1 = 8. Hasilnya 82.
+,190,SUB0000000000190,PENGURANGAN,1,Dua digit tanpa meminjam,95 − 42,53,Sulit,Kurangi menurut nilai tempat. Satuan: 5 − 2 = 3. Puluhan: 9 − 4 = 5. Hasilnya 53.
+,191,SUB0000000000191,PENGURANGAN,1,Dua digit tanpa meminjam,96 − 45,51,Sulit,Kurangi menurut nilai tempat. Satuan: 6 − 5 = 1. Puluhan: 9 − 4 = 5. Hasilnya 51.
+,192,SUB0000000000192,PENGURANGAN,1,Dua digit tanpa meminjam,96 − 51,45,Sulit,Kurangi menurut nilai tempat. Satuan: 6 − 1 = 5. Puluhan: 9 − 5 = 4. Hasilnya 45.
+,193,SUB0000000000193,PENGURANGAN,1,Dua digit tanpa meminjam,97 − 33,64,Sulit,Kurangi menurut nilai tempat. Satuan: 7 − 3 = 4. Puluhan: 9 − 3 = 6. Hasilnya 64.
+,194,SUB0000000000194,PENGURANGAN,1,Dua digit tanpa meminjam,97 − 51,46,Sulit,Kurangi menurut nilai tempat. Satuan: 7 − 1 = 6. Puluhan: 9 − 5 = 4. Hasilnya 46.
+,195,SUB0000000000195,PENGURANGAN,1,Dua digit tanpa meminjam,98 − 32,66,Sulit,Kurangi menurut nilai tempat. Satuan: 8 − 2 = 6. Puluhan: 9 − 3 = 6. Hasilnya 66.
+,196,SUB0000000000196,PENGURANGAN,1,Dua digit dengan meminjam,45 − 16,29,Mudah,"Satuan 5 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 5+10 − 6 = 9. Sisa puluhan: 3 − 1 = 2. Hasilnya 29."
+,197,SUB0000000000197,PENGURANGAN,1,Dua digit dengan meminjam,47 − 18,29,Mudah,"Satuan 7 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 8 = 9. Sisa puluhan: 3 − 1 = 2. Hasilnya 29."
+,198,SUB0000000000198,PENGURANGAN,1,Dua digit dengan meminjam,50 − 21,29,Mudah,"Satuan 0 lebih kecil dari 1, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 1 = 9. Sisa puluhan: 4 − 2 = 2. Hasilnya 29."
+,199,SUB0000000000199,PENGURANGAN,1,Dua digit dengan meminjam,61 − 32,29,Mudah,"Satuan 1 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 2 = 9. Sisa puluhan: 5 − 3 = 2. Hasilnya 29."
+,200,SUB0000000000200,PENGURANGAN,1,Dua digit dengan meminjam,63 − 14,49,Mudah,"Satuan 3 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 4 = 9. Sisa puluhan: 5 − 1 = 4. Hasilnya 49."
+,201,SUB0000000000201,PENGURANGAN,1,Dua digit dengan meminjam,71 − 42,29,Mudah,"Satuan 1 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 2 = 9. Sisa puluhan: 6 − 4 = 2. Hasilnya 29."
+,202,SUB0000000000202,PENGURANGAN,1,Dua digit dengan meminjam,73 − 44,29,Mudah,"Satuan 3 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 4 = 9. Sisa puluhan: 6 − 4 = 2. Hasilnya 29."
+,203,SUB0000000000203,PENGURANGAN,1,Dua digit dengan meminjam,77 − 49,28,Mudah,"Satuan 7 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 9 = 8. Sisa puluhan: 6 − 4 = 2. Hasilnya 28."
+,204,SUB0000000000204,PENGURANGAN,1,Dua digit dengan meminjam,80 − 12,68,Mudah,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 7 − 1 = 6. Hasilnya 68."
+,205,SUB0000000000205,PENGURANGAN,1,Dua digit dengan meminjam,82 − 14,68,Mudah,"Satuan 2 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 4 = 8. Sisa puluhan: 7 − 1 = 6. Hasilnya 68."
+,206,SUB0000000000206,PENGURANGAN,1,Dua digit dengan meminjam,91 − 12,79,Mudah,"Satuan 1 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 2 = 9. Sisa puluhan: 8 − 1 = 7. Hasilnya 79."
+,207,SUB0000000000207,PENGURANGAN,1,Dua digit dengan meminjam,92 − 34,58,Mudah,"Satuan 2 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 4 = 8. Sisa puluhan: 8 − 3 = 5. Hasilnya 58."
+,208,SUB0000000000208,PENGURANGAN,1,Dua digit dengan meminjam,94 − 66,28,Mudah,"Satuan 4 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 4+10 − 6 = 8. Sisa puluhan: 8 − 6 = 2. Hasilnya 28."
+,209,SUB0000000000209,PENGURANGAN,1,Dua digit dengan meminjam,97 − 29,68,Mudah,"Satuan 7 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 9 = 8. Sisa puluhan: 8 − 2 = 6. Hasilnya 68."
+,210,SUB0000000000210,PENGURANGAN,1,Dua digit dengan meminjam,97 − 48,49,Mudah,"Satuan 7 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 8 = 9. Sisa puluhan: 8 − 4 = 4. Hasilnya 49."
+,211,SUB0000000000211,PENGURANGAN,1,Dua digit dengan meminjam,97 − 58,39,Mudah,"Satuan 7 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 8 = 9. Sisa puluhan: 8 − 5 = 3. Hasilnya 39."
+,212,SUB0000000000212,PENGURANGAN,1,Dua digit dengan meminjam,23 − 14,9,Sedang,"Satuan 3 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 4 = 9. Sisa puluhan: 1 − 1 = 0. Hasilnya 9."
+,213,SUB0000000000213,PENGURANGAN,1,Dua digit dengan meminjam,31 − 24,7,Sedang,"Satuan 1 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 4 = 7. Sisa puluhan: 2 − 2 = 0. Hasilnya 7."
+,214,SUB0000000000214,PENGURANGAN,1,Dua digit dengan meminjam,36 − 19,17,Sedang,"Satuan 6 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 6+10 − 9 = 7. Sisa puluhan: 2 − 1 = 1. Hasilnya 17."
+,215,SUB0000000000215,PENGURANGAN,1,Dua digit dengan meminjam,44 − 26,18,Sedang,"Satuan 4 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 4+10 − 6 = 8. Sisa puluhan: 3 − 2 = 1. Hasilnya 18."
+,216,SUB0000000000216,PENGURANGAN,1,Dua digit dengan meminjam,45 − 37,8,Sedang,"Satuan 5 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 5+10 − 7 = 8. Sisa puluhan: 3 − 3 = 0. Hasilnya 8."
+,217,SUB0000000000217,PENGURANGAN,1,Dua digit dengan meminjam,47 − 38,9,Sedang,"Satuan 7 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 8 = 9. Sisa puluhan: 3 − 3 = 0. Hasilnya 9."
+,218,SUB0000000000218,PENGURANGAN,1,Dua digit dengan meminjam,54 − 27,27,Sedang,"Satuan 4 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 4+10 − 7 = 7. Sisa puluhan: 4 − 2 = 2. Hasilnya 27."
+,219,SUB0000000000219,PENGURANGAN,1,Dua digit dengan meminjam,63 − 54,9,Sedang,"Satuan 3 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 4 = 9. Sisa puluhan: 5 − 5 = 0. Hasilnya 9."
+,220,SUB0000000000220,PENGURANGAN,1,Dua digit dengan meminjam,70 − 43,27,Sedang,"Satuan 0 lebih kecil dari 3, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 3 = 7. Sisa puluhan: 6 − 4 = 2. Hasilnya 27."
+,221,SUB0000000000221,PENGURANGAN,1,Dua digit dengan meminjam,70 − 53,17,Sedang,"Satuan 0 lebih kecil dari 3, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 3 = 7. Sisa puluhan: 6 − 5 = 1. Hasilnya 17."
+,222,SUB0000000000222,PENGURANGAN,1,Dua digit dengan meminjam,73 − 47,26,Sedang,"Satuan 3 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 7 = 6. Sisa puluhan: 6 − 4 = 2. Hasilnya 26."
+,223,SUB0000000000223,PENGURANGAN,1,Dua digit dengan meminjam,75 − 18,57,Sedang,"Satuan 5 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 5+10 − 8 = 7. Sisa puluhan: 6 − 1 = 5. Hasilnya 57."
+,224,SUB0000000000224,PENGURANGAN,1,Dua digit dengan meminjam,90 − 43,47,Sedang,"Satuan 0 lebih kecil dari 3, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 3 = 7. Sisa puluhan: 8 − 4 = 4. Hasilnya 47."
+,225,SUB0000000000225,PENGURANGAN,1,Dua digit dengan meminjam,91 − 86,5,Sedang,"Satuan 1 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 6 = 5. Sisa puluhan: 8 − 8 = 0. Hasilnya 5."
+,226,SUB0000000000226,PENGURANGAN,1,Dua digit dengan meminjam,95 − 59,36,Sedang,"Satuan 5 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 5+10 − 9 = 6. Sisa puluhan: 8 − 5 = 3. Hasilnya 36."
+,227,SUB0000000000227,PENGURANGAN,1,Dua digit dengan meminjam,97 − 79,18,Sedang,"Satuan 7 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 7+10 − 9 = 8. Sisa puluhan: 8 − 7 = 1. Hasilnya 18."
+,228,SUB0000000000228,PENGURANGAN,1,Dua digit dengan meminjam,31 − 18,13,Sulit,"Satuan 1 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 8 = 3. Sisa puluhan: 2 − 1 = 1. Hasilnya 13."
+,229,SUB0000000000229,PENGURANGAN,1,Dua digit dengan meminjam,40 − 37,3,Sulit,"Satuan 0 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 7 = 3. Sisa puluhan: 3 − 3 = 0. Hasilnya 3."
+,230,SUB0000000000230,PENGURANGAN,1,Dua digit dengan meminjam,41 − 38,3,Sulit,"Satuan 1 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 8 = 3. Sisa puluhan: 3 − 3 = 0. Hasilnya 3."
+,231,SUB0000000000231,PENGURANGAN,1,Dua digit dengan meminjam,42 − 39,3,Sulit,"Satuan 2 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 9 = 3. Sisa puluhan: 3 − 3 = 0. Hasilnya 3."
+,232,SUB0000000000232,PENGURANGAN,1,Dua digit dengan meminjam,50 − 17,33,Sulit,"Satuan 0 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 7 = 3. Sisa puluhan: 4 − 1 = 3. Hasilnya 33."
+,233,SUB0000000000233,PENGURANGAN,1,Dua digit dengan meminjam,53 − 49,4,Sulit,"Satuan 3 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 9 = 4. Sisa puluhan: 4 − 4 = 0. Hasilnya 4."
+,234,SUB0000000000234,PENGURANGAN,1,Dua digit dengan meminjam,60 − 26,34,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 5 − 2 = 3. Hasilnya 34."
+,235,SUB0000000000235,PENGURANGAN,1,Dua digit dengan meminjam,61 − 57,4,Sulit,"Satuan 1 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 7 = 4. Sisa puluhan: 5 − 5 = 0. Hasilnya 4."
+,236,SUB0000000000236,PENGURANGAN,1,Dua digit dengan meminjam,62 − 18,44,Sulit,"Satuan 2 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 8 = 4. Sisa puluhan: 5 − 1 = 4. Hasilnya 44."
+,237,SUB0000000000237,PENGURANGAN,1,Dua digit dengan meminjam,62 − 28,34,Sulit,"Satuan 2 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 8 = 4. Sisa puluhan: 5 − 2 = 3. Hasilnya 34."
+,238,SUB0000000000238,PENGURANGAN,1,Dua digit dengan meminjam,70 − 36,34,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 6 − 3 = 3. Hasilnya 34."
+,239,SUB0000000000239,PENGURANGAN,1,Dua digit dengan meminjam,71 − 19,52,Sulit,"Satuan 1 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 9 = 2. Sisa puluhan: 6 − 1 = 5. Hasilnya 52."
+,240,SUB0000000000240,PENGURANGAN,1,Dua digit dengan meminjam,72 − 18,54,Sulit,"Satuan 2 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 8 = 4. Sisa puluhan: 6 − 1 = 5. Hasilnya 54."
+,241,SUB0000000000241,PENGURANGAN,1,Dua digit dengan meminjam,72 − 69,3,Sulit,"Satuan 2 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 9 = 3. Sisa puluhan: 6 − 6 = 0. Hasilnya 3."
+,242,SUB0000000000242,PENGURANGAN,1,Dua digit dengan meminjam,73 − 39,34,Sulit,"Satuan 3 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 3+10 − 9 = 4. Sisa puluhan: 6 − 3 = 3. Hasilnya 34."
+,243,SUB0000000000243,PENGURANGAN,1,Dua digit dengan meminjam,90 − 36,54,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 8 − 3 = 5. Hasilnya 54."
+,244,SUB0000000000244,PENGURANGAN,1,Dua digit dengan meminjam,91 − 87,4,Sulit,"Satuan 1 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 1+10 − 7 = 4. Sisa puluhan: 8 − 8 = 0. Hasilnya 4."
+,245,SUB0000000000245,PENGURANGAN,1,Dua digit dengan meminjam,92 − 58,34,Sulit,"Satuan 2 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 2+10 − 8 = 4. Sisa puluhan: 8 − 5 = 3. Hasilnya 34."
+,246,SUB0000000000246,PENGURANGAN,1,Pengurangan yang melibatkan nol,40 − 0,40,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 40 − 0 = 40."
+,247,SUB0000000000247,PENGURANGAN,1,Pengurangan yang melibatkan nol,40 − 40,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 40 − 40 = 0."
+,248,SUB0000000000248,PENGURANGAN,1,Pengurangan yang melibatkan nol,50 − 20,30,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 5 − 2 = 3. Hasilnya 30.
+,249,SUB0000000000249,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 10,50,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 6 − 1 = 5. Hasilnya 50.
+,250,SUB0000000000250,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 20,40,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 6 − 2 = 4. Hasilnya 40.
+,251,SUB0000000000251,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 40,20,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 6 − 4 = 2. Hasilnya 20.
+,252,SUB0000000000252,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 50,10,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 6 − 5 = 1. Hasilnya 10.
+,253,SUB0000000000253,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 20,50,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 7 − 2 = 5. Hasilnya 50.
+,254,SUB0000000000254,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 30,40,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 7 − 3 = 4. Hasilnya 40.
+,255,SUB0000000000255,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 50,20,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 7 − 5 = 2. Hasilnya 20.
+,256,SUB0000000000256,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 0,80,Mudah,"Dikurangi 0 berarti tidak ada yang diambil, nilainya tetap. 80 − 0 = 80."
+,257,SUB0000000000257,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 30,50,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 8 − 3 = 5. Hasilnya 50.
+,258,SUB0000000000258,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 60,20,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 8 − 6 = 2. Hasilnya 20.
+,259,SUB0000000000259,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 80,0,Mudah,"Bilangan dikurangi dirinya sendiri, semuanya habis. 80 − 80 = 0."
+,260,SUB0000000000260,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 60,30,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 9 − 6 = 3. Hasilnya 30.
+,261,SUB0000000000261,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 70,20,Mudah,Kurangi menurut nilai tempat. Satuan: 0 − 0 = 0. Puluhan: 9 − 7 = 2. Hasilnya 20.
+,262,SUB0000000000262,PENGURANGAN,1,Pengurangan yang melibatkan nol,30 − 2,28,Sedang,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 2 − 0 = 2. Hasilnya 28."
+,263,SUB0000000000263,PENGURANGAN,1,Pengurangan yang melibatkan nol,30 − 4,26,Sedang,"Satuan 0 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 4 = 6. Sisa puluhan: 2 − 0 = 2. Hasilnya 26."
+,264,SUB0000000000264,PENGURANGAN,1,Pengurangan yang melibatkan nol,30 − 6,24,Sedang,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 2 − 0 = 2. Hasilnya 24."
+,265,SUB0000000000265,PENGURANGAN,1,Pengurangan yang melibatkan nol,40 − 3,37,Sedang,"Satuan 0 lebih kecil dari 3, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 3 = 7. Sisa puluhan: 3 − 0 = 3. Hasilnya 37."
+,266,SUB0000000000266,PENGURANGAN,1,Pengurangan yang melibatkan nol,50 − 4,46,Sedang,"Satuan 0 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 4 = 6. Sisa puluhan: 4 − 0 = 4. Hasilnya 46."
+,267,SUB0000000000267,PENGURANGAN,1,Pengurangan yang melibatkan nol,50 − 6,44,Sedang,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 4 − 0 = 4. Hasilnya 44."
+,268,SUB0000000000268,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 7,53,Sedang,"Satuan 0 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 7 = 3. Sisa puluhan: 5 − 0 = 5. Hasilnya 53."
+,269,SUB0000000000269,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 8,52,Sedang,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 5 − 0 = 5. Hasilnya 52."
+,270,SUB0000000000270,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 1,69,Sedang,"Satuan 0 lebih kecil dari 1, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 1 = 9. Sisa puluhan: 6 − 0 = 6. Hasilnya 69."
+,271,SUB0000000000271,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 2,78,Sedang,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 7 − 0 = 7. Hasilnya 78."
+,272,SUB0000000000272,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 4,76,Sedang,"Satuan 0 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 4 = 6. Sisa puluhan: 7 − 0 = 7. Hasilnya 76."
+,273,SUB0000000000273,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 5,75,Sedang,"Satuan 0 lebih kecil dari 5, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 5 = 5. Sisa puluhan: 7 − 0 = 7. Hasilnya 75."
+,274,SUB0000000000274,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 8,72,Sedang,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 7 − 0 = 7. Hasilnya 72."
+,275,SUB0000000000275,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 4,86,Sedang,"Satuan 0 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 4 = 6. Sisa puluhan: 8 − 0 = 8. Hasilnya 86."
+,276,SUB0000000000276,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 6,84,Sedang,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 8 − 0 = 8. Hasilnya 84."
+,277,SUB0000000000277,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 9,81,Sedang,"Satuan 0 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 9 = 1. Sisa puluhan: 8 − 0 = 8. Hasilnya 81."
+,278,SUB0000000000278,PENGURANGAN,1,Pengurangan yang melibatkan nol,30 − 12,18,Sulit,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 2 − 1 = 1. Hasilnya 18."
+,279,SUB0000000000279,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 22,38,Sulit,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 5 − 2 = 3. Hasilnya 38."
+,280,SUB0000000000280,PENGURANGAN,1,Pengurangan yang melibatkan nol,60 − 25,35,Sulit,"Satuan 0 lebih kecil dari 5, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 5 = 5. Sisa puluhan: 5 − 2 = 3. Hasilnya 35."
+,281,SUB0000000000281,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 18,52,Sulit,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 6 − 1 = 5. Hasilnya 52."
+,282,SUB0000000000282,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 33,37,Sulit,"Satuan 0 lebih kecil dari 3, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 3 = 7. Sisa puluhan: 6 − 3 = 3. Hasilnya 37."
+,283,SUB0000000000283,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 36,34,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 6 − 3 = 3. Hasilnya 34."
+,284,SUB0000000000284,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 37,33,Sulit,"Satuan 0 lebih kecil dari 7, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 7 = 3. Sisa puluhan: 6 − 3 = 3. Hasilnya 33."
+,285,SUB0000000000285,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 46,24,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 6 − 4 = 2. Hasilnya 24."
+,286,SUB0000000000286,PENGURANGAN,1,Pengurangan yang melibatkan nol,70 − 59,11,Sulit,"Satuan 0 lebih kecil dari 9, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 9 = 1. Sisa puluhan: 6 − 5 = 1. Hasilnya 11."
+,287,SUB0000000000287,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 18,62,Sulit,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 7 − 1 = 6. Hasilnya 62."
+,288,SUB0000000000288,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 46,34,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 7 − 4 = 3. Hasilnya 34."
+,289,SUB0000000000289,PENGURANGAN,1,Pengurangan yang melibatkan nol,80 − 68,12,Sulit,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 7 − 6 = 1. Hasilnya 12."
+,290,SUB0000000000290,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 11,79,Sulit,"Satuan 0 lebih kecil dari 1, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 1 = 9. Sisa puluhan: 8 − 1 = 7. Hasilnya 79."
+,291,SUB0000000000291,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 16,74,Sulit,"Satuan 0 lebih kecil dari 6, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 6 = 4. Sisa puluhan: 8 − 1 = 7. Hasilnya 74."
+,292,SUB0000000000292,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 25,65,Sulit,"Satuan 0 lebih kecil dari 5, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 5 = 5. Sisa puluhan: 8 − 2 = 6. Hasilnya 65."
+,293,SUB0000000000293,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 42,48,Sulit,"Satuan 0 lebih kecil dari 2, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 2 = 8. Sisa puluhan: 8 − 4 = 4. Hasilnya 48."
+,294,SUB0000000000294,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 44,46,Sulit,"Satuan 0 lebih kecil dari 4, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 4 = 6. Sisa puluhan: 8 − 4 = 4. Hasilnya 46."
+,295,SUB0000000000295,PENGURANGAN,1,Pengurangan yang melibatkan nol,90 − 58,32,Sulit,"Satuan 0 lebih kecil dari 8, jadi pinjam 1 puluhan. Satuan jadi 0+10 − 8 = 2. Sisa puluhan: 8 − 5 = 3. Hasilnya 32."
